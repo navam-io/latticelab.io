@@ -443,18 +443,81 @@ Phase 1 (Feature Slices 1-13) is now complete. See `releases/` folder for detail
 
 ### Feature Slice 37: Product Screenshots Integration
 
-**Spec Reference**: `website-spec.md` → Screenshot Integration, Journeys
+**Spec Reference**: `website-spec.md` → Product Assets & Screenshots
 
-**Summary**: Integrate actual product screenshots from Lattice journeys.
+**Summary**: Integrate actual product screenshots from Lattice journeys and optimize for web.
+
+**Source**: `/Users/manavsehgal/Developer/lattice/journeys/` (71 screenshots across 16 journeys)
 
 **Acceptance Criteria**:
-- [ ] Screenshots copied from Lattice `/journeys/` folder
-- [ ] Screenshots optimized and resized for web
-- [ ] Hero section product screenshot added
-- [ ] Feature page screenshots added
-- [ ] Journey page screenshots integrated with steps
-- [ ] Solution section three-panel screenshot added
-- [ ] All screenshots have alt text
+
+**Hero Section**:
+- [ ] Copy `chat-with-ai/chat-with-ai-01.png` for hero screenshot
+- [ ] Optimize to max 1200px width, WebP format
+- [ ] Replace placeholder in Hero.astro
+
+**Solution Section (Three-Panel)**:
+- [ ] Left panel: `view-source/view-source-01.png` (Sources)
+- [ ] Center panel: `chat-with-ai/chat-with-ai-05.png` (Lab with AI response)
+- [ ] Right panel: `view-artifact/view-artifact-01.png` (Studio)
+- [ ] Create composite or individual panel screenshots
+
+**Feature Pages**:
+- [ ] `/features/sources`: `add-sources/add-sources-01.png`, `view-source/view-source-01.png`
+- [ ] `/features/lab`: `chat-with-ai/chat-with-ai-03.png`, `chat-with-ai/chat-with-ai-05.png`
+- [ ] `/features/studio`: `save-artifact/save-artifact-01.png`, `view-artifact/view-artifact-01.png`
+- [ ] `/features/scenarios`: `browse-blueprints/browse-blueprints-02.png`, `apply-blueprint/apply-blueprint-03.png`
+
+**Blueprints Page**:
+- [ ] Gallery: `browse-blueprints/browse-blueprints-02.png`
+- [ ] Discovery: `discover-blueprint/discover-blueprint-03.png`
+- [ ] Detail: `apply-blueprint/apply-blueprint-03.png`
+
+**Journey Pages** (use sequential screenshots from each journey folder):
+- [ ] `create-workspace/` screenshots for journey steps
+- [ ] `browse-blueprints/` screenshots for journey steps
+- [ ] `chat-with-ai/` screenshots for journey steps
+- [ ] Additional journeys as MDX content is created
+
+**Optimization**:
+- [ ] All images converted to WebP with fallback
+- [ ] Max width 1200px for full-width, 800px for panels
+- [ ] Lazy loading via Astro `<Image />` component
+- [ ] Alt text describing what's shown in each screenshot
+
+---
+
+### Feature Slice 37b: Logo Assets Integration
+
+**Spec Reference**: `website-spec.md` → Logo Usage Recommendations
+
+**Summary**: Replace placeholder logos with actual Lattice brand assets.
+
+**Source**: `/Users/manavsehgal/Developer/lattice/assets/`
+
+**Acceptance Criteria**:
+- [ ] Header logo: `lattice-logo-side-white-bg.png` (optimize for web)
+- [ ] Footer logo: `lattice-logo-top-white-bg.png` (stacked variant)
+- [ ] Favicon: `lattice-logo-top-white-bg-icon.png` (generate 16x16, 32x32, 180x180)
+- [ ] OG image: `lattice-logo-top-white-bg-icon-512.png`
+- [ ] PWA icons: Generate from 512px icon
+- [ ] Dark mode header variant from `lattice-logo-side-bw.png`
+
+---
+
+### Feature Slice 37c: Design System Enhancements
+
+**Spec Reference**: `website-spec.md` → Design Alignment Notes
+
+**Summary**: Add product-specific UI patterns to website design system.
+
+**Acceptance Criteria**:
+- [ ] Add green "Vendor" badge variant to Badge component
+- [ ] Add purple accent color for AI-related CTAs (`--color-ai-accent: #a855f7`)
+- [ ] Add yellow star icon styling for "official" content
+- [ ] Update card hover states to match product (`hover:border-gray-300`)
+- [ ] Add metadata text style (small gray for counts)
+- [ ] Add filter tab/pill component matching Blueprint Gallery style
 
 ---
 
@@ -488,15 +551,24 @@ Phase 1 (Feature Slices 1-13) is now complete. See `releases/` folder for detail
 | Phase 2 | 14-23 | In Progress | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | Planned | Interactive — Mock preview components |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38 | Planned | Polish — Performance, accessibility, testing, launch |
+| Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 38 (13 complete, 25 remaining)
+**Total Feature Slices**: 40 (13 complete, 27 remaining)
+
+**New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
 **Logo Assets** (source: `/Users/manavsehgal/Developer/lattice/assets/`):
-- Horizontal logo variants for header (dark/light modes)
-- Stacked logo variants for footer and marketing
-- Icon-only variants for favicon and PWA icons
-- 512px icon for OG image
+- `lattice-logo-side-white-bg.png` — Header (light mode, horizontal)
+- `lattice-logo-side-bw.png` — Header (dark/light dual variant)
+- `lattice-logo-top-white-bg.png` — Footer (stacked)
+- `lattice-logo-top-white-bg-icon.png` — Favicon source
+- `lattice-logo-top-white-bg-icon-512.png` — OG image / PWA icon
+- `lattice-logo.png` — Dark background marketing variant
+
+**Product Screenshots** (source: `/Users/manavsehgal/Developer/lattice/journeys/`):
+- 71 screenshots across 16 user journeys
+- Key screenshots identified for Hero, Solution, Features, Blueprints pages
+- See `website-spec.md` → Product Assets & Screenshots for full mapping
 
 **CRO Enhancements Applied** (Phase 1):
 - Feature Slice 7: Hero above-the-fold optimization (5-second rule)

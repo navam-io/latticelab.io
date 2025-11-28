@@ -546,6 +546,137 @@ For complex features, use actual product screenshots from `/journeys/`:
 
 ---
 
+## Product Assets & Screenshots
+
+### Source Location
+
+Product screenshots and assets are located in the Lattice product repository:
+
+```
+/Users/manavsehgal/Developer/lattice/
+├── journeys/                    # 71 product screenshots across 16 journeys
+│   ├── add-sources/            # 7 screenshots
+│   ├── apply-blueprint/        # 4 screenshots
+│   ├── ask-about-selection/    # 6 screenshots
+│   ├── browse-blueprints/      # 3 screenshots
+│   ├── chat-with-ai/           # 5 screenshots
+│   ├── configure-settings/     # 5 screenshots
+│   ├── create-workspace/       # 4 screenshots
+│   ├── discover-blueprint/     # 5 screenshots
+│   ├── filter-blueprints/      # 5 screenshots
+│   ├── manage-api-keys/        # 2 screenshots
+│   ├── refresh-blueprint/      # 5 screenshots
+│   ├── save-artifact/          # 5 screenshots
+│   ├── switch-workspace/       # 3 screenshots
+│   ├── view-artifact/          # 5 screenshots
+│   └── view-source/            # 5 screenshots
+│
+└── assets/                      # Logo variants
+    ├── lattice-logo-side-white-bg.png      # Header (light mode)
+    ├── lattice-logo-side-bw.png            # Header (dark/light dual)
+    ├── lattice-logo-top-white-bg.png       # Footer/marketing (stacked)
+    ├── lattice-logo-top-white-bg-icon.png  # Favicon
+    ├── lattice-logo-top-white-bg-icon-512.png  # OG image/PWA
+    └── lattice-logo.png                    # Dark background variant
+```
+
+### Recommended Screenshots by Section
+
+#### Hero Section (Above the Fold)
+
+**Best screenshot**: `chat-with-ai/chat-with-ai-01.png`
+- Shows clean three-panel layout: Sources | Lab | Studio
+- Welcome state with "Welcome to Lattice Lab" message
+- Suggested prompts visible (demonstrates AI capability)
+- Professional, uncluttered first impression
+
+**Alternative**: `add-sources/add-sources-01.png` (shows populated sources panel)
+
+#### Solution Section (Three-Panel Preview)
+
+**Left panel (Sources)**: `view-source/view-source-01.png`
+- Shows 4 sources indexed with metadata
+- Green "Vendor" badges visible
+- Professional source management view
+
+**Center panel (Lab)**: `chat-with-ai/chat-with-ai-05.png`
+- Shows AI response with structured content
+- "Cost Benefits", "Critical Caveats", "Recommendation" sections
+- "Save as Artifact" and "Copy" buttons visible
+- Demonstrates the quality of AI output
+
+**Right panel (Studio)**: `view-artifact/view-artifact-01.png`
+- Shows artifact with memo saved
+- "1 artifact" indicator
+- Demonstrates artifact persistence
+
+#### Feature Pages
+
+**Sources Feature** (`/features/sources`):
+- `add-sources/add-sources-01.png` - Sources panel with indexed documents
+- `view-source/view-source-01.png` - Source detail view
+
+**Lab Feature** (`/features/lab`):
+- `chat-with-ai/chat-with-ai-03.png` - User asking question, Research Agent responding
+- `chat-with-ai/chat-with-ai-05.png` - Full AI response with sections
+
+**Studio Feature** (`/features/studio`):
+- `save-artifact/save-artifact-01.png` - Save artifact flow
+- `view-artifact/view-artifact-01.png` - Artifact in Studio panel
+
+**Scenarios Feature** (`/features/scenarios`):
+- `browse-blueprints/browse-blueprints-02.png` - Blueprint Gallery with filters
+- `apply-blueprint/apply-blueprint-03.png` - Blueprint details with Sources, Scenarios, Stacks
+
+#### Blueprints Page
+
+**Gallery view**: `browse-blueprints/browse-blueprints-02.png`
+- Shows Blueprint Gallery modal (36 blueprints)
+- Category filters: All, Production, Development, Comparison, Cost Optimization, RAG, Agentic, General
+- Vendor filters: Anthropic, AWS, Microsoft Azure, Google Cloud, Meta, NVIDIA
+- Blueprint cards with star ratings, version numbers
+
+**Discovery modal**: `discover-blueprint/discover-blueprint-03.png`
+- Shows "Discover Blueprint" AI-powered modal
+- Vendor dropdown and topic input
+- Purple "Discover" CTA button
+
+**Blueprint detail**: `apply-blueprint/apply-blueprint-03.png`
+- Blueprint selected state showing details
+- Sources (3), Scenarios (1), Stacks (1) breakdown
+- "Apply to Workspace" purple CTA
+
+### Logo Usage Recommendations
+
+| Use Case | Asset | Notes |
+|----------|-------|-------|
+| **Header (light bg)** | `lattice-logo-side-white-bg.png` | Horizontal, dark icon + text |
+| **Header (dark bg)** | `lattice-logo-side-bw.png` (light variant) | Horizontal, light icon + text |
+| **Footer** | `lattice-logo-top-white-bg.png` | Stacked, larger presence |
+| **Favicon** | `lattice-logo-top-white-bg-icon.png` | Icon only, 32x32 optimized |
+| **OG Image** | `lattice-logo-top-white-bg-icon-512.png` | 512x512 for social sharing |
+| **Marketing materials** | `lattice-logo.png` | Dark background variant |
+
+### Design Alignment Notes
+
+The website design system is already well-aligned with the Lattice product:
+
+**Typography**: Both use Geist Sans/Mono font families
+**Colors**: Product uses OKLCH, website uses Hex equivalents - visually identical
+**Borders**: Product radius `0.625rem` matches website `--radius-lg`
+**Surfaces**: Both use zinc-based surface layers (surface-1, surface-2, surface-3)
+
+**Product-specific patterns to incorporate in website**:
+
+1. **Green "Vendor" badges** - Used in Sources panel for source type indicators
+2. **Purple accent for AI features** - "Discover" button uses purple (`bg-purple-500`)
+3. **Yellow star for official content** - Official blueprints have yellow star icons
+4. **Card hover states** - `hover:border-gray-300` with subtle transition
+5. **Metadata styling** - Small gray text for counts (pages, tokens, chunks)
+6. **Filter tabs** - Rounded pill-style filters with active state
+
+---
+
 ## Technical Stack
 
 ### Core Framework
