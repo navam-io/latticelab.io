@@ -1,102 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.7.0
+**Current Version**: 0.9.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 8: Logo & Branding Integration
-
-**Spec Reference**: `website-spec.md` → Design System (Logo), Brand Assets
-
-**Summary**: Integrate official Lattice logo assets across the website for consistent branding. Logo source files are located at `/Users/manavsehgal/Developer/lattice/assets/`.
-
-**Available Logo Assets**:
-
-| Asset | File | Dimensions | Use Case |
-|-------|------|------------|----------|
-| Icon only (dark bg) | `lattice-logo-image.png` | 1024x1024 | App icon, social profiles |
-| Horizontal (dark/light) | `lattice-logo-side-bw.png` | 1024x1024 | Header logo reference |
-| Horizontal (light bg) | `lattice-logo-side-white-bg.png` | 1024x1024 | Light mode header |
-| Stacked (light bg) | `lattice-logo-top-white-bg.png` | 1024x1024 | Footer, marketing |
-| Stacked icon (small) | `lattice-logo-top-white-bg-icon.png` | ~256px | Favicon source |
-| Stacked icon (512px) | `lattice-logo-top-white-bg-icon-512.png` | 512x512 | PWA icon, OG image |
-| Horizontal (white bg) | `lattice-logo-white-bg.png` | 1024x1024 | Light mode |
-| Stacked (dark bg) | `lattice-logo.png` | 1024x1024 | Dark mode, hero |
-
-**Acceptance Criteria**:
-- [ ] Copy logo assets to `public/` directory with optimized sizes
-  - [ ] `public/logo.svg` — Header logo (or optimized PNG)
-  - [ ] `public/logo-dark.svg` — Dark mode header logo variant
-  - [ ] `public/favicon.ico` — Multi-size favicon (16, 32, 48px)
-  - [ ] `public/favicon.svg` — SVG favicon for modern browsers
-  - [ ] `public/apple-touch-icon.png` — 180x180 iOS icon
-  - [ ] `public/icon-192.png` — PWA icon 192x192
-  - [ ] `public/icon-512.png` — PWA icon 512x512
-  - [ ] `public/og-image.png` — Open Graph image (1200x630) with logo
-- [ ] Update `Header.astro` to use actual logo image
-  - [ ] Replace text "Lattice" with logo image + text
-  - [ ] Logo links to homepage
-  - [ ] Appropriate height (32-40px in header)
-  - [ ] Dark mode variant support
-- [ ] Update `Footer.astro` with stacked logo variant
-  - [ ] Use stacked logo (icon above text)
-  - [ ] Appropriate size for footer context
-- [ ] Update `BaseLayout.astro` with favicon links
-  - [ ] `<link rel="icon" href="/favicon.ico">`
-  - [ ] `<link rel="icon" type="image/svg+xml" href="/favicon.svg">`
-  - [ ] `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`
-- [ ] Update OG image in meta tags
-  - [ ] Create branded OG image with logo
-  - [ ] Update meta tags to reference new OG image
-- [ ] Create `site.webmanifest` for PWA support
-  - [ ] Reference icon-192 and icon-512
-  - [ ] Set theme colors matching design system
-- [ ] Verify logo displays correctly in:
-  - [ ] Header (desktop and mobile)
-  - [ ] Footer
-  - [ ] Browser tab (favicon)
-  - [ ] Social sharing preview (OG image)
-
-**Technical Notes**:
-- Consider converting PNG logos to SVG for scalability where possible
-- Use `<Image />` component from Astro for optimized loading
-- Ensure logo has sufficient contrast on both light/dark backgrounds
-- Logo grid pattern represents "lattice" concept visually
-
----
-
-### Feature Slice 9: Homepage — Persona Cards & Social Proof (Verifiable)
-
-**Spec Reference**: `website-spec.md` → CRO Principles (Social Proof Best Practices), Page Specifications (Homepage sections 4-5), Target Audience (ICP)
-
-**Summary**: Create persona value proposition cards and verifiable social proof section.
-
-**CRO Checklist**:
-- [ ] Benefit-driven headlines for each persona card
-- [ ] Verifiable social proof: Photo + Name + Role + Company + Source
-- [ ] Never hide reviews in carousels — force consumption
-
-**Acceptance Criteria**:
-- [ ] `PersonaCards.astro` — Three cards for Research Engineer, Platform Lead, CTO
-  - [ ] Each card: icon, persona title, benefit-driven headline (not generic)
-  - [ ] Headlines convey outcome: "Cut weeks to hours", "Board-ready in minutes"
-  - [ ] Cards use Card component with hover effect
-- [ ] `SocialProof.astro` — Testimonials section (verifiable structure)
-  - [ ] 3 testimonial cards (NOT in carousel — displayed inline)
-  - [ ] Each card: photo placeholder, full name, role, company, quote
-  - [ ] Source indicator (e.g., "via LinkedIn", "via Product Hunt")
-  - [ ] Clearly marked as placeholder for future real testimonials
-  - [ ] Structure ready for real testimonials with verifiable details
-- [ ] `LogoBar.astro` — Featured on / trust logos
-  - [ ] 3-4 logo placeholders with publication quotes
-  - [ ] Not just logos — include snippet quote from each publication
-- [ ] Responsive grid layout (3 columns desktop, 1 column mobile)
-- [ ] No carousel hiding on mobile — stack vertically
-
----
 
 ### Feature Slice 10: Homepage — Pricing & FAQ Sections
 

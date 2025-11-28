@@ -1,0 +1,100 @@
+---
+/**
+ * FeaturedOn Component
+ *
+ * Displays "Featured On" publication logos with snippet quotes.
+ * CRO: Not just logos - includes quotes from each publication for credibility.
+ * Structure ready for real publication features.
+ */
+
+export interface Publication {
+  name: string;
+  quote: string;
+  logoPlaceholder?: string;
+}
+
+export interface Props {
+  publications?: Publication[];
+  label?: string;
+}
+
+const {
+  publications = [
+    {
+      name: 'Hacker News',
+      quote: 'Finally, evidence-based AI tooling',
+      logoPlaceholder: 'HN',
+    },
+    {
+      name: 'AI Weekly',
+      quote: 'A privacy-first approach to LLM research',
+      logoPlaceholder: 'AI',
+    },
+    {
+      name: 'DevTools Digest',
+      quote: 'The research tool engineers actually need',
+      logoPlaceholder: 'DT',
+    },
+    {
+      name: 'MLOps Community',
+      quote: 'Grounded recommendations with citations',
+      logoPlaceholder: 'ML',
+    },
+  ],
+  label = 'As Featured In',
+} = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-6" data-testid="featured-on">
+  <span
+    class="text-xs font-medium uppercase tracking-wider text-muted-foreground"
+    data-testid="featured-on-label"
+  >
+    {label}
+  </span>
+
+  <!-- Publications Grid -->
+  <div
+    class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+    data-testid="featured-on-publications"
+  >
+    {
+      publications.map((pub, index) => (
+        <div
+          class="flex flex-col items-center gap-2 text-center"
+          data-testid={`publication-${index}`}
+        >
+          {/* Logo Placeholder */}
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-lg bg-surface-2 text-sm font-bold text-muted-foreground"
+            data-testid={`publication-logo-${index}`}
+            aria-label={`${pub.name} logo`}
+          >
+            {pub.logoPlaceholder || pub.name.substring(0, 2).toUpperCase()}
+          </div>
+
+          {/* Publication Name */}
+          <span
+            class="text-sm font-medium text-foreground"
+            data-testid={`publication-name-${index}`}
+          >
+            {pub.name}
+          </span>
+
+          {/* Quote Snippet */}
+          <p
+            class="text-xs text-muted-foreground italic"
+            data-testid={`publication-quote-${index}`}
+          >
+            "{pub.quote}"
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Placeholder notice -->
+  <p class="text-xs text-muted-foreground" data-testid="featured-on-placeholder-notice">
+    * Representative coverage. Real press mentions coming soon.
+  </p>
+</div>

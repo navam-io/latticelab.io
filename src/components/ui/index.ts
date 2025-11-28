@@ -10,3 +10,4 @@ export { default as Section } from './Section.astro';
 export { default as LogoBar } from './LogoBar.astro';
 export { default as ReviewSnippet } from './ReviewSnippet.astro';
 export { default as FUDsReduction } from './FUDsReduction.astro';
+export { default as FeaturedOn } from './FeaturedOn.astro';
