@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.13.0
+**Current Version**: 0.14.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -13,20 +13,9 @@ Phase 1 (Feature Slices 1-13) is now complete. See `releases/` folder for detail
 
 ## Phase 2: Content & Journeys
 
-### Feature Slice 14: Pricing Page
+### Feature Slice 14: Pricing Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Pricing)
-
-**Summary**: Create dedicated pricing page with full details and Stripe integration placeholder.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/pricing.astro` created
-- [ ] Hero with pricing headline
-- [ ] Detailed "What's included" section
-- [ ] Stripe Buy Button placeholder with integration notes
-- [ ] Purchase flow explanation (email → GitHub invite)
-- [ ] FAQ specific to purchasing
-- [ ] Trust signals and guarantees
+See `releases/release-0.14.0.md` for details.
 
 ---
 
@@ -553,7 +542,7 @@ Phase 1 (Feature Slices 1-13) is now complete. See `releases/` folder for detail
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (13 complete, 27 remaining)
+**Total Feature Slices**: 40 (14 complete, 26 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
