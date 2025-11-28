@@ -233,6 +233,8 @@ test.describe('Feature 4: Layout Components', () => {
       await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
       await expect(menuButton).toHaveAttribute('aria-controls', 'mobile-menu');
 
+      // Wait for React hydration before clicking
+      await page.waitForTimeout(1000);
       await menuButton.click();
       // Wait for menu to open and React state to update
       const mobileMenu = page.locator('#mobile-menu');

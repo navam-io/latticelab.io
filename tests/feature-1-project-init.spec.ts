@@ -28,7 +28,8 @@ test.describe('Feature 1: Project Initialization', () => {
 
   test('homepage displays value proposition', async ({ page }) => {
     await page.goto('/');
-    const valueText = page.getByText('Stop researching AI infrastructure');
+    // Updated to match new Hero section messaging
+    const valueText = page.getByText(/Stop spending weeks/);
     await expect(valueText).toBeVisible();
   });
 

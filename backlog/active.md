@@ -1,29 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.4.0
+**Current Version**: 0.5.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 5: Homepage — Hero Section
-
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage), Content Strategy (Messaging Framework)
-
-**Summary**: Create the homepage Hero section with headline, subhead, CTA button, and product screenshot placeholder.
-
-**Acceptance Criteria**:
-- [ ] `Hero.astro` section component
-- [ ] Headline: Value proposition from spec
-- [ ] Subhead: Supporting copy
-- [ ] Primary CTA button: "Buy Lattice — $99"
-- [ ] Secondary CTA: "View Features" or "See Demo"
-- [ ] Product screenshot placeholder (to be replaced with actual screenshot)
-- [ ] Responsive layout (text left, image right on desktop; stacked on mobile)
-- [ ] Homepage `/src/pages/index.astro` created with Hero section
-
----
 
 ### Feature Slice 6: Homepage — Pain & Solution Sections
 
