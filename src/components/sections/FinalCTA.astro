@@ -1,0 +1,62 @@
+---
+/**
+ * FinalCTA Component
+ *
+ * Bottom-of-page call to action with benefit-driven headline.
+ * CRO: Reminds value, uses benefit headline (not "Get Started"),
+ * includes FUDs reduction underneath.
+ */
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import FUDsReduction from '@/components/ui/FUDsReduction.astro';
+---
+
+<Section spacing="lg" data-testid="final-cta-section">
+  <Container size="md">
+    <div class="text-center">
+      <!-- Benefit-driven headline -->
+      <h2
+        class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+        data-testid="final-cta-headline"
+      >
+        Make Confident AI Decisions Today
+      </h2>
+
+      <!-- Value reminder -->
+      <p
+        class="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
+        data-testid="final-cta-value"
+      >
+        Stop spending weeks on research that goes stale. Get grounded recommendations with
+        citations you can verify — deployed on your infrastructure in under 5 minutes.
+      </p>
+
+      <!-- Primary CTA -->
+      <div class="mb-6" data-testid="final-cta-button-container">
+        <Button
+          variant="primary"
+          size="lg"
+          href="/pricing"
+          class="px-10"
+          data-testid="final-cta-button"
+        >
+          Get Lattice — $99 One-Time
+        </Button>
+      </div>
+
+      <!-- FUDs Reduction -->
+      <div class="flex justify-center" data-testid="final-cta-fuds">
+        <FUDsReduction />
+      </div>
+
+      <!-- Final trust reminder -->
+      <p
+        class="mt-10 text-sm text-muted-foreground"
+        data-testid="final-cta-trust"
+      >
+        Join research engineers at companies that value privacy and evidence-based decisions.
+      </p>
+    </div>
+  </Container>
+</Section>

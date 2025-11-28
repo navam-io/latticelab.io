@@ -1,36 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.10.0
+**Current Version**: 0.11.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 11: Homepage — Privacy Section & Final CTA
-
-**Spec Reference**: `website-spec.md` → CRO Principles (Guarantee, Storytelling), Page Specifications (Homepage section 7), Key Messages
-
-**Summary**: Create privacy/security section (as guarantee) and final CTA with emotional storytelling.
-
-**CRO Checklist**:
-- [ ] Privacy as guarantee/trust element
-- [ ] Final CTA with benefit-driven headline
-- [ ] Storytelling: emotional connection to data security
-
-**Acceptance Criteria**:
-- [ ] `PrivacySection.astro` — Privacy-first messaging (Guarantee positioning)
-  - [ ] "Deploy anywhere" messaging as trust guarantee
-  - [ ] Icons: laptop, cloud, air-gapped
-  - [ ] Key points: data never leaves, self-hosted, no vendor lock-in
-  - [ ] Emotional angle: "Your competitive intelligence stays yours"
-- [ ] `FinalCTA.astro` — Bottom-of-page call to action
-  - [ ] Benefit-driven headline (not "Get Started")
-  - [ ] Primary CTA button with FUDs reduction underneath
-  - [ ] Brief value reminder (single sentence)
-- [ ] Sections added to homepage, completing all 10 sections
-
----
 
 ### Feature Slice 12: Responsive Design & Mobile Optimization
 
