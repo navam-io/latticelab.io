@@ -1,51 +1,13 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.11.0
+**Current Version**: 0.13.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
-## Phase 1: Foundation (MVP)
+## Phase 1: Foundation (MVP) - COMPLETE
 
-### Feature Slice 12: Responsive Design & Mobile Optimization
-
-**Spec Reference**: `website-spec.md` → CRO Principles (Jacob's Law), Design System, Browser Support, Accessibility Checklist
-
-**Summary**: Ensure all homepage sections are fully responsive and mobile-optimized with CRO considerations.
-
-**CRO Checklist**:
-- [ ] Above-the-fold complete on mobile (no key elements cut off)
-- [ ] Social proof visible without scrolling carousels
-- [ ] CTAs prominent and finger-friendly
-
-**Acceptance Criteria**:
-- [ ] All sections tested at breakpoints: 320px, 640px, 768px, 1024px, 1280px
-- [ ] **Mobile above-the-fold**: All CRO elements visible (headline, subhead, CTA, FUDs)
-- [ ] Mobile menu functions correctly
-- [ ] Touch targets minimum 44x44px
-- [ ] Images responsive with proper aspect ratios
-- [ ] Typography scales appropriately
-- [ ] No horizontal scroll on any viewport
-- [ ] **Social proof never hidden in carousels** — stack vertically on mobile
-- [ ] Test on Chrome, Firefox, Safari desktop
-- [ ] Test on iOS Safari, Chrome Mobile
-
----
-
-### Feature Slice 13: GitHub Actions Deployment
-
-**Spec Reference**: `website-spec.md` → Build & Deploy
-
-**Summary**: Configure GitHub Actions workflow for automatic deployment to GitHub Pages.
-
-**Acceptance Criteria**:
-- [ ] `.github/workflows/deploy.yml` created per spec
-- [ ] Workflow triggers on push to main and manual dispatch
-- [ ] Build step: `npm ci && npm run build`
-- [ ] Deploy to GitHub Pages using `actions/deploy-pages`
-- [ ] Astro configured for static output (`output: 'static'`)
-- [ ] Base URL configured for GitHub Pages
-- [ ] Successful deployment to live URL
+Phase 1 (Feature Slices 1-13) is now complete. See `releases/` folder for details.
 
 ---
 
@@ -520,15 +482,15 @@
 
 ## Backlog Summary
 
-| Phase | Slices | Description |
-|-------|--------|-------------|
-| Phase 1 | 1-13 | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
-| Phase 2 | 14-23 | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | Interactive — Mock preview components |
-| Phase 4 | 31-32 | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38 | Polish — Performance, accessibility, testing, launch |
+| Phase | Slices | Status | Description |
+|-------|--------|--------|-------------|
+| Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
+| Phase 2 | 14-23 | In Progress | Content — All pages, journeys, features, SEO |
+| Phase 3 | 24-30 | Planned | Interactive — Mock preview components |
+| Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
+| Phase 5 | 33-38 | Planned | Polish — Performance, accessibility, testing, launch |
 
-**Total Feature Slices**: 38
+**Total Feature Slices**: 38 (13 complete, 25 remaining)
 
 **Logo Assets** (source: `/Users/manavsehgal/Developer/lattice/assets/`):
 - Horizontal logo variants for header (dark/light modes)
@@ -536,13 +498,14 @@
 - Icon-only variants for favicon and PWA icons
 - 512px icon for OG image
 
-**CRO Enhancements Applied**:
+**CRO Enhancements Applied** (Phase 1):
 - Feature Slice 7: Hero above-the-fold optimization (5-second rule)
 - Feature Slice 8: Logo & branding integration
 - Feature Slice 9: Verifiable social proof (photos, names, sources)
 - Feature Slice 10: FUDs reduction under CTAs
 - Feature Slice 11: Privacy as guarantee, emotional storytelling
 - Feature Slice 12: Mobile CRO considerations
+- Feature Slice 13: GitHub Actions deployment
 
 ---
 
