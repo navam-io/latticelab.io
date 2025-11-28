@@ -1,42 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.9.0
+**Current Version**: 0.10.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 10: Homepage — Pricing & FAQ Sections
-
-**Spec Reference**: `website-spec.md` → CRO Principles (FUDs Reduction, Guarantee), Page Specifications (Homepage sections 8-9), Stripe Integration
-
-**Summary**: Create pricing section with $99 CTA, FUDs reduction, and FAQ to address objections.
-
-**CRO Checklist**:
-- [ ] FUDs reduction under CTA button
-- [ ] Guarantee prominently displayed
-- [ ] FAQ addresses common objections
-
-**Acceptance Criteria**:
-- [ ] `PricingSection.astro` — Prominent $99 pricing display
-  - [ ] Price: "$99" with "one-time" label (visually prominent)
-  - [ ] What's included list (benefit-driven, not feature-driven)
-  - [ ] Stripe Buy Button placeholder (comment indicating where button goes)
-  - [ ] **FUDs Reduction**: Under CTA button
-    - [ ] "30-day money-back guarantee"
-    - [ ] "Deploy in under 5 minutes"
-    - [ ] "No data leaves your machine"
-  - [ ] Trust signals: "Self-hosted", "Private repo access", "Deploy anywhere"
-- [ ] `FAQ.astro` — Accordion-style FAQ (objection handling)
-  - [ ] 5-6 questions addressing common objections/fears
-  - [ ] Questions reframed as benefits where possible
-  - [ ] Expandable/collapsible answers
-  - [ ] Accessible keyboard navigation
-  - [ ] **Not hidden in accordions on mobile** — consider inline for key questions
-- [ ] Sections added to homepage
-
----
 
 ### Feature Slice 11: Homepage — Privacy Section & Final CTA
 

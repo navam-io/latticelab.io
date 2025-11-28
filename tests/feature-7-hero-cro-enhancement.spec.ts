@@ -118,13 +118,14 @@ test.describe('Feature 7: Hero CRO Enhancement', () => {
     });
 
     test('logo bar shows at least 3 trust signals', async ({ page }) => {
-      const signals = page.getByTestId('logo-bar-signals');
+      const heroSection = page.getByTestId('hero-trust-signals');
+      const signals = heroSection.getByTestId('logo-bar-signals');
       await expect(signals).toBeVisible();
 
-      // Check individual trust signals
-      await expect(page.getByTestId('trust-signal-0')).toBeVisible();
-      await expect(page.getByTestId('trust-signal-1')).toBeVisible();
-      await expect(page.getByTestId('trust-signal-2')).toBeVisible();
+      // Check individual trust signals (scoped to hero section)
+      await expect(heroSection.getByTestId('trust-signal-0')).toBeVisible();
+      await expect(heroSection.getByTestId('trust-signal-1')).toBeVisible();
+      await expect(heroSection.getByTestId('trust-signal-2')).toBeVisible();
     });
 
     test('trust signals include Self-Hosted', async ({ page }) => {
@@ -154,28 +155,33 @@ test.describe('Feature 7: Hero CRO Enhancement', () => {
     });
 
     test('FUDs reduction container is visible', async ({ page }) => {
-      const fudsReduction = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fudsReduction = heroFuds.getByTestId('fuds-reduction');
       await expect(fudsReduction).toBeVisible();
     });
 
     test('FUDs reduction shows at least 3 items', async ({ page }) => {
-      await expect(page.getByTestId('fud-item-0')).toBeVisible();
-      await expect(page.getByTestId('fud-item-1')).toBeVisible();
-      await expect(page.getByTestId('fud-item-2')).toBeVisible();
+      const heroFuds = page.getByTestId('hero-fuds');
+      await expect(heroFuds.getByTestId('fud-item-0')).toBeVisible();
+      await expect(heroFuds.getByTestId('fud-item-1')).toBeVisible();
+      await expect(heroFuds.getByTestId('fud-item-2')).toBeVisible();
     });
 
     test('FUDs include money-back guarantee', async ({ page }) => {
-      const fuds = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fuds = heroFuds.getByTestId('fuds-reduction');
       await expect(fuds).toContainText('money-back guarantee');
     });
 
     test('FUDs include quick deployment', async ({ page }) => {
-      const fuds = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fuds = heroFuds.getByTestId('fuds-reduction');
       await expect(fuds).toContainText('Deploy in under 5 minutes');
     });
 
     test('FUDs include privacy assurance', async ({ page }) => {
-      const fuds = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fuds = heroFuds.getByTestId('fuds-reduction');
       await expect(fuds).toContainText('No data leaves your machine');
     });
 
@@ -191,7 +197,8 @@ test.describe('Feature 7: Hero CRO Enhancement', () => {
     });
 
     test('FUDs have small text size', async ({ page }) => {
-      const fuds = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fuds = heroFuds.getByTestId('fuds-reduction');
       const fontSize = await fuds.evaluate((el) => {
         return parseFloat(getComputedStyle(el).fontSize);
       });
@@ -298,7 +305,8 @@ test.describe('Feature 7: Hero CRO Enhancement', () => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto('/');
 
-      const fuds = page.getByTestId('fuds-reduction');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fuds = heroFuds.getByTestId('fuds-reduction');
       await expect(fuds).toBeVisible();
 
       // Check flex-wrap is applied
@@ -319,14 +327,16 @@ test.describe('Feature 7: Hero CRO Enhancement', () => {
     });
 
     test('FUD icons are hidden from screen readers', async ({ page }) => {
-      const fudItem = page.getByTestId('fud-item-0');
+      const heroFuds = page.getByTestId('hero-fuds');
+      const fudItem = heroFuds.getByTestId('fud-item-0');
       const icon = fudItem.locator('svg');
       const ariaHidden = await icon.getAttribute('aria-hidden');
       expect(ariaHidden).toBe('true');
     });
 
     test('trust signal icons are hidden from screen readers', async ({ page }) => {
-      const signal = page.getByTestId('trust-signal-0');
+      const heroSection = page.getByTestId('hero-trust-signals');
+      const signal = heroSection.getByTestId('trust-signal-0');
       const icon = signal.locator('span[aria-hidden="true"]');
       await expect(icon).toBeVisible();
     });

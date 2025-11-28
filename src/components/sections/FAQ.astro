@@ -1,0 +1,167 @@
+---
+/**
+ * FAQ Section Component
+ *
+ * Accordion-style FAQ addressing common objections and fears.
+ * CRO: Questions reframed as benefits, handles objections proactively.
+ * Accessible: Keyboard navigation, ARIA attributes for screen readers.
+ */
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  isKeyQuestion?: boolean; // Key questions shown inline on mobile
+}
+
+const faqs: FAQItem[] = [
+  {
+    id: 'faq-1',
+    question: 'How is this different from just using ChatGPT or Claude?',
+    answer:
+      'Unlike general AI assistants, Lattice is specifically designed for AI/ML research with 36 pre-built vendor blueprints, citation tracking, and artifact generation. Every recommendation includes verifiable sources you can check. Plus, it runs entirely on your infrastructure—no data leaves your machine.',
+    isKeyQuestion: true,
+  },
+  {
+    id: 'faq-2',
+    question: 'What if I need a refund?',
+    answer:
+      "We offer a 30-day money-back guarantee, no questions asked. If Lattice doesn't help you make better AI decisions faster, just email us for a full refund. We're confident you'll love it—but there's zero risk to try.",
+    isKeyQuestion: true,
+  },
+  {
+    id: 'faq-3',
+    question: 'Do I need to be technical to use Lattice?',
+    answer:
+      'Lattice is built for research engineers and technical leaders. You should be comfortable with Docker and basic terminal commands. The setup takes under 5 minutes if you have Docker installed. We provide step-by-step documentation for all deployment options.',
+  },
+  {
+    id: 'faq-4',
+    question: 'Can I use this in an air-gapped environment?',
+    answer:
+      'Yes! Lattice is designed for privacy-sensitive environments. It runs completely locally with no external API calls required. You can deploy it on your laptop, a private cloud, or fully air-gapped infrastructure. Your competitive intelligence stays yours.',
+  },
+  {
+    id: 'faq-5',
+    question: 'What happens after I purchase?',
+    answer:
+      "Immediately after payment, you'll receive an email with instructions. Within 24 hours, you'll get an invitation to our private GitHub repository. Clone the repo, run docker-compose up, and you're researching. Updates are delivered via git pull.",
+  },
+  {
+    id: 'faq-6',
+    question: 'Are future updates included?',
+    answer:
+      "Yes, lifetime updates are included with your one-time purchase. As we add new vendor blueprints, features, and improvements, you get them all. No subscription required—just git pull to get the latest version.",
+  },
+];
+---
+
+<Section spacing="lg" data-testid="faq-section">
+  <Container size="lg">
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="mb-4 inline-block text-sm font-semibold uppercase tracking-wider text-accent"
+        data-testid="faq-eyebrow"
+      >
+        Questions & Answers
+      </span>
+      <h2
+        class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+        data-testid="faq-headline"
+      >
+        Everything You Need to Know
+      </h2>
+      <p class="text-lg text-muted-foreground" data-testid="faq-subhead">
+        Got questions? We've got answers. If you don't see what you're looking for, email us.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="mx-auto mt-12 max-w-3xl" data-testid="faq-list">
+      {
+        faqs.map((faq, index) => (
+          <div
+            class="border-b border-border"
+            data-testid={faq.id}
+          >
+            <details
+              class="group"
+              data-testid={`${faq.id}-details`}
+            >
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-4 py-5 text-left font-medium text-foreground transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                data-testid={`${faq.id}-question`}
+              >
+                <span class="text-base sm:text-lg">{faq.question}</span>
+                <svg
+                  class="h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div
+                class="pb-5 pr-12 text-muted-foreground"
+                data-testid={`${faq.id}-answer`}
+              >
+                <p class="text-sm sm:text-base leading-relaxed">{faq.answer}</p>
+              </div>
+            </details>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="mt-10 text-center" data-testid="faq-contact">
+      <p class="text-muted-foreground">
+        Still have questions?{' '}
+        <a
+          href="mailto:hello@latticelab.io"
+          class="font-medium text-accent underline underline-offset-4 hover:text-accent/80"
+          data-testid="faq-contact-link"
+        >
+          Get in touch
+        </a>
+      </p>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Hide default marker */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary {
+    list-style: none;
+  }
+
+  /* Smooth open/close animation */
+  details[open] > div {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
