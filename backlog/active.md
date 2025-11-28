@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.16.0
+**Current Version**: 0.17.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -31,21 +31,9 @@ See `releases/release-0.16.0.md` for details.
 
 ---
 
-### Feature Slice 17: Feature Detail Pages — Content Structure
+### Feature Slice 17: Feature Detail Pages — Content Structure - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Features), Project Structure (content/features/)
-
-**Summary**: Create MDX content structure and dynamic routing for feature pages.
-
-**Acceptance Criteria**:
-- [ ] Content collection defined for features in `src/content/config.ts`
-- [ ] `src/content/features/sources.mdx` — Sources feature content
-- [ ] `src/content/features/lab.mdx` — Lab (AI agent) feature content
-- [ ] `src/content/features/studio.mdx` — Studio (artifacts) feature content
-- [ ] `src/content/features/scenarios.mdx` — Scenarios feature content
-- [ ] `src/pages/features/[slug].astro` — Dynamic routing for feature pages
-- [ ] `FeatureLayout.astro` — Layout for feature detail pages
-- [ ] Each page has: hero, description, use cases by persona, screenshot placeholder
+See `releases/release-0.17.0.md` for details.
 
 ---
 

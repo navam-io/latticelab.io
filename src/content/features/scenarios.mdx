@@ -1,0 +1,120 @@
+---
+title: "Scenarios"
+subtitle: "Stack Intelligence"
+description: "Configure workload scenarios and get AI stack recommendations. Compare costs, latency, and capabilities across vendors for your specific use case."
+icon: "layers"
+color: "orange"
+order: 4
+highlights:
+  - "Workload configuration wizard"
+  - "Cost estimation across vendors"
+  - "Latency analysis (P50/P95/P99)"
+  - "Stack recommendations based on requirements"
+  - "What-if analysis for scaling"
+  - "Budget optimization suggestions"
+useCases:
+  - persona: "AI Engineer"
+    title: "Optimize Model Selection"
+    description: "Input your latency requirements, throughput needs, and budget constraints. Get recommendations for the optimal model and configuration."
+  - persona: "Product Manager"
+    title: "Budget Planning & Forecasting"
+    description: "Model costs at different usage levels to plan budgets and justify investments to stakeholders."
+  - persona: "Enterprise Architect"
+    title: "Multi-Region Deployment Planning"
+    description: "Evaluate deployment options across regions, considering latency, compliance, and cost implications."
+screenshot: "/assets/screenshots/scenarios-config.png"
+---
+
+## Find Your Optimal AI Stack
+
+Scenarios helps you navigate the complex landscape of AI models, pricing tiers, and deployment options. Configure your requirements and get data-driven recommendations.
+
+### Configure Your Workload
+
+Define what you're building:
+
+#### Workload Type
+- **Chat** — Conversational interfaces, customer support
+- **RAG** — Document Q&A, knowledge retrieval
+- **Agentic** — Multi-step reasoning, tool use
+- **Embedding** — Search, similarity, clustering
+- **Generation** — Content creation, summarization
+
+#### Performance Requirements
+
+| Requirement | Options |
+|-------------|---------|
+| Latency (P50) | < 500ms, < 1s, < 2s, < 5s |
+| Latency (P95) | < 1s, < 2s, < 5s, < 10s |
+| Throughput | Low, Medium, High, Very High |
+| Availability | 99%, 99.9%, 99.99% |
+
+#### Budget Constraints
+- Monthly budget limit
+- Per-request cost ceiling
+- Scaling cost tolerance
+
+### Get Recommendations
+
+Based on your configuration, Scenarios analyzes your indexed sources and returns:
+
+#### Recommended Stacks
+
+```
+Stack 1: Cost-Optimized
+├── Model: Claude 3 Haiku
+├── Est. Cost: $2,400/month
+├── Latency: P50 ~200ms, P95 ~400ms
+└── Notes: Best for high-volume, cost-sensitive workloads
+
+Stack 2: Performance-Optimized
+├── Model: GPT-4 Turbo
+├── Est. Cost: $8,200/month
+├── Latency: P50 ~150ms, P95 ~300ms
+└── Notes: Best for low-latency requirements
+
+Stack 3: Balanced
+├── Model: Claude 3 Sonnet
+├── Est. Cost: $4,800/month
+├── Latency: P50 ~180ms, P95 ~350ms
+└── Notes: Best balance of cost and capability
+```
+
+### What-If Analysis
+
+Explore how changes affect your stack:
+
+- "What if traffic doubles next quarter?"
+- "What if we need 99.99% availability?"
+- "What if budget is cut by 30%?"
+- "What if we add multi-region deployment?"
+
+### Cost Modeling
+
+Understand the true cost of your AI stack:
+
+#### Token-Based Pricing
+- Input tokens vs output tokens
+- Batch vs real-time pricing
+- Volume discounts and commitments
+
+#### Hidden Costs
+- Embedding storage
+- Fine-tuning compute
+- Data transfer fees
+- Support tiers
+
+### Vendor Comparison Matrix
+
+Scenarios generates side-by-side comparisons for your specific use case:
+
+| Vendor | Model | Cost/1M Tokens | Latency | Capability Score |
+|--------|-------|----------------|---------|------------------|
+| Anthropic | Claude 3 Opus | $15.00 | 280ms | 9.2/10 |
+| OpenAI | GPT-4 Turbo | $10.00 | 190ms | 9.0/10 |
+| Google | Gemini Pro | $7.00 | 220ms | 8.5/10 |
+| AWS | Claude (Bedrock) | $16.50 | 310ms | 9.2/10 |
+
+*Scores based on your workload type and requirements*
+
+> "Scenarios saved us from a costly mistake. We were about to commit to a vendor that couldn't meet our P99 latency requirements. The analysis showed us a better option we hadn't considered." — VP of Engineering
