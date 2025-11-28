@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'div'> {
+  variant?: 'default' | 'elevated';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  href?: string;
+  interactive?: boolean;
+}
+
+const {
+  variant = 'default',
+  padding = 'md',
+  href,
+  interactive = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const baseStyles =
+  'bg-surface-1 border border-border rounded-xl transition-all duration-150';
+
+const variantStyles = {
+  default: '',
+  elevated: 'shadow-md',
+};
+
+const paddingStyles = {
+  none: '',
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8',
+};
+
+const interactiveStyles = interactive
+  ? 'hover:border-border-subtle hover:shadow-lg cursor-pointer'
+  : '';
+
+const classes = [
+  baseStyles,
+  variantStyles[variant],
+  paddingStyles[padding],
+  interactiveStyles,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <div class={classes} {...rest}>
+      <slot />
+    </div>
+  )
+}

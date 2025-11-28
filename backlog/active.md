@@ -1,29 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.2.0
+**Current Version**: 0.3.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 3: Design System — UI Components
-
-**Spec Reference**: `website-spec.md` → Design System (Component Patterns)
-
-**Summary**: Create reusable Astro UI components matching spec patterns: Button, Card, Badge, Container, Section.
-
-**Acceptance Criteria**:
-- [ ] `Button.astro` — Primary, Secondary, Ghost variants with hover states
-- [ ] `Card.astro` — Default and elevated variants
-- [ ] `Badge.astro` — For tags, labels, status indicators
-- [ ] `Container.astro` — Centered container with max-width variants
-- [ ] `Section.astro` — Page section wrapper with consistent spacing
-- [ ] All components use design system CSS variables
-- [ ] Components are accessible (focus states, ARIA where needed)
-- [ ] TypeScript props interfaces defined
-
----
 
 ### Feature Slice 4: Layout Components
 
