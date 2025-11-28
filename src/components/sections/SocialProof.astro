@@ -79,12 +79,12 @@ const testimonials: Testimonial[] = [
 
     <!-- Testimonials Grid - NOT a carousel, displayed inline -->
     <div
-      class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+      class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-full overflow-hidden"
       data-testid="testimonials-grid"
     >
       {
         testimonials.map((testimonial) => (
-          <Card padding="lg" class="flex flex-col" data-testid={testimonial.id}>
+          <Card padding="md" class="flex flex-col sm:p-8" data-testid={testimonial.id}>
             {/* Quote */}
             <blockquote class="mb-6 flex-1">
               <p

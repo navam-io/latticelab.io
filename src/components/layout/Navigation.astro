@@ -9,7 +9,7 @@ interface Props {
 const { items, class: className } = Astro.props;
 ---
 
-<nav class:list={['hidden md:flex items-center gap-1', className]} aria-label="Main navigation">
+<nav class:list={['hidden md:flex items-center gap-1', className]} aria-label="Main navigation" data-testid="desktop-nav">
   {
     items.map((item) => (
       <a
