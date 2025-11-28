@@ -1,0 +1,299 @@
+---
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+
+interface Panel {
+  id: 'sources' | 'lab' | 'studio';
+  title: string;
+  icon: string;
+  features: string[];
+  color: string;
+}
+
+const panels: Panel[] = [
+  {
+    id: 'sources',
+    title: 'Sources',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    features: [
+      'Upload PDFs, model cards, pricing pages',
+      '36 pre-built vendor blueprint bundles',
+      'Auto-extract structured data',
+    ],
+    color: 'bg-accent/10 text-accent',
+  },
+  {
+    id: 'lab',
+    title: 'Lab',
+    icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+    features: [
+      'AI research agent with citations',
+      'Thinking steps for transparency',
+      'Smart prompts for common queries',
+    ],
+    color: 'bg-success/10 text-success',
+  },
+  {
+    id: 'studio',
+    title: 'Studio',
+    icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
+    features: [
+      'Generate comparison tables',
+      'Export board-ready artifacts',
+      'Full citation provenance',
+    ],
+    color: 'bg-warning/10 text-warning',
+  },
+];
+---
+
+<Section spacing="lg" data-testid="solution-section">
+  <Container size="xl">
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="mb-4 inline-block text-sm font-semibold uppercase tracking-wider text-accent"
+        data-testid="solution-eyebrow"
+      >
+        The Solution
+      </span>
+      <h2
+        class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+        data-testid="solution-headline"
+      >
+        One Lab. Every AI Decision. Grounded in Sources.
+      </h2>
+      <p
+        class="text-lg text-muted-foreground"
+        data-testid="solution-subhead"
+      >
+        Lattice brings together knowledge management, AI research, and artifact generation
+        in a single interface designed for research engineers.
+      </p>
+    </div>
+
+    <!-- Three Panel Preview -->
+    <div class="mt-12">
+      <!-- Desktop: Three-column layout -->
+      <div
+        class="hidden lg:grid lg:grid-cols-3 lg:gap-6"
+        data-testid="solution-panels-desktop"
+      >
+        {
+          panels.map((panel) => (
+            <div
+              class="group relative overflow-hidden rounded-xl border border-border bg-surface-2 p-6 transition-all hover:border-accent/50 hover:shadow-lg"
+              data-testid={`solution-panel-${panel.id}`}
+            >
+              {/* Panel Header */}
+              <div class="mb-4 flex items-center gap-3">
+                <div
+                  class={`flex h-10 w-10 items-center justify-center rounded-lg ${panel.color}`}
+                >
+                  <svg
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d={panel.icon}
+                    />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">{panel.title}</h3>
+              </div>
+
+              {/* Features List */}
+              <ul class="space-y-3">
+                {panel.features.map((feature) => (
+                  <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                    <svg
+                      class="mt-0.5 h-4 w-4 flex-shrink-0 text-success"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Mobile: Stacked cards -->
+      <div
+        class="grid gap-4 lg:hidden"
+        data-testid="solution-panels-mobile"
+      >
+        {
+          panels.map((panel) => (
+            <div
+              class="rounded-xl border border-border bg-surface-2 p-5"
+              data-testid={`solution-panel-mobile-${panel.id}`}
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class={`flex h-10 w-10 items-center justify-center rounded-lg ${panel.color}`}
+                >
+                  <svg
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d={panel.icon}
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-foreground">{panel.title}</h3>
+                  <p class="text-sm text-muted-foreground">
+                    {panel.features[0]}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Product Screenshot Placeholder -->
+    <div class="mt-12" data-testid="solution-screenshot-container">
+      <div
+        class="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-xl border border-border bg-surface-2 shadow-xl"
+        data-testid="solution-screenshot"
+      >
+        <!-- Mock App Interface -->
+        <div class="absolute inset-0 flex flex-col">
+          <!-- Window Chrome -->
+          <div class="flex h-10 items-center gap-2 border-b border-border bg-surface-3 px-4">
+            <div class="flex gap-1.5">
+              <div class="h-3 w-3 rounded-full bg-destructive/60"></div>
+              <div class="h-3 w-3 rounded-full bg-warning/60"></div>
+              <div class="h-3 w-3 rounded-full bg-success/60"></div>
+            </div>
+            <div class="flex-1 text-center">
+              <span class="text-xs text-muted-foreground">Lattice Lab — Three Panel View</span>
+            </div>
+          </div>
+
+          <!-- Three Panel Layout -->
+          <div class="flex flex-1">
+            <!-- Sources Panel -->
+            <div class="w-1/4 border-r border-border bg-background p-4">
+              <div class="mb-3 flex items-center gap-2">
+                <div class="h-2 w-2 rounded-full bg-accent"></div>
+                <span class="text-xs font-medium text-foreground">Sources</span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 rounded-md bg-surface-2 p-2">
+                  <div class="h-6 w-6 rounded bg-accent/20"></div>
+                  <div class="flex-1">
+                    <div class="h-2 w-20 rounded bg-surface-3"></div>
+                    <div class="mt-1 h-1.5 w-12 rounded bg-surface-3"></div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 rounded-md bg-surface-2 p-2">
+                  <div class="h-6 w-6 rounded bg-success/20"></div>
+                  <div class="flex-1">
+                    <div class="h-2 w-24 rounded bg-surface-3"></div>
+                    <div class="mt-1 h-1.5 w-16 rounded bg-surface-3"></div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 rounded-md bg-surface-2 p-2">
+                  <div class="h-6 w-6 rounded bg-warning/20"></div>
+                  <div class="flex-1">
+                    <div class="h-2 w-16 rounded bg-surface-3"></div>
+                    <div class="mt-1 h-1.5 w-10 rounded bg-surface-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Panel (Center) -->
+            <div class="flex-1 bg-background p-4">
+              <div class="mb-3 flex items-center gap-2">
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <span class="text-xs font-medium text-foreground">Lab</span>
+              </div>
+              <div class="space-y-3">
+                <!-- User Message -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-lg bg-accent/10 px-3 py-2">
+                    <div class="h-2 w-32 rounded bg-accent/30"></div>
+                  </div>
+                </div>
+                <!-- AI Response with Citation -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%] rounded-lg bg-surface-2 px-3 py-2">
+                    <div class="space-y-1.5">
+                      <div class="h-2 w-full rounded bg-surface-3"></div>
+                      <div class="h-2 w-4/5 rounded bg-surface-3"></div>
+                      <div class="inline-block rounded bg-accent/20 px-1.5 py-0.5">
+                        <div class="h-1.5 w-8 rounded bg-accent/40"></div>
+                      </div>
+                      <div class="h-2 w-3/4 rounded bg-surface-3"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Studio Panel -->
+            <div class="w-1/4 border-l border-border bg-background p-4">
+              <div class="mb-3 flex items-center gap-2">
+                <div class="h-2 w-2 rounded-full bg-warning"></div>
+                <span class="text-xs font-medium text-foreground">Studio</span>
+              </div>
+              <div class="space-y-2">
+                <div class="rounded-md border border-border bg-surface-2 p-2">
+                  <div class="mb-2 h-2 w-16 rounded bg-surface-3"></div>
+                  <div class="grid grid-cols-3 gap-1">
+                    <div class="h-3 rounded bg-surface-3"></div>
+                    <div class="h-3 rounded bg-surface-3"></div>
+                    <div class="h-3 rounded bg-surface-3"></div>
+                    <div class="h-3 rounded bg-accent/20"></div>
+                    <div class="h-3 rounded bg-surface-3"></div>
+                    <div class="h-3 rounded bg-success/20"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gradient overlay -->
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 text-center" data-testid="solution-cta">
+      <Button variant="primary" size="lg" href="/features">
+        Explore All Features
+      </Button>
+    </div>
+  </Container>
+</Section>

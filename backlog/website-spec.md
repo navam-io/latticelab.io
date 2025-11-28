@@ -21,6 +21,118 @@ Lattice Lab is the marketing website for **Lattice**, an agentic AI lab assistan
 
 ---
 
+## Conversion Rate Optimization (CRO) Principles
+
+### The 5-Second Rule
+
+**Critical**: If you don't hook someone in the first 5 seconds, you've lost them. The above-the-fold section is make-or-break.
+
+- **60% of visitors** never scroll past the fold
+- **100% of visitors** see the above-the-fold section
+- Spend **80-90% of effort** on the above-the-fold section
+
+### Above-the-Fold Formula
+
+Every above-the-fold section MUST include:
+
+1. **Benefit-Driven Headline** (6-8 words max)
+   - Focus on dream outcome, not what you do
+   - Bold statement that makes people say "take my money"
+   - No jargon or vague text
+   - Example: "Stop Researching AI. Start Deciding." ✓
+   - Example: "AI Infrastructure Research Tool" ✗
+
+2. **Sub-headline with USP**
+   - Explain who you are and what you do
+   - Convey unique differentiator from competitors
+
+3. **Social Proof Above the Fold**
+   - Minimum 2 forms of social proof
+   - Verifiable details: photos, names, sources
+   - Reviews must be attributable (name, photo, source)
+
+4. **Clear CTA Button**
+   - Benefit-driven action text
+   - Stands out visually on the page
+
+5. **FUDs Reduction** (Fear, Uncertainty, Doubts)
+   - Place directly under CTA button
+   - Examples: "30-day money-back guarantee", "No credit card required"
+   - 40-60% conversion lift from this alone
+
+6. **Visual/Image/Video**
+   - Complements messaging
+   - Subtly conveys who you are and what you do
+
+### Visual Hierarchy Principles
+
+Guide user attention from most to least important:
+
+- **Font size, weight, color** differentiate importance levels
+- **Less is more** — too many options = analysis paralysis
+- **Clear flow**: Headline → Sub-headline → CTA → Supporting content
+- **Bold headlines** that stand out on the page
+
+### People Scan, Not Read
+
+Only 20% of content is read; 80% is scanned:
+
+- **Bold headings** communicate value at a glance
+- **Bullet points** for key value props
+- **Headlines alone** should convey the benefit
+- Avoid generic headlines like "What We Do" — state the benefit directly
+
+### Emotional Connection (PAS Framework)
+
+People buy with emotion, then rationalize with logic:
+
+**Problem-Agitate-Solve (PAS) Framework:**
+1. **Problem**: Call out the pain point clearly
+2. **Agitate**: Make them feel the problem, turn up the heat
+3. **Solve**: Present your solution as the clear way out
+
+**Images for Emotional Appeal:**
+- Human brain processes images 60,000x faster than text
+- Use photos showing positive outcomes
+- Show people experiencing the benefit
+
+### Social Proof Best Practices
+
+Social proof must be **verifiable**:
+
+- **Reviews need**: Photo + Name + Source (Google, etc.)
+- **Featured logos need**: Quote from the publication
+- **Case studies need**: Specific metrics and outcomes
+- **Never hide** reviews in carousels on mobile — force consumption
+- **Avoid**: Generic logos without context, anonymous reviews
+
+### Jacob's Law (Simplicity > Creativity)
+
+People expect pages to look and function like what they're familiar with:
+
+- One clear headline
+- Body text in close proximity to headline
+- Social proof at top
+- CTA button underneath
+- FUDs under CTA
+- Image/video supporting the message
+
+**Creativity at the cost of clarity = lost conversions**
+
+### Guarantee as Trust Builder
+
+- Free trial with no credit card
+- 30-day or 60-day money-back guarantee
+- "Deploy anywhere, data never leaves" (security guarantee)
+
+### Storytelling Integration
+
+- Take visitors through emotional journey
+- Ups and downs build connection
+- 1000+ year old marketing technique that still works
+
+---
+
 ## Target Audience (ICP)
 
 ### Primary Personas
@@ -65,17 +177,61 @@ Lattice Lab is the marketing website for **Lattice**, an agentic AI lab assistan
 
 **Purpose**: Convert visitors — communicate value, build trust, drive purchase
 
+**CRO Priority**: Above-the-fold (Hero) gets 80-90% of effort. Must hook visitors in 5 seconds.
+
 **Sections** (scroll order):
-1. **Hero** — Headline, subhead, CTA button, product screenshot
-2. **Pain Agitation** — "The AI Infrastructure Research Problem"
-3. **Solution** — Three-panel layout preview with feature highlights
-4. **Social Proof** — Testimonials / user quotes (placeholder initially)
-5. **Persona Value Props** — Cards for Research Engineer, Platform Lead, CTO
-6. **Interactive Preview** — Embedded mock of chat interface
-7. **Privacy & Security** — Self-hosted, no data leaves your machine
-8. **Pricing** — $99 one-time, Stripe buy button
-9. **FAQ** — Common questions
-10. **Footer** — Links, GitHub, contact
+
+1. **Hero** (CRITICAL - Above the Fold)
+   - **Benefit-driven headline** (6-8 words max): Focus on outcome, not features
+   - **Sub-headline with USP**: Explain what + unique differentiator
+   - **Social proof** (2 forms minimum): Logo bar + review snippet
+   - **Primary CTA button**: Benefit-driven text, visually prominent
+   - **FUDs reduction**: Under CTA (e.g., "30-day money-back guarantee")
+   - **Product screenshot**: Visual showing the solution
+
+2. **Pain Agitation** (PAS Framework - Problem + Agitate)
+   - "The AI Infrastructure Research Problem"
+   - Make visitors feel the pain they already experience
+   - 4 pain points with emotional connection
+   - Bold headlines scannable at a glance
+
+3. **Solution** (PAS Framework - Solve)
+   - Three-panel layout preview with feature highlights
+   - Present as the clear way out of their problem
+   - Large screenshot placeholder with mock interface
+   - CTA button to /features
+
+4. **Social Proof** (Verifiable)
+   - Testimonials with: Photo + Name + Role + Company
+   - Case study metrics where available
+   - Featured logos WITH quotes from publications
+   - Never hide in carousels — force consumption
+
+5. **Persona Value Props**
+   - Cards for Research Engineer, Platform Lead, CTO
+   - Benefit-driven headlines for each persona
+   - Specific outcomes, not generic features
+
+6. **Interactive Preview**
+   - Embedded mock of chat interface
+   - Shows product value through experience
+
+7. **Privacy & Security** (Trust/Guarantee)
+   - Self-hosted, no data leaves your machine
+   - Deploy anywhere positioning
+   - Security as a guarantee element
+
+8. **Pricing**
+   - $99 one-time, Stripe buy button
+   - Clear value summary
+   - FUDs reduction: money-back guarantee
+
+9. **FAQ**
+   - Common objections answered
+   - Reduce remaining friction
+
+10. **Footer**
+    - Links, GitHub, contact
 
 #### Features (`/features/*`)
 
@@ -566,19 +722,39 @@ jobs:
 
 > **Lattice** — Agentic AI Lab Assistant for Research Engineers
 
-#### Value Proposition (Hero)
+#### Hero Headline (Above the Fold)
 
-> Stop spending weeks gathering pricing pages, model cards, and benchmarks.
-> Lattice synthesizes AI research with grounded recommendations you can trust.
+**CRO Requirement**: 6-8 words max, benefit-driven, bold statement
 
-#### Key Messages
+**Primary**: "Stop Researching AI. Start Deciding."
 
-| Audience | Message | Proof Point |
-|----------|---------|-------------|
-| Research Engineers | "Ground every recommendation in sources" | Citation system with chunk-level provenance |
-| Platform Leads | "Configure scenarios, get matching stacks" | Scenario-to-stack recommendation engine |
-| CTOs | "Generate board-ready artifacts" | Export comparison tables, decision memos |
-| Security-conscious | "Deploy anywhere, data never leaves" | Self-hosted Docker, works air-gapped |
+**Alternatives to A/B Test**:
+- "AI Decisions in Hours, Not Weeks"
+- "Ground Every AI Decision in Sources"
+- "From Research Chaos to Clarity"
+
+#### Sub-headline (USP)
+
+> Lattice synthesizes pricing, benchmarks, and model cards into grounded recommendations with citations. Self-hosted, privacy-first.
+
+#### Value Proposition Formula
+
+**Benefit** (what they get) + **USP** (why you're different) + **Proof** (why believe you)
+
+| Audience | Benefit-Driven Message | USP | Proof Point |
+|----------|------------------------|-----|-------------|
+| Research Engineers | "Cut weeks of research to hours" | AI agent with citations | Citation system with chunk-level provenance |
+| Platform Leads | "Get stack recommendations that match your constraints" | Scenario-based intelligence | Scenario-to-stack recommendation engine |
+| CTOs | "Board-ready artifacts in minutes" | Full citation provenance | Export comparison tables, decision memos |
+| Security-conscious | "Your data never leaves your machine" | Self-hosted Docker | Works air-gapped, deploy anywhere |
+
+#### FUDs Reduction Copy
+
+Place under CTA buttons:
+- "30-day money-back guarantee"
+- "Deploy in under 5 minutes"
+- "No data leaves your machine"
+- "$99 one-time — no subscriptions"
 
 ### Copywriting Tone
 
@@ -586,6 +762,8 @@ jobs:
 - **Direct** — Short sentences, clear claims
 - **Grounded** — Features backed by specific capabilities
 - **Confident** — No hedging ("may help" → "helps")
+- **Benefit-first** — Lead with outcome, not feature
+- **Scannable** — Bold headlines carry the message alone
 
 ### Content Inventory
 

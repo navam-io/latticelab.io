@@ -1,105 +1,153 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.5.0
+**Current Version**: 0.6.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
 
-### Feature Slice 6: Homepage — Pain & Solution Sections
+### Feature Slice 7: Homepage — Hero CRO Enhancement (Above-the-Fold Optimization)
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage sections 2-3)
+**Spec Reference**: `website-spec.md` → CRO Principles (Above-the-Fold Formula), Page Specifications (Homepage Hero)
 
-**Summary**: Create Pain Agitation and Solution sections showing the problem Lattice solves and how.
+**Summary**: Optimize Hero section for the 5-second rule with CRO best practices. This is the highest-priority optimization as 60% of visitors never scroll past the fold.
+
+**CRO Checklist**:
+- [ ] Benefit-driven headline (6-8 words max)
+- [ ] Sub-headline with USP
+- [ ] Social proof above the fold (2 forms minimum)
+- [ ] Clear CTA with FUDs reduction underneath
+- [ ] Visual/screenshot that complements messaging
 
 **Acceptance Criteria**:
-- [ ] `PainSection.astro` — "The AI Infrastructure Research Problem"
-  - [ ] 3-4 pain points with icons
-  - [ ] Relatable copy for ICP personas
-- [ ] `SolutionSection.astro` — Three-panel layout preview
-  - [ ] Visual representation of Sources | Lab | Studio panels
-  - [ ] Feature highlights for each panel
-  - [ ] Screenshot or illustration placeholder
-- [ ] Sections added to homepage in correct order
+- [ ] Update `Hero.astro` headline to benefit-driven format
+  - [ ] Primary: "Stop Researching AI. Start Deciding." (or A/B test variant)
+  - [ ] Headline is bold, 6-8 words max
+- [ ] Add social proof elements to Hero section
+  - [ ] Logo bar component with 3-4 trust signals
+  - [ ] Star rating or review count snippet
+- [ ] Add FUDs reduction under CTA button
+  - [ ] Text: "30-day money-back guarantee" or similar
+  - [ ] Small text style, muted but visible
+- [ ] Update subhead to clearly convey USP
+- [ ] Ensure visual hierarchy: Headline → Subhead → Social Proof → CTA → FUDs
+- [ ] All elements visible without scrolling on desktop (1280px) and mobile (375px)
 
 ---
 
-### Feature Slice 7: Homepage — Persona Cards & Social Proof
+### Feature Slice 8: Homepage — Persona Cards & Social Proof (Verifiable)
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage sections 4-5), Target Audience (ICP)
+**Spec Reference**: `website-spec.md` → CRO Principles (Social Proof Best Practices), Page Specifications (Homepage sections 4-5), Target Audience (ICP)
 
-**Summary**: Create persona value proposition cards and social proof section.
+**Summary**: Create persona value proposition cards and verifiable social proof section.
+
+**CRO Checklist**:
+- [ ] Benefit-driven headlines for each persona card
+- [ ] Verifiable social proof: Photo + Name + Role + Company + Source
+- [ ] Never hide reviews in carousels — force consumption
 
 **Acceptance Criteria**:
 - [ ] `PersonaCards.astro` — Three cards for Research Engineer, Platform Lead, CTO
-  - [ ] Each card: icon, persona title, quote from spec, key benefit
+  - [ ] Each card: icon, persona title, benefit-driven headline (not generic)
+  - [ ] Headlines convey outcome: "Cut weeks to hours", "Board-ready in minutes"
   - [ ] Cards use Card component with hover effect
-- [ ] `SocialProof.astro` — Testimonials section (placeholder content)
-  - [ ] 2-3 testimonial cards with avatar, name, role, quote
+- [ ] `SocialProof.astro` — Testimonials section (verifiable structure)
+  - [ ] 3 testimonial cards (NOT in carousel — displayed inline)
+  - [ ] Each card: photo placeholder, full name, role, company, quote
+  - [ ] Source indicator (e.g., "via LinkedIn", "via Product Hunt")
   - [ ] Clearly marked as placeholder for future real testimonials
+  - [ ] Structure ready for real testimonials with verifiable details
+- [ ] `LogoBar.astro` — Featured on / trust logos
+  - [ ] 3-4 logo placeholders with publication quotes
+  - [ ] Not just logos — include snippet quote from each publication
 - [ ] Responsive grid layout (3 columns desktop, 1 column mobile)
+- [ ] No carousel hiding on mobile — stack vertically
 
 ---
 
-### Feature Slice 8: Homepage — Pricing & FAQ Sections
+### Feature Slice 9: Homepage — Pricing & FAQ Sections
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage sections 8-9), Stripe Integration
+**Spec Reference**: `website-spec.md` → CRO Principles (FUDs Reduction, Guarantee), Page Specifications (Homepage sections 8-9), Stripe Integration
 
-**Summary**: Create pricing section with $99 CTA and FAQ accordion.
+**Summary**: Create pricing section with $99 CTA, FUDs reduction, and FAQ to address objections.
+
+**CRO Checklist**:
+- [ ] FUDs reduction under CTA button
+- [ ] Guarantee prominently displayed
+- [ ] FAQ addresses common objections
 
 **Acceptance Criteria**:
 - [ ] `PricingSection.astro` — Prominent $99 pricing display
-  - [ ] Price: "$99" with "one-time" label
-  - [ ] What's included list (from spec)
+  - [ ] Price: "$99" with "one-time" label (visually prominent)
+  - [ ] What's included list (benefit-driven, not feature-driven)
   - [ ] Stripe Buy Button placeholder (comment indicating where button goes)
+  - [ ] **FUDs Reduction**: Under CTA button
+    - [ ] "30-day money-back guarantee"
+    - [ ] "Deploy in under 5 minutes"
+    - [ ] "No data leaves your machine"
   - [ ] Trust signals: "Self-hosted", "Private repo access", "Deploy anywhere"
-- [ ] `FAQ.astro` — Accordion-style FAQ
-  - [ ] 5-6 common questions from spec
+- [ ] `FAQ.astro` — Accordion-style FAQ (objection handling)
+  - [ ] 5-6 questions addressing common objections/fears
+  - [ ] Questions reframed as benefits where possible
   - [ ] Expandable/collapsible answers
   - [ ] Accessible keyboard navigation
+  - [ ] **Not hidden in accordions on mobile** — consider inline for key questions
 - [ ] Sections added to homepage
 
 ---
 
-### Feature Slice 9: Homepage — Privacy Section & Final CTA
+### Feature Slice 10: Homepage — Privacy Section & Final CTA
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage section 7), Key Messages
+**Spec Reference**: `website-spec.md` → CRO Principles (Guarantee, Storytelling), Page Specifications (Homepage section 7), Key Messages
 
-**Summary**: Create privacy/security section and final CTA before footer.
+**Summary**: Create privacy/security section (as guarantee) and final CTA with emotional storytelling.
+
+**CRO Checklist**:
+- [ ] Privacy as guarantee/trust element
+- [ ] Final CTA with benefit-driven headline
+- [ ] Storytelling: emotional connection to data security
 
 **Acceptance Criteria**:
-- [ ] `PrivacySection.astro` — Privacy-first messaging
-  - [ ] "Deploy anywhere" messaging
+- [ ] `PrivacySection.astro` — Privacy-first messaging (Guarantee positioning)
+  - [ ] "Deploy anywhere" messaging as trust guarantee
   - [ ] Icons: laptop, cloud, air-gapped
   - [ ] Key points: data never leaves, self-hosted, no vendor lock-in
+  - [ ] Emotional angle: "Your competitive intelligence stays yours"
 - [ ] `FinalCTA.astro` — Bottom-of-page call to action
-  - [ ] Compelling headline
-  - [ ] Primary CTA button
-  - [ ] Brief value reminder
+  - [ ] Benefit-driven headline (not "Get Started")
+  - [ ] Primary CTA button with FUDs reduction underneath
+  - [ ] Brief value reminder (single sentence)
 - [ ] Sections added to homepage, completing all 10 sections
 
 ---
 
-### Feature Slice 10: Responsive Design & Mobile Optimization
+### Feature Slice 11: Responsive Design & Mobile Optimization
 
-**Spec Reference**: `website-spec.md` → Design System, Browser Support, Accessibility Checklist
+**Spec Reference**: `website-spec.md` → CRO Principles (Jacob's Law), Design System, Browser Support, Accessibility Checklist
 
-**Summary**: Ensure all homepage sections are fully responsive and mobile-optimized.
+**Summary**: Ensure all homepage sections are fully responsive and mobile-optimized with CRO considerations.
+
+**CRO Checklist**:
+- [ ] Above-the-fold complete on mobile (no key elements cut off)
+- [ ] Social proof visible without scrolling carousels
+- [ ] CTAs prominent and finger-friendly
 
 **Acceptance Criteria**:
 - [ ] All sections tested at breakpoints: 320px, 640px, 768px, 1024px, 1280px
+- [ ] **Mobile above-the-fold**: All CRO elements visible (headline, subhead, CTA, FUDs)
 - [ ] Mobile menu functions correctly
 - [ ] Touch targets minimum 44x44px
 - [ ] Images responsive with proper aspect ratios
 - [ ] Typography scales appropriately
 - [ ] No horizontal scroll on any viewport
+- [ ] **Social proof never hidden in carousels** — stack vertically on mobile
 - [ ] Test on Chrome, Firefox, Safari desktop
 - [ ] Test on iOS Safari, Chrome Mobile
 
 ---
 
-### Feature Slice 11: GitHub Actions Deployment
+### Feature Slice 12: GitHub Actions Deployment
 
 **Spec Reference**: `website-spec.md` → Build & Deploy
 
@@ -118,7 +166,7 @@
 
 ## Phase 2: Content & Journeys
 
-### Feature Slice 12: Pricing Page
+### Feature Slice 13: Pricing Page
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Pricing)
 
@@ -135,7 +183,7 @@
 
 ---
 
-### Feature Slice 13: Thank You Page
+### Feature Slice 14: Thank You Page
 
 **Spec Reference**: `website-spec.md` → Stripe Integration (Post-Purchase Page)
 
@@ -151,7 +199,7 @@
 
 ---
 
-### Feature Slice 14: Features Index Page
+### Feature Slice 15: Features Index Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/features), Page Specifications (Features)
 
@@ -167,7 +215,7 @@
 
 ---
 
-### Feature Slice 15: Feature Detail Pages — Content Structure
+### Feature Slice 16: Feature Detail Pages — Content Structure
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Features), Project Structure (content/features/)
 
@@ -185,7 +233,7 @@
 
 ---
 
-### Feature Slice 16: Journeys Index Page
+### Feature Slice 17: Journeys Index Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/journeys), Page Specifications (Journeys)
 
@@ -201,7 +249,7 @@
 
 ---
 
-### Feature Slice 17: Journey Detail Pages — Content Structure
+### Feature Slice 18: Journey Detail Pages — Content Structure
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Journeys), Content Strategy
 
@@ -222,7 +270,7 @@
 
 ---
 
-### Feature Slice 18: Blueprints Gallery Page
+### Feature Slice 19: Blueprints Gallery Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/blueprints), Page Specifications (Blueprints), Appendix A
 
@@ -239,7 +287,7 @@
 
 ---
 
-### Feature Slice 19: Documentation Page
+### Feature Slice 20: Documentation Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/docs), Page Specifications (Documentation)
 
@@ -256,7 +304,7 @@
 
 ---
 
-### Feature Slice 20: About Page
+### Feature Slice 21: About Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/about), Content Strategy
 
@@ -272,7 +320,7 @@
 
 ---
 
-### Feature Slice 21: SEO & Meta Tags
+### Feature Slice 22: SEO & Meta Tags
 
 **Spec Reference**: `website-spec.md` → SEO & Performance (Meta Tags)
 
@@ -292,7 +340,7 @@
 
 ## Phase 3: Interactive Previews
 
-### Feature Slice 22: Preview Components — Shared Utilities
+### Feature Slice 23: Preview Components — Shared Utilities
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Implementation Strategy, Preview Components)
 
@@ -310,7 +358,7 @@
 
 ---
 
-### Feature Slice 23: Chat Preview Component
+### Feature Slice 24: Chat Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Chat Preview)
 
@@ -329,7 +377,7 @@
 
 ---
 
-### Feature Slice 24: Sources Preview Component
+### Feature Slice 25: Sources Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Sources Preview)
 
@@ -346,7 +394,7 @@
 
 ---
 
-### Feature Slice 25: Blueprint Preview Component
+### Feature Slice 26: Blueprint Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Blueprint Preview)
 
@@ -363,7 +411,7 @@
 
 ---
 
-### Feature Slice 26: Scenario Preview Component
+### Feature Slice 27: Scenario Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Scenario Preview)
 
@@ -382,7 +430,7 @@
 
 ---
 
-### Feature Slice 27: Integrate Previews into Feature Pages
+### Feature Slice 28: Integrate Previews into Feature Pages
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Features)
 
@@ -399,7 +447,7 @@
 
 ---
 
-### Feature Slice 28: Homepage Interactive Preview Section
+### Feature Slice 29: Homepage Interactive Preview Section
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Homepage section 6)
 
@@ -417,7 +465,7 @@
 
 ## Phase 4: Purchase Flow
 
-### Feature Slice 29: Stripe Buy Button Integration
+### Feature Slice 30: Stripe Buy Button Integration
 
 **Spec Reference**: `website-spec.md` → Stripe Integration
 
@@ -447,7 +495,7 @@
 
 ---
 
-### Feature Slice 30: Analytics Integration
+### Feature Slice 31: Analytics Integration
 
 **Spec Reference**: `website-spec.md` → Success Metrics
 
@@ -469,7 +517,7 @@
 
 ## Phase 5: Polish & Launch
 
-### Feature Slice 31: Performance Optimization
+### Feature Slice 32: Performance Optimization
 
 **Spec Reference**: `website-spec.md` → SEO & Performance (Performance Targets, Optimizations)
 
@@ -489,7 +537,7 @@
 
 ---
 
-### Feature Slice 32: Accessibility Audit & Fixes
+### Feature Slice 33: Accessibility Audit & Fixes
 
 **Spec Reference**: `website-spec.md` → Accessibility Checklist
 
@@ -509,7 +557,7 @@
 
 ---
 
-### Feature Slice 33: Cross-Browser Testing
+### Feature Slice 34: Cross-Browser Testing
 
 **Spec Reference**: `website-spec.md` → Browser Support
 
@@ -528,7 +576,7 @@
 
 ---
 
-### Feature Slice 34: Content Polish & Review
+### Feature Slice 35: Content Polish & Review
 
 **Spec Reference**: `website-spec.md` → Content Strategy (Copywriting Tone, Content Inventory)
 
@@ -546,7 +594,7 @@
 
 ---
 
-### Feature Slice 35: Product Screenshots Integration
+### Feature Slice 36: Product Screenshots Integration
 
 **Spec Reference**: `website-spec.md` → Screenshot Integration, Journeys
 
@@ -563,7 +611,7 @@
 
 ---
 
-### Feature Slice 36: Launch Readiness Checklist
+### Feature Slice 37: Launch Readiness Checklist
 
 **Spec Reference**: `website-spec.md` → All sections
 
@@ -589,13 +637,20 @@
 
 | Phase | Slices | Description |
 |-------|--------|-------------|
-| Phase 1 | 1-11 | Foundation — Project setup, design system, homepage, deployment |
-| Phase 2 | 12-21 | Content — All pages, journeys, features, SEO |
-| Phase 3 | 22-28 | Interactive — Mock preview components |
-| Phase 4 | 29-30 | Purchase — Stripe integration, analytics |
-| Phase 5 | 31-36 | Polish — Performance, accessibility, testing, launch |
+| Phase 1 | 1-12 | Foundation — Project setup, design system, homepage (CRO-optimized), deployment |
+| Phase 2 | 13-22 | Content — All pages, journeys, features, SEO |
+| Phase 3 | 23-29 | Interactive — Mock preview components |
+| Phase 4 | 30-31 | Purchase — Stripe integration, analytics |
+| Phase 5 | 32-37 | Polish — Performance, accessibility, testing, launch |
 
-**Total Feature Slices**: 36
+**Total Feature Slices**: 37
+
+**CRO Enhancements Applied**:
+- Feature Slice 7: Hero above-the-fold optimization (5-second rule)
+- Feature Slice 8: Verifiable social proof (photos, names, sources)
+- Feature Slice 9: FUDs reduction under CTAs
+- Feature Slice 10: Privacy as guarantee, emotional storytelling
+- Feature Slice 11: Mobile CRO considerations
 
 ---
 
