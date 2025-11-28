@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.15.0
+**Current Version**: 0.16.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -25,19 +25,9 @@ See `releases/release-0.15.0.md` for details.
 
 ---
 
-### Feature Slice 16: Features Index Page
+### Feature Slice 16: Features Index Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Site Map (/features), Page Specifications (Features)
-
-**Summary**: Create features index page with cards linking to individual feature pages.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/features/index.astro` created
-- [ ] Hero section with features overview
-- [ ] 4 feature cards: Sources, Lab, Studio, Scenarios
-- [ ] Each card: icon, title, description, "Learn more" link
-- [ ] Cards link to respective feature detail pages
-- [ ] Responsive grid layout
+See `releases/release-0.16.0.md` for details.
 
 ---
 

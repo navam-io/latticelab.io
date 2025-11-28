@@ -1,0 +1,419 @@
+---
+/**
+ * Features Index Page
+ *
+ * Overview of all Lattice Lab features with cards linking to individual
+ * feature detail pages. Acts as a hub for exploring product capabilities.
+ *
+ * Feature Slice 16: Features Index Page
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+
+// Feature data for the four main product features
+const features = [
+  {
+    slug: 'sources',
+    title: 'Sources',
+    subtitle: 'Knowledge Management',
+    description:
+      'Upload PDFs, ingest URLs, and apply blueprint bundles to build your AI research knowledge base. Index documentation from 36+ vendors in minutes.',
+    icon: 'database',
+    highlights: [
+      'PDF & URL ingestion',
+      '36 vendor blueprint bundles',
+      'Semantic search across all sources',
+      'Source citation tracking',
+    ],
+    color: 'blue',
+  },
+  {
+    slug: 'lab',
+    title: 'Lab',
+    subtitle: 'AI Research Agent',
+    description:
+      'Chat with an AI that cites its sources. Get answers grounded in your indexed documentation with transparent thinking steps and inline citations.',
+    icon: 'brain',
+    highlights: [
+      'Citation-backed responses',
+      'Transparent thinking steps',
+      'Smart prompt suggestions',
+      'Multi-turn conversations',
+    ],
+    color: 'purple',
+  },
+  {
+    slug: 'studio',
+    title: 'Studio',
+    subtitle: 'Artifacts & Exports',
+    description:
+      'Generate comparison tables, decision memos, and board-ready artifacts. Export your research in formats ready for stakeholder review.',
+    icon: 'file-output',
+    highlights: [
+      'Comparison table generation',
+      'Decision memo templates',
+      'Export to multiple formats',
+      'Citation preservation',
+    ],
+    color: 'green',
+  },
+  {
+    slug: 'scenarios',
+    title: 'Scenarios',
+    subtitle: 'Stack Intelligence',
+    description:
+      'Configure workload scenarios and get AI stack recommendations. Compare costs, latency, and capabilities across vendors for your specific use case.',
+    icon: 'layers',
+    highlights: [
+      'Workload configuration',
+      'Cost estimation',
+      'Latency analysis',
+      'Stack recommendations',
+    ],
+    color: 'orange',
+  },
+];
+
+// Additional benefits section
+const benefits = [
+  {
+    icon: 'shield',
+    title: 'Privacy-First Architecture',
+    description: 'Self-hosted deployment means your research data never leaves your infrastructure.',
+  },
+  {
+    icon: 'zap',
+    title: 'Fast Setup',
+    description: 'Docker-based deployment gets you running in under 5 minutes.',
+  },
+  {
+    icon: 'infinity',
+    title: 'Unlimited Usage',
+    description: 'No per-seat pricing, no query limits. Use as much as you need.',
+  },
+];
+---
+
+<PageLayout
+  title="Features - Lattice Lab"
+  description="Explore Lattice Lab's powerful features: Sources for knowledge management, Lab for AI research, Studio for artifacts, and Scenarios for stack intelligence."
+>
+  <!-- Hero Section -->
+  <Section spacing="lg" background="default" data-testid="features-hero">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl text-center">
+        <span
+          class="mb-4 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
+          data-testid="features-eyebrow"
+        >
+          Product Features
+        </span>
+        <h1
+          class="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+          data-testid="features-headline"
+        >
+          Everything You Need for AI Research
+        </h1>
+        <p
+          class="text-xl text-muted-foreground"
+          data-testid="features-subhead"
+        >
+          Four integrated tools that work together to transform how you research, compare, and decide on AI technologies.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Feature Cards Section -->
+  <Section spacing="lg" background="muted" data-testid="features-grid-section">
+    <Container size="xl">
+      <div
+        class="grid gap-8 sm:grid-cols-2"
+        data-testid="features-grid"
+      >
+        {
+          features.map((feature, index) => (
+            <Card
+              padding="lg"
+              class="group relative overflow-hidden transition-all hover:shadow-lg"
+              data-testid={`feature-card-${index}`}
+            >
+              {/* Feature icon */}
+              <div
+                class={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl ${
+                  feature.color === 'blue'
+                    ? 'bg-blue-100 text-blue-600'
+                    : feature.color === 'purple'
+                      ? 'bg-purple-100 text-purple-600'
+                      : feature.color === 'green'
+                        ? 'bg-green-100 text-green-600'
+                        : 'bg-orange-100 text-orange-600'
+                }`}
+                data-testid={`feature-card-${index}-icon`}
+              >
+                <svg
+                  class="h-7 w-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  {feature.icon === 'database' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                    />
+                  )}
+                  {feature.icon === 'brain' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  )}
+                  {feature.icon === 'file-output' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  )}
+                  {feature.icon === 'layers' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                    />
+                  )}
+                </svg>
+              </div>
+
+              {/* Feature title and subtitle */}
+              <div class="mb-3">
+                <span
+                  class="text-sm font-medium text-muted-foreground"
+                  data-testid={`feature-card-${index}-subtitle`}
+                >
+                  {feature.subtitle}
+                </span>
+                <h2
+                  class="text-2xl font-bold text-foreground"
+                  data-testid={`feature-card-${index}-title`}
+                >
+                  {feature.title}
+                </h2>
+              </div>
+
+              {/* Feature description */}
+              <p
+                class="mb-6 text-muted-foreground"
+                data-testid={`feature-card-${index}-description`}
+              >
+                {feature.description}
+              </p>
+
+              {/* Feature highlights */}
+              <ul class="mb-6 space-y-2" data-testid={`feature-card-${index}-highlights`}>
+                {feature.highlights.map((highlight, hIndex) => (
+                  <li class="flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg
+                      class={`h-4 w-4 flex-shrink-0 ${
+                        feature.color === 'blue'
+                          ? 'text-blue-500'
+                          : feature.color === 'purple'
+                            ? 'text-purple-500'
+                            : feature.color === 'green'
+                              ? 'text-green-500'
+                              : 'text-orange-500'
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span data-testid={`feature-card-${index}-highlight-${hIndex}`}>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Learn more link */}
+              <a
+                href={`/features/${feature.slug}`}
+                class={`inline-flex items-center gap-2 font-medium transition-colors ${
+                  feature.color === 'blue'
+                    ? 'text-blue-600 hover:text-blue-700'
+                    : feature.color === 'purple'
+                      ? 'text-purple-600 hover:text-purple-700'
+                      : feature.color === 'green'
+                        ? 'text-green-600 hover:text-green-700'
+                        : 'text-orange-600 hover:text-orange-700'
+                }`}
+                data-testid={`feature-card-${index}-link`}
+              >
+                Learn more
+                <svg
+                  class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            </Card>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Benefits Section -->
+  <Section spacing="lg" background="default" data-testid="features-benefits">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <h2
+          class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          data-testid="features-benefits-headline"
+        >
+          Built for Enterprise AI Teams
+        </h2>
+        <p
+          class="mt-4 text-lg text-muted-foreground"
+          data-testid="features-benefits-subhead"
+        >
+          Lattice Lab is designed with security, performance, and scalability in mind.
+        </p>
+      </div>
+
+      <div
+        class="grid gap-8 sm:grid-cols-3"
+        data-testid="features-benefits-grid"
+      >
+        {
+          benefits.map((benefit, index) => (
+            <div
+              class="text-center"
+              data-testid={`features-benefit-${index}`}
+            >
+              <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
+                <svg
+                  class="h-6 w-6 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  {benefit.icon === 'shield' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  )}
+                  {benefit.icon === 'zap' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  )}
+                  {benefit.icon === 'infinity' && (
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                  )}
+                </svg>
+              </div>
+              <h3
+                class="mb-2 font-semibold text-foreground"
+                data-testid={`features-benefit-${index}-title`}
+              >
+                {benefit.title}
+              </h3>
+              <p
+                class="text-sm text-muted-foreground"
+                data-testid={`features-benefit-${index}-description`}
+              >
+                {benefit.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section spacing="lg" background="muted" data-testid="features-cta">
+    <Container size="md">
+      <div class="text-center">
+        <h2
+          class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          data-testid="features-cta-headline"
+        >
+          Ready to Transform Your AI Research?
+        </h2>
+        <p
+          class="mb-8 text-lg text-muted-foreground"
+          data-testid="features-cta-subhead"
+        >
+          Get lifetime access to all features for a one-time payment of $99.
+        </p>
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-testid="features-cta-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/pricing"
+            class="w-full px-8 sm:w-auto"
+            data-testid="features-cta-primary"
+          >
+            Get Lattice for $99
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href="/"
+            class="w-full px-8 sm:w-auto"
+            data-testid="features-cta-secondary"
+          >
+            Back to Homepage
+          </Button>
+        </div>
+
+        <!-- Trust note -->
+        <p
+          class="mt-6 text-sm text-muted-foreground"
+          data-testid="features-cta-trust"
+        >
+          30-day money-back guarantee. No subscription. Self-hosted for privacy.
+        </p>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
