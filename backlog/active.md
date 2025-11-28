@@ -1,30 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.1.0
+**Current Version**: 0.2.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 2: Design System — CSS Variables & Base Styles
-
-**Spec Reference**: `website-spec.md` → Design System (Color Palette, Typography, Spacing & Layout)
-
-**Summary**: Implement design tokens as CSS variables in `globals.css`. Configure Tailwind to use these tokens. Set up base styles and dark mode support.
-
-**Acceptance Criteria**:
-- [ ] Color palette CSS variables (light mode + dark mode) in `globals.css`
-- [ ] Typography CSS variables (font families, sizes, weights, line heights)
-- [ ] Spacing scale CSS variables
-- [ ] Border radius CSS variables
-- [ ] Container width variables
-- [ ] Tailwind configured to extend theme with CSS variables
-- [ ] Dark mode toggle support via `data-theme` attribute
-- [ ] Geist fonts loaded and applied as default
-- [ ] Base HTML/body styles applied
-
----
 
 ### Feature Slice 3: Design System — UI Components
 
