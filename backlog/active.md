@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.14.0
+**Current Version**: 0.15.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -19,19 +19,9 @@ See `releases/release-0.14.0.md` for details.
 
 ---
 
-### Feature Slice 15: Thank You Page
+### Feature Slice 15: Thank You Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Stripe Integration (Post-Purchase Page)
-
-**Summary**: Create post-purchase thank you page with next steps.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/thank-you.astro` created
-- [ ] Confirmation message
-- [ ] Numbered next steps (check email, accept invite, clone repo)
-- [ ] Expected timeline: "Within 24 hours"
-- [ ] Support contact information
-- [ ] Link to documentation
+See `releases/release-0.15.0.md` for details.
 
 ---
 
