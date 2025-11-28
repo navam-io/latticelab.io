@@ -1,42 +1,74 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.6.0
+**Current Version**: 0.7.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
 
-### Feature Slice 7: Homepage — Hero CRO Enhancement (Above-the-Fold Optimization)
+### Feature Slice 8: Logo & Branding Integration
 
-**Spec Reference**: `website-spec.md` → CRO Principles (Above-the-Fold Formula), Page Specifications (Homepage Hero)
+**Spec Reference**: `website-spec.md` → Design System (Logo), Brand Assets
 
-**Summary**: Optimize Hero section for the 5-second rule with CRO best practices. This is the highest-priority optimization as 60% of visitors never scroll past the fold.
+**Summary**: Integrate official Lattice logo assets across the website for consistent branding. Logo source files are located at `/Users/manavsehgal/Developer/lattice/assets/`.
 
-**CRO Checklist**:
-- [ ] Benefit-driven headline (6-8 words max)
-- [ ] Sub-headline with USP
-- [ ] Social proof above the fold (2 forms minimum)
-- [ ] Clear CTA with FUDs reduction underneath
-- [ ] Visual/screenshot that complements messaging
+**Available Logo Assets**:
+
+| Asset | File | Dimensions | Use Case |
+|-------|------|------------|----------|
+| Icon only (dark bg) | `lattice-logo-image.png` | 1024x1024 | App icon, social profiles |
+| Horizontal (dark/light) | `lattice-logo-side-bw.png` | 1024x1024 | Header logo reference |
+| Horizontal (light bg) | `lattice-logo-side-white-bg.png` | 1024x1024 | Light mode header |
+| Stacked (light bg) | `lattice-logo-top-white-bg.png` | 1024x1024 | Footer, marketing |
+| Stacked icon (small) | `lattice-logo-top-white-bg-icon.png` | ~256px | Favicon source |
+| Stacked icon (512px) | `lattice-logo-top-white-bg-icon-512.png` | 512x512 | PWA icon, OG image |
+| Horizontal (white bg) | `lattice-logo-white-bg.png` | 1024x1024 | Light mode |
+| Stacked (dark bg) | `lattice-logo.png` | 1024x1024 | Dark mode, hero |
 
 **Acceptance Criteria**:
-- [ ] Update `Hero.astro` headline to benefit-driven format
-  - [ ] Primary: "Stop Researching AI. Start Deciding." (or A/B test variant)
-  - [ ] Headline is bold, 6-8 words max
-- [ ] Add social proof elements to Hero section
-  - [ ] Logo bar component with 3-4 trust signals
-  - [ ] Star rating or review count snippet
-- [ ] Add FUDs reduction under CTA button
-  - [ ] Text: "30-day money-back guarantee" or similar
-  - [ ] Small text style, muted but visible
-- [ ] Update subhead to clearly convey USP
-- [ ] Ensure visual hierarchy: Headline → Subhead → Social Proof → CTA → FUDs
-- [ ] All elements visible without scrolling on desktop (1280px) and mobile (375px)
+- [ ] Copy logo assets to `public/` directory with optimized sizes
+  - [ ] `public/logo.svg` — Header logo (or optimized PNG)
+  - [ ] `public/logo-dark.svg` — Dark mode header logo variant
+  - [ ] `public/favicon.ico` — Multi-size favicon (16, 32, 48px)
+  - [ ] `public/favicon.svg` — SVG favicon for modern browsers
+  - [ ] `public/apple-touch-icon.png` — 180x180 iOS icon
+  - [ ] `public/icon-192.png` — PWA icon 192x192
+  - [ ] `public/icon-512.png` — PWA icon 512x512
+  - [ ] `public/og-image.png` — Open Graph image (1200x630) with logo
+- [ ] Update `Header.astro` to use actual logo image
+  - [ ] Replace text "Lattice" with logo image + text
+  - [ ] Logo links to homepage
+  - [ ] Appropriate height (32-40px in header)
+  - [ ] Dark mode variant support
+- [ ] Update `Footer.astro` with stacked logo variant
+  - [ ] Use stacked logo (icon above text)
+  - [ ] Appropriate size for footer context
+- [ ] Update `BaseLayout.astro` with favicon links
+  - [ ] `<link rel="icon" href="/favicon.ico">`
+  - [ ] `<link rel="icon" type="image/svg+xml" href="/favicon.svg">`
+  - [ ] `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`
+- [ ] Update OG image in meta tags
+  - [ ] Create branded OG image with logo
+  - [ ] Update meta tags to reference new OG image
+- [ ] Create `site.webmanifest` for PWA support
+  - [ ] Reference icon-192 and icon-512
+  - [ ] Set theme colors matching design system
+- [ ] Verify logo displays correctly in:
+  - [ ] Header (desktop and mobile)
+  - [ ] Footer
+  - [ ] Browser tab (favicon)
+  - [ ] Social sharing preview (OG image)
+
+**Technical Notes**:
+- Consider converting PNG logos to SVG for scalability where possible
+- Use `<Image />` component from Astro for optimized loading
+- Ensure logo has sufficient contrast on both light/dark backgrounds
+- Logo grid pattern represents "lattice" concept visually
 
 ---
 
-### Feature Slice 8: Homepage — Persona Cards & Social Proof (Verifiable)
+### Feature Slice 9: Homepage — Persona Cards & Social Proof (Verifiable)
 
 **Spec Reference**: `website-spec.md` → CRO Principles (Social Proof Best Practices), Page Specifications (Homepage sections 4-5), Target Audience (ICP)
 
@@ -66,7 +98,7 @@
 
 ---
 
-### Feature Slice 9: Homepage — Pricing & FAQ Sections
+### Feature Slice 10: Homepage — Pricing & FAQ Sections
 
 **Spec Reference**: `website-spec.md` → CRO Principles (FUDs Reduction, Guarantee), Page Specifications (Homepage sections 8-9), Stripe Integration
 
@@ -97,7 +129,7 @@
 
 ---
 
-### Feature Slice 10: Homepage — Privacy Section & Final CTA
+### Feature Slice 11: Homepage — Privacy Section & Final CTA
 
 **Spec Reference**: `website-spec.md` → CRO Principles (Guarantee, Storytelling), Page Specifications (Homepage section 7), Key Messages
 
@@ -122,7 +154,7 @@
 
 ---
 
-### Feature Slice 11: Responsive Design & Mobile Optimization
+### Feature Slice 12: Responsive Design & Mobile Optimization
 
 **Spec Reference**: `website-spec.md` → CRO Principles (Jacob's Law), Design System, Browser Support, Accessibility Checklist
 
@@ -147,7 +179,7 @@
 
 ---
 
-### Feature Slice 12: GitHub Actions Deployment
+### Feature Slice 13: GitHub Actions Deployment
 
 **Spec Reference**: `website-spec.md` → Build & Deploy
 
@@ -166,7 +198,7 @@
 
 ## Phase 2: Content & Journeys
 
-### Feature Slice 13: Pricing Page
+### Feature Slice 14: Pricing Page
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Pricing)
 
@@ -183,7 +215,7 @@
 
 ---
 
-### Feature Slice 14: Thank You Page
+### Feature Slice 15: Thank You Page
 
 **Spec Reference**: `website-spec.md` → Stripe Integration (Post-Purchase Page)
 
@@ -199,7 +231,7 @@
 
 ---
 
-### Feature Slice 15: Features Index Page
+### Feature Slice 16: Features Index Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/features), Page Specifications (Features)
 
@@ -215,7 +247,7 @@
 
 ---
 
-### Feature Slice 16: Feature Detail Pages — Content Structure
+### Feature Slice 17: Feature Detail Pages — Content Structure
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Features), Project Structure (content/features/)
 
@@ -233,7 +265,7 @@
 
 ---
 
-### Feature Slice 17: Journeys Index Page
+### Feature Slice 18: Journeys Index Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/journeys), Page Specifications (Journeys)
 
@@ -249,7 +281,7 @@
 
 ---
 
-### Feature Slice 18: Journey Detail Pages — Content Structure
+### Feature Slice 19: Journey Detail Pages — Content Structure
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Journeys), Content Strategy
 
@@ -270,7 +302,7 @@
 
 ---
 
-### Feature Slice 19: Blueprints Gallery Page
+### Feature Slice 20: Blueprints Gallery Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/blueprints), Page Specifications (Blueprints), Appendix A
 
@@ -287,7 +319,7 @@
 
 ---
 
-### Feature Slice 20: Documentation Page
+### Feature Slice 21: Documentation Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/docs), Page Specifications (Documentation)
 
@@ -304,7 +336,7 @@
 
 ---
 
-### Feature Slice 21: About Page
+### Feature Slice 22: About Page
 
 **Spec Reference**: `website-spec.md` → Site Map (/about), Content Strategy
 
@@ -320,7 +352,7 @@
 
 ---
 
-### Feature Slice 22: SEO & Meta Tags
+### Feature Slice 23: SEO & Meta Tags
 
 **Spec Reference**: `website-spec.md` → SEO & Performance (Meta Tags)
 
@@ -340,7 +372,7 @@
 
 ## Phase 3: Interactive Previews
 
-### Feature Slice 23: Preview Components — Shared Utilities
+### Feature Slice 24: Preview Components — Shared Utilities
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Implementation Strategy, Preview Components)
 
@@ -358,7 +390,7 @@
 
 ---
 
-### Feature Slice 24: Chat Preview Component
+### Feature Slice 25: Chat Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Chat Preview)
 
@@ -377,7 +409,7 @@
 
 ---
 
-### Feature Slice 25: Sources Preview Component
+### Feature Slice 26: Sources Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Sources Preview)
 
@@ -394,7 +426,7 @@
 
 ---
 
-### Feature Slice 26: Blueprint Preview Component
+### Feature Slice 27: Blueprint Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Blueprint Preview)
 
@@ -411,7 +443,7 @@
 
 ---
 
-### Feature Slice 27: Scenario Preview Component
+### Feature Slice 28: Scenario Preview Component
 
 **Spec Reference**: `website-spec.md` → Interactive Mock Previews (Scenario Preview)
 
@@ -430,7 +462,7 @@
 
 ---
 
-### Feature Slice 28: Integrate Previews into Feature Pages
+### Feature Slice 29: Integrate Previews into Feature Pages
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Features)
 
@@ -447,7 +479,7 @@
 
 ---
 
-### Feature Slice 29: Homepage Interactive Preview Section
+### Feature Slice 30: Homepage Interactive Preview Section
 
 **Spec Reference**: `website-spec.md` → Page Specifications (Homepage section 6)
 
@@ -465,7 +497,7 @@
 
 ## Phase 4: Purchase Flow
 
-### Feature Slice 30: Stripe Buy Button Integration
+### Feature Slice 31: Stripe Buy Button Integration
 
 **Spec Reference**: `website-spec.md` → Stripe Integration
 
@@ -495,7 +527,7 @@
 
 ---
 
-### Feature Slice 31: Analytics Integration
+### Feature Slice 32: Analytics Integration
 
 **Spec Reference**: `website-spec.md` → Success Metrics
 
@@ -517,7 +549,7 @@
 
 ## Phase 5: Polish & Launch
 
-### Feature Slice 32: Performance Optimization
+### Feature Slice 33: Performance Optimization
 
 **Spec Reference**: `website-spec.md` → SEO & Performance (Performance Targets, Optimizations)
 
@@ -537,7 +569,7 @@
 
 ---
 
-### Feature Slice 33: Accessibility Audit & Fixes
+### Feature Slice 34: Accessibility Audit & Fixes
 
 **Spec Reference**: `website-spec.md` → Accessibility Checklist
 
@@ -557,7 +589,7 @@
 
 ---
 
-### Feature Slice 34: Cross-Browser Testing
+### Feature Slice 35: Cross-Browser Testing
 
 **Spec Reference**: `website-spec.md` → Browser Support
 
@@ -576,7 +608,7 @@
 
 ---
 
-### Feature Slice 35: Content Polish & Review
+### Feature Slice 36: Content Polish & Review
 
 **Spec Reference**: `website-spec.md` → Content Strategy (Copywriting Tone, Content Inventory)
 
@@ -594,7 +626,7 @@
 
 ---
 
-### Feature Slice 36: Product Screenshots Integration
+### Feature Slice 37: Product Screenshots Integration
 
 **Spec Reference**: `website-spec.md` → Screenshot Integration, Journeys
 
@@ -611,7 +643,7 @@
 
 ---
 
-### Feature Slice 37: Launch Readiness Checklist
+### Feature Slice 38: Launch Readiness Checklist
 
 **Spec Reference**: `website-spec.md` → All sections
 
@@ -637,20 +669,27 @@
 
 | Phase | Slices | Description |
 |-------|--------|-------------|
-| Phase 1 | 1-12 | Foundation — Project setup, design system, homepage (CRO-optimized), deployment |
-| Phase 2 | 13-22 | Content — All pages, journeys, features, SEO |
-| Phase 3 | 23-29 | Interactive — Mock preview components |
-| Phase 4 | 30-31 | Purchase — Stripe integration, analytics |
-| Phase 5 | 32-37 | Polish — Performance, accessibility, testing, launch |
+| Phase 1 | 1-13 | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
+| Phase 2 | 14-23 | Content — All pages, journeys, features, SEO |
+| Phase 3 | 24-30 | Interactive — Mock preview components |
+| Phase 4 | 31-32 | Purchase — Stripe integration, analytics |
+| Phase 5 | 33-38 | Polish — Performance, accessibility, testing, launch |
 
-**Total Feature Slices**: 37
+**Total Feature Slices**: 38
+
+**Logo Assets** (source: `/Users/manavsehgal/Developer/lattice/assets/`):
+- Horizontal logo variants for header (dark/light modes)
+- Stacked logo variants for footer and marketing
+- Icon-only variants for favicon and PWA icons
+- 512px icon for OG image
 
 **CRO Enhancements Applied**:
 - Feature Slice 7: Hero above-the-fold optimization (5-second rule)
-- Feature Slice 8: Verifiable social proof (photos, names, sources)
-- Feature Slice 9: FUDs reduction under CTAs
-- Feature Slice 10: Privacy as guarantee, emotional storytelling
-- Feature Slice 11: Mobile CRO considerations
+- Feature Slice 8: Logo & branding integration
+- Feature Slice 9: Verifiable social proof (photos, names, sources)
+- Feature Slice 10: FUDs reduction under CTAs
+- Feature Slice 11: Privacy as guarantee, emotional storytelling
+- Feature Slice 12: Mobile CRO considerations
 
 ---
 

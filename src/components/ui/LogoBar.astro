@@ -1,0 +1,52 @@
+---
+/**
+ * LogoBar Component
+ *
+ * Displays trust signals/logos with quotes (not just logos per CRO best practices).
+ * Used in Hero section for above-the-fold social proof.
+ */
+
+export interface TrustSignal {
+  name: string;
+  quote?: string;
+}
+
+export interface Props {
+  signals?: TrustSignal[];
+  label?: string;
+}
+
+const {
+  signals = [
+    { name: 'Self-Hosted', quote: 'Deploy on your infrastructure' },
+    { name: 'Privacy-First', quote: 'Data never leaves your machine' },
+    { name: 'Enterprise-Ready', quote: 'Air-gapped deployment supported' },
+  ],
+  label = 'Trusted by engineering teams',
+} = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-3" data-testid="logo-bar">
+  <span class="text-xs font-medium uppercase tracking-wider text-muted-foreground" data-testid="logo-bar-label">
+    {label}
+  </span>
+  <div
+    class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+    data-testid="logo-bar-signals"
+  >
+    {
+      signals.map((signal, index) => (
+        <div
+          class="flex items-center gap-2 text-sm text-muted-foreground"
+          data-testid={`trust-signal-${index}`}
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+          <span class="font-medium">{signal.name}</span>
+          {signal.quote && (
+            <span class="hidden text-xs sm:inline">— {signal.quote}</span>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>

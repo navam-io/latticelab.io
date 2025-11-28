@@ -28,8 +28,8 @@ test.describe('Feature 1: Project Initialization', () => {
 
   test('homepage displays value proposition', async ({ page }) => {
     await page.goto('/');
-    // Updated to match new Hero section messaging
-    const valueText = page.getByText(/Stop spending weeks/);
+    // CRO-optimized: benefit-driven headline (6-8 words)
+    const valueText = page.getByText(/Stop Researching AI/);
     await expect(valueText).toBeVisible();
   });
 

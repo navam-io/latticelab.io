@@ -33,13 +33,15 @@ test.describe('Feature 5: Homepage Hero Section', () => {
     test('displays value proposition', async ({ page }) => {
       const valueProp = page.getByTestId('hero-value-prop');
       await expect(valueProp).toBeVisible();
-      await expect(valueProp).toContainText('Stop spending weeks');
+      // CRO-optimized: benefit-driven headline
+      await expect(valueProp).toContainText('Stop Researching AI');
     });
 
     test('displays subhead with supporting copy', async ({ page }) => {
       const subhead = page.getByTestId('hero-subhead');
       await expect(subhead).toBeVisible();
-      await expect(subhead).toContainText('synthesizes AI research');
+      // CRO-optimized: USP with differentiators
+      await expect(subhead).toContainText('synthesizes');
     });
 
     test('displays tagline badge', async ({ page }) => {
