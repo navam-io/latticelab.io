@@ -1,29 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.3.0
+**Current Version**: 0.4.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 4: Layout Components
-
-**Spec Reference**: `website-spec.md` → Project Structure (layouts/, components/layout/)
-
-**Summary**: Create base layout and core layout components: Header, Footer, Navigation, MobileMenu.
-
-**Acceptance Criteria**:
-- [ ] `BaseLayout.astro` — HTML skeleton with meta tags, fonts, global styles
-- [ ] `PageLayout.astro` — Standard page layout with Header/Footer
-- [ ] `Header.astro` — Fixed header with blur backdrop, logo, nav links, CTA
-- [ ] `Footer.astro` — Links, GitHub, contact info
-- [ ] `Navigation.astro` — Desktop navigation links
-- [ ] `MobileMenu.tsx` — React component for mobile hamburger menu with slide-out drawer
-- [ ] Navigation items defined in `lib/constants.ts`
-- [ ] Responsive behavior: desktop nav hidden on mobile, hamburger shown
-
----
 
 ### Feature Slice 5: Homepage — Hero Section
 

@@ -195,12 +195,13 @@ test.describe('Feature 2: Design System CSS Variables', () => {
 
 test.describe('Tailwind Theme Integration', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/ui-showcase');
   });
 
   test('bg-background class applies correct background color', async ({ page }) => {
-    const main = page.locator('main');
-    const bgColor = await main.evaluate((el) => {
+    // Check section with default background
+    const section = page.getByTestId('section-default');
+    const bgColor = await section.evaluate((el) => {
       return getComputedStyle(el).backgroundColor;
     });
     // Should be white (#ffffff) which is rgb(255, 255, 255)
@@ -208,7 +209,7 @@ test.describe('Tailwind Theme Integration', () => {
   });
 
   test('text-foreground class applies correct text color', async ({ page }) => {
-    const heading = page.locator('h1');
+    const heading = page.locator('h2').first();
     const textColor = await heading.evaluate((el) => {
       return getComputedStyle(el).color;
     });
@@ -217,8 +218,8 @@ test.describe('Tailwind Theme Integration', () => {
   });
 
   test('bg-accent class applies correct accent color', async ({ page }) => {
-    const primaryCta = page.getByRole('link', { name: /Buy Lattice/i });
-    const bgColor = await primaryCta.evaluate((el) => {
+    const primaryBtn = page.getByTestId('btn-primary');
+    const bgColor = await primaryBtn.evaluate((el) => {
       return getComputedStyle(el).backgroundColor;
     });
     // Should be #3b82f6 which is rgb(59, 130, 246)
@@ -226,8 +227,9 @@ test.describe('Tailwind Theme Integration', () => {
   });
 
   test('text-muted-foreground class applies correct muted text color', async ({ page }) => {
-    const tagline = page.getByText('Agentic AI Lab Assistant');
-    const textColor = await tagline.evaluate((el) => {
+    // Use text in card description which has muted-foreground class
+    const mutedText = page.locator('p.text-muted-foreground').first();
+    const textColor = await mutedText.evaluate((el) => {
       return getComputedStyle(el).color;
     });
     // Should be #71717a which is rgb(113, 113, 122)
@@ -235,8 +237,8 @@ test.describe('Tailwind Theme Integration', () => {
   });
 
   test('border-border class applies correct border color', async ({ page }) => {
-    const secondaryCta = page.getByRole('link', { name: /View Features/i });
-    const borderColor = await secondaryCta.evaluate((el) => {
+    const secondaryBtn = page.getByTestId('btn-secondary');
+    const borderColor = await secondaryBtn.evaluate((el) => {
       return getComputedStyle(el).borderColor;
     });
     // Should be #e4e4e7 which is rgb(228, 228, 231)
@@ -244,8 +246,8 @@ test.describe('Tailwind Theme Integration', () => {
   });
 
   test('shadow-md class applies shadow', async ({ page }) => {
-    const primaryCta = page.getByRole('link', { name: /Buy Lattice/i });
-    const boxShadow = await primaryCta.evaluate((el) => {
+    const elevatedCard = page.getByTestId('card-elevated');
+    const boxShadow = await elevatedCard.evaluate((el) => {
       return getComputedStyle(el).boxShadow;
     });
     expect(boxShadow).not.toBe('none');

@@ -21,8 +21,9 @@ test.describe('Feature 1: Project Initialization', () => {
 
   test('homepage displays tagline', async ({ page }) => {
     await page.goto('/');
-    const tagline = page.getByText('Agentic AI Lab Assistant');
-    await expect(tagline).toBeVisible();
+    // The tagline includes "Agentic AI Lab Assistant for Research Engineers"
+    const tagline = page.getByText(/Agentic AI Lab Assistant/);
+    await expect(tagline.first()).toBeVisible();
   });
 
   test('homepage displays value proposition', async ({ page }) => {

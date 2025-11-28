@@ -363,7 +363,8 @@ test.describe('Homepage uses UI Components', () => {
   });
 
   test('homepage uses Button component for CTAs', async ({ page }) => {
-    const primaryCta = page.getByRole('link', { name: /Buy Lattice/i });
+    // Find the CTA in the main content area (not header)
+    const primaryCta = page.locator('main').getByRole('link', { name: /Buy Lattice/i });
     await expect(primaryCta).toBeVisible();
 
     // Should have button styling
@@ -374,7 +375,7 @@ test.describe('Homepage uses UI Components', () => {
   });
 
   test('homepage uses Section component', async ({ page }) => {
-    const section = page.locator('section').first();
+    const section = page.locator('main section').first();
     await expect(section).toBeVisible();
 
     // Section should have padding
@@ -385,8 +386,8 @@ test.describe('Homepage uses UI Components', () => {
   });
 
   test('homepage uses Container component', async ({ page }) => {
-    // Container should have max-width
-    const container = page.locator('section > div').first();
+    // Container should have max-width - look within main section
+    const container = page.locator('main section > div').first();
     const maxWidth = await container.evaluate((el) =>
       getComputedStyle(el).maxWidth
     );

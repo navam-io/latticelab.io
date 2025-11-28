@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import Button from '@/components/ui/Button.astro';
 import Card from '@/components/ui/Card.astro';
 import Badge from '@/components/ui/Badge.astro';
@@ -7,8 +7,7 @@ import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
 ---
 
-<BaseLayout title="UI Component Showcase">
-  <main class="min-h-screen bg-background">
+<PageLayout title="UI Component Showcase">
     <!-- Buttons Section -->
     <Section spacing="md" data-testid="buttons-section">
       <h2 class="mb-8 text-2xl font-bold">Buttons</h2>
@@ -165,5 +164,4 @@ import Section from '@/components/ui/Section.astro';
       <h2 class="mb-4 text-2xl font-bold">Section - Accent Background</h2>
       <p>Accent section for emphasis and CTAs.</p>
     </Section>
-  </main>
-</BaseLayout>
+</PageLayout>

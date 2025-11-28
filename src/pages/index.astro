@@ -1,42 +1,40 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import Button from '@/components/ui/Button.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import { siteConfig } from '@/lib/constants';
 ---
 
-<BaseLayout>
-  <main class="min-h-screen bg-background">
-    <!-- Hero Section - Placeholder for Feature Slice 5 -->
-    <Section spacing="xl" container={false}>
-      <Container size="xl">
-        <div
-          class="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center text-center"
+<PageLayout>
+  <!-- Hero Section - Placeholder for Feature Slice 5 -->
+  <Section spacing="xl" container={false}>
+    <Container size="xl">
+      <div
+        class="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center text-center"
+      >
+        <h1
+          class="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl"
         >
-          <h1
-            class="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl"
-          >
-            {siteConfig.name}
-          </h1>
-          <p class="mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Agentic AI Lab Assistant for Research Engineers
-          </p>
-          <p class="max-w-xl text-muted-foreground">
-            Stop researching AI infrastructure manually. Lattice synthesizes
-            benchmarks, pricing, and model cards into grounded recommendations
-            with citations.
-          </p>
-          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Button variant="primary" size="lg" href="/pricing">
-              Buy Lattice &mdash; $99
-            </Button>
-            <Button variant="secondary" size="lg" href="/features">
-              View Features
-            </Button>
-          </div>
+          {siteConfig.name}
+        </h1>
+        <p class="mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          Agentic AI Lab Assistant for Research Engineers
+        </p>
+        <p class="max-w-xl text-muted-foreground">
+          Stop researching AI infrastructure manually. Lattice synthesizes
+          benchmarks, pricing, and model cards into grounded recommendations
+          with citations.
+        </p>
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <Button variant="primary" size="lg" href="/pricing">
+            Buy Lattice &mdash; $99
+          </Button>
+          <Button variant="secondary" size="lg" href="/features">
+            View Features
+          </Button>
         </div>
-      </Container>
-    </Section>
-  </main>
-</BaseLayout>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
