@@ -1,28 +1,11 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.0.0
+**Current Version**: 0.1.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
 
 ## Phase 1: Foundation (MVP)
-
-### Feature Slice 1: Project Initialization
-
-**Spec Reference**: `website-spec.md` → Technical Stack, Project Structure
-
-**Summary**: Initialize Astro 5.x project with React, Tailwind CSS 4, TypeScript, and MDX support. Configure project structure matching spec.
-
-**Acceptance Criteria**:
-- [ ] Astro 5.x project created with `npm create astro@latest`
-- [ ] Integrations installed: `@astrojs/react`, `@astrojs/tailwind`, `@astrojs/mdx`
-- [ ] Dependencies added: `react`, `react-dom`, `lucide-react`, `framer-motion`
-- [ ] Fonts installed: `@fontsource/geist-sans`, `@fontsource/geist-mono`
-- [ ] TypeScript configured with strict mode
-- [ ] Project structure created per spec (components/, content/, layouts/, pages/, lib/, styles/, types/)
-- [ ] Dev server runs successfully with `npm run dev`
-
----
 
 ### Feature Slice 2: Design System — CSS Variables & Base Styles
 
@@ -512,6 +495,17 @@
 **Spec Reference**: `website-spec.md` → Stripe Integration
 
 **Summary**: Integrate Stripe Buy Button for $99 one-time purchase.
+
+**Stripe Buy Button Code**:
+```html
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1SYXbwRCxnzBPkIXayfIahbD"
+  publishable-key="pk_live_51SJ4zqRCxnzBPkIX08pXFlwWr4FsjHXyZZUhnJuafZvQI05nSTGMxHkl9SWNeuCgzVZ8JHH1grR6XsnOEbAvAKHC00vw9mIIbB"
+>
+</stripe-buy-button>
+```
 
 **Acceptance Criteria**:
 - [ ] Stripe Buy Button script loaded in BaseLayout

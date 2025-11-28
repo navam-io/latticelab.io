@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/lib/constants';
+---
+
+<BaseLayout>
+  <main class="min-h-screen">
+    <!-- Hero Section - Placeholder for Feature Slice 5 -->
+    <section
+      class="flex min-h-screen flex-col items-center justify-center px-4 text-center"
+    >
+      <h1
+        class="mb-6 text-4xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-5xl md:text-6xl"
+      >
+        {siteConfig.name}
+      </h1>
+      <p
+        class="mb-8 max-w-2xl text-lg text-[var(--color-muted-foreground)] sm:text-xl"
+      >
+        Agentic AI Lab Assistant for Research Engineers
+      </p>
+      <p class="max-w-xl text-[var(--color-muted-foreground)]">
+        Stop researching AI infrastructure manually. Lattice synthesizes
+        benchmarks, pricing, and model cards into grounded recommendations with
+        citations.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <a
+          href="/pricing"
+          class="rounded-lg bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-accent-foreground)] transition-colors hover:bg-[var(--color-accent)]/90"
+        >
+          Buy Lattice &mdash; $99
+        </a>
+        <a
+          href="/features"
+          class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-1)] px-6 py-3 font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface-2)]"
+        >
+          View Features
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
