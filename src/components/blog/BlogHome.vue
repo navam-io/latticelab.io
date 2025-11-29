@@ -30,14 +30,14 @@ const showAllTags = ref(false);
 
 // Smart category groupings based on tag patterns
 const categories = [
-  { id: 'getting-started', label: 'Getting Started', icon: '🚀', tags: ['getting-started', 'workspaces', 'organization'] },
-  { id: 'blueprints', label: 'Blueprints', icon: '📋', tags: ['blueprints', 'vendors', 'discovery', 'filtering'] },
-  { id: 'sources', label: 'Sources', icon: '📚', tags: ['sources', 'knowledge-management', 'reading'] },
-  { id: 'stacks', label: 'Stacks', icon: '🔧', tags: ['stacks', 'infrastructure', 'hardware', 'framework'] },
-  { id: 'scenarios', label: 'Scenarios', icon: '🎯', tags: ['scenarios', 'comparison', 'requirements', 'workflow'] },
-  { id: 'studio', label: 'Studio', icon: '🎨', tags: ['studio', 'artifacts', 'export'] },
-  { id: 'settings', label: 'Settings', icon: '⚙️', tags: ['settings', 'configuration', 'api-keys', 'customization'] },
-  { id: 'lab', label: 'Lab', icon: '🧪', tags: ['lab', 'chat', 'research', 'citations', 'ai-assistant'] },
+  { id: 'getting-started', label: 'Getting Started', tags: ['getting-started', 'workspaces', 'organization'] },
+  { id: 'blueprints', label: 'Blueprints', tags: ['blueprints', 'vendors', 'discovery', 'filtering'] },
+  { id: 'sources', label: 'Sources', tags: ['sources', 'knowledge-management', 'reading'] },
+  { id: 'stacks', label: 'Stacks', tags: ['stacks', 'infrastructure', 'hardware', 'framework'] },
+  { id: 'scenarios', label: 'Scenarios', tags: ['scenarios', 'comparison', 'requirements', 'workflow'] },
+  { id: 'studio', label: 'Studio', tags: ['studio', 'artifacts', 'export'] },
+  { id: 'settings', label: 'Settings', tags: ['settings', 'configuration', 'api-keys', 'customization'] },
+  { id: 'lab', label: 'Lab', tags: ['lab', 'chat', 'research', 'citations', 'ai-assistant'] },
 ];
 
 // Compute filtered posts
@@ -162,7 +162,7 @@ const resultsText = computed(() => {
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Confident AI System Decisions
+            Smart AI System Decisions
           </h1>
           <p class="text-xl text-purple-200 mb-8 max-w-2xl mx-auto">
             Step-by-step guides to master AI infrastructure research. From first workspace to advanced workflows.
@@ -237,7 +237,39 @@ const resultsText = computed(() => {
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             ]"
           >
-            <span>{{ cat.icon }}</span>
+            <!-- Getting Started -->
+            <svg v-if="cat.id === 'getting-started'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <!-- Blueprints -->
+            <svg v-else-if="cat.id === 'blueprints'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            <!-- Sources -->
+            <svg v-else-if="cat.id === 'sources'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <!-- Stacks -->
+            <svg v-else-if="cat.id === 'stacks'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <!-- Scenarios -->
+            <svg v-else-if="cat.id === 'scenarios'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <!-- Studio -->
+            <svg v-else-if="cat.id === 'studio'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <!-- Settings -->
+            <svg v-else-if="cat.id === 'settings'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <!-- Lab -->
+            <svg v-else-if="cat.id === 'lab'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
             <span>{{ cat.label }}</span>
           </button>
         </div>

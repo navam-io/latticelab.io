@@ -13,7 +13,7 @@
           <!-- Main Headline -->
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight py-6 animate-fade-in">
             <span class="bg-gradient-to-r from-violet-400 via-blue-400 to-teal-400 bg-clip-text text-transparent">
-              Confident AI Infrastructure Decisions
+              Smart AI System Decisions
             </span>
           </h1>
 

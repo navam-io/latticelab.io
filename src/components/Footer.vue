@@ -123,7 +123,7 @@
         <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div class="flex items-center space-x-2">
             <span class="text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">Lattice</span>
-            <span class="text-sm text-gray-600">&copy; 2025 Lattice Lab. Confident AI Infrastructure Decisions.</span>
+            <span class="text-sm text-gray-600">&copy; 2025 Lattice Lab. Smart AI System Decisions.</span>
           </div>
           <div class="text-sm text-gray-600">
             <span>Making AI infrastructure decisions confident, grounded, and traceable.</span>
