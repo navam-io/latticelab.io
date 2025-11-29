@@ -101,6 +101,15 @@
               </a>
             </li>
             <li>
+              <a href="https://www.navam.io" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
+                Navam.io
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                </svg>
+              </a>
+            </li>
+            <li>
               <a href="/pricing" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Pricing
               </a>
@@ -130,8 +139,14 @@
             <span class="text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">Lattice</span>
             <span class="text-sm text-gray-600">&copy; 2025 Lattice Lab. Smart AI System Decisions.</span>
           </div>
-          <div class="text-sm text-gray-600">
-            <span>Making AI infrastructure decisions confident, grounded, and traceable.</span>
+          <div class="text-sm text-gray-600 flex items-center gap-1">
+            <span>Built with</span>
+            <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>by</span>
+            <a href="https://www.navam.io" target="_blank" rel="noopener noreferrer" class="text-violet-600 hover:text-violet-700 font-medium transition-colors">Navam.io</a>
+            <span>team</span>
           </div>
         </div>
 
