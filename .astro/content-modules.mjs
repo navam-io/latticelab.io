@@ -1,7 +1,7 @@
 
 export default new Map([
-["src/content/blog/add-sources.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fadd-sources.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/apply-blueprint.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fapply-blueprint.mdx&astroContentModuleFlag=true")],
+["src/content/blog/add-sources.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fadd-sources.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/ask-about-selection.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fask-about-selection.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/browse-blueprints.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fbrowse-blueprints.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/chat-with-ai.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fchat-with-ai.mdx&astroContentModuleFlag=true")],
@@ -10,8 +10,8 @@ export default new Map([
 ["src/content/blog/configure-stack-hardware.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fconfigure-stack-hardware.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/create-scenario.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcreate-scenario.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/create-stack.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcreate-stack.mdx&astroContentModuleFlag=true")],
-["src/content/blog/discover-blueprint.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fdiscover-blueprint.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/create-workspace.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcreate-workspace.mdx&astroContentModuleFlag=true")],
+["src/content/blog/discover-blueprint.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fdiscover-blueprint.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/edit-scenario.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fedit-scenario.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/filter-blueprints.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ffilter-blueprints.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/get-stack-suggestion.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fget-stack-suggestion.mdx&astroContentModuleFlag=true")],
@@ -21,6 +21,6 @@ export default new Map([
 ["src/content/blog/select-scenario.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fselect-scenario.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/select-stack.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fselect-stack.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/switch-workspace.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fswitch-workspace.mdx&astroContentModuleFlag=true")],
-["src/content/blog/view-source.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fview-source.mdx&astroContentModuleFlag=true")],
-["src/content/blog/view-artifact.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fview-artifact.mdx&astroContentModuleFlag=true")]]);
+["src/content/blog/view-artifact.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fview-artifact.mdx&astroContentModuleFlag=true")],
+["src/content/blog/view-source.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fview-source.mdx&astroContentModuleFlag=true")]]);
 		

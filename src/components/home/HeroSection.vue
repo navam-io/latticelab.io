@@ -33,7 +33,7 @@
                 >
                 </stripe-buy-button>
               </div>
-              <span class="text-white/60 text-sm">Lifetime access - One-time purchase</span>
+              <span class="text-white/60 text-sm">Only $99 - Lifetime access - One-time purchase</span>
             </div>
           </div>
         </div>

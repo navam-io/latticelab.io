@@ -86,7 +86,7 @@ const filteredPosts = computed(() => {
 
 // Get featured posts for hero section
 const featuredPosts = computed(() =>
-  filteredPosts.value.filter(p => p.data.featured).slice(0, 3)
+  filteredPosts.value.filter(p => p.data.featured).slice(0, 5)
 );
 
 // Get remaining posts for grid
@@ -360,62 +360,90 @@ const resultsText = computed(() => {
             Featured Guides
           </h2>
 
-          <!-- Magazine Layout for Featured -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Primary Featured -->
+          <!-- Magazine Layout for Featured - Compact 50% height -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-auto lg:h-80">
+            <!-- Left: Primary Featured (full height, half width) -->
             <a
               v-if="featuredPosts[0]"
               :href="`/blog/${featuredPosts[0].slug}`"
-              class="group relative block rounded-2xl overflow-hidden bg-gradient-to-br from-violet-600 to-indigo-700 aspect-[4/3] lg:aspect-auto lg:row-span-2"
+              class="group relative block rounded-xl overflow-hidden bg-gray-100 h-64 lg:h-full"
             >
               <img
                 v-if="featuredPosts[0].data.featuredImage"
                 :src="featuredPosts[0].data.featuredImage"
                 :alt="featuredPosts[0].data.title"
-                class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-500"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <span class="inline-block px-3 py-1 bg-violet-500 text-white text-xs font-medium rounded-full mb-3">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <span class="inline-block px-2 py-0.5 bg-white/90 text-violet-700 text-xs font-medium rounded mb-2">
                   Featured
                 </span>
-                <h3 class="text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-violet-200 transition-colors">
+                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-violet-200 transition-colors line-clamp-2">
                   {{ featuredPosts[0].data.title }}
                 </h3>
-                <p class="text-gray-200 text-sm lg:text-base line-clamp-2 mb-4">
+                <p class="text-gray-200 text-sm line-clamp-2">
                   {{ featuredPosts[0].data.description || featuredPosts[0].data.excerpt }}
                 </p>
-                <div class="flex items-center gap-4 text-sm text-gray-300">
+                <div class="flex items-center gap-3 text-xs text-gray-300 mt-2">
                   <span>{{ formatDate(featuredPosts[0].data.pubDate || featuredPosts[0].data.date) }}</span>
-                  <span v-if="featuredPosts[0].data.readingTime">{{ featuredPosts[0].data.readingTime }}</span>
                 </div>
               </div>
             </a>
 
-            <!-- Secondary Featured -->
-            <div class="grid grid-cols-1 gap-6">
+            <!-- Right Column: Top featured + bottom thumbnail list -->
+            <div class="flex flex-col gap-4 h-full">
+              <!-- Top Right: Secondary Featured (half height) -->
               <a
-                v-for="post in featuredPosts.slice(1, 3)"
-                :key="post.slug"
-                :href="`/blog/${post.slug}`"
-                class="group relative block rounded-2xl overflow-hidden bg-gray-100 aspect-[16/9]"
+                v-if="featuredPosts[1]"
+                :href="`/blog/${featuredPosts[1].slug}`"
+                class="group relative block rounded-xl overflow-hidden bg-gray-100 h-36 lg:flex-1"
               >
                 <img
-                  v-if="post.data.featuredImage"
-                  :src="post.data.featuredImage"
-                  :alt="post.data.title"
+                  v-if="featuredPosts[1].data.featuredImage"
+                  :src="featuredPosts[1].data.featuredImage"
+                  :alt="featuredPosts[1].data.title"
                   class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 class="text-lg font-bold text-white mb-1 group-hover:text-violet-200 transition-colors line-clamp-2">
-                    {{ post.data.title }}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 class="text-base font-bold text-white mb-1 group-hover:text-violet-200 transition-colors line-clamp-1">
+                    {{ featuredPosts[1].data.title }}
                   </h3>
-                  <div class="flex items-center gap-3 text-sm text-gray-300">
-                    <span>{{ formatDate(post.data.pubDate || post.data.date) }}</span>
+                  <div class="flex items-center gap-3 text-xs text-gray-300">
+                    <span>{{ formatDate(featuredPosts[1].data.pubDate || featuredPosts[1].data.date) }}</span>
                   </div>
                 </div>
               </a>
+
+              <!-- Bottom Right: Thumbnail list items -->
+              <div class="flex flex-col gap-2 lg:flex-1">
+                <a
+                  v-for="post in featuredPosts.slice(2, 5)"
+                  :key="post.slug"
+                  :href="`/blog/${post.slug}`"
+                  class="group flex items-center gap-3 p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                >
+                  <!-- Thumbnail -->
+                  <div class="w-16 h-12 rounded-md overflow-hidden bg-gray-200 flex-shrink-0">
+                    <img
+                      v-if="post.data.featuredImage"
+                      :src="post.data.featuredImage"
+                      :alt="post.data.title"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <!-- Content -->
+                  <div class="flex-1 min-w-0">
+                    <h4 class="text-sm font-medium text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-1">
+                      {{ post.data.title }}
+                    </h4>
+                    <p class="text-xs text-gray-500 line-clamp-1">
+                      {{ post.data.description || post.data.excerpt }}
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

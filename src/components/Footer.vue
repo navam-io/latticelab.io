@@ -96,8 +96,8 @@
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Company</h3>
           <ul class="space-y-3">
             <li>
-              <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors">
-                About Lattice Lab
+              <a href="/about" class="text-gray-600 hover:text-gray-900 transition-colors">
+                About
               </a>
             </li>
             <li>
