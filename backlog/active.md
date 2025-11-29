@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.25.0
+**Current Version**: 0.26.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -93,20 +93,9 @@ See `releases/release-0.25.0.md` for details.
 
 ---
 
-### Feature Slice 26: Sources Preview Component
+### Feature Slice 26: Sources Preview Component - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Interactive Mock Previews (Sources Preview)
-
-**Summary**: Create SourcesPreview React component simulating the Sources panel.
-
-**Acceptance Criteria**:
-- [ ] `src/components/previews/SourcesPreview.tsx` created
-- [ ] File upload dropzone (visual interaction, no actual upload)
-- [ ] Sample source cards: "OpenAI Pricing", "Anthropic Model Card", "LangChain Benchmark"
-- [ ] Source cards with metadata (type, page count, date added)
-- [ ] Filter/search input with filtering animation
-- [ ] Hover states on source cards
-- [ ] Component works as Astro React island
+See `releases/release-0.26.0.md` for details.
 
 ---
 
@@ -418,11 +407,11 @@ See `releases/release-0.25.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (2/7 complete) |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (3/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (25 complete, 15 remaining)
+**Total Feature Slices**: 40 (26 complete, 14 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
