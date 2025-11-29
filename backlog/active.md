@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.20.0
+**Current Version**: 0.21.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -55,20 +55,9 @@ See `releases/release-0.20.0.md` for details.
 
 ---
 
-### Feature Slice 21: Documentation Page
+### Feature Slice 21: Documentation Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Site Map (/docs), Page Specifications (Documentation)
-
-**Summary**: Create documentation page with quick start guide and links to GitHub docs.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/docs.astro` created
-- [ ] Quick Start section with numbered steps
-- [ ] System requirements list
-- [ ] Docker setup instructions (code block)
-- [ ] Link to full documentation in GitHub repo
-- [ ] Code syntax highlighting for command examples
-- [ ] Copy-to-clipboard buttons for code blocks
+See `releases/release-0.21.0.md` for details.
 
 ---
 
@@ -469,12 +458,12 @@ See `releases/release-0.20.0.md` for details.
 | Phase | Slices | Status | Description |
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
-| Phase 2 | 14-23 | In Progress | Content — All pages, journeys, features, SEO |
+| Phase 2 | 14-23 | In Progress (21 of 23 complete) | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | Planned | Interactive — Mock preview components |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (20 complete, 20 remaining)
+**Total Feature Slices**: 40 (21 complete, 19 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

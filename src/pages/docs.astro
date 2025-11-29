@@ -1,0 +1,403 @@
+---
+/**
+ * Documentation Page
+ *
+ * Quick start guide with system requirements, Docker setup instructions,
+ * and links to full documentation in GitHub repository.
+ *
+ * Feature Slice 21: Documentation Page
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+
+// Quick start steps
+const quickStartSteps = [
+  {
+    step: 1,
+    title: 'Purchase Lattice Lab',
+    description: 'Complete your purchase to receive access to the private GitHub repository.',
+    icon: 'credit-card',
+  },
+  {
+    step: 2,
+    title: 'Accept GitHub Invite',
+    description: 'Within 24 hours, you\'ll receive an invitation to the private repository.',
+    icon: 'github',
+  },
+  {
+    step: 3,
+    title: 'Clone the Repository',
+    description: 'Clone the repo to your local machine using the command below.',
+    icon: 'download',
+  },
+  {
+    step: 4,
+    title: 'Run with Docker',
+    description: 'Start Lattice Lab with a single docker-compose command.',
+    icon: 'play',
+  },
+];
+
+// System requirements
+const requirements = [
+  { name: 'Docker', version: '24.0+', description: 'Container runtime' },
+  { name: 'Docker Compose', version: '2.20+', description: 'Multi-container orchestration' },
+  { name: 'RAM', version: '8GB+', description: 'Minimum memory' },
+  { name: 'Storage', version: '10GB+', description: 'For images and data' },
+];
+
+// Documentation links
+const docLinks = [
+  {
+    title: 'Installation Guide',
+    description: 'Detailed setup instructions for all platforms',
+    href: 'https://github.com/navam-io/lattice-lab#installation',
+    icon: 'book',
+  },
+  {
+    title: 'Configuration',
+    description: 'Environment variables and settings',
+    href: 'https://github.com/navam-io/lattice-lab#configuration',
+    icon: 'settings',
+  },
+  {
+    title: 'API Keys Setup',
+    description: 'Connect your AI provider accounts',
+    href: 'https://github.com/navam-io/lattice-lab#api-keys',
+    icon: 'key',
+  },
+  {
+    title: 'Blueprints',
+    description: 'Using and creating blueprint bundles',
+    href: 'https://github.com/navam-io/lattice-lab#blueprints',
+    icon: 'package',
+  },
+];
+
+// Icon paths
+const iconPaths: Record<string, string> = {
+  'credit-card': 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
+  'github': 'M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z',
+  'download': 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4',
+  'play': 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  'book': 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+  'settings': 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  'key': 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
+  'package': 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+  'terminal': 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+  'check': 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  'external': 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14',
+};
+---
+
+<PageLayout
+  title="Documentation - Lattice Lab"
+  description="Get started with Lattice Lab in under 5 minutes. Quick start guide, system requirements, Docker setup, and links to full documentation."
+>
+  <!-- Hero Section -->
+  <Section spacing="lg" background="default" data-testid="docs-hero">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl text-center">
+        <span
+          class="mb-4 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
+          data-testid="docs-eyebrow"
+        >
+          Documentation
+        </span>
+        <h1
+          class="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+          data-testid="docs-headline"
+        >
+          Get Started in 5 Minutes
+        </h1>
+        <p
+          class="mb-8 text-xl text-muted-foreground"
+          data-testid="docs-subhead"
+        >
+          Lattice Lab runs locally with Docker. Clone, configure, and start researching with a single command.
+        </p>
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-testid="docs-hero-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="#quick-start"
+            class="w-full px-8 sm:w-auto"
+            data-testid="docs-hero-quickstart"
+          >
+            Quick Start Guide
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href="https://github.com/navam-io/lattice-lab"
+            class="w-full px-8 sm:w-auto"
+            data-testid="docs-hero-github"
+          >
+            <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d={iconPaths['github']} />
+            </svg>
+            View on GitHub
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Quick Start Section -->
+  <Section spacing="lg" background="muted" data-testid="docs-quickstart" id="quick-start">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-8 text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="docs-quickstart-title"
+        >
+          Quick Start Guide
+        </h2>
+
+        <div class="space-y-8" data-testid="docs-quickstart-steps">
+          {quickStartSteps.map((item, index) => (
+            <div
+              class="relative flex gap-6"
+              data-testid={`docs-step-${index}`}
+            >
+              {/* Step connector line */}
+              {index < quickStartSteps.length - 1 && (
+                <div class="absolute left-6 top-14 bottom-0 w-0.5 bg-border" aria-hidden="true" />
+              )}
+
+              {/* Step number */}
+              <div
+                class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent text-lg font-bold text-white"
+                data-testid={`docs-step-${index}-number`}
+              >
+                {item.step}
+              </div>
+
+              <div class="flex-1 pb-8">
+                <h3
+                  class="mb-2 text-lg font-semibold text-foreground"
+                  data-testid={`docs-step-${index}-title`}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  class="mb-4 text-muted-foreground"
+                  data-testid={`docs-step-${index}-description`}
+                >
+                  {item.description}
+                </p>
+
+                {/* Clone command for step 3 */}
+                {item.step === 3 && (
+                  <CodeBlock
+                    code="git clone https://github.com/navam-io/lattice-lab.git && cd lattice-lab"
+                    language="bash"
+                    filename="Terminal"
+                  />
+                )}
+
+                {/* Docker command for step 4 */}
+                {item.step === 4 && (
+                  <CodeBlock
+                    code="docker-compose up -d"
+                    language="bash"
+                    filename="Terminal"
+                  />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Success message */}
+        <Card padding="md" class="mt-8 border-green-200 bg-green-50" data-testid="docs-success">
+          <div class="flex items-start gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+              <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['check']} />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-green-800" data-testid="docs-success-title">
+                You're Ready!
+              </h4>
+              <p class="text-sm text-green-700" data-testid="docs-success-description">
+                Open <code class="rounded bg-green-100 px-1.5 py-0.5">http://localhost:3000</code> in your browser to access Lattice Lab.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- System Requirements Section -->
+  <Section spacing="lg" background="default" data-testid="docs-requirements">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-8 text-center text-2xl font-bold tracking-tight text-foreground"
+          data-testid="docs-requirements-title"
+        >
+          System Requirements
+        </h2>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-testid="docs-requirements-grid">
+          {requirements.map((req, index) => (
+            <Card padding="md" class="text-center" data-testid={`docs-requirement-${index}`}>
+              <div class="mb-2 text-2xl font-bold text-accent" data-testid={`docs-requirement-${index}-version`}>
+                {req.version}
+              </div>
+              <div class="font-semibold text-foreground" data-testid={`docs-requirement-${index}-name`}>
+                {req.name}
+              </div>
+              <div class="text-sm text-muted-foreground" data-testid={`docs-requirement-${index}-description`}>
+                {req.description}
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Platform support note */}
+        <p class="mt-6 text-center text-sm text-muted-foreground" data-testid="docs-platform-note">
+          Works on macOS, Linux, and Windows (via WSL2). Apple Silicon and Intel architectures supported.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Configuration Section -->
+  <Section spacing="lg" background="muted" data-testid="docs-config">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-4 text-center text-2xl font-bold tracking-tight text-foreground"
+          data-testid="docs-config-title"
+        >
+          Configuration
+        </h2>
+        <p class="mb-8 text-center text-muted-foreground" data-testid="docs-config-description">
+          Configure your API keys and environment settings in the <code>.env</code> file.
+        </p>
+
+        <CodeBlock
+          code={`# .env file
+# AI Provider API Keys
+OPENAI_API_KEY=sk-your-openai-key
+ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+
+# Optional: Additional providers
+GOOGLE_AI_KEY=your-google-key
+AWS_ACCESS_KEY_ID=your-aws-key
+AWS_SECRET_ACCESS_KEY=your-aws-secret
+
+# Server Configuration
+PORT=3000
+HOST=localhost`}
+          language="bash"
+          filename=".env"
+        />
+
+        <p class="mt-4 text-center text-sm text-muted-foreground" data-testid="docs-config-note">
+          API keys are stored locally and never sent to external servers. See the <a href="https://github.com/navam-io/lattice-lab#configuration" class="text-accent hover:underline">full configuration guide</a> for all options.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Documentation Links Section -->
+  <Section spacing="lg" background="default" data-testid="docs-links">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-8 text-center text-2xl font-bold tracking-tight text-foreground"
+          data-testid="docs-links-title"
+        >
+          Full Documentation
+        </h2>
+
+        <div class="grid gap-4 sm:grid-cols-2" data-testid="docs-links-grid">
+          {docLinks.map((link, index) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-lg border border-border bg-background p-6 transition-colors hover:border-accent hover:bg-surface-2"
+              data-testid={`docs-link-${index}`}
+            >
+              <div class="mb-3 flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+                  <svg class="h-5 w-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[link.icon]} />
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-foreground" data-testid={`docs-link-${index}-title`}>
+                  {link.title}
+                </h3>
+                <svg
+                  class="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['external']} />
+                </svg>
+              </div>
+              <p class="text-sm text-muted-foreground" data-testid={`docs-link-${index}-description`}>
+                {link.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section spacing="lg" background="muted" data-testid="docs-cta">
+    <Container size="md">
+      <div class="text-center">
+        <h2
+          class="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="docs-cta-headline"
+        >
+          Ready to Get Started?
+        </h2>
+        <p
+          class="mb-8 text-lg text-muted-foreground"
+          data-testid="docs-cta-subhead"
+        >
+          Purchase Lattice Lab and get instant access to the documentation and source code.
+        </p>
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-testid="docs-cta-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/pricing"
+            class="w-full px-8 sm:w-auto"
+            data-testid="docs-cta-primary"
+          >
+            Get Lattice for $99
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href="/journeys"
+            class="w-full px-8 sm:w-auto"
+            data-testid="docs-cta-secondary"
+          >
+            View Product Journeys
+          </Button>
+        </div>
+        <p class="mt-6 text-sm text-muted-foreground" data-testid="docs-cta-trust">
+          30-day money-back guarantee. Full source code access.
+        </p>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
