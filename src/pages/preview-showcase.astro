@@ -1,0 +1,36 @@
+---
+/**
+ * Preview Showcase Page
+ *
+ * Development page to showcase and test interactive preview components.
+ * This page is used for testing and demonstration purposes.
+ *
+ * Feature Slice 24: Preview Components — Shared Utilities
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Card from '@/components/ui/Card.astro';
+import { PreviewShowcase } from '@/components/previews/PreviewShowcase';
+---
+
+<PageLayout
+  title="Preview Component Showcase"
+  description="Development showcase for interactive preview components"
+  noindex={true}
+>
+  <Section spacing="lg" background="default">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h1 class="mb-4 text-3xl font-bold text-foreground" data-testid="preview-showcase-title">
+          Preview Component Showcase
+        </h1>
+        <p class="mb-8 text-muted-foreground">
+          Interactive preview components for demonstrating Lattice Lab features.
+        </p>
+
+        <PreviewShowcase client:load />
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

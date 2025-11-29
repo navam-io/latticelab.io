@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.23.0
+**Current Version**: 0.24.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -81,21 +81,9 @@ All 10 feature slices (14-23) in Phase 2 are now complete.
 
 ## Phase 3: Interactive Previews
 
-### Feature Slice 24: Preview Components — Shared Utilities
+### Feature Slice 24: Preview Components — Shared Utilities - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Interactive Mock Previews (Implementation Strategy, Preview Components)
-
-**Summary**: Create shared React components and utilities for interactive previews.
-
-**Acceptance Criteria**:
-- [ ] `src/components/previews/shared/` directory created
-- [ ] `TypingIndicator.tsx` — Animated typing dots
-- [ ] `CitationPill.tsx` — Inline citation badge with hover tooltip
-- [ ] `MessageBubble.tsx` — Chat message display component
-- [ ] `PreviewContainer.tsx` — Wrapper with consistent styling
-- [ ] Mock data utilities in `lib/preview-data.ts`
-- [ ] Framer Motion animations configured
-- [ ] Components use design system tokens
+See `releases/release-0.24.0.md` for details.
 
 ---
 
@@ -443,11 +431,11 @@ All 10 feature slices (14-23) in Phase 2 are now complete.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | Planned | Interactive — Mock preview components |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (1/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (23 complete, 17 remaining)
+**Total Feature Slices**: 40 (24 complete, 16 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
