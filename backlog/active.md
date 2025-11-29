@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.17.0
+**Current Version**: 0.18.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -37,19 +37,9 @@ See `releases/release-0.17.0.md` for details.
 
 ---
 
-### Feature Slice 18: Journeys Index Page
+### Feature Slice 18: Journeys Index Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Site Map (/journeys), Page Specifications (Journeys)
-
-**Summary**: Create journeys gallery page showing all available product journeys.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/journeys/index.astro` created
-- [ ] Hero section explaining journeys concept
-- [ ] Gallery grid of journey cards
-- [ ] Each card: thumbnail, title, JTBD statement preview
-- [ ] Cards link to individual journey pages
-- [ ] Responsive masonry or grid layout
+See `releases/release-0.18.0.md` for details.
 
 ---
 
@@ -510,7 +500,7 @@ See `releases/release-0.17.0.md` for details.
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (14 complete, 26 remaining)
+**Total Feature Slices**: 40 (18 complete, 22 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
