@@ -61,7 +61,7 @@
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">CTOs & Technical Leaders</h3>
           <p class="text-gray-600 mb-6">
-            "I need to present our AI infrastructure strategy to the board. I want clear cost projections and vendor comparisons."
+            "I need to present our AI infrastructure strategy to the board. I want clear cost projections and vendor comparisons—backed by credible sources."
           </p>
           <div class="bg-teal-50 rounded-xl p-4">
             <p class="text-sm text-teal-700 font-medium mb-2">With Lattice:</p>

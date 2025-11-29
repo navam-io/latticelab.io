@@ -2,36 +2,54 @@
   <footer class="border-t bg-gray-50">
     <div class="container mx-auto px-4 py-12">
       <!-- Footer Navigation -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <!-- Column 1: Features -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Column 1: Features (2-column layout) -->
         <div>
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Features</h3>
-          <ul class="space-y-3">
-            <li>
+          <div class="grid grid-cols-2 gap-x-6 gap-y-3">
+            <div>
               <a href="/features/sources" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Sources
               </a>
               <span class="text-xs text-gray-500 block">Knowledge Management</span>
-            </li>
-            <li>
+            </div>
+            <div>
+              <a href="/features/scenarios" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Scenarios
+              </a>
+              <span class="text-xs text-gray-500 block">Use Case Planning</span>
+            </div>
+            <div>
               <a href="/features/lab" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Lab
               </a>
               <span class="text-xs text-gray-500 block">AI-Powered Analysis</span>
-            </li>
-            <li>
+            </div>
+            <div>
+              <a href="/features/stacks" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Stacks
+              </a>
+              <span class="text-xs text-gray-500 block">Infrastructure Config</span>
+            </div>
+            <div>
               <a href="/features/studio" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Studio
               </a>
               <span class="text-xs text-gray-500 block">Artifacts & Exports</span>
-            </li>
-            <li>
+            </div>
+            <div>
+              <a href="/features/settings" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Settings
+              </a>
+              <span class="text-xs text-gray-500 block">API Keys & Preferences</span>
+            </div>
+            <div>
               <a href="/features/blueprints" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Blueprints
               </a>
               <span class="text-xs text-gray-500 block">36 Curated Bundles</span>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
         <!-- Column 2: Resources -->
@@ -66,32 +84,7 @@
           </ul>
         </div>
 
-        <!-- Column 3: Vendors -->
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-4">Supported Vendors</h3>
-          <ul class="space-y-3">
-            <li>
-              <span class="text-gray-600">Anthropic Claude</span>
-            </li>
-            <li>
-              <span class="text-gray-600">AWS Bedrock</span>
-            </li>
-            <li>
-              <span class="text-gray-600">Google Vertex AI</span>
-            </li>
-            <li>
-              <span class="text-gray-600">NVIDIA NIM</span>
-            </li>
-            <li>
-              <span class="text-gray-600">Meta Llama</span>
-            </li>
-            <li>
-              <span class="text-gray-600">Mistral AI</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Column 4: Company -->
+        <!-- Column 3: Company -->
         <div>
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Company</h3>
           <ul class="space-y-3">
@@ -110,22 +103,13 @@
               </a>
             </li>
             <li>
-              <a href="/pricing" class="text-gray-600 hover:text-gray-900 transition-colors">
+              <a href="/#pricing" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Pricing
               </a>
             </li>
             <li>
               <a href="/contact" class="text-gray-600 hover:text-gray-900 transition-colors">
                 Contact
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/lattice-lab" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
-                GitHub
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                </svg>
               </a>
             </li>
           </ul>
@@ -152,7 +136,7 @@
 
         <!-- SEO Keywords Footer -->
         <div class="mt-6 text-center text-xs text-gray-500">
-          <p>AI Infrastructure Research | LLM Evaluation | Model Comparison | Grounded Recommendations | Citation Tracking | Knowledge Management | RAG Systems | AI Agents | Claude | GPT | Gemini | For Research Engineers, Platform Leads & CTOs</p>
+          <p>Smart AI System Decisions | LLM Evaluation | Model Comparison | Grounded Recommendations | Citation Tracking | Knowledge Management | RAG Systems | AI Agents | Claude | GPT | Gemini | For Research Engineers, Platform Leads & CTOs</p>
         </div>
       </div>
     </div>

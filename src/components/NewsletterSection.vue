@@ -44,7 +44,7 @@
           'text-sm mt-4',
           variant === 'dark' ? 'text-white/60' : 'text-gray-500'
         ]">
-          No spam. Unsubscribe anytime.
+          Low volume. No spam. Unsubscribe anytime.
         </p>
       </div>
     </div>

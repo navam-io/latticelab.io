@@ -44,7 +44,7 @@
           <div class="relative bg-black/30 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
 
             <!-- Carousel Inner -->
-            <div class="relative" style="min-height: 520px;">
+            <div class="relative" style="min-height: 540px;">
 
               <!-- Slides -->
               <transition-group name="slide" mode="out-in">
@@ -52,7 +52,7 @@
                   v-for="(feature, index) in features"
                   v-show="currentIndex === index"
                   :key="feature.id"
-                  class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12 items-center"
+                  class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12 pb-20 items-end"
                 >
                   <!-- Left: Content -->
                   <div class="flex flex-col justify-center space-y-6">
@@ -80,7 +80,7 @@
                     </p>
 
                     <!-- Key Benefits -->
-                    <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div class="bg-white/5 rounded-2xl p-6 border border-white/10 min-h-[160px]">
                       <div class="text-sm text-white/60 mb-3 font-medium">Key capabilities:</div>
                       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
                         <div v-for="benefit in feature.benefits" :key="benefit" class="flex items-start gap-2 text-white/90 text-sm">
@@ -91,18 +91,10 @@
                         </div>
                       </div>
                     </div>
-
-                    <!-- Learn More Link -->
-                    <a :href="feature.link" class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group">
-                      <span>Learn more about {{ feature.name }}</span>
-                      <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
                   </div>
 
                   <!-- Right: Screenshot -->
-                  <div class="flex flex-col justify-center">
+                  <div class="flex flex-col justify-end">
                     <div class="relative w-full max-w-2xl mx-auto product-image">
                       <!-- Shadow glow behind -->
                       <div :class="['absolute -inset-4 rounded-3xl blur-2xl opacity-40', feature.glowColor]"></div>
@@ -119,12 +111,12 @@
                           <div class="text-white/60 text-sm font-mono ml-4">latticelab.io</div>
                         </div>
 
-                        <!-- Screenshot -->
-                        <div class="bg-black">
+                        <!-- Screenshot with zoom on hover -->
+                        <div class="bg-black overflow-hidden">
                           <img
                             :src="feature.screenshot"
                             :alt="`${feature.name} - ${feature.category}`"
-                            class="w-full h-auto"
+                            class="w-full h-auto transition-transform duration-1000 ease-in-out hover:scale-150 hover:origin-center cursor-zoom-in"
                             loading="lazy"
                           />
                         </div>
@@ -133,53 +125,68 @@
                   </div>
                 </div>
               </transition-group>
+            </div>
 
-              <!-- Navigation Dots -->
-              <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
-                <button
-                  v-for="(feature, index) in features"
-                  :key="`dot-${feature.id}`"
-                  @click="goToSlide(index)"
-                  :class="[
-                    'w-3 h-3 rounded-full transition-all duration-300',
-                    currentIndex === index ? 'bg-white w-8' : 'bg-white/30 hover:bg-white/50'
-                  ]"
-                  :aria-label="`Go to ${feature.name}`"
-                ></button>
+            <!-- Carousel Control Bar -->
+            <div class="border-t border-white/10 bg-white/5 backdrop-blur-sm px-6 py-4">
+              <div class="flex items-center justify-between gap-4">
+                <!-- Left: Navigation Arrows -->
+                <div class="flex items-center gap-2">
+                  <button
+                    @click="prevSlide"
+                    class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+                    aria-label="Previous feature"
+                  >
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <button
+                    @click="nextSlide"
+                    class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+                    aria-label="Next feature"
+                  >
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Center: Navigation Dots -->
+                <div class="flex items-center gap-2">
+                  <button
+                    v-for="(feature, index) in features"
+                    :key="`dot-${feature.id}`"
+                    @click="goToSlide(index)"
+                    :class="[
+                      'w-2.5 h-2.5 rounded-full transition-all duration-300',
+                      currentIndex === index ? 'bg-white w-6' : 'bg-white/30 hover:bg-white/50'
+                    ]"
+                    :aria-label="`Go to ${feature.name}`"
+                  ></button>
+                </div>
+
+                <!-- Right: Learn More Button + Progress -->
+                <div class="flex items-center gap-4">
+                  <a :href="features[currentIndex].link" class="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm text-white/90 hover:text-white transition-all duration-300 group">
+                    <span>Learn more</span>
+                    <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                  <div class="flex items-center gap-3">
+                    <div class="text-white/60 text-sm">
+                      <span class="text-white font-bold">{{ currentIndex + 1 }}</span><span class="text-white/40">/{{ features.length }}</span>
+                    </div>
+                    <div class="w-20 h-1 bg-white/10 rounded-full overflow-hidden hidden sm:block">
+                      <div
+                        class="h-full bg-gradient-to-r from-violet-500 to-blue-500 transition-all duration-300"
+                        :style="{ width: `${((currentIndex + 1) / features.length) * 100}%` }"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <!-- Navigation Arrows -->
-              <button
-                @click="prevSlide"
-                class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-20 hidden lg:flex"
-                aria-label="Previous feature"
-              >
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-              </button>
-              <button
-                @click="nextSlide"
-                class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-20 hidden lg:flex"
-                aria-label="Next feature"
-              >
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Carousel Progress Bar -->
-          <div class="mt-6 flex items-center justify-center gap-4">
-            <div class="text-white/60 text-sm">
-              <span class="text-white font-bold">{{ currentIndex + 1 }}</span> / {{ features.length }}
-            </div>
-            <div class="flex-1 max-w-xs h-1 bg-white/10 rounded-full overflow-hidden">
-              <div
-                class="h-full bg-gradient-to-r from-violet-500 to-blue-500 transition-all duration-300"
-                :style="{ width: `${((currentIndex + 1) / features.length) * 100}%` }"
-              ></div>
             </div>
           </div>
         </div>
@@ -320,9 +327,9 @@ const features: Feature[] = [
     category: 'Artifacts & Export',
     description: 'Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and architectural recommendations with multiple export formats.',
     benefits: [
-      'Four artifact types (Recommendation, Comparison, Estimate, Architecture)',
-      'Include citations and conversation context',
-      'Export to Markdown, JSON, or CSV',
+      'Four artifact types supported',
+      'Citations and context included',
+      'Export to Markdown, JSON, CSV',
       'Add artifacts back as sources'
     ],
     screenshot: '/images/journeys/view-artifact/view-artifact-02.png',
@@ -371,7 +378,7 @@ function goToSlide(index: number) {
 function startAutoplay() {
   autoplayInterval = window.setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % features.length;
-  }, 6000);
+  }, 18000);
 }
 
 function stopAutoplay() {

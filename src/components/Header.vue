@@ -6,7 +6,7 @@
           <img src="/images/logo.png" alt="Lattice Logo" class="h-8 w-auto" />
           <div class="flex flex-col">
             <span class="text-2xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">Lattice</span>
-            <span class="text-[10px] text-muted-foreground/70 -mt-1 hidden sm:block">AI Infrastructure Research</span>
+            <span class="text-[10px] text-muted-foreground/70 -mt-1 hidden sm:block">Smart AI System Decisions</span>
           </div>
         </a>
         <nav class="flex items-center space-x-6 text-sm font-medium sm:ml-auto" aria-label="Main navigation">
@@ -43,7 +43,7 @@
           </div>
 
           <a href="/blog" class="transition-colors hover:text-foreground/80 text-foreground/60">Blog</a>
-          <a href="/pricing" class="transition-colors hover:text-foreground/80 text-foreground/60">Pricing</a>
+          <a href="/#pricing" class="transition-colors hover:text-foreground/80 text-foreground/60">Pricing</a>
           <a href="/about" class="transition-colors hover:text-foreground/80 text-foreground/60">About</a>
           <a href="/contact" class="transition-colors hover:text-foreground/80 text-foreground/60">Contact</a>
         </nav>

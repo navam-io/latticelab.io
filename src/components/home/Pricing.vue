@@ -71,14 +71,6 @@
                 </stripe-buy-button>
               </div>
             </div>
-
-            <!-- API Costs Note -->
-            <div class="mt-6 p-4 bg-gray-50 rounded-xl">
-              <p class="text-sm text-gray-600 text-center">
-                <strong>Note:</strong> You'll need your own API keys for LLM providers (Anthropic, OpenAI, etc.).
-                Typical usage costs $3-15/month depending on volume.
-              </p>
-            </div>
           </div>
         </div>
       </div>
