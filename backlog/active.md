@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.35.0
+**Current Version**: 0.36.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -169,21 +169,9 @@ See `releases/release-0.35.0.md` for details.
 
 ---
 
-### Feature Slice 36: Content Polish & Review
+### Feature Slice 36: Content Polish & Review - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Content Strategy (Copywriting Tone, Content Inventory)
-
-**Summary**: Final content review and polish before launch.
-
-**Acceptance Criteria**:
-- [ ] All placeholder content replaced with final copy
-- [ ] Spelling and grammar checked
-- [ ] Technical accuracy verified
-- [ ] Tone consistency across all pages
-- [ ] All links verified (no 404s)
-- [ ] Screenshots updated with final product images
-- [ ] OG image finalized
-- [ ] Favicon finalized
+See `releases/release-0.36.0.md` for details.
 
 ---
 
@@ -297,9 +285,9 @@ See `releases/release-0.35.0.md` for details.
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility, testing (3/8 complete), screenshots, launch |
+| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility, testing, content (4/8 complete), screenshots, launch |
 
-**Total Feature Slices**: 40 (35 complete, 5 remaining)
+**Total Feature Slices**: 40 (36 complete, 4 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
