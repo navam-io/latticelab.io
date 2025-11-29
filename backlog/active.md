@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.19.0
+**Current Version**: 0.20.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -49,20 +49,9 @@ See `releases/release-0.19.0.md` for details.
 
 ---
 
-### Feature Slice 20: Blueprints Gallery Page
+### Feature Slice 20: Blueprints Gallery Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Site Map (/blueprints), Page Specifications (Blueprints), Appendix A
-
-**Summary**: Create blueprints showcase page with filtering by vendor and category.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/blueprints.astro` created
-- [ ] Hero section explaining blueprints concept
-- [ ] Filter tabs for categories (Production, Development, Comparison, etc.)
-- [ ] Blueprint cards with: vendor logo placeholder, name, source count, description
-- [ ] Sample blueprint data in `lib/blueprint-data.ts` (from Appendix A)
-- [ ] Each card has "Try with Lattice" CTA linking to pricing
-- [ ] Responsive grid layout
+See `releases/release-0.20.0.md` for details.
 
 ---
 
@@ -485,7 +474,7 @@ See `releases/release-0.19.0.md` for details.
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (19 complete, 21 remaining)
+**Total Feature Slices**: 40 (20 complete, 20 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
