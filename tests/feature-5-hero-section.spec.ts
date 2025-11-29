@@ -111,17 +111,22 @@ test.describe('Feature 5: Homepage Hero Section', () => {
       expect(classList).toContain('aspect-[4/3]');
     });
 
-    test('screenshot shows mock three-panel layout', async ({ page }) => {
+    test('screenshot shows real product image', async ({ page }) => {
       const screenshot = page.getByTestId('hero-screenshot');
-      // Panel labels are in divs with text-xs class
-      await expect(screenshot.locator('text=Sources').first()).toBeVisible();
-      await expect(screenshot.locator('text=Lab').first()).toBeVisible();
-      await expect(screenshot.locator('text=Studio').first()).toBeVisible();
+      // Real screenshot should have picture element with WebP source
+      const picture = screenshot.locator('picture');
+      await expect(picture).toBeVisible();
+      const img = picture.locator('img');
+      await expect(img).toBeVisible();
+      await expect(img).toHaveAttribute('alt', /Lattice/i);
     });
 
-    test('screenshot has window chrome styling', async ({ page }) => {
+    test('screenshot has proper image attributes', async ({ page }) => {
       const screenshot = page.getByTestId('hero-screenshot');
-      await expect(screenshot.getByText('Lattice Lab')).toBeVisible();
+      const img = screenshot.locator('picture img');
+      // Should have width/height for layout stability
+      await expect(img).toHaveAttribute('width');
+      await expect(img).toHaveAttribute('height');
     });
   });
 

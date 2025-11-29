@@ -203,21 +203,26 @@ test.describe('Feature 6: Pain & Solution Sections', () => {
       await expect(desktopPanels).not.toBeVisible();
     });
 
-    test('solution section has screenshot placeholder', async ({ page }) => {
+    test('solution section has product screenshot', async ({ page }) => {
       const screenshot = page.getByTestId('solution-screenshot');
       await expect(screenshot).toBeVisible();
     });
 
-    test('screenshot shows three-panel layout', async ({ page }) => {
+    test('screenshot shows real product image', async ({ page }) => {
       const screenshot = page.getByTestId('solution-screenshot');
-      await expect(screenshot.locator('text=Sources').first()).toBeVisible();
-      await expect(screenshot.locator('text=Lab').first()).toBeVisible();
-      await expect(screenshot.locator('text=Studio').first()).toBeVisible();
+      // Real screenshot should have picture element with WebP source
+      const picture = screenshot.locator('picture');
+      await expect(picture).toBeVisible();
+      const img = picture.locator('img');
+      await expect(img).toBeVisible();
+      await expect(img).toHaveAttribute('src', /solution-main/);
     });
 
-    test('screenshot has window chrome', async ({ page }) => {
+    test('screenshot has descriptive alt text', async ({ page }) => {
       const screenshot = page.getByTestId('solution-screenshot');
-      await expect(screenshot.getByText('Lattice Lab')).toBeVisible();
+      const img = screenshot.locator('picture img');
+      const alt = await img.getAttribute('alt');
+      expect(alt).toContain('panel');
     });
 
     test('screenshot has aspect-video ratio', async ({ page }) => {

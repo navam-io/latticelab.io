@@ -141,59 +141,24 @@ const {
         </div>
       </div>
 
-      <!-- Product Screenshot Placeholder -->
+      <!-- Product Screenshot -->
       <div class="flex items-center justify-center lg:justify-end">
         <div
           class="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-xl border border-border bg-surface-2 shadow-lg lg:max-w-none"
           data-testid="hero-screenshot"
         >
-          <!-- Placeholder content mimicking a product interface -->
-          <div class="absolute inset-0 flex flex-col">
-            <!-- Mock window chrome -->
-            <div class="flex h-10 items-center gap-2 border-b border-border bg-surface-3 px-4">
-              <div class="flex gap-1.5">
-                <div class="h-3 w-3 rounded-full bg-destructive/60"></div>
-                <div class="h-3 w-3 rounded-full bg-warning/60"></div>
-                <div class="h-3 w-3 rounded-full bg-success/60"></div>
-              </div>
-              <div class="flex-1 text-center">
-                <span class="text-xs text-muted-foreground">Lattice Lab</span>
-              </div>
-            </div>
-
-            <!-- Mock three-panel layout -->
-            <div class="flex flex-1">
-              <!-- Sources Panel -->
-              <div class="w-1/4 border-r border-border bg-background p-3">
-                <div class="mb-2 text-xs font-medium text-muted-foreground">Sources</div>
-                <div class="space-y-2">
-                  <div class="h-8 rounded bg-surface-3"></div>
-                  <div class="h-8 rounded bg-surface-3"></div>
-                  <div class="h-8 rounded bg-surface-3"></div>
-                </div>
-              </div>
-
-              <!-- Lab Panel -->
-              <div class="flex-1 bg-background p-3">
-                <div class="mb-2 text-xs font-medium text-muted-foreground">Lab</div>
-                <div class="space-y-2">
-                  <div class="h-6 w-3/4 rounded bg-surface-3"></div>
-                  <div class="h-6 w-1/2 rounded bg-accent/20"></div>
-                  <div class="h-6 w-2/3 rounded bg-surface-3"></div>
-                </div>
-              </div>
-
-              <!-- Studio Panel -->
-              <div class="w-1/4 border-l border-border bg-background p-3">
-                <div class="mb-2 text-xs font-medium text-muted-foreground">Studio</div>
-                <div class="space-y-2">
-                  <div class="h-12 rounded bg-surface-3"></div>
-                  <div class="h-8 rounded bg-surface-3"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <picture>
+            <source srcset="/images/screenshots/hero/hero-main.webp" type="image/webp" />
+            <img
+              src="/images/screenshots/hero/hero-main.png"
+              alt="Lattice Lab interface showing AI-powered research with Sources panel, Lab chat, and Studio artifacts"
+              class="h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+              width="1200"
+              height="900"
+            />
+          </picture>
           <!-- Gradient overlay for polish -->
           <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent"></div>
         </div>

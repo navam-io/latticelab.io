@@ -15,7 +15,11 @@ const features = defineCollection({
       title: z.string(),
       description: z.string(),
     })).default([]),
-    screenshot: z.string().optional(),
+    screenshot: z.object({
+      src: z.string(),
+      fallback: z.string(),
+      alt: z.string(),
+    }).optional(),
   }),
 });
 

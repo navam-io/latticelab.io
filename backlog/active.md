@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.36.0
+**Current Version**: 0.37.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -175,49 +175,9 @@ See `releases/release-0.36.0.md` for details.
 
 ---
 
-### Feature Slice 37: Product Screenshots Integration
+### Feature Slice 37: Product Screenshots Integration - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Product Assets & Screenshots
-
-**Summary**: Integrate actual product screenshots from Lattice journeys and optimize for web.
-
-**Source**: `/Users/manavsehgal/Developer/lattice/journeys/` (71 screenshots across 16 journeys)
-
-**Acceptance Criteria**:
-
-**Hero Section**:
-- [ ] Copy `chat-with-ai/chat-with-ai-01.png` for hero screenshot
-- [ ] Optimize to max 1200px width, WebP format
-- [ ] Replace placeholder in Hero.astro
-
-**Solution Section (Three-Panel)**:
-- [ ] Left panel: `view-source/view-source-01.png` (Sources)
-- [ ] Center panel: `chat-with-ai/chat-with-ai-05.png` (Lab with AI response)
-- [ ] Right panel: `view-artifact/view-artifact-01.png` (Studio)
-- [ ] Create composite or individual panel screenshots
-
-**Feature Pages**:
-- [ ] `/features/sources`: `add-sources/add-sources-01.png`, `view-source/view-source-01.png`
-- [ ] `/features/lab`: `chat-with-ai/chat-with-ai-03.png`, `chat-with-ai/chat-with-ai-05.png`
-- [ ] `/features/studio`: `save-artifact/save-artifact-01.png`, `view-artifact/view-artifact-01.png`
-- [ ] `/features/scenarios`: `browse-blueprints/browse-blueprints-02.png`, `apply-blueprint/apply-blueprint-03.png`
-
-**Blueprints Page**:
-- [ ] Gallery: `browse-blueprints/browse-blueprints-02.png`
-- [ ] Discovery: `discover-blueprint/discover-blueprint-03.png`
-- [ ] Detail: `apply-blueprint/apply-blueprint-03.png`
-
-**Journey Pages** (use sequential screenshots from each journey folder):
-- [ ] `create-workspace/` screenshots for journey steps
-- [ ] `browse-blueprints/` screenshots for journey steps
-- [ ] `chat-with-ai/` screenshots for journey steps
-- [ ] Additional journeys as MDX content is created
-
-**Optimization**:
-- [ ] All images converted to WebP with fallback
-- [ ] Max width 1200px for full-width, 800px for panels
-- [ ] Lazy loading via Astro `<Image />` component
-- [ ] Alt text describing what's shown in each screenshot
+See `releases/release-0.37.0.md` for details.
 
 ---
 
@@ -285,9 +245,9 @@ See `releases/release-0.36.0.md` for details.
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility, testing, content (4/8 complete), screenshots, launch |
+| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility, testing, content, screenshots (5/8 complete), launch |
 
-**Total Feature Slices**: 40 (36 complete, 4 remaining)
+**Total Feature Slices**: 40 (37 complete, 3 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

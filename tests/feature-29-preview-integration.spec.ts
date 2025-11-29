@@ -134,13 +134,17 @@ test.describe('Feature 29: Preview Integration on Feature Pages', () => {
       await expect(page.getByTestId('try-it-section')).not.toBeVisible();
     });
 
-    test('should have screenshot placeholder instead', async ({ page }) => {
+    test('should have real screenshot instead of preview', async ({ page }) => {
       await expect(page.getByTestId('feature-detail-screenshot')).toBeVisible();
-      await expect(page.getByTestId('feature-detail-screenshot-placeholder')).toBeVisible();
+      await expect(page.getByTestId('feature-detail-screenshot-container')).toBeVisible();
     });
 
-    test('should show "Product screenshot coming soon" text', async ({ page }) => {
-      await expect(page.getByText('Product screenshot coming soon')).toBeVisible();
+    test('should show product screenshot with proper alt text', async ({ page }) => {
+      const screenshotContainer = page.getByTestId('feature-detail-screenshot-container');
+      const img = screenshotContainer.locator('picture img');
+      await expect(img).toBeVisible();
+      const alt = await img.getAttribute('alt');
+      expect(alt?.toLowerCase()).toContain('studio');
     });
   });
 
