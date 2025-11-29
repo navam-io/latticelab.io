@@ -1,0 +1,86 @@
+---
+/**
+ * Blueprint Preview Demo Page
+ *
+ * Development page to showcase and test the BlueprintPreview component.
+ * This page is used for testing and demonstration purposes.
+ *
+ * Feature Slice 27: Blueprint Preview Component
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import { BlueprintPreview } from '@/components/previews/BlueprintPreview';
+---
+
+<PageLayout
+  title="Blueprint Preview Demo"
+  description="Interactive demo of the Lattice Blueprint Gallery"
+  noindex={true}
+>
+  <Section spacing="lg" background="default">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h1 class="mb-4 text-3xl font-bold text-foreground" data-testid="blueprint-preview-demo-title">
+          Blueprint Preview Demo
+        </h1>
+        <p class="mb-8 text-muted-foreground">
+          Interactive demo simulating the Lattice Blueprint Gallery with category filters,
+          blueprint cards, and the Apply Blueprint modal flow.
+        </p>
+
+        <div class="mb-8">
+          <BlueprintPreview client:load />
+        </div>
+
+        <div class="rounded-lg border border-border bg-surface-2 p-6">
+          <h2 class="mb-4 text-xl font-semibold text-foreground">Demo Features</h2>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Blueprint cards with vendor badges
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Official blueprint indicators
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Category filter tabs
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Apply button on card hover
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Apply modal with loading state
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Success animation with checkmark
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Footer with official/community counts
+            </li>
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

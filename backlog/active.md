@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.26.0
+**Current Version**: 0.27.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -99,20 +99,9 @@ See `releases/release-0.26.0.md` for details.
 
 ---
 
-### Feature Slice 27: Blueprint Preview Component
+### Feature Slice 27: Blueprint Preview Component - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Interactive Mock Previews (Blueprint Preview)
-
-**Summary**: Create BlueprintPreview React component simulating the Blueprint Gallery.
-
-**Acceptance Criteria**:
-- [ ] `src/components/previews/BlueprintPreview.tsx` created
-- [ ] Sample blueprint cards (Anthropic, OpenAI, AWS Bedrock)
-- [ ] Category filter tabs (clickable, filters cards)
-- [ ] Blueprint card hover effects
-- [ ] "Apply Blueprint" button opens modal
-- [ ] Modal shows "success" state with animation
-- [ ] Component works as Astro React island
+See `releases/release-0.27.0.md` for details.
 
 ---
 
@@ -407,11 +396,11 @@ See `releases/release-0.26.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (3/7 complete) |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (4/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (26 complete, 14 remaining)
+**Total Feature Slices**: 40 (27 complete, 13 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
