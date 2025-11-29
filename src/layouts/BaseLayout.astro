@@ -6,6 +6,7 @@
  * All pages should use this layout (usually via PageLayout).
  *
  * Feature Slice 23: SEO & Meta Tags
+ * Feature Slice 31: Stripe Buy Button Integration
  */
 import '@/styles/globals.css';
 import SEO from '@/components/SEO.astro';
@@ -20,6 +21,10 @@ interface Props {
 }
 
 const { title, description, image, type, noindex, structuredData } = Astro.props;
+
+// Stripe configuration - only load script when configured
+const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY || '';
+const isStripeConfigured = !!stripePublishableKey;
 ---
 
 <!doctype html>
@@ -36,6 +41,11 @@ const { title, description, image, type, noindex, structuredData } = Astro.props
     <meta name="theme-color" content="#1a1a1a" />
 
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Stripe Buy Button Script (only when configured) -->
+    {isStripeConfigured && (
+      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+    )}
 
     <!-- SEO Meta Tags -->
     <SEO

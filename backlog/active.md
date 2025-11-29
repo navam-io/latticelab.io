@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.30.0
+**Current Version**: 0.31.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -131,33 +131,9 @@ All 7 feature slices (24-30) in Phase 3 are now complete.
 
 ## Phase 4: Purchase Flow
 
-### Feature Slice 31: Stripe Buy Button Integration
+### Feature Slice 31: Stripe Buy Button Integration - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Stripe Integration
-
-**Summary**: Integrate Stripe Buy Button for $99 one-time purchase.
-
-**Stripe Buy Button Code**:
-```html
-<script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
-<stripe-buy-button
-  buy-button-id="buy_btn_1SYXbwRCxnzBPkIXayfIahbD"
-  publishable-key="pk_live_51SJ4zqRCxnzBPkIX08pXFlwWr4FsjHXyZZUhnJuafZvQI05nSTGMxHkl9SWNeuCgzVZ8JHH1grR6XsnOEbAvAKHC00vw9mIIbB"
->
-</stripe-buy-button>
-```
-
-**Acceptance Criteria**:
-- [ ] Stripe Buy Button script loaded in BaseLayout
-- [ ] `StripeBuyButton.astro` component wrapper
-- [ ] Buy button integrated on:
-  - [ ] Homepage pricing section
-  - [ ] Dedicated pricing page
-  - [ ] Feature page CTAs
-- [ ] Configurable via environment variables (buy_button_id, publishable_key)
-- [ ] Placeholder mode for development (shows styled placeholder)
-- [ ] Success redirect to /thank-you page
+See `releases/release-0.31.0.md` for details.
 
 ---
 
@@ -369,10 +345,10 @@ All 7 feature slices (24-30) in Phase 3 are now complete.
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
-| Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
+| Phase 4 | 31-32 | **IN PROGRESS** | Purchase — Stripe integration (1/2 complete), analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (30 complete, 10 remaining)
+**Total Feature Slices**: 40 (31 complete, 9 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

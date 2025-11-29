@@ -430,7 +430,8 @@ test.describe('Feature 14: Pricing Page', () => {
     });
 
     test('CTA buttons have visible focus states', async ({ page }) => {
-      const cta = page.getByTestId('pricing-main-cta');
+      // StripeBuyButton placeholder anchor is the focusable element
+      const cta = page.getByTestId('pricing-main-cta-placeholder');
       await cta.focus();
 
       // The button should have focus-visible styles applied

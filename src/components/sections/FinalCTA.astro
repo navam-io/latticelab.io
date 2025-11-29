@@ -5,10 +5,12 @@
  * Bottom-of-page call to action with benefit-driven headline.
  * CRO: Reminds value, uses benefit headline (not "Get Started"),
  * includes FUDs reduction underneath.
+ *
+ * Feature Slice 31: Stripe Buy Button Integration
  */
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
-import Button from '@/components/ui/Button.astro';
+import StripeBuyButton from '@/components/ui/StripeBuyButton.astro';
 import FUDsReduction from '@/components/ui/FUDsReduction.astro';
 ---
 
@@ -32,17 +34,13 @@ import FUDsReduction from '@/components/ui/FUDsReduction.astro';
         citations you can verify — deployed on your infrastructure in under 5 minutes.
       </p>
 
-      <!-- Primary CTA -->
-      <div class="mb-6" data-testid="final-cta-button-container">
-        <Button
-          variant="primary"
+      <!-- Primary CTA - Stripe Buy Button -->
+      <div class="mb-6 mx-auto max-w-xs" data-testid="final-cta-button-container">
+        <StripeBuyButton
           size="lg"
-          href="/pricing"
-          class="px-10"
+          showPrice={true}
           data-testid="final-cta-button"
-        >
-          Get Lattice — $99 One-Time
-        </Button>
+        />
       </div>
 
       <!-- FUDs Reduction -->

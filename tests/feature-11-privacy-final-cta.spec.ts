@@ -209,7 +209,8 @@ test.describe('Feature 11: Privacy Section & Final CTA', () => {
     });
 
     test('CTA button links to pricing', async ({ page }) => {
-      const button = page.getByTestId('final-cta-button');
+      // StripeBuyButton wrapper - get the actual anchor element inside
+      const button = page.getByTestId('final-cta-button-placeholder');
       await expect(button).toHaveAttribute('href', '/pricing');
     });
 
@@ -405,7 +406,8 @@ test.describe('Feature 11: Privacy Section & Final CTA', () => {
     });
 
     test('final CTA button is keyboard accessible', async ({ page }) => {
-      const button = page.getByTestId('final-cta-button');
+      // StripeBuyButton placeholder anchor is the focusable element
+      const button = page.getByTestId('final-cta-button-placeholder');
       await button.focus();
       await expect(button).toBeFocused();
     });

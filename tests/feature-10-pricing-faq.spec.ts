@@ -138,7 +138,8 @@ test.describe('Feature 10: Pricing & FAQ Sections', () => {
     });
 
     test('CTA button links to pricing page', async ({ page }) => {
-      const cta = page.getByTestId('pricing-cta');
+      // StripeBuyButton wrapper contains the actual anchor element
+      const cta = page.getByTestId('pricing-cta-placeholder');
       const href = await cta.getAttribute('href');
       expect(href).toBe('/pricing');
     });

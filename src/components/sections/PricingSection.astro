@@ -3,13 +3,15 @@
  * PricingSection Component
  *
  * Displays prominent $99 one-time pricing with benefit-driven features list,
- * Stripe Buy Button placeholder, and FUDs reduction below CTA.
+ * Stripe Buy Button, and FUDs reduction below CTA.
  * CRO: Clear pricing, FUDs reduction, guarantee prominently displayed.
+ *
+ * Feature Slice 31: Stripe Buy Button Integration
  */
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import Card from '@/components/ui/Card.astro';
-import Button from '@/components/ui/Button.astro';
+import StripeBuyButton from '@/components/ui/StripeBuyButton.astro';
 import FUDsReduction from '@/components/ui/FUDsReduction.astro';
 
 interface BenefitItem {
@@ -108,26 +110,13 @@ const trustSignals = [
           }
         </ul>
 
-        <!-- CTA Button Placeholder -->
+        <!-- Stripe Buy Button -->
         <div class="mb-6" data-testid="pricing-cta-container">
-          <!-- Stripe Buy Button will go here -->
-          <!--
-            Stripe Buy Button Integration (Feature Slice 31):
-            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1SYXbwRCxnzBPkIXayfIahbD"
-              publishable-key="pk_live_..."
-            ></stripe-buy-button>
-          -->
-          <Button
-            variant="primary"
+          <StripeBuyButton
             size="lg"
-            href="/pricing"
-            class="w-full justify-center"
+            showPrice={true}
             data-testid="pricing-cta"
-          >
-            Get Lattice Now
-          </Button>
+          />
         </div>
 
         <!-- FUDs Reduction -->
