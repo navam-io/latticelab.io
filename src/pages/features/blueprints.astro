@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
+import ProductHero from '@components/ui/ProductHero.vue';
 ---
 
 <Layout
@@ -12,24 +13,17 @@ import Footer from '@components/Footer.vue';
   <Header client:load />
 
   <main>
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-violet-900 via-purple-900 to-blue-900">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-            </svg>
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-            36 Curated Blueprints
-          </h1>
-          <p class="text-xl text-white/80 leading-relaxed">
-            Pre-built knowledge bundles from leading AI vendors. One-click workspace population with sources, scenarios, and recommended stacks.
-          </p>
-        </div>
-      </div>
-    </section>
+    <ProductHero
+      client:load
+      title="36 Curated Blueprints"
+      description="Pre-built knowledge bundles from leading AI vendors. One-click workspace population with sources, scenarios, and recommended stacks."
+      imageSrc="/images/journeys/browse-blueprints/browse-blueprints-02.png"
+      imageAlt="Lattice Blueprint Gallery showing curated knowledge bundles from AI vendors with filters and search"
+      gradientFrom="from-violet-900"
+      gradientVia="via-purple-900"
+      gradientTo="to-blue-900"
+      iconPath="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+    />
 
     <!-- Vendor Grid -->
     <section class="py-20 bg-white">

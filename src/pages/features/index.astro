@@ -26,82 +26,63 @@ import Footer from '@components/Footer.vue';
       </div>
     </section>
 
-    <!-- Features Grid -->
+    <!-- Core Panels Section -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Core Panels</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">The three-panel interface for AI research, knowledge management, and artifact generation.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Sources -->
             <a href="/features/sources" class="group block p-8 rounded-2xl border-2 border-gray-200 hover:border-violet-300 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-start gap-6">
+              <div class="flex flex-col items-center text-center gap-4">
                 <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                   </svg>
                 </div>
                 <div>
-                  <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors">Sources</h2>
-                  <p class="text-gray-600 mb-4">
-                    Multi-source knowledge ingestion with PDFs, URLs, GitHub, YouTube, and Google Docs. Hybrid semantic search with citation tracking.
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors">Sources</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Multi-source knowledge ingestion with PDFs, URLs, GitHub, YouTube, and Google Docs.
                   </p>
-                  <span class="text-violet-600 font-medium">Learn more →</span>
+                  <span class="text-violet-600 font-medium text-sm">Learn more →</span>
                 </div>
               </div>
             </a>
 
             <!-- Lab -->
             <a href="/features/lab" class="group block p-8 rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-start gap-6">
+              <div class="flex flex-col items-center text-center gap-4">
                 <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                   </svg>
                 </div>
                 <div>
-                  <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Lab</h2>
-                  <p class="text-gray-600 mb-4">
-                    LangGraph-powered research agent with transparent reasoning. Get grounded recommendations with citations to your sources.
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Lab</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    LangGraph-powered research agent with transparent reasoning and grounded citations.
                   </p>
-                  <span class="text-blue-600 font-medium">Learn more →</span>
+                  <span class="text-blue-600 font-medium text-sm">Learn more →</span>
                 </div>
               </div>
             </a>
 
             <!-- Studio -->
             <a href="/features/studio" class="group block p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-300 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-start gap-6">
+              <div class="flex flex-col items-center text-center gap-4">
                 <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                   </svg>
                 </div>
                 <div>
-                  <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">Studio</h2>
-                  <p class="text-gray-600 mb-4">
-                    Save AI responses as reusable artifacts. Generate comparison tables, memos, and decision documents with export options.
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">Studio</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Save AI responses as reusable artifacts with multiple export formats.
                   </p>
-                  <span class="text-teal-600 font-medium">Learn more →</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- Blueprints -->
-            <a href="/features/blueprints" class="group block p-8 rounded-2xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 to-blue-50 hover:border-violet-400 hover:shadow-xl transition-all duration-300 relative">
-              <div class="absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-r from-violet-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg">
-                36 CURATED
-              </div>
-              <div class="flex items-start gap-6">
-                <div class="w-16 h-16 bg-gradient-to-br from-violet-600 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors">Blueprints</h2>
-                  <p class="text-gray-600 mb-4">
-                    Pre-built knowledge bundles from Anthropic, AWS, NVIDIA, GCP, Meta, and Mistral. One-click workspace population.
-                  </p>
-                  <span class="text-violet-600 font-medium">Learn more →</span>
+                  <span class="text-teal-600 font-medium text-sm">Learn more →</span>
                 </div>
               </div>
             </a>
@@ -110,11 +91,104 @@ import Footer from '@components/Footer.vue';
       </div>
     </section>
 
+    <!-- Configuration Features Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Configuration</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Define your requirements and configure your AI infrastructure for targeted recommendations.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Scenarios -->
+            <a href="/features/scenarios" class="group block p-8 rounded-2xl border-2 border-gray-200 bg-white hover:border-amber-300 hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Scenarios</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Define workload types, SLO requirements, and budget constraints for targeted recommendations.
+                  </p>
+                  <span class="text-amber-600 font-medium text-sm">Learn more →</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Stacks -->
+            <a href="/features/stacks" class="group block p-8 rounded-2xl border-2 border-gray-200 bg-white hover:border-emerald-300 hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">Stacks</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Configure AI infrastructure with model selection, hardware, and framework preferences.
+                  </p>
+                  <span class="text-emerald-600 font-medium text-sm">Learn more →</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Settings -->
+            <a href="/features/settings" class="group block p-8 rounded-2xl border-2 border-gray-200 bg-white hover:border-slate-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-500 to-gray-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-slate-600 transition-colors">Settings</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Personalize Lattice with API keys, model defaults, search behavior, and privacy controls.
+                  </p>
+                  <span class="text-slate-600 font-medium text-sm">Learn more →</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blueprints Featured Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <a href="/features/blueprints" class="group block p-10 rounded-3xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 via-blue-50 to-purple-50 hover:border-violet-400 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+            <div class="absolute -top-3 -right-3 px-4 py-2 bg-gradient-to-r from-violet-500 to-blue-600 text-white text-sm font-bold rounded-full shadow-lg">
+              36 CURATED
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+              <div class="w-24 h-24 bg-gradient-to-br from-violet-600 to-blue-600 rounded-3xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                </svg>
+              </div>
+              <div class="text-center md:text-left">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3 group-hover:text-violet-600 transition-colors">Blueprints</h2>
+                <p class="text-gray-600 mb-4 text-lg">
+                  Pre-built knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, Meta, and Mistral. One-click workspace population with curated sources, scenarios, and stack configurations.
+                </p>
+                <span class="text-violet-600 font-semibold">Explore all blueprints →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-violet-600 to-blue-600">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-white mb-4">
-          Ready to Make Confident Decisions?
+          Ready for Smart AI System Decisions?
         </h2>
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Get lifetime access to all features for a one-time payment.

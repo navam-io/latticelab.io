@@ -5,11 +5,11 @@
     <div class="absolute inset-0 code-grid-pattern opacity-10"></div>
 
     <!-- Main Content -->
-    <div class="relative z-10 container mx-auto px-4 py-8 md:py-16">
-      <div class="max-w-6xl mx-auto">
+    <div class="relative z-10 container mx-auto px-4 py-8 md:py-12">
+      <div class="max-w-7xl mx-auto">
 
         <!-- Top Section: Centered Hero Message -->
-        <div class="mb-16 pt-6 text-center">
+        <div class="mb-12 pt-6 text-center">
           <!-- Main Headline -->
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight py-6 animate-fade-in">
             <span class="bg-gradient-to-r from-violet-400 via-blue-400 to-teal-400 bg-clip-text text-transparent">
@@ -18,15 +18,10 @@
           </h1>
 
           <!-- Glassmorphism Card with Subtitle -->
-          <div class="backdrop-blur-xl bg-gradient-to-br from-violet-500/10 via-white/5 to-blue-500/10 border border-violet-400/30 rounded-3xl pt-6 pb-8 px-8 md:px-10 shadow-2xl animate-slide-up max-w-4xl mx-auto hero-glass-card">
+          <div class="backdrop-blur-xl bg-gradient-to-br from-violet-500/10 via-white/5 to-blue-500/10 border border-violet-400/30 rounded-3xl pt-6 pb-8 px-8 md:px-10 shadow-2xl animate-slide-up max-w-3xl mx-auto hero-glass-card">
             <!-- White Subheading -->
             <p class="text-xl md:text-2xl lg:text-3xl font-semibold leading-relaxed mb-6 text-white">
               Agentic AI Lab Assistant for Research Engineers, Platform Leads & CTOs
-            </p>
-
-            <!-- Description -->
-            <p class="text-lg text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Lattice automates research synthesis for AI stack decisions. Process vendor documentation, benchmarks, and pricing data with grounded recommendations and full citations back to authoritative sources.
             </p>
 
             <!-- CTA Button -->
@@ -38,83 +33,174 @@
                 >
                 </stripe-buy-button>
               </div>
-              <span class="text-white/60 text-sm">Lifetime access • One-time purchase</span>
+              <span class="text-white/60 text-sm">Lifetime access - One-time purchase</span>
             </div>
           </div>
         </div>
 
-        <!-- Feature Showcase -->
+        <!-- Feature Carousel -->
         <div class="relative">
+          <!-- Carousel Container -->
           <div class="relative bg-black/30 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-            <!-- Three-Panel Layout Preview -->
-            <div class="p-8 md:p-12">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Sources Panel -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-violet-400/50 transition-all">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                      </svg>
-                    </div>
-                    <h3 class="text-white font-bold text-lg">Sources</h3>
-                  </div>
-                  <p class="text-white/70 text-sm leading-relaxed">
-                    Multi-source ingestion: PDFs, URLs, GitHub, YouTube, Google Docs. Hybrid semantic + keyword search with citation tracking.
-                  </p>
-                </div>
 
-                <!-- Lab Panel -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/50 transition-all">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                      </svg>
-                    </div>
-                    <h3 class="text-white font-bold text-lg">Lab</h3>
-                  </div>
-                  <p class="text-white/70 text-sm leading-relaxed">
-                    LangGraph-powered research agent with transparent reasoning. Grounded recommendations citing specific source chunks.
-                  </p>
-                </div>
+            <!-- Carousel Inner -->
+            <div class="relative" style="min-height: 520px;">
 
-                <!-- Studio Panel -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-teal-400/50 transition-all">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                      </svg>
+              <!-- Slides -->
+              <transition-group name="slide" mode="out-in">
+                <div
+                  v-for="(feature, index) in features"
+                  v-show="currentIndex === index"
+                  :key="feature.id"
+                  class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12 items-center"
+                >
+                  <!-- Left: Content -->
+                  <div class="flex flex-col justify-center space-y-6">
+                    <!-- Category Badge -->
+                    <div class="inline-block">
+                      <div :class="[
+                        'px-4 py-2 rounded-full text-sm font-bold border-2 inline-flex items-center gap-2',
+                        feature.color
+                      ]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="feature.iconPath"></path>
+                        </svg>
+                        {{ feature.category }}
+                      </div>
                     </div>
-                    <h3 class="text-white font-bold text-lg">Studio</h3>
+
+                    <!-- Feature Name -->
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white">
+                      {{ feature.name }}
+                    </h2>
+
+                    <!-- Description -->
+                    <p class="text-lg md:text-xl text-white/80 leading-relaxed">
+                      {{ feature.description }}
+                    </p>
+
+                    <!-- Key Benefits -->
+                    <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                      <div class="text-sm text-white/60 mb-3 font-medium">Key capabilities:</div>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                        <div v-for="benefit in feature.benefits" :key="benefit" class="flex items-start gap-2 text-white/90 text-sm">
+                          <svg class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span>{{ benefit }}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Learn More Link -->
+                    <a :href="feature.link" class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group">
+                      <span>Learn more about {{ feature.name }}</span>
+                      <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
                   </div>
-                  <p class="text-white/70 text-sm leading-relaxed">
-                    Save responses as reusable artifacts. Generate comparison tables, memos, and decision documents with export options.
-                  </p>
+
+                  <!-- Right: Screenshot -->
+                  <div class="flex flex-col justify-center">
+                    <div class="relative w-full max-w-2xl mx-auto product-image">
+                      <!-- Shadow glow behind -->
+                      <div :class="['absolute -inset-4 rounded-3xl blur-2xl opacity-40', feature.glowColor]"></div>
+
+                      <!-- Terminal/Browser Window Frame -->
+                      <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 hover:shadow-3xl transition-shadow duration-500">
+                        <!-- Window Header -->
+                        <div class="flex items-center gap-2 px-4 py-3 bg-gray-800/90 border-b border-white/10">
+                          <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                          </div>
+                          <div class="text-white/60 text-sm font-mono ml-4">latticelab.io</div>
+                        </div>
+
+                        <!-- Screenshot -->
+                        <div class="bg-black">
+                          <img
+                            :src="feature.screenshot"
+                            :alt="`${feature.name} - ${feature.category}`"
+                            class="w-full h-auto"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </transition-group>
+
+              <!-- Navigation Dots -->
+              <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+                <button
+                  v-for="(feature, index) in features"
+                  :key="`dot-${feature.id}`"
+                  @click="goToSlide(index)"
+                  :class="[
+                    'w-3 h-3 rounded-full transition-all duration-300',
+                    currentIndex === index ? 'bg-white w-8' : 'bg-white/30 hover:bg-white/50'
+                  ]"
+                  :aria-label="`Go to ${feature.name}`"
+                ></button>
               </div>
 
-              <!-- Key Stats -->
-              <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="text-center p-4">
-                  <div class="text-3xl font-bold text-violet-400">36</div>
-                  <div class="text-white/60 text-sm">Curated Blueprints</div>
-                </div>
-                <div class="text-center p-4">
-                  <div class="text-3xl font-bold text-blue-400">10+</div>
-                  <div class="text-white/60 text-sm">Vendor Integrations</div>
-                </div>
-                <div class="text-center p-4">
-                  <div class="text-3xl font-bold text-teal-400">2,134</div>
-                  <div class="text-white/60 text-sm">Passing Tests</div>
-                </div>
-                <div class="text-center p-4">
-                  <div class="text-3xl font-bold text-purple-400">v0.6.2</div>
-                  <div class="text-white/60 text-sm">Latest Release</div>
-                </div>
-              </div>
+              <!-- Navigation Arrows -->
+              <button
+                @click="prevSlide"
+                class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-20 hidden lg:flex"
+                aria-label="Previous feature"
+              >
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button
+                @click="nextSlide"
+                class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-20 hidden lg:flex"
+                aria-label="Next feature"
+              >
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
             </div>
+          </div>
+
+          <!-- Carousel Progress Bar -->
+          <div class="mt-6 flex items-center justify-center gap-4">
+            <div class="text-white/60 text-sm">
+              <span class="text-white font-bold">{{ currentIndex + 1 }}</span> / {{ features.length }}
+            </div>
+            <div class="flex-1 max-w-xs h-1 bg-white/10 rounded-full overflow-hidden">
+              <div
+                class="h-full bg-gradient-to-r from-violet-500 to-blue-500 transition-all duration-300"
+                :style="{ width: `${((currentIndex + 1) / features.length) * 100}%` }"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Stats Row -->
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div class="text-2xl md:text-3xl font-bold text-violet-400">36</div>
+            <div class="text-white/60 text-sm">Curated Blueprints</div>
+          </div>
+          <div class="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div class="text-2xl md:text-3xl font-bold text-blue-400">10+</div>
+            <div class="text-white/60 text-sm">Vendor Integrations</div>
+          </div>
+          <div class="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div class="text-2xl md:text-3xl font-bold text-teal-400">2,134</div>
+            <div class="text-white/60 text-sm">Passing Tests</div>
+          </div>
+          <div class="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div class="text-2xl md:text-3xl font-bold text-purple-400">v0.6.2</div>
+            <div class="text-white/60 text-sm">Latest Release</div>
           </div>
         </div>
 
@@ -127,7 +213,186 @@
 </template>
 
 <script setup lang="ts">
-// Hero section for Lattice landing page
+import { ref, onMounted, onUnmounted } from 'vue';
+
+interface Feature {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  benefits: string[];
+  screenshot: string;
+  link: string;
+  color: string;
+  glowColor: string;
+  iconPath: string;
+}
+
+const features: Feature[] = [
+  {
+    id: 'lab',
+    name: 'Lab Panel',
+    category: 'AI Research Agent',
+    description: 'Chat with an AI research agent grounded in your sources. Get recommendations with transparent reasoning and full citations back to authoritative documentation.',
+    benefits: [
+      'LangGraph-powered multi-step reasoning',
+      'Numbered citations with source context',
+      'Scenario and stack-aware prompts',
+      'Save responses as reusable artifacts'
+    ],
+    screenshot: '/images/journeys/chat-with-ai/chat-with-ai-04.png',
+    link: '/features/lab',
+    color: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+    glowColor: 'bg-blue-500/30',
+    iconPath: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+  },
+  {
+    id: 'scenarios',
+    name: 'Scenarios',
+    category: 'Use Case Definition',
+    description: 'Define your workload requirements to get targeted recommendations. Specify workload type, latency targets, budget constraints, and compliance needs.',
+    benefits: [
+      'Workload classification (chat, batch, code)',
+      'SLO targets (latency, throughput)',
+      'Budget and cost constraints',
+      'Natural language requirement extraction'
+    ],
+    screenshot: '/images/journeys/select-scenario/select-scenario-02.png',
+    link: '/features/scenarios',
+    color: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+    glowColor: 'bg-amber-500/30',
+    iconPath: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'
+  },
+  {
+    id: 'stacks',
+    name: 'Stacks',
+    category: 'Infrastructure Config',
+    description: 'Configure your AI infrastructure with model selection, hardware preferences, and framework choices. Get AI-suggested stacks optimized for your scenario.',
+    benefits: [
+      'Model selection (Claude, GPT-4, Gemini)',
+      'Hardware preferences (A100, H100, L40S)',
+      'Framework configuration (vLLM, TensorRT)',
+      'AI-suggested stack recommendations'
+    ],
+    screenshot: '/images/journeys/select-stack/select-stack-02.png',
+    link: '/features/stacks',
+    color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+    glowColor: 'bg-emerald-500/30',
+    iconPath: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01'
+  },
+  {
+    id: 'sources',
+    name: 'Sources Panel',
+    category: 'Knowledge Management',
+    description: 'Build a curated knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts, and Google Docs. Every AI recommendation links back to specific source chunks.',
+    benefits: [
+      'Multi-source ingestion (PDF, URL, GitHub)',
+      'Hybrid semantic + keyword search',
+      'Real-time indexing with chunk tracking',
+      'One-click citation verification'
+    ],
+    screenshot: '/images/journeys/view-source/view-source-03.png',
+    link: '/features/sources',
+    color: 'bg-violet-500/10 text-violet-400 border-violet-500/30',
+    glowColor: 'bg-violet-500/30',
+    iconPath: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+  },
+  {
+    id: 'blueprints',
+    name: '36 Blueprints',
+    category: 'Pre-built Knowledge',
+    description: 'Pre-configured knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, Meta, and Mistral. One-click workspace population with sources, scenarios, and stacks.',
+    benefits: [
+      'Curated vendor documentation',
+      'Pre-defined scenarios per use case',
+      'Recommended stack configurations',
+      'Filter by vendor, category, or use case'
+    ],
+    screenshot: '/images/journeys/browse-blueprints/browse-blueprints-02.png',
+    link: '/features/blueprints',
+    color: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+    glowColor: 'bg-purple-500/30',
+    iconPath: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z'
+  },
+  {
+    id: 'studio',
+    name: 'Studio Panel',
+    category: 'Artifacts & Export',
+    description: 'Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and architectural recommendations with multiple export formats.',
+    benefits: [
+      'Four artifact types (Recommendation, Comparison, Estimate, Architecture)',
+      'Include citations and conversation context',
+      'Export to Markdown, JSON, or CSV',
+      'Add artifacts back as sources'
+    ],
+    screenshot: '/images/journeys/view-artifact/view-artifact-02.png',
+    link: '/features/studio',
+    color: 'bg-teal-500/10 text-teal-400 border-teal-500/30',
+    glowColor: 'bg-teal-500/30',
+    iconPath: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    id: 'settings',
+    name: 'Settings',
+    category: 'Customization',
+    description: 'Personalize Lattice to match your workflow. Configure API keys, model defaults, search behavior, agent parameters, and appearance preferences.',
+    benefits: [
+      'API key management for multiple providers',
+      'Model defaults and temperature tuning',
+      'Search & RAG configuration',
+      'Data privacy and export controls'
+    ],
+    screenshot: '/images/journeys/configure-settings/configure-settings-03.png',
+    link: '/features/settings',
+    color: 'bg-slate-500/10 text-slate-400 border-slate-500/30',
+    glowColor: 'bg-slate-500/30',
+    iconPath: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+  }
+];
+
+const currentIndex = ref(0);
+let autoplayInterval: number | null = null;
+
+function nextSlide() {
+  currentIndex.value = (currentIndex.value + 1) % features.length;
+  resetAutoplay();
+}
+
+function prevSlide() {
+  currentIndex.value = (currentIndex.value - 1 + features.length) % features.length;
+  resetAutoplay();
+}
+
+function goToSlide(index: number) {
+  currentIndex.value = index;
+  resetAutoplay();
+}
+
+function startAutoplay() {
+  autoplayInterval = window.setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % features.length;
+  }, 6000);
+}
+
+function stopAutoplay() {
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval);
+    autoplayInterval = null;
+  }
+}
+
+function resetAutoplay() {
+  stopAutoplay();
+  startAutoplay();
+}
+
+onMounted(() => {
+  startAutoplay();
+});
+
+onUnmounted(() => {
+  stopAutoplay();
+});
 </script>
 
 <style scoped>
@@ -138,6 +403,22 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: -1px -1px;
+}
+
+/* Slide Transitions */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
 }
 
 /* Hero Animations */
@@ -187,5 +468,19 @@
   display: inline-flex;
   align-items: center;
   height: 48px;
+}
+
+/* Product Image with shadow effects */
+.product-image {
+  transition: transform 0.4s ease;
+}
+
+.product-image:hover {
+  transform: translateY(-4px);
+}
+
+/* Enhanced shadow for hover */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.4);
 }
 </style>

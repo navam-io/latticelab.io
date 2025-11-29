@@ -6,23 +6,23 @@ import ProductHero from '@components/ui/ProductHero.vue';
 ---
 
 <Layout
-  title="Lab - AI-Powered Analysis | Lattice"
-  description="LangGraph-powered research agent with transparent reasoning. Get grounded recommendations with citations to your sources."
-  keywords="AI research agent, LangGraph, grounded recommendations, citation tracking, AI analysis, transparent reasoning"
+  title="Stacks - AI Infrastructure Configuration | Lattice"
+  description="Configure your AI infrastructure stack with model selection, hardware preferences, and framework choices. Get AI-suggested stacks based on your scenario."
+  keywords="AI stack configuration, model selection, infrastructure setup, GPU hardware, AI frameworks, stack recommendations"
 >
   <Header client:load />
 
   <main>
     <ProductHero
       client:load
-      title="Lab Panel"
-      description="Chat with an AI research agent that's grounded in your sources. Get recommendations with transparent reasoning and full citations."
-      imageSrc="/images/journeys/chat-with-ai/chat-with-ai-04.png"
-      imageAlt="Lattice Lab panel showing AI conversation with grounded recommendations and citations"
-      gradientFrom="from-blue-900"
-      gradientVia="via-indigo-900"
-      gradientTo="to-purple-900"
-      iconPath="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+      title="Stacks"
+      description="Configure your AI infrastructure with model selection, hardware preferences, and framework choices. Get AI-suggested stacks optimized for your scenario."
+      imageSrc="/images/journeys/select-stack/select-stack-02.png"
+      imageAlt="Lattice Stack selector showing Claude Haiku 4.5 Speed Stack with dropdown options"
+      gradientFrom="from-emerald-900"
+      gradientVia="via-green-900"
+      gradientTo="to-teal-900"
+      iconPath="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
     />
 
     <!-- Features Section -->
@@ -30,134 +30,134 @@ import ProductHero from '@components/ui/ProductHero.vue';
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Research Agent -->
+            <!-- Model Selection -->
             <div class="space-y-6">
-              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900">LangGraph Research Agent</h3>
+              <h3 class="text-2xl font-bold text-gray-900">Model Selection</h3>
               <p class="text-gray-600 leading-relaxed">
-                Powered by LangGraph for multi-step reasoning. The agent searches your sources, synthesizes findings, and provides recommendations—all with transparent thinking traces.
+                Choose from supported LLM providers and models. Compare capabilities, pricing, and performance characteristics to find the right fit for your use case.
               </p>
               <ul class="space-y-3">
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Multi-step reasoning for complex questions</span>
+                  <span class="text-gray-700">Anthropic Claude (Haiku, Sonnet, Opus)</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Visible thinking steps and reasoning traces</span>
+                  <span class="text-gray-700">OpenAI GPT-4, GPT-4o, o1</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Source retrieval before response generation</span>
+                  <span class="text-gray-700">Google Gemini, Meta Llama, Mistral</span>
                 </li>
               </ul>
             </div>
 
-            <!-- Grounded Recommendations -->
+            <!-- Hardware Configuration -->
             <div class="space-y-6">
-              <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900">Grounded Recommendations</h3>
+              <h3 class="text-2xl font-bold text-gray-900">Hardware Preferences</h3>
               <p class="text-gray-600 leading-relaxed">
-                Every recommendation cites specific chunks from your sources. No hallucinations—just verifiable claims with full provenance.
+                Specify GPU requirements for self-hosted deployments. Lattice helps you understand hardware needs for different models and throughput targets.
               </p>
               <ul class="space-y-3">
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Numbered inline citations [1], [2], [3]</span>
+                  <span class="text-gray-700">NVIDIA GPU options (A100, H100, L40S)</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Click citations to see source context</span>
+                  <span class="text-gray-700">Memory requirements per model</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Verify claims against original documents</span>
+                  <span class="text-gray-700">Cloud vs. on-premises deployment</span>
                 </li>
               </ul>
             </div>
 
-            <!-- Conversation Extraction -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Conversation Extraction</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Turn chat discussions into structured scenarios. Lattice extracts requirements, constraints, and preferences from your conversation.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Extract workload type and SLO requirements</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Identify budget and compliance constraints</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Create scenarios from natural discussion</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Smart Prompts -->
+            <!-- Framework Selection -->
             <div class="space-y-6">
               <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
                 <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900">Smart Prompts</h3>
+              <h3 class="text-2xl font-bold text-gray-900">Framework Configuration</h3>
               <p class="text-gray-600 leading-relaxed">
-                Context-aware prompt suggestions help you get the most from your research. @ mentions let you reference specific sources in your questions.
+                Select inference frameworks and serving solutions. From vLLM to TensorRT-LLM, choose the right tools for your deployment requirements.
               </p>
               <ul class="space-y-3">
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Suggested prompts based on workspace state</span>
+                  <span class="text-gray-700">vLLM for high-throughput serving</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">@ mentions for source references</span>
+                  <span class="text-gray-700">TensorRT-LLM for optimized inference</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span class="text-gray-700">Multi-line input with Shift+Enter</span>
+                  <span class="text-gray-700">Triton Inference Server integration</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- AI Suggestions -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">AI-Suggested Stacks</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Let Lattice recommend optimal stack configurations based on your scenario. Get suggestions grounded in vendor documentation and real-world benchmarks.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Scenario-optimized recommendations</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Cost-performance tradeoff analysis</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Citations to vendor benchmarks</span>
                 </li>
               </ul>
             </div>
@@ -167,15 +167,15 @@ import ProductHero from '@components/ui/ProductHero.vue';
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
+    <section class="py-16 bg-gradient-to-r from-emerald-600 to-teal-600">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-white mb-4">
-          Research with Confidence
+          Configure Your AI Stack
         </h2>
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-          Get AI-powered analysis grounded in your sources with transparent reasoning.
+          Get AI-powered stack recommendations optimized for your specific requirements.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-emerald-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
           Get Lattice for $99
         </a>
       </div>
