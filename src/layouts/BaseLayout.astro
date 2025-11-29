@@ -1,16 +1,25 @@
 ---
+/**
+ * Base Layout
+ *
+ * Root layout with all HTML boilerplate, favicon, and SEO meta tags.
+ * All pages should use this layout (usually via PageLayout).
+ *
+ * Feature Slice 23: SEO & Meta Tags
+ */
 import '@/styles/globals.css';
-import { siteConfig } from '@/lib/constants';
+import SEO from '@/components/SEO.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  structuredData?: object;
 }
 
-const { title, description } = Astro.props;
-
-const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
-const pageDescription = description ?? siteConfig.description;
+const { title, description, image, type, noindex, structuredData } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,27 +37,15 @@ const pageDescription = description ?? siteConfig.description;
 
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Primary Meta Tags -->
-    <title>{pageTitle}</title>
-    <meta name="title" content={pageTitle} />
-    <meta name="description" content={pageDescription} />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:image" content={siteConfig.ogImage} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={pageTitle} />
-    <meta property="twitter:description" content={pageDescription} />
-    <meta property="twitter:image" content={siteConfig.ogImage} />
-
-    <!-- Canonical -->
-    <link rel="canonical" href={Astro.url} />
+    <!-- SEO Meta Tags -->
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      structuredData={structuredData}
+    />
   </head>
   <body>
     <slot />
