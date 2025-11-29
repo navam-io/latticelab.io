@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.34.0
+**Current Version**: 0.35.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -163,22 +163,9 @@ See `releases/release-0.34.0.md` for details.
 
 ---
 
-### Feature Slice 35: Cross-Browser Testing
+### Feature Slice 35: Cross-Browser Testing - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Browser Support
-
-**Summary**: Test and fix issues across all supported browsers.
-
-**Acceptance Criteria**:
-- [ ] Chrome (last 2 versions) — tested, no issues
-- [ ] Firefox (last 2 versions) — tested, no issues
-- [ ] Safari (last 2 versions) — tested, no issues
-- [ ] Edge (last 2 versions) — tested, no issues
-- [ ] Mobile Safari iOS 15+ — tested, no issues
-- [ ] Chrome Mobile Android 10+ — tested, no issues
-- [ ] All interactive previews function correctly
-- [ ] No layout breaks or visual glitches
-- [ ] Forms and buttons work correctly
+See `releases/release-0.35.0.md` for details.
 
 ---
 
@@ -310,9 +297,9 @@ See `releases/release-0.34.0.md` for details.
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility (2/8 complete), testing, screenshots, launch |
+| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility, testing (3/8 complete), screenshots, launch |
 
-**Total Feature Slices**: 40 (34 complete, 6 remaining)
+**Total Feature Slices**: 40 (35 complete, 5 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
