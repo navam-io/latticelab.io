@@ -101,10 +101,24 @@ const {
           class="mb-4 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start"
           data-testid="hero-ctas"
         >
-          <Button variant="primary" size="lg" href={primaryCta.href} data-testid="hero-primary-cta">
+          <Button
+            variant="primary"
+            size="lg"
+            href={primaryCta.href}
+            data-testid="hero-primary-cta"
+            data-track="cta"
+            data-track-name="Hero Primary CTA"
+          >
             {primaryCta.text}
           </Button>
-          <Button variant="secondary" size="lg" href={secondaryCta.href} data-testid="hero-secondary-cta">
+          <Button
+            variant="secondary"
+            size="lg"
+            href={secondaryCta.href}
+            data-testid="hero-secondary-cta"
+            data-track="cta"
+            data-track-name="Hero Secondary CTA"
+          >
             {secondaryCta.text}
           </Button>
         </div>

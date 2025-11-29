@@ -7,9 +7,11 @@
  *
  * Feature Slice 23: SEO & Meta Tags
  * Feature Slice 31: Stripe Buy Button Integration
+ * Feature Slice 32: Analytics Integration
  */
 import '@/styles/globals.css';
 import SEO from '@/components/SEO.astro';
+import Analytics from '@/components/Analytics.astro';
 
 interface Props {
   title?: string;
@@ -56,6 +58,9 @@ const isStripeConfigured = !!stripePublishableKey;
       noindex={noindex}
       structuredData={structuredData}
     />
+
+    <!-- Analytics (Plausible) -->
+    <Analytics />
   </head>
   <body>
     <slot />

@@ -1,0 +1,80 @@
+---
+/**
+ * Analytics Component
+ *
+ * Integrates Plausible Analytics for privacy-friendly tracking.
+ * Only loads when PUBLIC_PLAUSIBLE_DOMAIN is configured.
+ *
+ * Features:
+ * - Page view tracking (automatic)
+ * - Custom event tracking via plausible() function
+ * - No cookies (GDPR-compliant)
+ * - No tracking in development mode
+ *
+ * Feature Slice 32: Analytics Integration
+ *
+ * Environment Variables:
+ *   PUBLIC_PLAUSIBLE_DOMAIN - Your Plausible domain (e.g., "latticelab.io")
+ *   PUBLIC_PLAUSIBLE_API_HOST - Custom API host (optional, default: "plausible.io")
+ *
+ * Usage for custom events (in client-side JavaScript):
+ *   window.plausible?.('Event Name', { props: { key: 'value' } })
+ */
+
+// Get environment variables
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '';
+const plausibleApiHost = import.meta.env.PUBLIC_PLAUSIBLE_API_HOST || 'plausible.io';
+
+// Only enable analytics when domain is configured and not in dev mode
+const isDev = import.meta.env.DEV;
+const isAnalyticsEnabled = plausibleDomain && !isDev;
+---
+
+{isAnalyticsEnabled && (
+  <>
+    {/* Plausible Analytics Script */}
+    <script
+      defer
+      data-domain={plausibleDomain}
+      data-api={`https://${plausibleApiHost}/api/event`}
+      src={`https://${plausibleApiHost}/js/script.js`}
+      data-testid="plausible-script"
+    />
+
+    {/* Custom event tracking helper - makes plausible() available globally */}
+    <script is:inline data-testid="analytics-helper">
+      // Ensure plausible is available even before script loads
+      window.plausible = window.plausible || function() {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+
+      // Helper function for tracking custom events
+      window.trackEvent = function(eventName, props) {
+        window.plausible(eventName, props ? { props: props } : undefined);
+      };
+    </script>
+  </>
+)}
+
+{/* Development mode placeholder - no tracking but helper available */}
+{!isAnalyticsEnabled && (
+  <script is:inline data-testid="analytics-dev-helper">
+    // Development mode - log events to console instead of tracking
+    window.plausible = function(eventName, options) {
+      console.log('[Analytics Dev]', eventName, options?.props || {});
+    };
+    window.trackEvent = function(eventName, props) {
+      console.log('[Analytics Dev]', eventName, props || {});
+    };
+  </script>
+)}
+
+{/* Event tracking script - auto-tracks interactions */}
+<script>
+  import { initAnalyticsEvents } from '@/scripts/analytics-events';
+
+  // Re-initialize on view transitions (Astro navigation)
+  document.addEventListener('astro:page-load', () => {
+    initAnalyticsEvents();
+  });
+</script>

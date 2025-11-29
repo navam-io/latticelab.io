@@ -78,6 +78,8 @@ const buttonSize = sizeClasses[size];
       href="/pricing"
       class={`stripe-placeholder-button inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent font-semibold text-accent-foreground transition-all duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${buttonSize}`}
       data-testid={`${testId}-placeholder`}
+      data-track="buy"
+      data-track-value="99"
     >
       <svg
         class="h-5 w-5"

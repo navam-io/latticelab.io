@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.31.0
+**Current Version**: 0.32.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -137,23 +137,15 @@ See `releases/release-0.31.0.md` for details.
 
 ---
 
-### Feature Slice 32: Analytics Integration
+### Feature Slice 32: Analytics Integration - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Success Metrics
+See `releases/release-0.32.0.md` for details.
 
-**Summary**: Integrate privacy-friendly analytics for tracking key metrics.
+---
 
-**Acceptance Criteria**:
-- [ ] Plausible Analytics (or similar) integrated
-- [ ] Page view tracking
-- [ ] Custom event tracking for:
-  - [ ] CTA button clicks
-  - [ ] Buy button clicks
-  - [ ] Interactive preview engagement
-  - [ ] FAQ accordion opens
-- [ ] Configurable via environment variable
-- [ ] No tracking in development mode
-- [ ] GDPR-compliant (no cookies for Plausible)
+## Phase 4: Purchase Flow - COMPLETE
+
+All 2 feature slices (31-32) in Phase 4 are now complete.
 
 ---
 
@@ -345,10 +337,10 @@ See `releases/release-0.31.0.md` for details.
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
-| Phase 4 | 31-32 | **IN PROGRESS** | Purchase — Stripe integration (1/2 complete), analytics |
+| Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (31 complete, 9 remaining)
+**Total Feature Slices**: 40 (32 complete, 8 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
