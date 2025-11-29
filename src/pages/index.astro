@@ -1,32 +1,70 @@
 ---
-/**
- * Homepage
- *
- * Main landing page for Lattice Lab website.
- * Feature Slice 30: Added InteractivePreview section
- */
-import PageLayout from '@/layouts/PageLayout.astro';
-import Hero from '@/components/sections/Hero.astro';
-import PainSection from '@/components/sections/PainSection.astro';
-import SolutionSection from '@/components/sections/SolutionSection.astro';
-import PersonaCards from '@/components/sections/PersonaCards.astro';
-import SocialProof from '@/components/sections/SocialProof.astro';
-import InteractivePreview from '@/components/sections/InteractivePreview.astro';
-import PrivacySection from '@/components/sections/PrivacySection.astro';
-import PricingSection from '@/components/sections/PricingSection.astro';
-import FAQ from '@/components/sections/FAQ.astro';
-import FinalCTA from '@/components/sections/FinalCTA.astro';
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import HeroSection from '@components/home/HeroSection.vue';
+import VendorTicker from '@components/home/VendorTicker.vue';
+import FeaturesGrid from '@components/home/FeaturesGrid.vue';
+import UseCases from '@components/home/UseCases.vue';
+import Pricing from '@components/home/Pricing.vue';
+import FAQ from '@components/home/FAQ.vue';
+import Footer from '@components/Footer.vue';
 ---
 
-<PageLayout>
-  <Hero />
-  <PainSection />
-  <SolutionSection />
-  <PersonaCards />
-  <SocialProof />
-  <InteractivePreview />
-  <PrivacySection />
-  <PricingSection />
-  <FAQ />
-  <FinalCTA />
-</PageLayout>
+<Layout
+  title="Lattice - Confident AI Infrastructure Decisions"
+  description="Agentic AI lab assistant for research engineers, platform leads, and CTOs. Make confident AI infrastructure decisions with grounded recommendations and full citations."
+  keywords="AI infrastructure, AI research assistant, LLM evaluation, model comparison, AI stack decisions, grounded recommendations, Claude, GPT, Gemini, RAG, embeddings"
+  ogImage="/images/og-image.png"
+  ogType="website"
+>
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Lattice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lattice is an agentic AI lab assistant that helps research engineers, platform leads, and CTOs make confident AI infrastructure decisions. It automates research synthesis by processing vendor documentation, benchmarks, and pricing data—providing grounded recommendations with full citations back to authoritative sources."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Lattice differ from ChatGPT or Claude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unlike general-purpose AI assistants, Lattice is purpose-built for AI infrastructure research. It ingests your specific sources (vendor docs, papers, pricing pages), maintains citation chains, and provides recommendations grounded in your curated knowledge base—not generic training data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are blueprints?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Blueprints are curated knowledge bundles that package vendor documentation, pre-configured scenarios, and recommended stacks. Lattice includes 36 blueprints from leading vendors like Anthropic, AWS, NVIDIA, GCP, Meta, and Mistral."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the $99 purchase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The one-time $99 purchase includes lifetime access to Lattice: all three panels (Sources, Lab, Studio), 36 curated blueprints, unlimited workspaces, scenario and stack configuration, artifact generation and export, and all future updates."
+        }
+      }
+    ]
+  })} />
+
+  <Header client:load />
+  <main>
+    <HeroSection client:load />
+    <VendorTicker client:load />
+    <FeaturesGrid client:load />
+    <UseCases client:load />
+    <Pricing client:load />
+    <FAQ client:load />
+  </main>
+  <Footer client:load />
+</Layout>

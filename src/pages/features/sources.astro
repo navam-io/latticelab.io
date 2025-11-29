@@ -1,0 +1,205 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+---
+
+<Layout
+  title="Sources - Knowledge Management | Lattice"
+  description="Multi-source knowledge ingestion with PDFs, URLs, GitHub, YouTube, and Google Docs. Hybrid semantic search with citation tracking."
+  keywords="knowledge management, source ingestion, PDF indexing, semantic search, citation tracking, RAG sources"
+>
+  <Header client:load />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-violet-900 via-purple-900 to-indigo-900">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Sources Panel
+          </h1>
+          <p class="text-xl text-white/80 leading-relaxed">
+            Build a curated knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts, and Google Docs.
+            Every AI recommendation links back to specific source chunks you can verify.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Multi-Source Ingestion -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Multi-Source Ingestion</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Add knowledge from multiple source types. Lattice handles the chunking, embedding, and indexing automatically.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>PDF Documents:</strong> Upload technical papers, whitepapers, and documentation</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>Web URLs:</strong> Import pricing pages, model cards, and vendor docs</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>GitHub Repos:</strong> Connect to README files and documentation</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>YouTube:</strong> Index video transcripts for technical talks</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>Google Docs:</strong> Import from your Drive</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Hybrid Search -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Hybrid Semantic Search</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Find relevant content across all your sources with a combination of semantic similarity and keyword matching.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Vector embeddings for semantic understanding</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Keyword matching for exact terms and model names</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Cross-source discovery of related content</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Citation Tracking -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Citation Tracking</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Every AI recommendation includes numbered citations linking back to specific chunks in your sources. Verify claims with one click.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Numbered inline citations in AI responses</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Click to expand and see source context</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Track decision provenance back to authoritative docs</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Real-time Indexing -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Real-time Indexing</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Watch your sources get processed in real-time. See chunk counts and indexing progress as content becomes searchable.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Live indexing progress indicators</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Chunk count displayed per source</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Automatic embedding generation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-violet-600 to-blue-600">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Build Your AI Knowledge Base
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Start adding sources and get grounded recommendations with full citations.
+        </p>
+        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+          Get Lattice for $99
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Layout>

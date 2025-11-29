@@ -1,0 +1,192 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+---
+
+<Layout
+  title="Studio - Artifacts & Exports | Lattice"
+  description="Save AI responses as reusable artifacts. Generate comparison tables, memos, and decision documents with export options."
+  keywords="artifacts, export, decision documents, comparison tables, CSV export, JSON export, Markdown export"
+>
+  <Header client:load />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-teal-900 via-cyan-900 to-blue-900">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Studio Panel
+          </h1>
+          <p class="text-xl text-white/80 leading-relaxed">
+            Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and export in multiple formats.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Save Artifacts -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Save Artifacts</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Save any AI response as a named artifact for future reference. Build a library of research findings, comparisons, and recommendations.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">One-click save from any chat response</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Custom naming for organization</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Preserved citations and formatting</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Generate Artifacts -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Generate Artifacts</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Create structured artifacts directly from your research. Generate comparison tables, cost analyses, and decision memos.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Comparison tables with source citations</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Cost analysis breakdowns</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Executive decision memos</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Export Options -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Export Options</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Export artifacts in multiple formats for different use cases. Share with stakeholders, import into other tools, or archive for future reference.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>CSV:</strong> For spreadsheet analysis</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>JSON:</strong> For programmatic access</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700"><strong>Markdown:</strong> For documentation</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Artifact History -->
+            <div class="space-y-6">
+              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Artifact History</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Track your artifact history with versioning. Browse past artifacts, compare changes, and maintain a complete audit trail.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Complete artifact timeline</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Version tracking and comparison</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700">Decision provenance audit trail</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Turn Research into Action
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Generate executive-ready artifacts with full citations and export options.
+        </p>
+        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+          Get Lattice for $99
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Layout>

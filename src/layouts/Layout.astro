@@ -1,0 +1,155 @@
+---
+import '@styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  canonicalURL?: string;
+  author?: string;
+  // Article-specific properties
+  date?: string;
+  modifiedDate?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  description = 'Lattice is an agentic AI lab assistant for research engineers, platform leads, and CTOs. Make confident AI infrastructure decisions with grounded recommendations and full citations.',
+  keywords = 'AI infrastructure, AI research, LLM evaluation, model comparison, AI stack decisions, Claude, GPT, Gemini, RAG, embeddings, AI agents, knowledge management, citations',
+  ogImage = '/images/og-image.png',
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
+  canonicalURL = Astro.url.toString(),
+  author = 'Lattice Lab',
+  date,
+  modifiedDate,
+  tags = []
+} = Astro.props;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lattice Lab",
+  "description": "Agentic AI lab assistant for confident AI infrastructure decisions. Grounded recommendations with full citations from your sources.",
+  "url": "https://www.latticelab.io",
+  "logo": "https://www.latticelab.io/images/logo.png",
+  "foundingDate": "2025",
+  "sameAs": [
+    "https://github.com/lattice-lab"
+  ],
+  "keywords": "AI infrastructure, AI research assistant, LLM evaluation, model comparison, AI stack decisions, grounded recommendations, knowledge management",
+  "slogan": "Confident AI Infrastructure Decisions",
+  "products": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Lattice",
+      "applicationCategory": "DeveloperApplication",
+      "description": "Agentic AI lab assistant that automates research synthesis for AI stack decisions. Process AI research, vendor documentation, benchmarks, and pricing data with full citations.",
+      "operatingSystem": "Web Browser",
+      "softwareVersion": "0.6.2",
+      "offers": {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "USD",
+        "description": "Lifetime access to Lattice"
+      },
+      "featureList": [
+        "Multi-source knowledge ingestion (PDFs, URLs, GitHub, YouTube)",
+        "36 curated vendor blueprints",
+        "LangGraph-powered research agent",
+        "Source-grounded recommendations with citations",
+        "Scenario and stack configuration",
+        "Artifact generation and export"
+      ]
+    }
+  ],
+  "knowsAbout": [
+    "Artificial Intelligence",
+    "LLM Infrastructure",
+    "AI Research",
+    "Model Evaluation",
+    "RAG Systems",
+    "AI Agents",
+    "Knowledge Graphs",
+    "Cloud Infrastructure"
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:site_name" content="Lattice Lab" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Article-specific Open Graph Tags -->
+    {ogType === 'article' && date && (
+      <>
+        <meta property="article:published_time" content={new Date(date).toISOString()} />
+        {modifiedDate && <meta property="article:modified_time" content={new Date(modifiedDate).toISOString()} />}
+        <meta property="article:author" content={author} />
+        {tags.length > 0 && <meta property="article:section" content={tags[0]} />}
+        {tags.map(tag => <meta property="article:tag" content={tag} />)}
+      </>
+    )}
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content={twitterCard} />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#8B5CF6" />
+    <meta name="msapplication-TileColor" content="#8B5CF6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Generator -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Stripe Buy Button -->
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

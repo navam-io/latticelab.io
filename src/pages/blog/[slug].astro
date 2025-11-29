@@ -1,0 +1,184 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const postDate = post.data.pubDate || post.data.date;
+const formattedDate = postDate
+  ? new Date(postDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : '';
+---
+
+<Layout
+  title={`${post.data.title} - Lattice Blog`}
+  description={post.data.description || post.data.excerpt}
+  ogType="article"
+  date={postDate?.toISOString()}
+  tags={post.data.tags}
+>
+  <Header client:load />
+
+  <main>
+    <!-- Article Header -->
+    <article class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <!-- Breadcrumb -->
+          <nav class="mb-8">
+            <a href="/blog" class="text-violet-600 hover:text-violet-700 font-medium">
+              ← Back to Blog
+            </a>
+          </nav>
+
+          <!-- Tags -->
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.data.tags.map(tag => (
+                <span class="px-3 py-1 bg-violet-100 text-violet-700 text-sm font-medium rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            {post.data.title}
+          </h1>
+
+          <!-- Meta -->
+          <div class="flex items-center gap-4 text-gray-600 mb-8 pb-8 border-b">
+            <span>{post.data.author}</span>
+            {formattedDate && (
+              <>
+                <span>•</span>
+                <time datetime={postDate?.toISOString()}>{formattedDate}</time>
+              </>
+            )}
+            {post.data.readingTime && (
+              <>
+                <span>•</span>
+                <span>{post.data.readingTime}</span>
+              </>
+            )}
+          </div>
+
+          <!-- Featured Image -->
+          {post.data.featuredImage && (
+            <div class="mb-12 rounded-2xl overflow-hidden">
+              <img
+                src={post.data.featuredImage}
+                alt={post.data.title}
+                class="w-full h-auto"
+              />
+            </div>
+          )}
+
+          <!-- Content -->
+          <div class="prose prose-lg prose-violet max-w-none">
+            <Content />
+          </div>
+
+          <!-- Footer CTA -->
+          <div class="mt-16 p-8 bg-gradient-to-br from-violet-50 to-blue-50 rounded-2xl">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              Ready to Try Lattice?
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Get lifetime access to Lattice for confident AI infrastructure decisions.
+            </p>
+            <a
+              href="/#pricing"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold rounded-xl hover:from-violet-700 hover:to-blue-700 transition-all"
+            >
+              Get Lattice for $99
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer client:load />
+</Layout>
+
+<style is:global>
+/* Prose customization for blog posts */
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.prose h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose strong {
+  color: #111827;
+}
+
+.prose a {
+  color: #7c3aed;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.prose a:hover {
+  color: #6d28d9;
+}
+
+.prose code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, monospace;
+}
+
+.prose pre {
+  background-color: #111827;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+
+.prose blockquote {
+  border-left-width: 4px;
+  border-color: #c4b5fd;
+  background-color: #f5f3ff;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-style: italic;
+}
+</style>

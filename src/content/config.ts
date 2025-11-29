@@ -1,48 +1,27 @@
 import { defineCollection, z } from 'astro:content';
 
-const features = defineCollection({
+const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    subtitle: z.string(),
-    description: z.string(),
-    icon: z.string().optional(),
-    color: z.enum(['blue', 'purple', 'green', 'orange']).default('blue'),
-    order: z.number().default(0),
-    highlights: z.array(z.string()).default([]),
-    useCases: z.array(z.object({
-      persona: z.string(),
-      title: z.string(),
-      description: z.string(),
-    })).default([]),
-    screenshot: z.object({
-      src: z.string(),
-      fallback: z.string(),
-      alt: z.string(),
+    description: z.string().optional(),
+    excerpt: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    date: z.coerce.date().optional(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string()
     }).optional(),
-  }),
-});
-
-const journeys = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    jtbd: z.string(), // Jobs to be done statement
-    category: z.enum(['Getting Started', 'Configuration', 'Sources']),
-    estimatedTime: z.string(),
-    thumbnail: z.string().optional(),
-    order: z.number().default(0),
-    steps: z.array(z.object({
-      title: z.string(),
-      description: z.string(),
-      screenshot: z.string().optional(),
-      tip: z.string().optional(),
-    })),
+    featuredImage: z.string().optional(),
+    author: z.string().default('Lattice Lab'),
+    tags: z.array(z.string()).default([]),
+    readingTime: z.string().optional(),
+    featured: z.boolean().default(false),
+    updatedDate: z.coerce.date().optional(),
+    journey: z.string().optional(), // Reference to original journey folder
   }),
 });
 
 export const collections = {
-  features,
-  journeys,
+  blog,
 };

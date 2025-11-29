@@ -1,0 +1,306 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+---
+
+<Layout
+  title="Blueprints - 36 Curated Knowledge Bundles | Lattice"
+  description="Pre-built knowledge bundles from Anthropic, AWS, NVIDIA, GCP, Meta, and Mistral. One-click workspace population with sources, scenarios, and stacks."
+  keywords="blueprints, knowledge bundles, vendor documentation, Anthropic, AWS, NVIDIA, GCP, Meta, Mistral, AI vendors"
+>
+  <Header client:load />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-violet-900 via-purple-900 to-blue-900">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            36 Curated Blueprints
+          </h1>
+          <p class="text-xl text-white/80 leading-relaxed">
+            Pre-built knowledge bundles from leading AI vendors. One-click workspace population with sources, scenarios, and recommended stacks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vendor Grid -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Blueprints by Vendor
+            </h2>
+            <p class="text-lg text-gray-600">
+              Each blueprint includes curated sources, pre-configured scenarios, and recommended stacks.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Anthropic -->
+            <div class="group p-8 rounded-2xl border-2 border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 hover:border-orange-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-orange-600" viewBox="0 0 24 24" fill="currentColor"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24L17.3041 3.541z"/><path d="M10.5363 3.5409L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456H10.1651z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">Anthropic</h3>
+                  <p class="text-sm text-orange-600 font-medium">4 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500">•</span>
+                  Claude Production RAG
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500">•</span>
+                  Claude Agentic System
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500">•</span>
+                  Claude Cost-Optimized
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-orange-500">•</span>
+                  Claude Multi-Model Comparison
+                </li>
+              </ul>
+            </div>
+
+            <!-- AWS -->
+            <div class="group p-8 rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50 hover:border-yellow-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-orange-500" viewBox="0 0 24 24" fill="currentColor"><path d="M6.763 11.212c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 01-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 01-.287-.375 6.18 6.18 0 01-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.39-.384-.59-.894-.59-1.533 0-.678.24-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272-.09.04-.184.075-.28.104a.488.488 0 01-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 01.224-.167 4.577 4.577 0 011.005-.36 4.84 4.84 0 011.246-.151c.95 0 1.644.216 2.091.647.44.43.662 1.085.662 1.963v2.586h.016zm-3.24 1.214c.263 0 .534-.048.822-.144a1.78 1.78 0 00.758-.51 1.27 1.27 0 00.272-.512c.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 00-.735-.136 6.02 6.02 0 00-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 6.726a1.398 1.398 0 01-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 01.32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 01.311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 01-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 01-.303.08h-.687c-.15 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32L12.32 7.747l-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08l-.686.001zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 01-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.32.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 00.415-.758.777.777 0 00-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 01-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .36.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 01.24.2.43.43 0 01.071.263v.375c0 .168-.064.256-.184.256a.83.83 0 01-.303-.096 3.652 3.652 0 00-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.16.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926a2.157 2.157 0 01-.583.703c-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167z"/><path d="M.378 15.475c3.384 1.963 7.56 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.44-.2.814.287.383.607-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351zm23.531-.2c.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151l.175-.439c.343-.88.802-2.198.52-2.555-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">AWS Bedrock</h3>
+                  <p class="text-sm text-yellow-600 font-medium">3 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-yellow-500">•</span>
+                  Bedrock Enterprise (HIPAA/SOC2)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-yellow-500">•</span>
+                  Bedrock Knowledge Bases RAG
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-yellow-500">•</span>
+                  Bedrock Cost-Optimized
+                </li>
+              </ul>
+            </div>
+
+            <!-- GCP -->
+            <div class="group p-8 rounded-2xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12.19 2.38a9.344 9.344 0 0 0-9.234 6.893c.053-.02-.055.013 0 0-3.875 2.551-3.922 8.11-.247 10.941l.006-.007-.007.03a6.717 6.717 0 0 0 4.077 1.356h5.173l.03.03h5.192c6.687.053 9.376-8.605 3.835-12.35a9.365 9.365 0 0 0-2.821-4.552l-.043.043.006-.05A9.344 9.344 0 0 0 12.19 2.38zm-.358 4.146c1.244-.04 2.518.368 3.486 1.15a5.186 5.186 0 0 1 1.862 4.078v.518c3.53-.07 3.53 5.262 0 5.193h-5.193l-.008.009v-.04H6.785a2.59 2.59 0 0 1-1.067-.23h.001a2.597 2.597 0 1 1 3.437-3.437l3.013-3.012A6.747 6.747 0 0 0 8.11 8.24c.018-.01.04-.026.054-.023a5.186 5.186 0 0 1 3.67-1.69z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">Google Vertex AI</h3>
+                  <p class="text-sm text-blue-600 font-medium">3 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500">•</span>
+                  Vertex AI Gemini Production
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500">•</span>
+                  Vertex AI Gemini Flash
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500">•</span>
+                  Vertex AI RAG
+                </li>
+              </ul>
+            </div>
+
+            <!-- NVIDIA -->
+            <div class="group p-8 rounded-2xl border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 hover:border-green-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-green-600" viewBox="0 0 24 24" fill="currentColor"><path d="M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851c-.412 0-.807-.062-1.167-.18v-4.475c1.634.19 1.962.848 2.936 2.385l2.18-1.86S12.2 8.19 9.564 8.19a6.9 6.9 0 0 0-.616.054v-.003l.001.006zm0-4.789v2.024l.424-.034c5.096-.27 8.432 4.167 8.432 4.167s-3.868 4.469-7.722 4.469c-.397 0-.78-.037-1.134-.11v1.402c.313.046.636.073.967.073 3.454 0 5.952-1.746 8.376-3.779.406.336 2.076 1.122 2.422 1.471-2.267 1.958-7.536 4.102-10.715 4.102-.36 0-.704-.027-1.05-.072v1.49h12.661V4.009H8.948zm0 14.078v1.238H2.378v-1.238h6.57zm0-5.115v1.44c-.36-.074-.728-.162-1.076-.316V9.69l1.076.198v3.084zm-1.076-7.082v1.448c-1.39.296-2.246.986-2.246.986s1.01-1.635 2.246-2.434zM2.39 13.135l.816-1.026s1.125 1.464 2.742 1.974v1.487c-1.97-.597-3.558-2.435-3.558-2.435zm5.558-8.082v1.048a9.3 9.3 0 0 0-4.11 2.93h-.001l-.816-1.012s2.214-2.49 4.927-2.966z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">NVIDIA NIM</h3>
+                  <p class="text-sm text-green-600 font-medium">3 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">•</span>
+                  NIM Self-Hosted Inference
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">•</span>
+                  NIM Embeddings Pipeline
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">•</span>
+                  NIM Multi-Model Ensemble
+                </li>
+              </ul>
+            </div>
+
+            <!-- Meta -->
+            <div class="group p-8 rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 hover:border-indigo-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-indigo-600" viewBox="0 0 24 24" fill="currentColor"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.065-.69-.875-1.335-1.547-1.958-2.043-.9-.716-1.812-1.1-2.78-1.1H6.915zm-.755 2.095c.561 0 1.099.272 1.658.768.637.565 1.273 1.357 1.93 2.388l.375.586c.093.146.18.283.263.414l-.64 1.115-.298.519-.037.063c-1.362 2.334-1.715 2.886-2.399 3.786-.942 1.239-1.549 1.573-2.327 1.573-.544 0-.958-.182-1.313-.493-.297-.266-.551-.679-.723-1.236a5.269 5.269 0 0 1-.18-.9 9.135 9.135 0 0 1-.083-1.253c0-2.218.583-4.596 1.634-6.29.89-1.434 1.863-2.04 3.14-2.04zm11.056.001c.971 0 2.003.753 3.055 2.322 1.205 1.795 1.784 4.097 1.784 6.399 0 1.223-.212 2.018-.478 2.48a1.773 1.773 0 0 1-.39.471c-.207.156-.505.29-.997.29-.527 0-1.1-.26-1.78-.975a13.14 13.14 0 0 1-1.677-2.263l-.084-.14-1.873-3.13-.088-.147c.652-1.065 1.239-1.942 1.778-2.606.628-.774 1.29-1.39 1.863-1.611.213-.082.455-.148.752-.148l.135.058z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">Meta Llama</h3>
+                  <p class="text-sm text-indigo-600 font-medium">2 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-indigo-500">•</span>
+                  Llama 3.3 70B Production
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-indigo-500">•</span>
+                  Llama 3.1 405B Enterprise
+                </li>
+              </ul>
+            </div>
+
+            <!-- Mistral -->
+            <div class="group p-8 rounded-2xl border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 hover:border-red-400 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-center gap-4 mb-6">
+                <svg class="w-12 h-12 text-red-500" viewBox="0 0 24 24" fill="currentColor"><path d="M3.428 3.4h3.429v3.428H3.428zM17.14 3.4h3.429v3.428H17.14zM3.428 17.113h3.429v3.428H3.428zM17.14 17.113h3.429v3.428H17.14zM3.428 10.256h3.429v3.429H3.428zM10.284 10.256h3.429v3.429h-3.429zM17.14 10.256h3.429v3.429H17.14zM13.713 3.4h3.429v3.428h-3.429zM6.857 6.828h3.428v3.428H6.857zM13.713 6.828h3.429v3.428h-3.429zM20.57 6.828H24v3.428h-3.429zM0 6.828h3.429v3.428H0zM6.857 13.685h3.428v3.428H6.857zM13.713 13.685h3.429v3.428h-3.429zM20.57 13.685H24v3.428h-3.429zM0 13.685h3.429v3.428H0zM13.713 17.113h3.429v3.428h-3.429z"/></svg>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">Mistral AI</h3>
+                  <p class="text-sm text-red-600 font-medium">2 Blueprints</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">•</span>
+                  Mistral Large Production
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500">•</span>
+                  Mistral 7B Edge
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-Vendor Blueprints -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Cross-Vendor Comparison Blueprints
+            </h2>
+            <p class="text-lg text-gray-600">
+              Compare multiple vendors side-by-side with pre-built comparison blueprints.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-Provider Model Comparison</h3>
+              <p class="text-gray-600 mb-4">Claude vs GPT-4 vs Gemini—head-to-head evaluation with pricing, latency, and capability comparisons.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Anthropic</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">OpenAI</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Google</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Cost vs Quality Comparison</h3>
+              <p class="text-gray-600 mb-4">Haiku vs Flash vs Nemotron—compare cost-optimized models across vendors.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Anthropic</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Google</span>
+                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">NVIDIA</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">LLM + Embedding Stack Combinations</h3>
+              <p class="text-gray-600 mb-4">Production-ready combinations of LLMs with embedding models for RAG pipelines.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">Multi-Vendor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blueprint Features -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              What's in a Blueprint?
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Sources (3-6)</h3>
+              <p class="text-gray-600 text-sm">Curated documentation URLs from official vendor pages, pricing, and model cards.</p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Scenarios (1-2)</h3>
+              <p class="text-gray-600 text-sm">Pre-configured workload definitions with SLOs, budget, and compliance settings.</p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Stacks (1-2)</h3>
+              <p class="text-gray-600 text-sm">Recommended model, framework, and hardware configurations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-violet-600 to-blue-600">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Skip Weeks of Manual Research
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Apply curated blueprints and start researching with pre-built knowledge bundles.
+        </p>
+        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+          Get Lattice for $99
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Layout>
