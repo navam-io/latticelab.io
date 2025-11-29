@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.21.0
+**Current Version**: 0.22.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -61,19 +61,9 @@ See `releases/release-0.21.0.md` for details.
 
 ---
 
-### Feature Slice 22: About Page
+### Feature Slice 22: About Page - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Site Map (/about), Content Strategy
-
-**Summary**: Create about page with mission, philosophy, and team information.
-
-**Acceptance Criteria**:
-- [ ] `/src/pages/about.astro` created
-- [ ] Mission statement section
-- [ ] Philosophy section (Kevin Weil principles from product)
-- [ ] Team section (placeholder for future content)
-- [ ] Link to GitHub repository
-- [ ] Contact information
+See `releases/release-0.22.0.md` for details.
 
 ---
 
@@ -458,12 +448,12 @@ See `releases/release-0.21.0.md` for details.
 | Phase | Slices | Status | Description |
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
-| Phase 2 | 14-23 | In Progress (21 of 23 complete) | Content — All pages, journeys, features, SEO |
+| Phase 2 | 14-23 | In Progress (22 of 23 complete) | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | Planned | Interactive — Mock preview components |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (21 complete, 19 remaining)
+**Total Feature Slices**: 40 (22 complete, 18 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

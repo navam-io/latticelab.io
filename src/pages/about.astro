@@ -1,0 +1,356 @@
+---
+/**
+ * About Page
+ *
+ * Mission statement, philosophy (Kevin Weil principles), team section,
+ * and contact information for Lattice Lab.
+ *
+ * Feature Slice 22: About Page
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import { siteConfig } from '@/lib/constants';
+
+// Philosophy principles (Kevin Weil inspired)
+const philosophyPrinciples = [
+  {
+    title: 'Grounded in Sources',
+    description: 'Every recommendation cites its sources. No hallucinations, no guesswork. You can verify every claim against the original documentation.',
+    icon: 'document',
+  },
+  {
+    title: 'Your Data, Your Control',
+    description: 'Lattice runs entirely on your infrastructure. Your API keys, your research, your artifacts never leave your environment.',
+    icon: 'shield',
+  },
+  {
+    title: 'Transparent by Design',
+    description: "Full source code access. No black boxes, no hidden algorithms. You can audit, modify, and extend Lattice to fit your needs.",
+    icon: 'eye',
+  },
+  {
+    title: 'Research-Grade Quality',
+    description: 'Built for production decisions, not demos. Lattice synthesizes real benchmarks, actual pricing, and official documentation.',
+    icon: 'beaker',
+  },
+];
+
+// Team values
+const teamValues = [
+  {
+    title: 'Engineers First',
+    description: 'Built by engineers, for engineers. We understand the pain of vendor evaluation because we\'ve lived it.',
+  },
+  {
+    title: 'Speed Over Ceremony',
+    description: 'Ship fast, iterate faster. Lattice is designed to give you answers in minutes, not weeks.',
+  },
+  {
+    title: 'Community Driven',
+    description: 'Blueprint contributions, feature requests, and bug reports all happen in the open on GitHub.',
+  },
+];
+
+// Icon paths
+const iconPaths: Record<string, string> = {
+  'document': 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  'shield': 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  'eye': 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
+  'beaker': 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+  'github': 'M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z',
+  'mail': 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  'heart': 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  'users': 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',
+  'lightning': 'M13 10V3L4 14h7v7l9-11h-7z',
+  'chat': 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+};
+---
+
+<PageLayout
+  title="About - Lattice Lab"
+  description="Learn about Lattice Lab's mission to help research engineers make better AI infrastructure decisions with grounded, cited recommendations."
+>
+  <!-- Hero Section -->
+  <Section spacing="lg" background="default" data-testid="about-hero">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl text-center">
+        <span
+          class="mb-4 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
+          data-testid="about-eyebrow"
+        >
+          About Lattice
+        </span>
+        <h1
+          class="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+          data-testid="about-headline"
+        >
+          Research AI Infrastructure with Confidence
+        </h1>
+        <p
+          class="mb-8 text-xl text-muted-foreground"
+          data-testid="about-subhead"
+        >
+          Lattice Lab is an agentic AI research assistant that helps engineering teams make informed decisions about AI infrastructure—backed by real data, not marketing claims.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Mission Section -->
+  <Section spacing="lg" background="muted" data-testid="about-mission">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <div class="grid gap-12 md:grid-cols-2 md:items-center">
+          <div>
+            <h2
+              class="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+              data-testid="about-mission-title"
+            >
+              Our Mission
+            </h2>
+            <p
+              class="mb-4 text-lg text-muted-foreground"
+              data-testid="about-mission-text-1"
+            >
+              AI infrastructure decisions are high-stakes. The wrong model choice costs thousands. The wrong framework delays launches by months. Yet most teams make these decisions based on blog posts and vendor marketing.
+            </p>
+            <p
+              class="text-lg text-muted-foreground"
+              data-testid="about-mission-text-2"
+            >
+              We built Lattice to change that. Our mission is to <strong class="text-foreground">give every research engineer access to grounded, cited recommendations</strong>—the kind of analysis that used to require weeks of manual research or expensive consultants.
+            </p>
+          </div>
+          <div class="flex justify-center">
+            <Card padding="lg" class="w-full max-w-sm text-center" data-testid="about-mission-card">
+              <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
+                <svg class="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['lightning']} />
+                </svg>
+              </div>
+              <p class="text-2xl font-bold text-foreground" data-testid="about-mission-stat">80% faster</p>
+              <p class="text-muted-foreground">AI infrastructure research with Lattice</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Philosophy Section -->
+  <Section spacing="lg" background="default" data-testid="about-philosophy">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-4 text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="about-philosophy-title"
+        >
+          Our Philosophy
+        </h2>
+        <p
+          class="mb-12 text-center text-lg text-muted-foreground"
+          data-testid="about-philosophy-subtitle"
+        >
+          Four principles that guide everything we build
+        </p>
+
+        <div class="grid gap-6 sm:grid-cols-2" data-testid="about-philosophy-grid">
+          {philosophyPrinciples.map((principle, index) => (
+            <Card padding="lg" data-testid={`about-principle-${index}`}>
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10">
+                <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[principle.icon]} />
+                </svg>
+              </div>
+              <h3 class="mb-2 text-lg font-semibold text-foreground" data-testid={`about-principle-${index}-title`}>
+                {principle.title}
+              </h3>
+              <p class="text-muted-foreground" data-testid={`about-principle-${index}-description`}>
+                {principle.description}
+              </p>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Team Section -->
+  <Section spacing="lg" background="muted" data-testid="about-team">
+    <Container size="lg">
+      <div class="mx-auto max-w-4xl">
+        <h2
+          class="mb-4 text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="about-team-title"
+        >
+          Built by Engineers, for Engineers
+        </h2>
+        <p
+          class="mb-12 text-center text-lg text-muted-foreground"
+          data-testid="about-team-subtitle"
+        >
+          Lattice is built by a small team that understands the challenges of AI infrastructure research
+        </p>
+
+        <div class="grid gap-6 sm:grid-cols-3" data-testid="about-team-values">
+          {teamValues.map((value, index) => (
+            <div class="text-center" data-testid={`about-value-${index}`}>
+              <h3 class="mb-2 text-lg font-semibold text-foreground" data-testid={`about-value-${index}-title`}>
+                {value.title}
+              </h3>
+              <p class="text-sm text-muted-foreground" data-testid={`about-value-${index}-description`}>
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Placeholder for future team member cards */}
+        <div class="mt-12 rounded-lg border border-dashed border-border bg-surface-2 p-8 text-center" data-testid="about-team-placeholder">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-surface-3">
+            <svg class="h-6 w-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['users']} />
+            </svg>
+          </div>
+          <p class="text-sm text-muted-foreground">
+            Team member profiles coming soon
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Open Source & GitHub Section -->
+  <Section spacing="lg" background="default" data-testid="about-opensource">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-surface-2">
+          <svg class="h-8 w-8 text-foreground" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d={iconPaths['github']} />
+          </svg>
+        </div>
+        <h2
+          class="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="about-opensource-title"
+        >
+          Transparent Development
+        </h2>
+        <p
+          class="mb-8 text-lg text-muted-foreground"
+          data-testid="about-opensource-description"
+        >
+          Lattice is developed in the open. Browse the code, submit issues, contribute blueprints, or fork it for your own needs. Full source code access with your purchase.
+        </p>
+        <Button
+          variant="secondary"
+          size="lg"
+          href={siteConfig.links.github}
+          class="px-8"
+          data-testid="about-github-button"
+        >
+          <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d={iconPaths['github']} />
+          </svg>
+          View on GitHub
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Contact Section -->
+  <Section spacing="lg" background="muted" data-testid="about-contact">
+    <Container size="lg">
+      <div class="mx-auto max-w-3xl">
+        <div class="grid gap-8 md:grid-cols-2">
+          <Card padding="lg" data-testid="about-contact-support">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['mail']} />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-foreground" data-testid="about-contact-support-title">
+              Support & Questions
+            </h3>
+            <p class="mb-4 text-muted-foreground">
+              Have a question about Lattice? Need help getting started? We're here to help.
+            </p>
+            <a
+              href="mailto:support@latticelab.io"
+              class="font-medium text-accent hover:underline"
+              data-testid="about-email-support"
+            >
+              support@latticelab.io
+            </a>
+          </Card>
+
+          <Card padding="lg" data-testid="about-contact-business">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths['chat']} />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-foreground" data-testid="about-contact-business-title">
+              Partnerships & Enterprise
+            </h3>
+            <p class="mb-4 text-muted-foreground">
+              Interested in enterprise licensing, custom blueprints, or partnership opportunities?
+            </p>
+            <a
+              href="mailto:hello@latticelab.io"
+              class="font-medium text-accent hover:underline"
+              data-testid="about-email-business"
+            >
+              hello@latticelab.io
+            </a>
+          </Card>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section spacing="lg" background="default" data-testid="about-cta">
+    <Container size="md">
+      <div class="text-center">
+        <h2
+          class="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          data-testid="about-cta-headline"
+        >
+          Ready to Transform Your AI Research?
+        </h2>
+        <p
+          class="mb-8 text-lg text-muted-foreground"
+          data-testid="about-cta-subhead"
+        >
+          Join engineers who are making better infrastructure decisions with Lattice.
+        </p>
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-testid="about-cta-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/pricing"
+            class="w-full px-8 sm:w-auto"
+            data-testid="about-cta-primary"
+          >
+            Get Lattice for $99
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href="/features"
+            class="w-full px-8 sm:w-auto"
+            data-testid="about-cta-secondary"
+          >
+            Explore Features
+          </Button>
+        </div>
+        <p class="mt-6 text-sm text-muted-foreground" data-testid="about-cta-trust">
+          30-day money-back guarantee. Full source code access.
+        </p>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
