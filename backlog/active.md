@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.27.0
+**Current Version**: 0.28.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -105,22 +105,9 @@ See `releases/release-0.27.0.md` for details.
 
 ---
 
-### Feature Slice 28: Scenario Preview Component
+### Feature Slice 28: Scenario Preview Component - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Interactive Mock Previews (Scenario Preview)
-
-**Summary**: Create ScenarioPreview React component simulating scenario configuration.
-
-**Acceptance Criteria**:
-- [ ] `src/components/previews/ScenarioPreview.tsx` created
-- [ ] Form with workload type dropdown (Chat, RAG, Agentic, etc.)
-- [ ] Latency slider (P50/P95/P99)
-- [ ] Throughput slider
-- [ ] Budget input field
-- [ ] "Get Recommendations" button with loading spinner
-- [ ] Stack suggestion cards appear after "loading"
-- [ ] Cards show model, framework, estimated cost
-- [ ] Component works as Astro React island
+See `releases/release-0.28.0.md` for details.
 
 ---
 
@@ -396,11 +383,11 @@ See `releases/release-0.27.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (4/7 complete) |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (5/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (27 complete, 13 remaining)
+**Total Feature Slices**: 40 (28 complete, 12 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
