@@ -218,16 +218,27 @@ test.describe('Feature 17: Feature Detail Pages', () => {
   });
 
   test.describe('Screenshot Placeholder Section', () => {
-    test('screenshot section is visible', async ({ page }) => {
-      await page.goto('/features/sources');
+    // Note: Features with interactive previews (lab, sources, scenarios)
+    // now have Try It sections instead of screenshot placeholders.
+    // Only studio still has the screenshot placeholder.
+    test('screenshot section is visible on studio (no preview)', async ({ page }) => {
+      await page.goto('/features/studio');
       const section = page.getByTestId('feature-detail-screenshot');
       await expect(section).toBeVisible();
     });
 
-    test('screenshot placeholder is visible', async ({ page }) => {
-      await page.goto('/features/sources');
+    test('screenshot placeholder is visible on studio (no preview)', async ({ page }) => {
+      await page.goto('/features/studio');
       const placeholder = page.getByTestId('feature-detail-screenshot-placeholder');
       await expect(placeholder).toBeVisible();
+    });
+
+    test('sources page has Try It section instead of screenshot', async ({ page }) => {
+      await page.goto('/features/sources');
+      // Screenshot placeholder should NOT be visible
+      await expect(page.getByTestId('feature-detail-screenshot')).not.toBeVisible();
+      // Try It section should be visible
+      await expect(page.getByTestId('try-it-section')).toBeVisible();
     });
   });
 

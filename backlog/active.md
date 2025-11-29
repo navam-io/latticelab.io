@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.28.0
+**Current Version**: 0.29.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -111,20 +111,9 @@ See `releases/release-0.28.0.md` for details.
 
 ---
 
-### Feature Slice 29: Integrate Previews into Feature Pages
+### Feature Slice 29: Integrate Previews into Feature Pages - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Features)
-
-**Summary**: Add interactive preview components to their respective feature pages.
-
-**Acceptance Criteria**:
-- [ ] ChatPreview added to `/features/lab` page
-- [ ] SourcesPreview added to `/features/sources` page
-- [ ] BlueprintPreview added to `/features/sources` page (secondary)
-- [ ] ScenarioPreview added to `/features/scenarios` page
-- [ ] Previews placed in dedicated "Try It" sections
-- [ ] Fallback to screenshots on reduced motion preference
-- [ ] Mobile-optimized preview layouts
+See `releases/release-0.29.0.md` for details.
 
 ---
 
@@ -383,11 +372,11 @@ See `releases/release-0.28.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (5/7 complete) |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (6/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (28 complete, 12 remaining)
+**Total Feature Slices**: 40 (29 complete, 11 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
