@@ -3,6 +3,7 @@ import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Pricing from '@components/home/Pricing.vue';
 import FAQ from '@components/home/FAQ.vue';
+import NewsletterSection from '@components/NewsletterSection.vue';
 import Footer from '@components/Footer.vue';
 ---
 
@@ -27,6 +28,7 @@ import Footer from '@components/Footer.vue';
 
     <Pricing client:load />
     <FAQ client:load />
+    <NewsletterSection client:load />
   </main>
 
   <Footer client:load />

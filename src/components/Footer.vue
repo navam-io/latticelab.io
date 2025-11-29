@@ -106,6 +106,11 @@
               </a>
             </li>
             <li>
+              <a href="/contact" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Contact
+              </a>
+            </li>
+            <li>
               <a href="https://github.com/lattice-lab" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1">
                 GitHub
                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">

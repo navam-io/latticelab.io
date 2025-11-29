@@ -1,0 +1,20 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import ContactHero from '@components/ContactHero.vue';
+import ContactForm from '@components/ContactForm.vue';
+import Footer from '@components/Footer.vue';
+---
+
+<Layout
+  title="Contact Lattice Lab - Smart AI System Decisions"
+  description="Questions about Lattice? Need help with AI infrastructure decisions? Get in touch with our team for product questions, feature requests, or enterprise inquiries."
+  keywords="contact Lattice Lab, AI infrastructure help, AI system decisions, product questions, enterprise support, Lattice support"
+>
+  <Header client:load />
+  <main>
+    <ContactHero client:load />
+    <ContactForm client:load />
+  </main>
+  <Footer client:load />
+</Layout>
