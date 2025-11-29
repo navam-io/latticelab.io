@@ -83,91 +83,154 @@
           @mouseenter="handleMenuEnter"
           @mouseleave="handleMenuLeave"
         >
-          <div class="container mx-auto px-4 py-6 sm:py-8 max-w-5xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
-              <!-- Sources -->
-              <a
-                href="/features/sources"
-                class="group block p-5 rounded-2xl border border-gray-200 bg-white hover:border-violet-300 hover:shadow-xl hover:shadow-violet-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
-                @click="closeDropdown"
-              >
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                    </svg>
+          <div class="container mx-auto px-4 py-6 sm:py-8 max-w-6xl">
+            <!-- Core Panels Row -->
+            <div class="mb-6">
+              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">Core Panels</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-4">
+                <!-- Sources -->
+                <a
+                  href="/features/sources"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-violet-300 hover:shadow-xl hover:shadow-violet-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-violet-700 transition-colors">Sources</div>
+                      <div class="text-xs text-gray-500">Knowledge Management</div>
+                    </div>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="font-bold text-base text-gray-900 group-hover:text-violet-700 transition-colors mb-1">Sources</div>
-                    <div class="text-sm text-gray-600 leading-relaxed">Knowledge Management</div>
-                  </div>
-                </div>
-              </a>
+                </a>
 
-              <!-- Lab -->
-              <a
-                href="/features/lab"
-                class="group block p-5 rounded-2xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-xl hover:shadow-blue-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
-                @click="closeDropdown"
-              >
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
+                <!-- Lab -->
+                <a
+                  href="/features/lab"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-xl hover:shadow-blue-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-blue-700 transition-colors">Lab</div>
+                      <div class="text-xs text-gray-500">AI-Powered Analysis</div>
+                    </div>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="font-bold text-base text-gray-900 group-hover:text-blue-700 transition-colors mb-1">Lab</div>
-                    <div class="text-sm text-gray-600 leading-relaxed">AI-Powered Analysis</div>
-                  </div>
-                </div>
-              </a>
+                </a>
 
-              <!-- Studio -->
-              <a
-                href="/features/studio"
-                class="group block p-5 rounded-2xl border border-gray-200 bg-white hover:border-teal-300 hover:shadow-xl hover:shadow-teal-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
-                @click="closeDropdown"
-              >
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
+                <!-- Studio -->
+                <a
+                  href="/features/studio"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-teal-300 hover:shadow-xl hover:shadow-teal-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-teal-700 transition-colors">Studio</div>
+                      <div class="text-xs text-gray-500">Artifacts & Exports</div>
+                    </div>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="font-bold text-base text-gray-900 group-hover:text-teal-700 transition-colors mb-1">Studio</div>
-                    <div class="text-sm text-gray-600 leading-relaxed">Artifacts & Exports</div>
-                  </div>
-                </div>
-              </a>
+                </a>
 
-              <!-- Blueprints -->
-              <a
-                href="/features/blueprints"
-                class="group block p-5 rounded-2xl border-2 border-violet-300 bg-gradient-to-br from-slate-50 to-violet-50 hover:border-violet-400 hover:shadow-xl hover:shadow-violet-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation relative"
-                @click="closeDropdown"
-              >
-                <!-- Special badge -->
-                <div class="absolute -top-2 -right-2 px-3 py-1 bg-gradient-to-r from-violet-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg flex items-center gap-1">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                  36 CURATED
-                </div>
+                <!-- Blueprints -->
+                <a
+                  href="/features/blueprints"
+                  class="group block p-4 rounded-2xl border-2 border-violet-300 bg-gradient-to-br from-slate-50 to-violet-50 hover:border-violet-400 hover:shadow-xl hover:shadow-violet-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation relative"
+                  @click="closeDropdown"
+                >
+                  <div class="absolute -top-2 -right-2 px-2 py-0.5 bg-gradient-to-r from-violet-500 to-blue-600 text-white text-[10px] font-bold rounded-full shadow-lg">
+                    36
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-violet-700 transition-colors">Blueprints</div>
+                      <div class="text-xs text-gray-500">Curated Bundles</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
 
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                    </svg>
+            <!-- Configuration Row -->
+            <div>
+              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">Configuration</div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-4">
+                <!-- Scenarios -->
+                <a
+                  href="/features/scenarios"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-amber-300 hover:shadow-xl hover:shadow-amber-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-amber-700 transition-colors">Scenarios</div>
+                      <div class="text-xs text-gray-500">Use Case Definition</div>
+                    </div>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="font-bold text-base text-gray-900 group-hover:text-violet-700 transition-colors mb-1">Blueprints</div>
-                    <div class="text-sm text-gray-600 leading-relaxed">Curated Knowledge Bundles</div>
+                </a>
+
+                <!-- Stacks -->
+                <a
+                  href="/features/stacks"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-emerald-300 hover:shadow-xl hover:shadow-emerald-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-emerald-700 transition-colors">Stacks</div>
+                      <div class="text-xs text-gray-500">Infrastructure Config</div>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+
+                <!-- Settings -->
+                <a
+                  href="/features/settings"
+                  class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-slate-400 hover:shadow-xl hover:shadow-slate-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                  @click="closeDropdown"
+                >
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-slate-400 to-gray-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-bold text-sm text-gray-900 group-hover:text-slate-700 transition-colors">Settings</div>
+                      <div class="text-xs text-gray-500">Customization</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

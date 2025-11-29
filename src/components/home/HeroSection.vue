@@ -257,7 +257,7 @@ const features: Feature[] = [
       'Budget and cost constraints',
       'Natural language requirement extraction'
     ],
-    screenshot: '/images/journeys/select-scenario/select-scenario-02.png',
+    screenshot: '/images/journeys/edit-scenario/edit-scenario-02.png',
     link: '/features/scenarios',
     color: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
     glowColor: 'bg-amber-500/30',
@@ -274,7 +274,7 @@ const features: Feature[] = [
       'Framework configuration (vLLM, TensorRT)',
       'AI-suggested stack recommendations'
     ],
-    screenshot: '/images/journeys/select-stack/select-stack-02.png',
+    screenshot: '/images/journeys/create-stack/create-stack-03.png',
     link: '/features/stacks',
     color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
     glowColor: 'bg-emerald-500/30',
