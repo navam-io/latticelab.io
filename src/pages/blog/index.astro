@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
+import BlogHome from '@components/blog/BlogHome.vue';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -18,143 +19,34 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-// Get unique tags
+// Get unique tags sorted alphabetically
 const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+
+// Serialize posts for Vue component
+const serializedPosts = sortedPosts.map(post => ({
+  slug: post.slug,
+  data: {
+    ...post.data,
+    pubDate: post.data.pubDate?.toISOString(),
+    date: post.data.date?.toISOString(),
+  }
+}));
 ---
 
 <Layout
-  title="Blog - Lattice"
-  description="Learn how to use Lattice for AI infrastructure research. Guides, tutorials, and best practices for making confident AI decisions."
-  keywords="Lattice blog, AI research guides, LLM evaluation, AI infrastructure tutorials"
+  title="Confident AI System Decisions - Lattice Guides"
+  description="Step-by-step guides to master AI infrastructure research with Lattice. From creating your first workspace to advanced workflows."
+  keywords="Lattice guides, AI research tutorials, LLM evaluation, AI infrastructure how-to"
 >
   <Header client:load />
 
   <main>
-    <!-- Hero Section -->
-    <section class="py-16 bg-gradient-to-br from-violet-50 to-blue-50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Lattice Blog
-          </h1>
-          <p class="text-xl text-gray-600">
-            Guides, tutorials, and best practices for AI infrastructure research.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tags Filter -->
-    <section class="py-8 bg-white border-b">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-wrap gap-2 justify-center">
-          <a
-            href="/blog"
-            class="px-4 py-2 rounded-full text-sm font-medium bg-violet-100 text-violet-700 hover:bg-violet-200 transition-colors"
-          >
-            All
-          </a>
-          {allTags.map(tag => (
-            <a
-              href={`/blog?tag=${encodeURIComponent(tag)}`}
-              class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
-            >
-              {tag}
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Blog Posts Grid -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          {sortedPosts.length > 0 ? (
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {sortedPosts.map((post) => {
-                const postDate = post.data.pubDate || post.data.date;
-                const formattedDate = postDate
-                  ? new Date(postDate).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })
-                  : '';
-
-                return (
-                  <a
-                    href={`/blog/${post.slug}`}
-                    class="group block bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-violet-300 hover:shadow-xl transition-all duration-300"
-                  >
-                    {post.data.featuredImage && (
-                      <div class="aspect-video bg-gray-100 overflow-hidden">
-                        <img
-                          src={post.data.featuredImage}
-                          alt={post.data.title}
-                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <div class="p-6">
-                      {post.data.featured && (
-                        <span class="inline-block px-3 py-1 bg-violet-100 text-violet-700 text-xs font-medium rounded-full mb-3">
-                          Featured
-                        </span>
-                      )}
-                      <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors line-clamp-2">
-                        {post.data.title}
-                      </h2>
-                      {(post.data.description || post.data.excerpt) && (
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                          {post.data.description || post.data.excerpt}
-                        </p>
-                      )}
-                      <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>{formattedDate}</span>
-                        {post.data.readingTime && (
-                          <span>{post.data.readingTime}</span>
-                        )}
-                      </div>
-                      {post.data.tags && post.data.tags.length > 0 && (
-                        <div class="flex flex-wrap gap-2 mt-4">
-                          {post.data.tags.slice(0, 3).map(tag => (
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          ) : (
-            <div class="text-center py-16">
-              <p class="text-gray-600 text-lg">No blog posts yet. Check back soon!</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
+    <BlogHome
+      client:load
+      posts={serializedPosts}
+      allTags={allTags}
+    />
   </main>
 
   <Footer client:load />
 </Layout>
-
-<style>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>
