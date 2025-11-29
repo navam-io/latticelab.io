@@ -98,8 +98,8 @@ function SourceCard({ source, index }: SourceCardProps) {
             >
               <button
                 type="button"
-                className="rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-foreground"
-                aria-label="View source"
+                className="rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
+                aria-label={`View ${source.name}`}
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -108,8 +108,8 @@ function SourceCard({ source, index }: SourceCardProps) {
               </button>
               <button
                 type="button"
-                className="rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-red-500"
-                aria-label="Remove source"
+                className="rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
+                aria-label={`Remove ${source.name}`}
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -199,7 +199,7 @@ export function SourcesPreview() {
               <button
                 type="button"
                 onClick={handleClearSearch}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 rounded-sm"
                 aria-label="Clear search"
                 data-testid="sources-search-clear"
               >
@@ -285,7 +285,7 @@ export function SourcesPreview() {
                     </>
                   )}
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="mt-1 text-xs text-muted-foreground" id="dropzone-hint">
                   PDF, URL, or API endpoint
                 </p>
               </>

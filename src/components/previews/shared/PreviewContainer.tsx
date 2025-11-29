@@ -56,7 +56,8 @@ export function PreviewContainer({
             <button
               type="button"
               onClick={onReplay}
-              className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-surface-3 hover:text-foreground"
+              className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-surface-3 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              aria-label="Replay demo"
               data-testid="preview-replay-button"
             >
               <svg

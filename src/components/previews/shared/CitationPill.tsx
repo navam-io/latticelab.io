@@ -23,27 +23,31 @@ interface CitationPillProps {
 }
 
 export function CitationPill({ citation, className = '' }: CitationPillProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <span
       className={`relative inline-block ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
     >
       <motion.button
         type="button"
-        className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent/20 px-1.5 text-xs font-medium text-accent transition-colors hover:bg-accent/30"
+        className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent/20 px-1.5 text-xs font-medium text-accent transition-colors hover:bg-accent/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        onFocus={() => setIsOpen(true)}
+        onBlur={() => setIsOpen(false)}
         data-testid={`citation-pill-${citation.id}`}
         aria-label={`Citation ${citation.number}: ${citation.source}`}
+        aria-expanded={isOpen}
+        aria-describedby={`citation-tooltip-${citation.id}`}
       >
         {citation.number}
       </motion.button>
 
       <AnimatePresence>
-        {isHovered && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 4, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

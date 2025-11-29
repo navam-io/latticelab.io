@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.33.0
+**Current Version**: 0.34.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -157,23 +157,9 @@ See `releases/release-0.33.0.md` for details.
 
 ---
 
-### Feature Slice 34: Accessibility Audit & Fixes
+### Feature Slice 34: Accessibility Audit & Fixes - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Accessibility Checklist
-
-**Summary**: Conduct accessibility audit and fix issues to meet WCAG 2.1 AA.
-
-**Acceptance Criteria**:
-- [ ] Color contrast ≥ 4.5:1 (text), ≥ 3:1 (large text)
-- [ ] Focus indicators on all interactive elements
-- [ ] Skip-to-content link added
-- [ ] Semantic HTML verified (heading hierarchy)
-- [ ] Alt text on all images
-- [ ] ARIA labels where needed
-- [ ] Full keyboard navigation
-- [ ] `prefers-reduced-motion` support for animations
-- [ ] Screen reader testing (VoiceOver)
-- [ ] Lighthouse Accessibility score: 100
+See `releases/release-0.34.0.md` for details.
 
 ---
 
@@ -324,9 +310,9 @@ See `releases/release-0.33.0.md` for details.
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance (1/8 complete), accessibility, testing, screenshots, launch |
+| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance, accessibility (2/8 complete), testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (33 complete, 7 remaining)
+**Total Feature Slices**: 40 (34 complete, 6 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

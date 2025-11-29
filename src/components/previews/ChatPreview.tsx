@@ -8,7 +8,7 @@
  * Feature Slice 25: Chat Preview Component
  */
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   TypingIndicator,
   CitationPill,
@@ -46,6 +46,9 @@ export function ChatPreview() {
   const [showThinking, setShowThinking] = useState(true);
   const [artifact, setArtifact] = useState<Artifact | null>(null);
   const [demoKey, setDemoKey] = useState(0);
+
+  // Accessibility: respect reduced motion preference
+  const prefersReducedMotion = useReducedMotion();
 
   // Refs for cleanup
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -114,6 +117,15 @@ export function ChatPreview() {
 
   const streamResponse = useCallback(() => {
     const fullContent = demoChatMessages[1].content;
+
+    // If user prefers reduced motion, show full content immediately
+    if (prefersReducedMotion) {
+      setStreamedContent(fullContent);
+      setPhase('complete');
+      setArtifact(demoArtifact);
+      return;
+    }
+
     let charIndex = 0;
     streamingRef.current = true;
 
@@ -145,7 +157,7 @@ export function ChatPreview() {
     };
 
     streamChar();
-  }, []);
+  }, [prefersReducedMotion]);
 
   const handleReplay = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -274,7 +286,10 @@ export function ChatPreview() {
                 >
                   <button
                     onClick={toggleThinking}
-                    className="flex w-full items-center gap-2 text-left text-sm text-muted-foreground hover:text-foreground"
+                    className="flex w-full items-center gap-2 text-left text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+                    aria-expanded={showThinking}
+                    aria-controls="thinking-steps-content"
+                    aria-label={`${showThinking ? 'Hide' : 'Show'} thinking steps`}
                     data-testid="thinking-toggle"
                   >
                     <svg
@@ -300,10 +315,13 @@ export function ChatPreview() {
                   <AnimatePresence>
                     {showThinking && (
                       <motion.div
+                        id="thinking-steps-content"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         className="mt-2 space-y-1 overflow-hidden"
+                        role="region"
+                        aria-label="Thinking steps"
                       >
                         {thinkingSteps.map((step, index) => (
                           <motion.div
@@ -425,13 +443,19 @@ export function ChatPreview() {
         </AnimatePresence>
       </div>
 
-      {/* Status Bar */}
+      {/* Status Bar with ARIA live region for screen readers */}
       <div
         className="flex items-center justify-between border-t border-border bg-surface-2 px-4 py-2"
         data-testid="chat-status-bar"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
       >
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span className={`h-2 w-2 rounded-full ${phase === 'complete' ? 'bg-green-500' : 'bg-amber-500 animate-pulse'}`} />
+          <span
+            className={`h-2 w-2 rounded-full ${phase === 'complete' ? 'bg-green-500' : 'bg-amber-500 animate-pulse'}`}
+            aria-hidden="true"
+          />
           <span>
             {phase === 'idle' && 'Starting demo...'}
             {phase === 'user-message' && 'User query'}
