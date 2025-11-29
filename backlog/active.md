@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.29.0
+**Current Version**: 0.30.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -117,19 +117,15 @@ See `releases/release-0.29.0.md` for details.
 
 ---
 
-### Feature Slice 30: Homepage Interactive Preview Section
+### Feature Slice 30: Homepage Interactive Preview Section - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Homepage section 6)
+See `releases/release-0.30.0.md` for details.
 
-**Summary**: Add interactive preview section to homepage showcasing chat interface.
+---
 
-**Acceptance Criteria**:
-- [ ] New section added between Solution and Privacy sections
-- [ ] ChatPreview embedded with introduction copy
-- [ ] Section headline: "See Lattice in Action"
-- [ ] Brief explanation of what the demo shows
-- [ ] CTA to view more features
-- [ ] Smooth scroll-triggered animation on section entry
+## Phase 3: Interactive Previews - COMPLETE
+
+All 7 feature slices (24-30) in Phase 3 are now complete.
 
 ---
 
@@ -372,11 +368,11 @@ See `releases/release-0.29.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (6/7 complete) |
+| Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (29 complete, 11 remaining)
+**Total Feature Slices**: 40 (30 complete, 10 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 
