@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.18.0
+**Current Version**: 0.19.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -43,24 +43,9 @@ See `releases/release-0.18.0.md` for details.
 
 ---
 
-### Feature Slice 19: Journey Detail Pages — Content Structure
+### Feature Slice 19: Journey Detail Pages — Content Structure - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Page Specifications (Journeys), Content Strategy
-
-**Summary**: Create MDX content structure and dynamic routing for journey pages.
-
-**Acceptance Criteria**:
-- [ ] Content collection defined for journeys in `src/content/config.ts`
-- [ ] 6 journey MDX files created:
-  - [ ] `create-workspace.mdx`
-  - [ ] `switch-workspace.mdx`
-  - [ ] `configure-settings.mdx`
-  - [ ] `manage-api-keys.mdx`
-  - [ ] `browse-blueprints.mdx`
-  - [ ] `apply-blueprint.mdx`
-- [ ] `src/pages/journeys/[slug].astro` — Dynamic routing
-- [ ] `JourneyLayout.astro` — Layout with step navigation
-- [ ] Each journey has: JTBD statement, introduction, steps with screenshot placeholders, conclusion
+See `releases/release-0.19.0.md` for details.
 
 ---
 
@@ -500,7 +485,7 @@ See `releases/release-0.18.0.md` for details.
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (18 complete, 22 remaining)
+**Total Feature Slices**: 40 (19 complete, 21 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

@@ -25,8 +25,16 @@ const journeys = defineCollection({
     title: z.string(),
     description: z.string(),
     jtbd: z.string(), // Jobs to be done statement
+    category: z.enum(['Getting Started', 'Configuration', 'Sources']),
+    estimatedTime: z.string(),
     thumbnail: z.string().optional(),
     order: z.number().default(0),
+    steps: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+      screenshot: z.string().optional(),
+      tip: z.string().optional(),
+    })),
   }),
 });
 

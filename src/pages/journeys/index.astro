@@ -6,76 +6,38 @@
  * demonstrates a real workflow step-by-step with screenshots.
  *
  * Feature Slice 18: Journeys Index Page
+ * Updated in Feature Slice 19 to use content collection
  */
+import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import Card from '@/components/ui/Card.astro';
 import Button from '@/components/ui/Button.astro';
 
-// Journey data - will be replaced with content collection in Feature Slice 19
-const journeys = [
-  {
-    slug: 'create-workspace',
-    title: 'Create Workspace',
-    jtbd: 'When I start a new AI research project, I want to create a dedicated workspace so that I can organize my sources and conversations.',
-    description: 'Set up a new workspace for your AI research project with custom settings and blueprint selections.',
-    category: 'Getting Started',
-    steps: 4,
-    estimatedTime: '2 minutes',
-    icon: 'folder-plus',
-  },
-  {
-    slug: 'switch-workspace',
-    title: 'Switch Workspace',
-    jtbd: 'When I need to work on a different project, I want to quickly switch workspaces so that I can access the right sources and context.',
-    description: 'Seamlessly switch between different research projects while maintaining context and conversation history.',
-    category: 'Getting Started',
-    steps: 3,
-    estimatedTime: '30 seconds',
-    icon: 'arrows-right-left',
-  },
-  {
-    slug: 'configure-settings',
-    title: 'Configure Settings',
-    jtbd: 'When I want to customize my research experience, I want to adjust settings so that Lattice works the way I prefer.',
-    description: 'Customize your Lattice experience with theme preferences, AI model selection, and output formatting options.',
-    category: 'Configuration',
-    steps: 5,
-    estimatedTime: '3 minutes',
-    icon: 'settings',
-  },
-  {
-    slug: 'manage-api-keys',
-    title: 'Manage API Keys',
-    jtbd: 'When I need to connect to AI providers, I want to securely manage my API keys so that I can use my own accounts.',
-    description: 'Add, update, and manage API keys for various AI providers including OpenAI, Anthropic, and more.',
-    category: 'Configuration',
-    steps: 4,
-    estimatedTime: '2 minutes',
-    icon: 'key',
-  },
-  {
-    slug: 'browse-blueprints',
-    title: 'Browse Blueprints',
-    jtbd: 'When I want to research a specific vendor, I want to browse available blueprints so that I can quickly add relevant sources.',
-    description: 'Explore the blueprint gallery to find pre-configured source bundles for major AI vendors and frameworks.',
-    category: 'Sources',
-    steps: 3,
-    estimatedTime: '1 minute',
-    icon: 'grid',
-  },
-  {
-    slug: 'apply-blueprint',
-    title: 'Apply Blueprint',
-    jtbd: 'When I find a relevant blueprint, I want to apply it to my workspace so that I can immediately start researching.',
-    description: 'Apply a blueprint to your workspace to instantly add curated sources for a specific vendor or topic.',
-    category: 'Sources',
-    steps: 4,
-    estimatedTime: '1 minute',
-    icon: 'download',
-  },
-];
+// Get journeys from content collection
+const journeyEntries = await getCollection('journeys');
+const journeys = journeyEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    slug: entry.slug,
+    title: entry.data.title,
+    jtbd: entry.data.jtbd,
+    description: entry.data.description,
+    category: entry.data.category,
+    steps: entry.data.steps.length,
+    estimatedTime: entry.data.estimatedTime,
+  }));
+
+// Icon mapping based on journey slug
+const journeyIcons: Record<string, string> = {
+  'create-workspace': 'folder-plus',
+  'switch-workspace': 'arrows-right-left',
+  'configure-settings': 'settings',
+  'manage-api-keys': 'key',
+  'browse-blueprints': 'grid',
+  'apply-blueprint': 'download',
+};
 
 // Group journeys by category
 const categories = [...new Set(journeys.map((j) => j.category))];
@@ -173,7 +135,7 @@ const iconPaths: Record<string, string> = {
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="1.5"
-                        d={iconPaths[journey.icon]}
+                        d={iconPaths[journeyIcons[journey.slug]]}
                       />
                     </svg>
                   </div>
