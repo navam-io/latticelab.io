@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.32.0
+**Current Version**: 0.33.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -151,23 +151,9 @@ All 2 feature slices (31-32) in Phase 4 are now complete.
 
 ## Phase 5: Polish & Launch
 
-### Feature Slice 33: Performance Optimization
+### Feature Slice 33: Performance Optimization - COMPLETE
 
-**Spec Reference**: `website-spec.md` → SEO & Performance (Performance Targets, Optimizations)
-
-**Summary**: Optimize site performance to meet Lighthouse targets.
-
-**Acceptance Criteria**:
-- [ ] Lighthouse Performance score: 95+
-- [ ] First Contentful Paint: < 1.0s
-- [ ] Largest Contentful Paint: < 2.0s
-- [ ] Cumulative Layout Shift: < 0.1
-- [ ] Total Blocking Time: < 200ms
-- [ ] Images optimized with Astro `<Image />` component
-- [ ] Fonts preloaded with `font-display: swap`
-- [ ] JavaScript code-split per island
-- [ ] CSS purged of unused styles
-- [ ] Build output analyzed for bundle size
+See `releases/release-0.33.0.md` for details.
 
 ---
 
@@ -338,9 +324,9 @@ All 2 feature slices (31-32) in Phase 4 are now complete.
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
 | Phase 3 | 24-30 | **COMPLETE** | Interactive — Mock preview components (7/7 complete) |
 | Phase 4 | 31-32 | **COMPLETE** | Purchase — Stripe integration, analytics |
-| Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
+| Phase 5 | 33-38c | **IN PROGRESS** | Polish — Performance (1/8 complete), accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (32 complete, 8 remaining)
+**Total Feature Slices**: 40 (33 complete, 7 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

@@ -1,4 +1,12 @@
 ---
+/**
+ * Page Layout
+ *
+ * Standard page layout with Header, Footer, and skip-to-content link.
+ *
+ * Feature Slice 33: Performance Optimization
+ * - Added skip-to-content link for accessibility and faster perceived navigation
+ */
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -13,8 +21,12 @@ const { title, description, noindex } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} noindex={noindex}>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link" data-testid="skip-link">
+    Skip to main content
+  </a>
   <Header />
-  <main class="min-h-[calc(100vh-16rem)]">
+  <main id="main-content" class="min-h-[calc(100vh-16rem)]" tabindex="-1">
     <slot />
   </main>
   <Footer />
