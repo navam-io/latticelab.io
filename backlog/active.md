@@ -1,6 +1,6 @@
 # Lattice Lab Website — Active Backlog
 
-**Current Version**: 0.24.0
+**Current Version**: 0.25.0
 **Spec Reference**: [website-spec.md](./website-spec.md)
 
 ---
@@ -87,22 +87,9 @@ See `releases/release-0.24.0.md` for details.
 
 ---
 
-### Feature Slice 25: Chat Preview Component
+### Feature Slice 25: Chat Preview Component - COMPLETE
 
-**Spec Reference**: `website-spec.md` → Interactive Mock Previews (Chat Preview)
-
-**Summary**: Create ChatPreview React component simulating the Lab panel chat experience.
-
-**Acceptance Criteria**:
-- [ ] `src/components/previews/ChatPreview.tsx` created
-- [ ] Pre-scripted conversation from Appendix B
-- [ ] Typing indicator animation (1.5s delay)
-- [ ] AI response streams in character-by-character
-- [ ] Citation pills that expand on hover
-- [ ] Thinking steps that collapse/expand
-- [ ] Artifact card appears in sidebar after response
-- [ ] "Play Demo" button to restart conversation
-- [ ] Component works as Astro React island (`client:visible`)
+See `releases/release-0.25.0.md` for details.
 
 ---
 
@@ -431,11 +418,11 @@ See `releases/release-0.24.0.md` for details.
 |-------|--------|--------|-------------|
 | Phase 1 | 1-13 | **COMPLETE** | Foundation — Project setup, design system, logo/branding, homepage (CRO-optimized), deployment |
 | Phase 2 | 14-23 | **COMPLETE** | Content — All pages, journeys, features, SEO |
-| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (1/7 complete) |
+| Phase 3 | 24-30 | **IN PROGRESS** | Interactive — Mock preview components (2/7 complete) |
 | Phase 4 | 31-32 | Planned | Purchase — Stripe integration, analytics |
 | Phase 5 | 33-38c | Planned | Polish — Performance, accessibility, testing, screenshots, launch |
 
-**Total Feature Slices**: 40 (24 complete, 16 remaining)
+**Total Feature Slices**: 40 (25 complete, 15 remaining)
 
 **New slices added (37b, 37c)**: Product screenshot integration expanded to include logo assets and design system enhancements based on Lattice product review.
 

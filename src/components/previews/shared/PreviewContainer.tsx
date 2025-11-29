@@ -15,6 +15,7 @@ interface PreviewContainerProps {
   className?: string;
   showWindowControls?: boolean;
   onReplay?: () => void;
+  'data-testid'?: string;
 }
 
 export function PreviewContainer({
@@ -23,6 +24,7 @@ export function PreviewContainer({
   className = '',
   showWindowControls = true,
   onReplay,
+  'data-testid': testId = 'preview-container',
 }: PreviewContainerProps) {
   return (
     <motion.div
@@ -30,7 +32,7 @@ export function PreviewContainer({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={`overflow-hidden rounded-xl border border-border bg-background shadow-2xl ${className}`}
-      data-testid="preview-container"
+      data-testid={testId}
     >
       {/* Window chrome / title bar */}
       {showWindowControls && (

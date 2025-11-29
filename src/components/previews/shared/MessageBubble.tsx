@@ -16,6 +16,7 @@ interface MessageBubbleProps {
   children: ReactNode;
   isStreaming?: boolean;
   className?: string;
+  'data-testid'?: string;
 }
 
 export function MessageBubble({
@@ -23,6 +24,7 @@ export function MessageBubble({
   children,
   isStreaming = false,
   className = '',
+  'data-testid': testId,
 }: MessageBubbleProps) {
   const isUser = role === 'user';
 
@@ -32,7 +34,7 @@ export function MessageBubble({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} ${className}`}
-      data-testid={`message-bubble-${role}`}
+      data-testid={testId || `message-bubble-${role}`}
     >
       <div
         className={`max-w-[85%] rounded-2xl px-4 py-3 ${
