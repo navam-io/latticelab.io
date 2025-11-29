@@ -20,8 +20,11 @@
           <!-- Glassmorphism Card with Subtitle -->
           <div class="backdrop-blur-xl bg-gradient-to-br from-violet-500/10 via-white/5 to-blue-500/10 border border-violet-400/30 rounded-3xl pt-6 pb-8 px-8 md:px-10 shadow-2xl animate-slide-up max-w-3xl mx-auto hero-glass-card">
             <!-- White Subheading -->
-            <p class="text-xl md:text-2xl lg:text-3xl font-semibold leading-relaxed mb-6 text-white">
-              Agentic AI Lab Assistant for Research Engineers, Platform Leads & CTOs
+            <p class="text-xl md:text-2xl lg:text-3xl font-semibold leading-relaxed mb-2 text-white">
+              AI infrastructure decisions, grounded in evidence
+            </p>
+            <p class="text-base md:text-lg text-white/70 mb-6">
+              Lattice runs privately on your laptop or cloud. Your data, your control.
             </p>
 
             <!-- CTA Button -->
