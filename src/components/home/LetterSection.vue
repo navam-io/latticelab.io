@@ -1,6 +1,26 @@
 <template>
-  <section class="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-    <div class="container mx-auto px-4">
+  <section class="relative py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 overflow-hidden">
+    <!-- Lattice pattern background (logo-inspired diamond grid) -->
+    <div class="absolute inset-0 opacity-[0.06]">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="lattice-diamond" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+            <!-- Diamond lattice grid lines inspired by the logo -->
+            <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="#92400e" stroke-width="1.5"/>
+            <circle cx="30" cy="0" r="2" fill="#92400e"/>
+            <circle cx="60" cy="30" r="2" fill="#92400e"/>
+            <circle cx="30" cy="60" r="2" fill="#92400e"/>
+            <circle cx="0" cy="30" r="2" fill="#92400e"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#lattice-diamond)"/>
+      </svg>
+    </div>
+
+    <!-- Radial gradient overlay to fade edges -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-amber-50/80"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-3xl mx-auto">
         <!-- Premium Paper Effect -->
         <div class="letter-paper relative bg-white rounded-sm shadow-2xl p-8 md:p-12 lg:p-16">

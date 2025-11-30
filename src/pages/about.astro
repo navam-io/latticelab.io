@@ -14,8 +14,13 @@ import Footer from '@components/Footer.vue';
 
   <main>
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-violet-50 via-white to-blue-50">
-      <div class="container mx-auto px-4">
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-violet-50 via-white to-blue-50 overflow-hidden">
+      <!-- Lattice Cross Pattern Background (blog-style, dark for light bg) -->
+      <div class="absolute inset-0 opacity-[0.04]">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%236d28d9&quot; fill-opacity=&quot;0.6&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Making AI Infrastructure Decisions
