@@ -2,7 +2,7 @@
   <footer class="border-t bg-gray-50">
     <div class="container mx-auto px-4 py-12">
       <!-- Footer Navigation -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         <!-- Column 1: Features (2-column layout) -->
         <div>
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Features</h3>
@@ -113,6 +113,53 @@
               </a>
             </li>
           </ul>
+        </div>
+
+        <!-- Column 4: Popular Guides (2-column layout) -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Popular Guides</h3>
+          <div class="grid grid-cols-2 gap-x-6 gap-y-3">
+            <div>
+              <a href="/blog/create-workspace" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Creating a Workspace
+              </a>
+            </div>
+            <div>
+              <a href="/blog/chat-with-ai" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Chat with AI Agent
+              </a>
+            </div>
+            <div>
+              <a href="/blog/apply-blueprint" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Applying Blueprints
+              </a>
+            </div>
+            <div>
+              <a href="/blog/add-sources" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Adding Sources
+              </a>
+            </div>
+            <div>
+              <a href="/blog/save-artifact" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Saving Artifacts
+              </a>
+            </div>
+            <div>
+              <a href="/blog/view-artifact" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Viewing Artifacts
+              </a>
+            </div>
+            <div>
+              <a href="/blog/create-scenario" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Creating Scenarios
+              </a>
+            </div>
+            <div>
+              <a href="/blog/create-stack" class="text-gray-600 hover:text-gray-900 transition-colors">
+                Creating Stacks
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
