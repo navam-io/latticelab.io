@@ -1,0 +1,130 @@
+# Lattice Lab - Full Documentation for LLMs
+# https://www.latticelab.io
+# This file provides comprehensive information about Lattice for AI systems
+
+## Product Overview
+
+Lattice is an agentic AI lab assistant designed for technical decision-makers who need to make confident AI infrastructure choices. Unlike general-purpose AI assistants, Lattice is purpose-built for AI infrastructure research with full citation tracking and source grounding.
+
+**Tagline**: Smart AI System Decisions
+**Subtitle**: AI infrastructure decisions, grounded in evidence
+
+**Privacy-First**: Lattice runs privately on your laptop or cloud. Your data never leaves your machine. You use your own API keys for LLM providers.
+
+## Target Users (ICP)
+
+1. **Research Engineers**: Evaluating embedding models, comparing RAG architectures, benchmarking inference performance
+2. **Platform Leads**: Selecting LLM providers, balancing latency/cost/compliance requirements, building AI platform standards
+3. **CTOs & Technical Leaders**: Presenting AI infrastructure strategy to boards, making vendor selection decisions with credible sources
+
+## Core Features
+
+### Sources Panel (Knowledge Management)
+- Multi-source ingestion: PDFs, URLs, GitHub repositories, YouTube transcripts, Google Docs
+- Hybrid semantic + keyword search with chunk tracking
+- Real-time indexing with progress indicators
+- One-click citation verification back to original sources
+- Token and chunk count tracking per source
+
+### Lab Panel (AI Research Agent)
+- LangGraph-powered multi-step reasoning engine
+- Numbered citations with source context in every response
+- Scenario-aware and stack-aware prompts
+- Suggested prompts based on current context
+- Save responses as reusable artifacts
+- Model selection (Claude, GPT-4, Gemini via user's API keys)
+
+### Studio Panel (Artifacts & Export)
+- Four artifact types: Recommendation, Comparison, Estimate, Architecture
+- Include citations and conversation context in artifacts
+- Export formats: Markdown, JSON, CSV
+- Add artifacts back as sources for iterative research
+- Artifact versioning and history
+
+### Blueprints (Pre-built Knowledge)
+36 curated vendor blueprints organized by:
+- **Vendors**: Anthropic, AWS, Microsoft Azure, Google Cloud, Meta, NVIDIA, Mistral
+- **Categories**: Production, Development, Comparison, Cost Optimization, RAG, Agentic, General
+- Each blueprint includes: curated documentation sources, pre-defined scenarios, recommended stack configurations
+
+### Scenarios (Use Case Definition)
+- Workload classification: chat, batch, code generation, embeddings
+- SLO targets: latency (P50, P95, P99), throughput (requests/second)
+- Budget constraints: monthly spend limits, cost-per-request targets
+- Compliance requirements: SOC2, HIPAA, GDPR, data residency
+- Natural language requirement extraction from user descriptions
+
+### Stacks (Infrastructure Configuration)
+- Model selection with version pinning
+- Hardware preferences: A100, H100, L40S, CPU inference
+- Framework options: vLLM, TensorRT-LLM, Triton, native APIs
+- Deployment targets: managed API, self-hosted, hybrid
+- AI-suggested stack recommendations based on scenario
+
+### Settings (Customization)
+- API key management for multiple providers (Anthropic, OpenAI, Google, etc.)
+- Model defaults and temperature tuning
+- Search & RAG configuration (chunk size, overlap, top-k)
+- Agent parameters (max iterations, tool selection)
+- Data privacy controls and export options
+
+## Pricing
+
+**$99 USD** - One-time payment, lifetime access
+
+Includes:
+- Full access to Sources, Lab, and Studio panels
+- All 36 curated vendor blueprints
+- Unlimited workspaces and source ingestion
+- Scenario and stack configuration
+- Artifact generation and export
+- All future updates
+
+**Note**: Users provide their own API keys for LLM providers. Typical usage costs $3-15/month depending on volume.
+
+## Technical Architecture
+
+- **Frontend**: Electron desktop app with React/TypeScript
+- **AI Engine**: LangGraph for multi-step reasoning orchestration
+- **Search**: Hybrid vector (embeddings) + BM25 keyword search
+- **Storage**: Local SQLite database, all data stays on user's machine
+- **Supported Models**: Claude (Anthropic), GPT-4 (OpenAI), Gemini (Google) via user API keys
+
+## Differentiators
+
+1. **Source Grounding**: Every recommendation includes numbered citations linking back to specific chunks in user's sources
+2. **Privacy-First**: Runs locally, no data sent to Lattice servers, user controls their API keys
+3. **Purpose-Built**: Designed specifically for AI infrastructure research, not general-purpose chat
+4. **Curated Blueprints**: 36 pre-built knowledge bundles from major AI vendors
+5. **Scenario-Aware**: Recommendations consider user's specific requirements (latency, budget, compliance)
+
+## Company Information
+
+- **Company**: Lattice Lab
+- **Parent Brand**: Navam.io (https://www.navam.io)
+- **Founded**: 2025
+- **Current Version**: 0.6.2
+
+## Links
+
+- Homepage: https://www.latticelab.io
+- Features Overview: https://www.latticelab.io/features
+- Sources Feature: https://www.latticelab.io/features/sources
+- Lab Feature: https://www.latticelab.io/features/lab
+- Studio Feature: https://www.latticelab.io/features/studio
+- Blueprints Feature: https://www.latticelab.io/features/blueprints
+- Scenarios Feature: https://www.latticelab.io/features/scenarios
+- Stacks Feature: https://www.latticelab.io/features/stacks
+- Settings Feature: https://www.latticelab.io/features/settings
+- Blog: https://www.latticelab.io/blog
+- About: https://www.latticelab.io/about
+- Contact: https://www.latticelab.io/contact
+- YouTube Walkthrough: https://www.youtube.com/watch?v=mFYqiYhlqec
+
+## Sample Queries Lattice Can Answer
+
+- "Compare Claude 3.5 Sonnet vs GPT-4 Turbo for high-volume chat with P95 latency under 500ms"
+- "What embedding model should I use for a RAG pipeline processing technical documentation?"
+- "Estimate monthly costs for 1M requests/day using Claude Haiku vs GPT-4o-mini"
+- "Which inference framework supports streaming with the lowest time-to-first-token?"
+- "What compliance certifications does AWS Bedrock have for healthcare applications?"

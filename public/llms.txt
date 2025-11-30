@@ -1,0 +1,46 @@
+# Lattice Lab - llms.txt
+# https://www.latticelab.io
+# Learn more about llms.txt: https://llmstxt.org
+
+> Lattice is an agentic AI lab assistant that helps teams make confident AI infrastructure decisions with grounded recommendations and full citations.
+
+## About Lattice
+
+Lattice runs privately on your laptop or cloud. Your data, your control. It's a desktop application that processes your curated knowledge sources and provides AI-powered research synthesis for infrastructure decisions.
+
+## Key Features
+
+- **Sources Panel**: Build a knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts. Every recommendation links back to specific source chunks.
+- **Lab Panel**: Chat with an AI research agent grounded in your sources. Get recommendations with transparent reasoning and full citations.
+- **Studio Panel**: Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and export to Markdown, JSON, or CSV.
+- **36 Blueprints**: Pre-configured knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, Meta, and Mistral.
+- **Scenarios & Stacks**: Define workload requirements (latency, budget, compliance) and configure AI infrastructure options.
+
+## Pricing
+
+$99 one-time payment for lifetime access. Includes all features and future updates.
+
+## Use Cases
+
+- Research engineers evaluating embedding models for RAG pipelines
+- Platform leads comparing LLM providers for latency, budget, and compliance
+- CTOs presenting AI infrastructure strategy with credible, cited sources
+
+## Technical Details
+
+- Built with LangGraph-powered multi-step reasoning
+- Hybrid semantic + keyword search
+- Supports Claude, GPT-4, Gemini models via your own API keys
+- Runs locally - data never leaves your machine
+
+## Links
+
+- Website: https://www.latticelab.io
+- Features: https://www.latticelab.io/features
+- Blog: https://www.latticelab.io/blog
+- About: https://www.latticelab.io/about
+- Contact: https://www.latticelab.io/contact
+
+## Full Documentation
+
+For detailed information, see: https://www.latticelab.io/llms-full.txt

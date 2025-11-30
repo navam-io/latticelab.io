@@ -32,50 +32,99 @@ const {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Lattice Lab",
-  "description": "Agentic AI lab assistant for confident AI infrastructure decisions. Grounded recommendations with full citations from your sources.",
-  "url": "https://www.latticelab.io",
-  "logo": "https://www.latticelab.io/images/logo.png",
-  "foundingDate": "2025",
-  "sameAs": [
-    "https://github.com/lattice-lab"
-  ],
-  "keywords": "AI infrastructure, AI research assistant, LLM evaluation, model comparison, AI stack decisions, grounded recommendations, knowledge management",
-  "slogan": "Smart AI System Decisions",
-  "products": [
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.latticelab.io/#organization",
+      "name": "Lattice Lab",
+      "description": "Agentic AI lab assistant for confident AI infrastructure decisions. Grounded recommendations with full citations from your sources.",
+      "url": "https://www.latticelab.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.latticelab.io/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "foundingDate": "2025",
+      "sameAs": [
+        "https://twitter.com/lattaboratory",
+        "https://www.youtube.com/@latticelab"
+      ],
+      "slogan": "Smart AI System Decisions",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Navam.io",
+        "url": "https://www.navam.io"
+      }
+    },
     {
       "@type": "SoftwareApplication",
+      "@id": "https://www.latticelab.io/#software",
       "name": "Lattice",
       "applicationCategory": "DeveloperApplication",
-      "description": "Agentic AI lab assistant that automates research synthesis for AI stack decisions. Process AI research, vendor documentation, benchmarks, and pricing data with full citations.",
-      "operatingSystem": "Web Browser",
+      "applicationSubCategory": "AI Research Tool",
+      "description": "Agentic AI lab assistant that automates research synthesis for AI stack decisions. Process AI research, vendor documentation, benchmarks, and pricing data with full citations. Runs privately on your laptop or cloud.",
+      "operatingSystem": "Windows, macOS, Linux",
       "softwareVersion": "0.6.2",
+      "releaseNotes": "https://www.latticelab.io/blog",
+      "screenshot": "https://www.latticelab.io/images/og-image.png",
       "offers": {
         "@type": "Offer",
         "price": "99",
         "priceCurrency": "USD",
-        "description": "Lifetime access to Lattice"
+        "description": "Lifetime access to Lattice",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2025-12-31"
       },
       "featureList": [
         "Multi-source knowledge ingestion (PDFs, URLs, GitHub, YouTube)",
-        "36 curated vendor blueprints",
-        "LangGraph-powered research agent",
-        "Source-grounded recommendations with citations",
-        "Scenario and stack configuration",
-        "Artifact generation and export"
-      ]
+        "36 curated vendor blueprints from Anthropic, AWS, NVIDIA, Google, Meta, Mistral",
+        "LangGraph-powered multi-step research agent",
+        "Source-grounded recommendations with numbered citations",
+        "Scenario configuration with SLOs, budget, and compliance",
+        "Stack configuration for models, hardware, and frameworks",
+        "Artifact generation and export (Markdown, JSON, CSV)",
+        "Privacy-first: runs locally with your own API keys"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "12",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "publisher": {
+        "@id": "https://www.latticelab.io/#organization"
+      }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://www.latticelab.io/#video",
+      "name": "Lattice Walkthrough - AI Infrastructure Research Assistant",
+      "description": "Complete walkthrough of Lattice, the agentic AI lab assistant for making confident AI infrastructure decisions with grounded recommendations.",
+      "thumbnailUrl": "https://img.youtube.com/vi/mFYqiYhlqec/maxresdefault.jpg",
+      "uploadDate": "2025-01-01",
+      "contentUrl": "https://www.youtube.com/watch?v=mFYqiYhlqec",
+      "embedUrl": "https://www.youtube.com/embed/mFYqiYhlqec",
+      "publisher": {
+        "@id": "https://www.latticelab.io/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.latticelab.io/#website",
+      "url": "https://www.latticelab.io",
+      "name": "Lattice Lab",
+      "description": "Smart AI System Decisions - AI infrastructure decisions, grounded in evidence",
+      "publisher": {
+        "@id": "https://www.latticelab.io/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.latticelab.io/blog?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
-  ],
-  "knowsAbout": [
-    "Artificial Intelligence",
-    "LLM Infrastructure",
-    "AI Research",
-    "Model Evaluation",
-    "RAG Systems",
-    "AI Agents",
-    "Knowledge Graphs",
-    "Cloud Infrastructure"
   ]
 };
 ---
@@ -117,11 +166,14 @@ const structuredData = {
     )}
 
     <!-- Twitter -->
-    <meta property="twitter:card" content={twitterCard} />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:site" content="@lattaboratory" />
+    <meta name="twitter:creator" content="@lattaboratory" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:image:alt" content={title} />
 
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
