@@ -194,7 +194,7 @@
               </div>
 
               <!-- P.S. -->
-              <p class="mt-8 text-sm text-gray-600 italic">
+              <p class="mt-8 text-gray-600 italic">
                 P.S. Watch our <a href="/#walkthrough" class="text-violet-600 hover:text-violet-700 underline">walkthrough</a> or read our <a href="/blog" class="text-violet-600 hover:text-violet-700 underline">blog</a> to see Lattice in action.
               </p>
             </div>
