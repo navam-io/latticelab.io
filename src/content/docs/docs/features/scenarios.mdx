@@ -1,0 +1,245 @@
+---
+title: Scenarios
+description: Define workload requirements with SLOs, budgets, and compliance constraints.
+---
+
+import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Scenarios let you define specific workload requirements, enabling Lattice to recommend optimal infrastructure configurations. Instead of generic advice, you get tailored recommendations based on your actual constraints.
+
+## What is a Scenario?
+
+A Scenario captures everything about your workload:
+
+- **Workload Type** — Chat, RAG, Agentic, Code, Embedding, Fine-tuning
+- **Traffic Profile** — Expected request volume and patterns
+- **SLO Requirements** — Latency, throughput, and availability targets
+- **Budget Constraints** — Monthly limits and per-request costs
+- **Compliance Needs** — Regions, certifications, vendor preferences
+
+## Creating a Scenario
+
+<Tabs>
+  <TabItem label="From UI">
+    1. Navigate to **Scenarios** in your workspace
+    2. Click **+ New Scenario**
+    3. Fill in the configuration form
+    4. Save to activate the scenario
+  </TabItem>
+  <TabItem label="From Chat">
+    Describe your requirements in the Lab:
+
+    ```
+    I need to deploy a high-volume chat application with:
+    - P95 latency under 500ms
+    - 1000 requests per second
+    - Budget of $5000/month
+    - SOC2 compliance required
+    ```
+
+    Lattice will extract a scenario from your description.
+  </TabItem>
+</Tabs>
+
+## Scenario Configuration
+
+### Workload Type
+
+| Type | Description | Typical Use Case |
+|------|-------------|------------------|
+| `chat` | Interactive conversations | Customer support, assistants |
+| `rag` | Retrieval-augmented generation | Knowledge bases, Q&A |
+| `agentic` | Multi-step autonomous tasks | Workflows, automation |
+| `code` | Code generation and analysis | IDE integrations, reviews |
+| `embedding` | Vector embedding generation | Search, similarity |
+| `fine-tuning` | Model customization | Domain adaptation |
+
+### Traffic Profile
+
+| Profile | Description | Requests/sec |
+|---------|-------------|--------------|
+| `low_volume` | Internal tools, prototypes | < 10 |
+| `medium_volume` | Production applications | 10-100 |
+| `high_volume` | Scale deployments | 100-1000 |
+| `burst` | Variable with spikes | Peaks 10x baseline |
+
+### SLO Requirements
+
+```yaml
+slo_requirements:
+  p50_latency_ms: 200    # Median response time
+  p95_latency_ms: 500    # 95th percentile
+  p99_latency_ms: 1000   # 99th percentile (tail latency)
+  throughput_rps: 1000   # Requests per second
+  availability: 99.9     # Uptime percentage
+```
+
+<Aside type="tip">
+  Be realistic with latency requirements. Tighter constraints significantly limit model choices and increase costs.
+</Aside>
+
+### Budget Constraints
+
+```yaml
+budget:
+  monthly_limit_usd: 5000         # Hard cap
+  cost_per_1k_requests_usd: 0.10  # Per-request target
+```
+
+### Compliance Requirements
+
+```yaml
+compliance:
+  regions:
+    - us-east-1
+    - us-west-2
+    - eu-west-1
+  certifications:
+    - SOC2
+    - HIPAA
+    - GDPR
+  vendor_lock_in_tolerance: low   # none | low | medium | high
+```
+
+## Using Scenarios
+
+### In Chat Context
+
+Set an active scenario to inform AI responses:
+
+```
+With my "High-Volume Chat" scenario active:
+"What model should I use for the best latency/cost tradeoff?"
+```
+
+The AI considers your SLOs, budget, and compliance when recommending.
+
+### For Stack Generation
+
+Scenarios drive stack recommendations:
+
+```
+Generate a stack configuration for my "Enterprise RAG" scenario
+that prioritizes accuracy over speed.
+```
+
+### For What-If Analysis
+
+Compare scenarios to understand tradeoffs:
+
+```
+How would costs change if I relaxed my P95 latency from
+500ms to 1000ms in my current scenario?
+```
+
+## Scenario Examples
+
+### High-Volume Chat Application
+
+```yaml
+name: High-Volume Chat
+workload_type: chat
+traffic_profile: high_volume
+
+slo_requirements:
+  p50_latency_ms: 200
+  p95_latency_ms: 500
+  throughput_rps: 1000
+  availability: 99.9
+
+budget:
+  monthly_limit_usd: 5000
+  cost_per_1k_requests_usd: 0.10
+
+compliance:
+  regions: [us-east-1, us-west-2]
+  certifications: [SOC2]
+  vendor_lock_in_tolerance: medium
+```
+
+### Enterprise RAG System
+
+```yaml
+name: Enterprise RAG
+workload_type: rag
+traffic_profile: medium_volume
+
+slo_requirements:
+  p50_latency_ms: 1000
+  p95_latency_ms: 3000
+  throughput_rps: 100
+  availability: 99.95
+
+budget:
+  monthly_limit_usd: 15000
+  cost_per_1k_requests_usd: 0.50
+
+compliance:
+  regions: [us-east-1, eu-west-1]
+  certifications: [SOC2, HIPAA, GDPR]
+  vendor_lock_in_tolerance: low
+```
+
+## API Reference
+
+### List Scenarios
+
+```http
+GET /api/workspaces/{workspace_id}/scenarios
+```
+
+### Create Scenario
+
+```http
+POST /api/workspaces/{workspace_id}/scenarios
+Content-Type: application/json
+
+{
+  "name": "High-Volume Chat",
+  "workload_type": "chat",
+  "traffic_profile": "high_volume",
+  "slo_requirements": {
+    "p50_latency_ms": 200,
+    "p95_latency_ms": 500,
+    "throughput_rps": 1000,
+    "availability": 99.9
+  },
+  "budget": {
+    "monthly_limit_usd": 5000,
+    "cost_per_1k_requests_usd": 0.10
+  },
+  "compliance": {
+    "regions": ["us-east-1", "us-west-2"],
+    "certifications": ["SOC2"]
+  }
+}
+```
+
+### Get Scenario
+
+```http
+GET /api/workspaces/{workspace_id}/scenarios/{scenario_id}
+```
+
+### Update Scenario
+
+```http
+PATCH /api/workspaces/{workspace_id}/scenarios/{scenario_id}
+```
+
+### Delete Scenario
+
+```http
+DELETE /api/workspaces/{workspace_id}/scenarios/{scenario_id}
+```
+
+### Generate from Chat
+
+```http
+POST /api/workspaces/{workspace_id}/scenarios/extract
+Content-Type: application/json
+
+{
+  "description": "High-volume chat app with 500ms P95 latency..."
+}
+```

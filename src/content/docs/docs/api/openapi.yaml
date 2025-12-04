@@ -1,0 +1,1639 @@
+openapi: 3.1.0
+info:
+  title: Lattice API
+  description: |
+    The Lattice API provides programmatic access to the Agentic AI Lab Assistant.
+    Build integrations, automate workflows, and extend Lattice for your specific needs.
+  version: 0.6.20
+  contact:
+    name: Lattice Support
+    url: https://github.com/navam-io/lattice/issues
+  license:
+    name: Proprietary
+    url: https://www.latticelab.io/terms
+
+servers:
+  - url: https://api.latticelab.io/api
+    description: Production API
+  - url: http://localhost:8000/api
+    description: Local development
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Workspaces
+    description: |
+      Workspaces are isolated research environments that contain all your sources, messages, artifacts, scenarios, and stacks.
+
+      ## Key Concepts
+
+      - **Isolation**: Each workspace maintains separate context, allowing parallel research tracks
+      - **Source Organization**: Group related documents, URLs, and knowledge sources together
+      - **Conversation History**: Chat history is workspace-scoped for focused discussions
+      - **Configuration**: Apply different scenarios and stacks per workspace
+
+      ## Common Use Cases
+
+      - Create a workspace per project (e.g., "Claude vs GPT-4 Evaluation")
+      - Separate development and production research contexts
+      - Organize by client or team for consulting engagements
+
+      ## Quick Start
+
+      ```bash
+      # Create a new workspace
+      curl -X POST http://localhost:8000/api/workspaces \
+        -H "Content-Type: application/json" \
+        -d '{"name": "My Research Project"}'
+      ```
+
+  - name: Sources
+    description: |
+      Sources are the knowledge foundation of Lattice. Add documents, URLs, and repositories to build a searchable knowledge base that grounds AI responses.
+
+      ## Supported Source Types
+
+      | Type | Description | Processing |
+      |------|-------------|------------|
+      | `pdf` | PDF documents | Text extraction, chunking, embeddings |
+      | `url` | Web pages | HTML parsing, content extraction |
+      | `github` | GitHub repositories | README, code files, documentation |
+      | `youtube` | YouTube videos | Transcript extraction |
+      | `google_docs` | Google Documents | API-based content retrieval |
+      | `markdown` | Markdown files | Direct parsing |
+      | `text` | Plain text | Direct chunking |
+      | `artifact` | Promoted artifacts | Converted from Studio |
+
+      ## Auto-Classification
+
+      Sources are automatically categorized based on content analysis:
+
+      - `requirements` - SLAs, PRDs, RFPs, specifications
+      - `research` - Academic papers, blog posts, transcripts
+      - `vendor` - Pricing pages, model cards, API documentation
+      - `architecture` - System designs, diagrams, technical specs
+      - `benchmarks` - Leaderboards, evaluations, comparisons
+      - `tutorial` - Guides, tutorials, learning content
+
+      ## Processing Pipeline
+
+      1. **Ingestion**: Content fetched/uploaded
+      2. **Extraction**: Text extracted from format
+      3. **Chunking**: Split into semantic chunks (~1000 tokens)
+      4. **Embedding**: Vector embeddings generated (if enabled)
+      5. **Indexing**: Full-text search index updated
+
+  - name: Chat
+    description: |
+      The Chat API provides AI-powered conversations with Retrieval-Augmented Generation (RAG) over your sources.
+
+      ## How It Works
+
+      1. Your message is analyzed for intent and entities
+      2. Relevant source chunks are retrieved via hybrid search
+      3. Context is assembled with source citations
+      4. LLM generates a grounded response
+      5. Citations link back to original sources
+
+      ## Features
+
+      - **RAG Integration**: Responses grounded in your sources
+      - **Streaming**: Real-time token streaming via SSE
+      - **Context Awareness**: Optionally include scenario/stack context
+      - **Multi-Provider**: Works with Anthropic, OpenAI, Google, Ollama
+
+      ## Streaming Example
+
+      ```javascript
+      const response = await fetch('/api/workspaces/{id}/chat/stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: 'Compare latency of Claude vs GPT-4',
+          use_sources: true
+        })
+      });
+
+      const reader = response.body.getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        // Process SSE events
+      }
+      ```
+
+  - name: Search
+    description: |
+      Search provides powerful retrieval over your indexed sources using multiple search modes.
+
+      ## Search Modes
+
+      | Mode | Algorithm | Best For |
+      |------|-----------|----------|
+      | `keyword` | BM25 | Exact term matching, technical queries |
+      | `semantic` | Vector similarity | Conceptual queries, synonyms |
+      | `hybrid` | RRF fusion | General queries (recommended) |
+
+      ## Hybrid Search
+
+      Hybrid search combines keyword and semantic results using Reciprocal Rank Fusion (RRF):
+
+      1. Run BM25 keyword search
+      2. Run vector similarity search
+      3. Normalize and fuse rankings
+      4. Return merged results
+
+      ## Configuration
+
+      - **Embeddings**: Requires OpenAI API key for semantic/hybrid modes
+      - **Model**: Default `text-embedding-3-small` (1536 dimensions)
+      - **Fallback**: Auto-falls back to keyword if embeddings unavailable
+
+      ## Example Query
+
+      ```bash
+      curl "http://localhost:8000/api/workspaces/{id}/search?q=latency+requirements&mode=hybrid&limit=10"
+      ```
+
+  - name: Messages
+    description: |
+      Messages represent the conversation history within a workspace. Each message is associated with a role and optional metadata.
+
+      ## Message Roles
+
+      | Role | Description |
+      |------|-------------|
+      | `user` | Messages from the user |
+      | `assistant` | AI-generated responses |
+      | `system` | System prompts and instructions |
+      | `agent` | Agent-generated content (with agent_name) |
+
+      ## Features
+
+      - **Persistence**: Full conversation history preserved
+      - **Pagination**: Retrieve messages in pages (default: 50)
+      - **Ordering**: Chronological order (oldest first)
+      - **Clearing**: Bulk delete all messages in workspace
+
+      ## Use Cases
+
+      - Review conversation history
+      - Export chat logs for analysis
+      - Clear context for fresh research direction
+
+  - name: Artifacts
+    description: |
+      Artifacts are AI-generated content saved from chat conversations for later reference, editing, and sharing.
+
+      ## Artifact Types
+
+      | Type | Description | Example |
+      |------|-------------|---------|
+      | `code` | Code snippets, scripts | Python evaluation script |
+      | `document` | Written content | Executive summary |
+      | `configuration` | Config files | Kubernetes deployment YAML |
+      | `prompt` | Prompt templates | System prompts for evaluation |
+      | `analysis` | Data analysis | Cost breakdown table |
+      | `comparison` | Side-by-side comparisons | Model comparison matrix |
+
+      ## Workflow
+
+      1. **Save**: Click "Save to Studio" in chat to create artifact
+      2. **Edit**: Modify content in Studio
+      3. **Promote**: Convert artifact to searchable source
+      4. **Export**: Copy or download for external use
+
+      ## Promotion to Source
+
+      Artifacts can be promoted to sources, making them searchable:
+
+      ```bash
+      POST /api/workspaces/{id}/artifacts/{artifact_id}/promote
+      ```
+
+      This creates a new source with `type: artifact` and links back to the original.
+
+  - name: Scenarios
+    description: |
+      Scenarios define your AI workload requirements including performance SLOs, budget constraints, and compliance needs.
+
+      ## Scenario Structure
+
+      ### Workload Configuration
+      - **Category**: `inference`, `training`, `comparison`
+      - **Type**: `llm_inference`, `embedding`, `fine_tuning`, etc.
+      - **Traffic Profile**: `steady`, `bursty`, `spiky`
+      - **Token Sizes**: Request/response token expectations
+
+      ### Service Level Objectives (SLOs)
+      - **Latency**: P50, P95, P99 targets in milliseconds
+      - **Throughput**: Requests per second
+      - **Availability**: Uptime percentage (e.g., 99.9%)
+      - **Error Rate**: Acceptable error percentage
+
+      ### Budget Constraints
+      - **Monthly Limit**: Total spend cap in USD
+      - **Cost Per Request**: Target cost per 1K requests
+      - **Compute Allocation**: Percentage for compute vs. other costs
+
+      ### Compliance Requirements
+      - **Regions**: Allowed deployment regions
+      - **Data Residency**: Data storage location requirements
+      - **Certifications**: Required compliance (SOC2, HIPAA, etc.)
+
+      ## Document Extraction
+
+      Extract scenarios from existing requirements documents:
+
+      ```bash
+      POST /api/workspaces/{id}/scenarios/extract
+      Content-Type: application/json
+
+      {
+        "document_content": "base64-encoded-content",
+        "document_type": "pdf",
+        "extraction_mode": "full"
+      }
+      ```
+
+  - name: Stacks
+    description: |
+      Stacks define your AI infrastructure configuration including model selection, deployment framework, and hardware requirements.
+
+      ## Stack Components
+
+      ### Model Configuration
+      - **Provider**: `anthropic`, `openai`, `google`, `ollama`
+      - **Model ID**: Specific model (e.g., `claude-3-5-sonnet-20241022`)
+      - **Parameters**: Temperature, max tokens, context length
+
+      ### Framework Configuration
+      - **Orchestration**: `kubernetes`, `docker_compose`, `modal`, `none`
+      - **Observability**: `datadog`, `new_relic`, `prometheus`, `none`
+      - **Tracing**: Enable/disable distributed tracing
+      - **Metrics**: Enable/disable metrics collection
+
+      ### Hardware Configuration
+      - **Cloud Provider**: `aws`, `gcp`, `azure`, `none`
+      - **Instance Family**: Compute family (e.g., `g4dn`, `p3`)
+      - **GPU Type**: `h100`, `a100`, `a10g`, `v100`, `none`
+      - **Spot Instances**: Use spot/preemptible instances
+
+      ### Inference Configuration
+      - **Model Serving**: `vllm`, `tgi`, `ollama`
+      - **Auto Scaling**: Enable/disable auto-scaling
+      - **Batching**: Enable/disable request batching
+      - **Quantization**: `int8`, `int4`, `none`
+
+      ## Default Stack
+
+      Set a stack as the workspace default:
+
+      ```bash
+      POST /api/workspaces/{id}/stacks/{stack_id}/set-default
+      ```
+
+  - name: Blueprints
+    description: |
+      Blueprints are pre-built templates containing curated sources, scenarios, and stacks for common AI infrastructure patterns.
+
+      ## Blueprint Categories
+
+      | Category | Description |
+      |----------|-------------|
+      | `ml_inference` | Production inference deployments |
+      | `fine_tuning` | Model fine-tuning setups |
+      | `rag_system` | RAG pipeline configurations |
+      | `evaluation` | Model evaluation frameworks |
+      | `monitoring` | Observability stacks |
+      | `deployment` | Deployment patterns |
+
+      ## Visibility Levels
+
+      - `private` - Only visible to creator
+      - `team` - Shared within organization
+      - `public` - Available to all users
+
+      ## Applying Blueprints
+
+      Apply a blueprint to import its configuration:
+
+      ```bash
+      POST /api/blueprints/{blueprint_id}/apply
+      Content-Type: application/json
+
+      {
+        "workspace_id": "ws_abc123",
+        "overrides": {
+          "model.provider": "openai",
+          "budget.monthly_limit_usd": 5000
+        }
+      }
+      ```
+
+      ## Blueprint Discovery
+
+      Auto-generate blueprints from documentation URLs:
+
+      ```bash
+      POST /api/blueprints/discover
+      Content-Type: application/json
+
+      {
+        "url": "https://docs.anthropic.com/en/docs/build-with-claude"
+      }
+      ```
+
+  - name: Settings
+    description: |
+      Settings provide multi-level configuration with inheritance from defaults through global to workspace-specific overrides.
+
+      ## Settings Hierarchy
+
+      ```
+      Defaults → Global → Workspace
+      ```
+
+      Each level overrides the previous, allowing flexible configuration.
+
+      ## Settings Categories
+
+      | Category | Description |
+      |----------|-------------|
+      | `model_defaults` | Default LLM provider and model |
+      | `rag` | Chunk size, overlap, retrieval settings |
+      | `agent` | Agent behavior and prompts |
+      | `display` | UI preferences |
+      | `notifications` | Alert and notification settings |
+
+      ## Resolved Settings
+
+      Get the final computed settings for a workspace:
+
+      ```bash
+      GET /api/workspaces/{id}/settings/resolved
+      ```
+
+      This returns the merged result of all configuration levels.
+
+      ## Example Configuration
+
+      ```json
+      {
+        "model_defaults": {
+          "provider": "anthropic",
+          "model": "claude-3-5-sonnet-20241022",
+          "temperature": 0.7
+        },
+        "rag": {
+          "chunk_size": 1000,
+          "chunk_overlap": 200,
+          "top_k": 10
+        }
+      }
+      ```
+
+  - name: Health
+    description: |
+      Health endpoints provide service status information for monitoring and operational purposes.
+
+      ## Endpoints
+
+      | Endpoint | Purpose |
+      |----------|---------|
+      | `/health` | Overall service health |
+      | `/health/ready` | Readiness probe (Kubernetes) |
+      | `/health/live` | Liveness probe (Kubernetes) |
+
+      ## Health Status Values
+
+      | Status | Description |
+      |--------|-------------|
+      | `healthy` | All systems operational |
+      | `degraded` | Partial functionality available |
+      | `unhealthy` | Service unavailable |
+
+      ## Response Format
+
+      ```json
+      {
+        "status": "healthy",
+        "version": "0.6.3",
+        "environment": "production",
+        "timestamp": "2024-12-03T10:30:00Z"
+      }
+      ```
+
+      ## Kubernetes Integration
+
+      Use these endpoints for container orchestration:
+
+      ```yaml
+      livenessProbe:
+        httpGet:
+          path: /api/health/live
+          port: 8000
+      readinessProbe:
+        httpGet:
+          path: /api/health/ready
+          port: 8000
+      ```
+
+paths:
+  /workspaces:
+    get:
+      tags: [Workspaces]
+      summary: List workspaces
+      description: Returns all workspaces for the authenticated user
+      operationId: listWorkspaces
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: List of workspaces
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Workspace'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+    post:
+      tags: [Workspaces]
+      summary: Create workspace
+      description: Create a new workspace
+      operationId: createWorkspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  description: Name for the workspace
+                  example: Claude Sonnet Evaluation
+      responses:
+        '201':
+          description: Workspace created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+
+  /workspaces/{workspace_id}:
+    get:
+      tags: [Workspaces]
+      summary: Get workspace
+      description: Get a specific workspace by ID
+      operationId: getWorkspace
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      responses:
+        '200':
+          description: Workspace details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags: [Workspaces]
+      summary: Update workspace
+      description: Update workspace properties
+      operationId: updateWorkspace
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Workspace updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+    delete:
+      tags: [Workspaces]
+      summary: Delete workspace
+      description: Delete a workspace and all associated data
+      operationId: deleteWorkspace
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      responses:
+        '204':
+          description: Workspace deleted
+
+  /workspaces/{workspace_id}/sources:
+    get:
+      tags: [Sources]
+      summary: List sources
+      description: List all sources in a workspace
+      operationId: listSources
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [url, pdf, github, youtube, text]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, indexing, indexed, failed]
+      responses:
+        '200':
+          description: List of sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Source'
+    post:
+      tags: [Sources]
+      summary: Add source
+      description: Add a new source to the workspace
+      operationId: createSource
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceCreate'
+      responses:
+        '201':
+          description: Source created and indexing started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+
+  /workspaces/{workspace_id}/sources/{source_id}:
+    get:
+      tags: [Sources]
+      summary: Get source
+      description: Get source details
+      operationId: getSource
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: Source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+    delete:
+      tags: [Sources]
+      summary: Delete source
+      description: Delete a source and its indexed content
+      operationId: deleteSource
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '204':
+          description: Source deleted
+
+  /workspaces/{workspace_id}/chat:
+    post:
+      tags: [Chat]
+      summary: Send message
+      description: |
+        Send a message to the AI assistant and receive a response.
+        Supports streaming via Server-Sent Events.
+      operationId: chat
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Chat response (streaming or complete)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-Sent Events stream
+
+  /workspaces/{workspace_id}/search:
+    post:
+      tags: [Search]
+      summary: Search sources
+      description: Search indexed sources using keyword, semantic, or hybrid search
+      operationId: search
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+
+  /workspaces/{workspace_id}/messages:
+    get:
+      tags: [Messages]
+      summary: List messages
+      description: List conversation history
+      operationId: listMessages
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+
+  /workspaces/{workspace_id}/messages/{message_id}:
+    delete:
+      tags: [Messages]
+      summary: Delete message
+      description: Delete a message from history
+      operationId: deleteMessage
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Message deleted
+
+  /workspaces/{workspace_id}/artifacts:
+    get:
+      tags: [Artifacts]
+      summary: List artifacts
+      description: List all artifacts in a workspace
+      operationId: listArtifacts
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [table, chart, memo, diagram]
+      responses:
+        '200':
+          description: List of artifacts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Artifact'
+    post:
+      tags: [Artifacts]
+      summary: Create artifact
+      description: Create a new artifact
+      operationId: createArtifact
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtifactCreate'
+      responses:
+        '201':
+          description: Artifact created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifact'
+
+  /workspaces/{workspace_id}/artifacts/{artifact_id}:
+    get:
+      tags: [Artifacts]
+      summary: Get artifact
+      description: Get artifact details
+      operationId: getArtifact
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/artifactId'
+      responses:
+        '200':
+          description: Artifact details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifact'
+    patch:
+      tags: [Artifacts]
+      summary: Update artifact
+      description: Update artifact properties
+      operationId: updateArtifact
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/artifactId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Artifact updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifact'
+    delete:
+      tags: [Artifacts]
+      summary: Delete artifact
+      description: Delete an artifact
+      operationId: deleteArtifact
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/artifactId'
+      responses:
+        '204':
+          description: Artifact deleted
+
+  /workspaces/{workspace_id}/scenarios:
+    get:
+      tags: [Scenarios]
+      summary: List scenarios
+      description: List all scenarios in a workspace
+      operationId: listScenarios
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      responses:
+        '200':
+          description: List of scenarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Scenario'
+    post:
+      tags: [Scenarios]
+      summary: Create scenario
+      description: Create a new scenario
+      operationId: createScenario
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioCreate'
+      responses:
+        '201':
+          description: Scenario created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+
+  /workspaces/{workspace_id}/scenarios/{scenario_id}:
+    get:
+      tags: [Scenarios]
+      summary: Get scenario
+      description: Get scenario details
+      operationId: getScenario
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+    patch:
+      tags: [Scenarios]
+      summary: Update scenario
+      description: Update scenario configuration
+      operationId: updateScenario
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/scenarioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioCreate'
+      responses:
+        '200':
+          description: Scenario updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+    delete:
+      tags: [Scenarios]
+      summary: Delete scenario
+      description: Delete a scenario
+      operationId: deleteScenario
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '204':
+          description: Scenario deleted
+
+  /workspaces/{workspace_id}/stacks:
+    get:
+      tags: [Stacks]
+      summary: List stacks
+      description: List all stacks in a workspace
+      operationId: listStacks
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      responses:
+        '200':
+          description: List of stacks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stack'
+    post:
+      tags: [Stacks]
+      summary: Create stack
+      description: Create a new stack configuration
+      operationId: createStack
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StackCreate'
+      responses:
+        '201':
+          description: Stack created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stack'
+
+  /workspaces/{workspace_id}/stacks/{stack_id}:
+    get:
+      tags: [Stacks]
+      summary: Get stack
+      description: Get stack details
+      operationId: getStack
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/stackId'
+      responses:
+        '200':
+          description: Stack details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stack'
+    patch:
+      tags: [Stacks]
+      summary: Update stack
+      description: Update stack configuration
+      operationId: updateStack
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/stackId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StackCreate'
+      responses:
+        '200':
+          description: Stack updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stack'
+    delete:
+      tags: [Stacks]
+      summary: Delete stack
+      description: Delete a stack
+      operationId: deleteStack
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/stackId'
+      responses:
+        '204':
+          description: Stack deleted
+
+  /blueprints:
+    get:
+      tags: [Blueprints]
+      summary: List blueprints
+      description: List all available blueprints
+      operationId: listBlueprints
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+          description: Search query
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [vendor, use_case]
+      responses:
+        '200':
+          description: List of blueprints
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Blueprint'
+
+  /blueprints/{blueprint_id}:
+    get:
+      tags: [Blueprints]
+      summary: Get blueprint
+      description: Get blueprint details
+      operationId: getBlueprint
+      parameters:
+        - name: blueprint_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Blueprint details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+
+  /workspaces/{workspace_id}/blueprints/{blueprint_id}/apply:
+    post:
+      tags: [Blueprints]
+      summary: Apply blueprint
+      description: Apply a blueprint to a workspace
+      operationId: applyBlueprint
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - name: blueprint_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Blueprint applied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sources_added:
+                    type: integer
+                  scenarios_added:
+                    type: integer
+                  stacks_added:
+                    type: integer
+
+  /settings:
+    get:
+      tags: [Settings]
+      summary: Get settings
+      description: Get global settings
+      operationId: getSettings
+      responses:
+        '200':
+          description: Settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+    patch:
+      tags: [Settings]
+      summary: Update settings
+      description: Update global settings
+      operationId: updateSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Settings'
+      responses:
+        '200':
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      description: Check service health
+      operationId: healthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  version:
+                    type: string
+                    example: 0.6.20
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API key authentication
+
+  parameters:
+    workspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Workspace ID
+    sourceId:
+      name: source_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Source ID
+    artifactId:
+      name: artifact_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Artifact ID
+    scenarioId:
+      name: scenario_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Scenario ID
+    stackId:
+      name: stack_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Stack ID
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of items to skip
+
+  schemas:
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        source_count:
+          type: integer
+        message_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Source:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [url, pdf, github, youtube, text]
+        url:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+          enum: [pending, indexing, indexed, failed]
+        chunk_count:
+          type: integer
+        classification:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    SourceCreate:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [url, pdf, github, youtube, text]
+        url:
+          type: string
+          description: URL for url/github/youtube sources
+        content:
+          type: string
+          description: Base64 content for pdf sources or text for text sources
+        filename:
+          type: string
+          description: Filename for pdf sources
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        role:
+          type: string
+          enum: [user, assistant, agent]
+        content:
+          type: string
+        agent_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    ChatRequest:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          description: User message
+        stream:
+          type: boolean
+          default: true
+          description: Enable streaming response
+        include_history:
+          type: boolean
+          default: true
+          description: Include conversation history
+        scenario_id:
+          type: string
+          format: uuid
+          description: Active scenario for context
+        stack_id:
+          type: string
+          format: uuid
+          description: Active stack for context
+        model:
+          type: string
+          description: Override default model
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 2
+
+    ChatResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+        citations:
+          type: array
+          items:
+            type: object
+            properties:
+              number:
+                type: integer
+              source_id:
+                type: string
+              chunk_text:
+                type: string
+        usage:
+          type: object
+          properties:
+            input_tokens:
+              type: integer
+            output_tokens:
+              type: integer
+
+    SearchRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+        mode:
+          type: string
+          enum: [keyword, semantic, hybrid]
+          default: hybrid
+        limit:
+          type: integer
+          default: 10
+        source_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Filter to specific sources
+
+    SearchResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              chunk_id:
+                type: string
+              source_id:
+                type: string
+              source_title:
+                type: string
+              text:
+                type: string
+              score:
+                type: number
+
+    Artifact:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        type:
+          type: string
+          enum: [table, chart, memo, diagram]
+        content:
+          type: string
+        source_message_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+
+    ArtifactCreate:
+      type: object
+      required: [title, type, content]
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum: [table, chart, memo, diagram]
+        content:
+          type: string
+
+    Scenario:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        workload_type:
+          type: string
+          enum: [chat, rag, agentic, code, embedding, fine-tuning]
+        traffic_profile:
+          type: string
+          enum: [low_volume, medium_volume, high_volume, burst]
+        slo_requirements:
+          $ref: '#/components/schemas/SLORequirements'
+        budget:
+          $ref: '#/components/schemas/Budget'
+        compliance:
+          $ref: '#/components/schemas/Compliance'
+        created_at:
+          type: string
+          format: date-time
+
+    ScenarioCreate:
+      type: object
+      required: [name, workload_type]
+      properties:
+        name:
+          type: string
+        workload_type:
+          type: string
+          enum: [chat, rag, agentic, code, embedding, fine-tuning]
+        traffic_profile:
+          type: string
+          enum: [low_volume, medium_volume, high_volume, burst]
+        slo_requirements:
+          $ref: '#/components/schemas/SLORequirements'
+        budget:
+          $ref: '#/components/schemas/Budget'
+        compliance:
+          $ref: '#/components/schemas/Compliance'
+
+    SLORequirements:
+      type: object
+      properties:
+        p50_latency_ms:
+          type: integer
+        p95_latency_ms:
+          type: integer
+        p99_latency_ms:
+          type: integer
+        throughput_rps:
+          type: integer
+        availability:
+          type: number
+
+    Budget:
+      type: object
+      properties:
+        monthly_limit_usd:
+          type: number
+        cost_per_1k_requests_usd:
+          type: number
+
+    Compliance:
+      type: object
+      properties:
+        regions:
+          type: array
+          items:
+            type: string
+        certifications:
+          type: array
+          items:
+            type: string
+        vendor_lock_in_tolerance:
+          type: string
+          enum: [none, low, medium, high]
+
+    Stack:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        model:
+          $ref: '#/components/schemas/ModelConfig'
+        framework:
+          $ref: '#/components/schemas/FrameworkConfig'
+        hardware:
+          $ref: '#/components/schemas/HardwareConfig'
+        created_at:
+          type: string
+          format: date-time
+
+    StackCreate:
+      type: object
+      required: [name, model]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        model:
+          $ref: '#/components/schemas/ModelConfig'
+        framework:
+          $ref: '#/components/schemas/FrameworkConfig'
+        hardware:
+          $ref: '#/components/schemas/HardwareConfig'
+
+    ModelConfig:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum: [anthropic, openai, google, ollama]
+        model_id:
+          type: string
+        temperature:
+          type: number
+        max_tokens:
+          type: integer
+
+    FrameworkConfig:
+      type: object
+      properties:
+        orchestration:
+          type: string
+          enum: [langgraph, langchain, custom]
+        observability:
+          type: string
+        logging:
+          type: string
+        tracing:
+          type: string
+
+    HardwareConfig:
+      type: object
+      properties:
+        cloud_provider:
+          type: string
+          enum: [aws, gcp, azure]
+        region:
+          type: string
+        gpu_type:
+          type: string
+        instance_family:
+          type: string
+
+    Blueprint:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum: [vendor, use_case]
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              url:
+                type: string
+        scenarios:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScenarioCreate'
+        stacks:
+          type: array
+          items:
+            $ref: '#/components/schemas/StackCreate'
+
+    Settings:
+      type: object
+      properties:
+        model_defaults:
+          type: object
+          properties:
+            provider:
+              type: string
+            model:
+              type: string
+            temperature:
+              type: number
+            history_limit:
+              type: integer
+        rag_settings:
+          type: object
+          properties:
+            search_mode:
+              type: string
+              enum: [keyword, semantic, hybrid]
+            embedding_model:
+              type: string
+            token_budget:
+              type: integer
+            chunk_limit:
+              type: integer
+        agent_settings:
+          type: object
+          properties:
+            show_thinking:
+              type: boolean
+            custom_system_prompt:
+              type: string
+
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+        has_more:
+          type: boolean
+
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NOT_FOUND
+                  message:
+                    type: string
+                    example: Resource not found

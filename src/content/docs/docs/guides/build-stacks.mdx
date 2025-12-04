@@ -1,0 +1,347 @@
+---
+title: Build Stacks
+description: Generate deployment-ready infrastructure configurations.
+---
+
+import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+Stacks translate your scenario requirements into concrete infrastructure configurations ready for deployment.
+
+## From Requirements to Deployment
+
+```
+Scenario → Stack → Deployment
+(What you need) → (What to build) → (How to run it)
+```
+
+A stack answers: *"Given my requirements, exactly what should I deploy?"*
+
+## Stack Generation Process
+
+<Steps>
+
+1. **Start with a Scenario**
+
+   Ensure you have a well-defined scenario:
+
+   ```yaml
+   name: Production Chat
+   workload_type: chat
+   traffic_profile: high_volume
+   slo_requirements:
+     p95_latency_ms: 500
+     throughput_rps: 200
+   budget:
+     monthly_limit_usd: 5000
+   ```
+
+2. **Request Stack Generation**
+
+   Ask Lattice to recommend a stack:
+
+   ```
+   Generate an optimized stack for my Production Chat scenario
+   that prioritizes latency while staying within budget.
+   ```
+
+3. **Review Recommendations**
+
+   Lattice will explain its choices:
+
+   ```
+   Recommended: Claude Haiku Speed Stack
+
+   Model: Claude 3.5 Haiku
+   - P95 latency: ~300ms (meets 500ms SLO)
+   - Cost: ~$2,100/month at 200 RPS (within $5K budget)
+
+   Alternative: Claude Sonnet Quality Stack
+   - P95 latency: ~600ms (exceeds SLO)
+   - Cost: ~$8,400/month (exceeds budget)
+   ```
+
+4. **Refine if Needed**
+
+   Adjust based on priorities:
+
+   ```
+   I'm willing to go to $6000/month if it improves quality.
+   What stack would you recommend then?
+   ```
+
+5. **Save the Stack**
+
+   Save your chosen configuration for deployment reference.
+
+</Steps>
+
+## Stack Components
+
+### Model Configuration
+
+Choose your inference settings:
+
+```yaml
+model:
+  provider: anthropic
+  model_id: claude-3-5-haiku-20241022
+
+  # Generation parameters
+  temperature: 0.3        # Lower for consistency
+  max_tokens: 1024        # Limit output length
+  top_p: 0.9              # Nucleus sampling
+
+  # Advanced options
+  stream: true            # Enable streaming
+  stop_sequences: []      # Custom stop tokens
+```
+
+<Aside type="tip">
+  For production chat, use `temperature: 0.3-0.5` for consistent responses. Higher values (0.7-1.0) suit creative tasks.
+</Aside>
+
+### Framework Configuration
+
+Select your orchestration layer:
+
+```yaml
+framework:
+  # Orchestration choice
+  orchestration: langgraph  # langgraph | langchain | custom
+
+  # Observability
+  observability: langsmith  # langsmith | phoenix | custom
+
+  # Logging configuration
+  logging: structured       # structured | json | plaintext
+  log_level: info           # debug | info | warn | error
+
+  # Tracing
+  tracing: enabled
+  trace_sampling_rate: 0.1  # Sample 10% of requests
+```
+
+#### Framework Options
+
+| Framework | Best For | Complexity |
+|-----------|----------|------------|
+| **LangGraph** | Agentic workflows, complex state | Higher |
+| **LangChain** | Standard chains, quick prototypes | Medium |
+| **Custom** | Maximum control, minimal overhead | Variable |
+
+### Hardware Configuration
+
+Define your infrastructure:
+
+```yaml
+hardware:
+  # Cloud provider
+  cloud_provider: aws       # aws | gcp | azure
+  region: us-east-1
+
+  # Instance configuration
+  instance_family: compute  # general | compute | memory
+
+  # Scaling
+  auto_scaling: true
+  min_instances: 2
+  max_instances: 10
+
+  # Cost optimization
+  spot_instances: false     # Risky for production
+```
+
+### Fallback Configuration
+
+Add resilience with provider fallback:
+
+```yaml
+fallback:
+  enabled: true
+  provider: openai
+  model_id: gpt-4-turbo
+
+  # Trigger conditions
+  triggers:
+    - error_rate > 5%
+    - latency_p99 > 2000ms
+    - provider_unavailable
+
+  # Automatic retry
+  auto_retry: true
+  max_retries: 3
+```
+
+## Example Stacks
+
+### Speed-Optimized Stack
+
+For latency-critical applications:
+
+```yaml
+name: Speed Stack
+description: Optimized for minimum latency
+
+model:
+  provider: anthropic
+  model_id: claude-3-5-haiku-20241022
+  temperature: 0.3
+  max_tokens: 512          # Shorter outputs
+  stream: true
+
+framework:
+  orchestration: custom    # Minimal overhead
+  observability: langsmith
+  logging: structured
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1        # Closest to users
+  instance_family: compute
+  auto_scaling: true
+
+# Expected metrics
+estimated_latency_p95: 250ms
+estimated_monthly_cost: $2500
+```
+
+### Quality-Optimized Stack
+
+For accuracy-critical applications:
+
+```yaml
+name: Quality Stack
+description: Optimized for response quality
+
+model:
+  provider: anthropic
+  model_id: claude-sonnet-4-20250514
+  temperature: 0.7
+  max_tokens: 4096
+  stream: true
+
+framework:
+  orchestration: langgraph
+  observability: langsmith
+  logging: structured
+  tracing: enabled
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1
+  instance_family: general
+  auto_scaling: true
+
+# Expected metrics
+estimated_latency_p95: 800ms
+estimated_monthly_cost: $8000
+```
+
+### Cost-Optimized Stack
+
+For budget-constrained applications:
+
+```yaml
+name: Cost Stack
+description: Optimized for minimal spend
+
+model:
+  provider: anthropic
+  model_id: claude-3-5-haiku-20241022
+  temperature: 0.5
+  max_tokens: 1024
+  stream: true
+
+framework:
+  orchestration: custom
+  observability: langsmith
+  logging: json
+  trace_sampling_rate: 0.01  # Minimal tracing
+
+hardware:
+  cloud_provider: aws
+  region: us-west-2          # Sometimes cheaper
+  instance_family: general
+  spot_instances: true       # 60-90% savings
+  auto_scaling: true
+
+# Cost optimizations
+prompt_caching: enabled      # Up to 90% input savings
+batch_processing: enabled    # For non-urgent requests
+
+# Expected metrics
+estimated_latency_p95: 400ms
+estimated_monthly_cost: $1200
+```
+
+### High-Availability Stack
+
+For mission-critical applications:
+
+```yaml
+name: HA Stack
+description: 99.99% availability target
+
+model:
+  provider: anthropic
+  model_id: claude-sonnet-4-20250514
+  temperature: 0.5
+  max_tokens: 2048
+  stream: true
+
+fallback:
+  enabled: true
+  provider: openai
+  model_id: gpt-4-turbo
+  auto_retry: true
+
+framework:
+  orchestration: langgraph
+  observability: langsmith
+  logging: structured
+  tracing: enabled
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1
+  multi_az: true             # Cross-AZ redundancy
+  instance_family: general
+  auto_scaling: true
+  min_instances: 3           # Always available
+
+# Expected metrics
+estimated_availability: 99.99%
+estimated_latency_p95: 700ms
+estimated_monthly_cost: $12000
+```
+
+## Stack Comparison
+
+Ask Lattice to compare your options:
+
+```
+Compare Speed Stack vs Quality Stack for my Production Chat
+scenario. Show:
+- Latency tradeoffs
+- Cost implications
+- Quality differences
+- Risk assessment
+```
+
+## Deploying Your Stack
+
+Once you have a stack configuration:
+
+1. **Export the configuration** as YAML or JSON
+2. **Use it to configure** your deployment (Docker, Kubernetes, etc.)
+3. **Monitor against SLOs** using your observability stack
+4. **Iterate** based on production data
+
+<Aside>
+  Stacks are starting points. Production deployment often requires additional configuration for your specific infrastructure.
+</Aside>
+
+## Next Steps
+
+- **[API Reference](/docs/api/overview)** — Implement stack configurations programmatically
+- **[GitHub Access](/docs/resources/github-access)** — Follow stack-related feature development

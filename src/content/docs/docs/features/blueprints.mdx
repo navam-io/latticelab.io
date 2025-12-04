@@ -1,0 +1,186 @@
+---
+title: Blueprints
+description: Pre-curated knowledge bundles for instant workspace setup.
+---
+
+import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
+
+Blueprints are curated knowledge bundles that give you a head start on AI infrastructure research. Instead of manually gathering documentation, apply a blueprint to instantly populate your workspace with relevant sources, scenarios, and stacks.
+
+## What's in a Blueprint?
+
+<CardGrid>
+  <Card title="Curated Sources" icon="document">
+    3-6 official documentation links, pricing pages, and technical guides from vendors
+  </Card>
+  <Card title="Pre-configured Scenarios" icon="setting">
+    1-2 workload configurations with realistic SLOs and constraints
+  </Card>
+  <Card title="Recommended Stacks" icon="puzzle">
+    1-2 infrastructure configurations optimized for common use cases
+  </Card>
+  <Card title="Suggested Prompts" icon="comment">
+    Research questions tailored to the blueprint's focus
+  </Card>
+</CardGrid>
+
+## Available Blueprints
+
+### Vendor Blueprints
+
+Official documentation from major AI providers:
+
+| Vendor | Focus Areas |
+|--------|-------------|
+| **Anthropic** | Claude models, prompt engineering, safety |
+| **OpenAI** | GPT-4, embeddings, fine-tuning |
+| **AWS** | Bedrock, SageMaker, infrastructure |
+| **Google** | Vertex AI, Gemini, TPU optimization |
+| **NVIDIA** | NIM, TensorRT, GPU optimization |
+| **Cohere** | Command, embeddings, RAG |
+| **Mistral** | Open-weight models, deployment |
+
+### Use Case Blueprints
+
+Curated for specific workloads:
+
+| Use Case | Sources Include |
+|----------|-----------------|
+| **RAG Pipeline** | Vector DBs, chunking strategies, retrieval patterns |
+| **Fine-tuning** | Dataset preparation, training best practices |
+| **Cost Optimization** | Pricing comparisons, caching strategies |
+| **Latency Optimization** | Benchmark data, streaming, edge deployment |
+| **Enterprise Security** | Compliance docs, security best practices |
+
+## Applying a Blueprint
+
+<Steps>
+
+1. Navigate to **Blueprints** in the main navigation
+2. Browse by vendor or search for specific topics
+3. Click a blueprint to view its contents
+4. Click **Apply to Workspace** to import everything
+5. Wait for sources to index (usually 30-60 seconds)
+6. Start researching with pre-populated context
+
+</Steps>
+
+<Aside>
+  Blueprints are additive. You can apply multiple blueprints to the same workspace to combine knowledge from different vendors.
+</Aside>
+
+## Blueprint Details
+
+### Anthropic Claude Blueprint
+
+```yaml
+name: Anthropic Claude
+description: Complete Claude documentation and best practices
+
+sources:
+  - url: https://docs.anthropic.com/claude/docs/models-overview
+    type: documentation
+  - url: https://docs.anthropic.com/claude/docs/prompt-engineering
+    type: documentation
+  - url: https://www.anthropic.com/pricing
+    type: pricing
+  - url: https://docs.anthropic.com/claude/docs/rate-limits
+    type: documentation
+
+scenarios:
+  - name: High-Volume Claude Chat
+    workload_type: chat
+    traffic_profile: high_volume
+    slo_requirements:
+      p95_latency_ms: 500
+      throughput_rps: 500
+
+stacks:
+  - name: Claude Sonnet Production
+    model:
+      provider: anthropic
+      model_id: claude-sonnet-4-20250514
+```
+
+### RAG Pipeline Blueprint
+
+```yaml
+name: RAG Pipeline
+description: Build production RAG systems
+
+sources:
+  - url: https://docs.pinecone.io/docs/overview
+    type: documentation
+  - url: https://python.langchain.com/docs/modules/data_connection/
+    type: documentation
+  - url: https://docs.anthropic.com/claude/docs/retrieval-augmented-generation
+    type: documentation
+  - url: https://www.llamaindex.ai/blog/evaluating-the-ideal-chunk-size
+    type: blog
+
+scenarios:
+  - name: Enterprise RAG
+    workload_type: rag
+    traffic_profile: medium_volume
+    slo_requirements:
+      p95_latency_ms: 2000
+      throughput_rps: 100
+```
+
+## Refreshing Blueprints
+
+Documentation changes over time. Refresh blueprints to:
+
+- Re-fetch source content
+- Update to latest documentation
+- Maintain accuracy
+
+<Steps>
+
+1. View the applied blueprint in your workspace
+2. Click **Refresh** on individual sources
+3. Or click **Refresh All** to update everything
+
+</Steps>
+
+## Creating Custom Blueprints
+
+<Aside type="note">
+  Custom blueprint creation is coming soon. Currently, blueprints are curated by the Lattice team.
+</Aside>
+
+Want a blueprint for a specific vendor or use case? [Request it on GitHub](https://github.com/navam-io/lattice/issues).
+
+## API Reference
+
+### List Blueprints
+
+```http
+GET /api/blueprints
+```
+
+Returns all available blueprints.
+
+### Get Blueprint
+
+```http
+GET /api/blueprints/{blueprint_id}
+```
+
+Returns blueprint details including sources, scenarios, and stacks.
+
+### Apply Blueprint
+
+```http
+POST /api/workspaces/{workspace_id}/blueprints/{blueprint_id}/apply
+```
+
+Imports all blueprint contents into the specified workspace.
+
+### Search Blueprints
+
+```http
+GET /api/blueprints?query=anthropic&category=vendor
+```
+
+Filter blueprints by search query and category.

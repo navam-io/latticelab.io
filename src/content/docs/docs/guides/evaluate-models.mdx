@@ -1,0 +1,182 @@
+---
+title: Evaluate AI Models
+description: A step-by-step guide to evaluating and comparing AI models for your use case.
+---
+
+import { Steps, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+This guide walks you through a systematic approach to evaluating AI models for production deployment using Lattice.
+
+## Overview
+
+Model evaluation involves:
+
+1. Defining your requirements
+2. Gathering relevant documentation
+3. Comparing capabilities and limitations
+4. Testing with your specific use cases
+5. Making a data-driven decision
+
+## Step 1: Define Your Requirements
+
+Before evaluating models, clarify what matters most:
+
+<Tabs>
+  <TabItem label="Performance">
+    - **Latency**: What response time is acceptable?
+    - **Throughput**: How many requests per second?
+    - **Context window**: How much input do you need to process?
+  </TabItem>
+  <TabItem label="Quality">
+    - **Accuracy**: How correct must responses be?
+    - **Reasoning**: Does your task require complex logic?
+    - **Creativity**: Do you need novel outputs?
+  </TabItem>
+  <TabItem label="Cost">
+    - **Budget**: What's your monthly spend limit?
+    - **Volume**: How many tokens will you process?
+    - **Growth**: How will usage scale?
+  </TabItem>
+</Tabs>
+
+Create a scenario in Lattice to capture these requirements:
+
+```yaml
+name: Model Evaluation - RAG Chatbot
+workload_type: rag
+traffic_profile: medium_volume
+slo_requirements:
+  p95_latency_ms: 1000
+  throughput_rps: 50
+budget:
+  monthly_limit_usd: 3000
+```
+
+## Step 2: Gather Documentation
+
+Apply relevant blueprints to populate your workspace:
+
+<Steps>
+
+1. Go to **Blueprints** and apply vendor blueprints for models you're considering
+2. Add any additional sources (benchmarks, blog posts, comparison articles)
+3. Wait for indexing to complete
+
+</Steps>
+
+For a Claude vs GPT-4 evaluation, you might apply:
+- Anthropic Claude Blueprint
+- OpenAI GPT-4 Blueprint
+- Add recent benchmark URLs manually
+
+## Step 3: Generate a Comparison Matrix
+
+Ask Lattice to create a structured comparison:
+
+```
+Create a detailed comparison table of Claude Sonnet and GPT-4 Turbo
+for RAG applications. Include:
+- Context window size
+- Input/output pricing
+- Latency benchmarks
+- Key strengths
+- Known limitations
+```
+
+Save the generated table to Studio for reference.
+
+## Step 4: Evaluate Against Your Scenario
+
+With your scenario active, ask targeted questions:
+
+```
+Given my RAG chatbot scenario with P95 latency under 1000ms
+and $3000/month budget, which model is the better choice?
+Show your reasoning with citations.
+```
+
+Lattice will consider your specific constraints when recommending.
+
+## Step 5: Deep-Dive on Specific Concerns
+
+Investigate areas that matter most to your use case:
+
+### For Latency-Sensitive Applications
+
+```
+What are the typical first-token and total response latencies
+for Claude Sonnet vs GPT-4 Turbo? Include any regional variations.
+```
+
+### For Cost Optimization
+
+```
+Calculate the monthly cost for each model assuming:
+- 1 million input tokens/day
+- 200K output tokens/day
+- 30 days
+Include prompt caching benefits if available.
+```
+
+### For Quality Requirements
+
+```
+Compare Claude Sonnet and GPT-4 Turbo on:
+- Instruction following accuracy
+- Factual grounding
+- Handling of ambiguous queries
+Cite relevant benchmarks and studies.
+```
+
+## Step 6: Document Your Decision
+
+Generate an executive memo summarizing your evaluation:
+
+```
+Write an executive memo recommending a model choice for our
+RAG chatbot project. Include:
+- Summary of options evaluated
+- Key decision criteria
+- Recommended choice with rationale
+- Cost projections
+- Risk considerations
+```
+
+Save this artifact to Studio as your decision record.
+
+## Example Evaluation Output
+
+Here's what a typical evaluation artifact might look like:
+
+| Criterion | Claude Sonnet | GPT-4 Turbo | Winner |
+|-----------|---------------|-------------|--------|
+| Context Window | 200K tokens | 128K tokens | Claude |
+| Input Price | $3/1M tokens | $10/1M tokens | Claude |
+| Output Price | $15/1M tokens | $30/1M tokens | Claude |
+| P95 Latency | ~800ms | ~1200ms | Claude |
+| Reasoning | Excellent | Excellent | Tie |
+| Function Calling | Good | Excellent | GPT-4 |
+| Safety | Excellent | Good | Claude |
+
+## Best Practices
+
+<Aside type="tip" title="Ground Every Claim">
+  Always cite your sources. Lattice provides citations automatically—use them to verify claims before making decisions.
+</Aside>
+
+<Aside type="tip" title="Test with Real Data">
+  After initial evaluation, run pilot tests with actual production prompts. Benchmarks don't always reflect your specific use case.
+</Aside>
+
+<Aside type="tip" title="Consider Total Cost">
+  Don't just compare token prices. Factor in:
+  - Prompt caching (Claude's prompt caching can reduce costs 90%)
+  - Batch processing discounts
+  - Fallback provider costs
+</Aside>
+
+## Next Steps
+
+- **[Compare Providers](/docs/guides/compare-providers)** — Evaluate cloud infrastructure options
+- **[Configure Scenarios](/docs/guides/configure-scenarios)** — Refine your workload requirements
+- **[Build Stacks](/docs/guides/build-stacks)** — Generate deployment configurations

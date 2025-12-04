@@ -1,0 +1,184 @@
+---
+title: GitHub Access
+description: Access the private Lattice repository to follow development and report issues.
+---
+
+import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
+
+Paying Lattice customers get direct access to our private GitHub repository. This isn't just code access—it's a seat at the table for product development.
+
+## What You Get
+
+<CardGrid>
+  <Card title="Source Code" icon="github">
+    Complete access to the Lattice codebase
+  </Card>
+  <Card title="Roadmap" icon="list-format">
+    GitHub Projects board showing planned features
+  </Card>
+  <Card title="Issue Tracker" icon="warning">
+    Report bugs and request features
+  </Card>
+  <Card title="Discussions" icon="comment">
+    Community conversations with the team
+  </Card>
+</CardGrid>
+
+## Getting Access
+
+When you subscribe to Lattice, you'll receive a GitHub invitation to the private `navam-io/lattice` repository.
+
+<Steps>
+
+1. Check your email for the GitHub invitation
+2. Accept using your GitHub account
+3. You now have full repository access
+
+</Steps>
+
+<Aside>
+  Don't see the invitation? Check your spam folder or contact support with your GitHub username.
+</Aside>
+
+## Following the Roadmap
+
+The **Lattice Roadmap** is maintained as a GitHub Projects board with columns:
+
+| Column | Description |
+|--------|-------------|
+| **Todo** | Features planned but not started |
+| **In Progress** | Features currently in development |
+| **Done** | Completed features with release versions |
+
+### Understanding Labels
+
+Filter the roadmap by area of interest:
+
+| Label | Description |
+|-------|-------------|
+| `area:rag` | RAG and knowledge retrieval features |
+| `area:scenario-stack` | Scenario and stack configuration |
+| `area:settings` | Application settings and preferences |
+| `area:studio` | Studio panel and artifact features |
+| `area:what-if` | What-if analysis capabilities |
+| `area:workflow` | Workflow automation features |
+| `bug` | Bug fixes and corrections |
+| `feature-slice` | Major feature implementations |
+| `status:released` | Features that have shipped |
+
+Click any label to filter and see only relevant items.
+
+## Exploring Feature Details
+
+Each roadmap item links to a detailed GitHub issue showing:
+
+### Version Targeting
+
+Every feature shows its **target version** (e.g., "Version: 0.8.5") so you know which release will include it.
+
+### Rationale
+
+We include reasoning behind each feature—often with quotes from customer conversations. This transparency helps you understand why certain features are prioritized.
+
+### Task Checklists
+
+Features break down into specific implementation tasks with checkboxes. See exactly what work remains before a feature ships.
+
+### Specification References
+
+Features link to spec documents (e.g., `backlog/scenario-stack-spec.md`) where you can read full technical designs.
+
+## Reporting Issues
+
+Your feedback directly influences the roadmap.
+
+<Steps>
+
+1. Navigate to **Issues** in the repository
+2. Search existing issues to avoid duplicates
+3. Click **New Issue** and select a template
+4. Provide detailed information
+
+</Steps>
+
+### Issue Templates
+
+| Template | Use For |
+|----------|---------|
+| **Bug Report** | Something isn't working as expected |
+| **Feature Request** | A capability you'd like added |
+| **Documentation** | Improvements to docs or guides |
+
+### What Makes a Good Issue
+
+The best issues include:
+
+- **Clear title** — Summarize the problem or request
+- **Reproduction steps** — How can we see the issue?
+- **Expected vs. actual** — What should happen vs. what does?
+- **Context** — Your use case and why this matters
+- **Screenshots** — Visual evidence when applicable
+
+## How Your Feedback Shapes Development
+
+Your issues don't disappear into a void:
+
+```
+Issue Submitted
+     ↓
+Triage (< 48 hours)
+     ↓
+Labeling & Prioritization
+     ↓
+Roadmap Integration
+     ↓
+Version Planning
+     ↓
+Implementation
+     ↓
+Release
+```
+
+Customers who actively participate often see their requested features prioritized. The rationale sections in feature specs frequently reference customer conversations.
+
+## Staying Updated
+
+### Watch the Repository
+
+Click **Watch** on the repository to receive notifications:
+
+- New releases
+- Issue updates
+- Roadmap changes
+- Important announcements
+
+### Release Tags
+
+Each version is tagged in Git (e.g., `v0.6.6`, `v0.6.7`). Track specific features through their release.
+
+### Subscribe to Issues
+
+Click **Subscribe** on specific issues to get notified when:
+
+- Status changes
+- New comments added
+- Issue closed or released
+
+## Contributing
+
+While the repository is private, we welcome contributions from customers:
+
+- **Bug fixes** — Submit PRs for issues you encounter
+- **Documentation** — Improve guides and examples
+- **Feature ideas** — Propose designs for new capabilities
+
+All contributions are reviewed by the Lattice team.
+
+<Aside type="tip">
+  Before starting significant work, open an issue to discuss your approach. This ensures your contribution aligns with the project direction.
+</Aside>
+
+## Next Steps
+
+- **[Roadmap](/docs/resources/roadmap)** — See what's coming next
+- **[Changelog](/docs/resources/changelog)** — Track recent releases

@@ -1,0 +1,251 @@
+---
+title: Stacks
+description: Generate optimized infrastructure configurations for your scenarios.
+---
+
+import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+Stacks are complete infrastructure configurations that Lattice recommends based on your scenario requirements. A stack specifies the model, framework, and hardware choices needed for deployment.
+
+## What is a Stack?
+
+A Stack answers the question: *"Given my requirements, what should I actually deploy?"*
+
+<CardGrid>
+  <Card title="Model Config" icon="rocket">
+    Provider, model ID, temperature, max tokens, and inference settings
+  </Card>
+  <Card title="Framework Config" icon="puzzle">
+    Orchestration (LangGraph, LangChain), observability, logging, tracing
+  </Card>
+  <Card title="Hardware Config" icon="laptop">
+    Cloud provider, region, GPU type, instance family, scaling settings
+  </Card>
+</CardGrid>
+
+## Stack Components
+
+### Model Configuration
+
+```yaml
+model:
+  provider: anthropic          # anthropic | openai | google | ollama
+  model_id: claude-sonnet-4-20250514
+  temperature: 0.7
+  max_tokens: 4096
+  top_p: 0.9
+```
+
+#### Supported Providers
+
+| Provider | Models | Best For |
+|----------|--------|----------|
+| **Anthropic** | Claude Opus, Sonnet, Haiku | Quality, safety, long context |
+| **OpenAI** | GPT-4, GPT-4 Turbo, GPT-4o | General purpose, function calling |
+| **Google** | Gemini Pro, Gemini Flash | Multimodal, cost efficiency |
+| **Ollama** | Llama, Mistral, etc. | Local deployment, privacy |
+
+### Framework Configuration
+
+```yaml
+framework:
+  orchestration: langgraph     # langgraph | langchain | custom
+  observability: langsmith     # langsmith | phoenix | custom
+  logging: structured          # structured | json | plaintext
+  tracing: enabled             # enabled | disabled
+```
+
+<Aside type="tip">
+  LangGraph is recommended for agentic workflows with complex state management. LangChain works well for simpler chains.
+</Aside>
+
+### Hardware Configuration
+
+```yaml
+hardware:
+  cloud_provider: aws          # aws | gcp | azure
+  region: us-east-1
+  gpu_type: null               # Required for self-hosted models
+  instance_family: general     # general | compute | memory
+  spot_instances: false        # Cost savings vs. reliability
+  auto_scaling: true
+```
+
+## Generating Stacks
+
+### From Scenarios
+
+Link a stack to a scenario for targeted recommendations:
+
+```
+Generate a stack for my "High-Volume Chat" scenario
+that optimizes for cost while meeting SLOs.
+```
+
+Lattice analyzes your scenario constraints and recommends:
+- Model choice based on latency/cost tradeoffs
+- Framework for your workload type
+- Hardware to handle your traffic profile
+
+### Manual Configuration
+
+Create stacks manually in the UI or via API:
+
+1. Navigate to **Stacks** in your workspace
+2. Click **+ New Stack**
+3. Configure model, framework, and hardware settings
+4. Save and optionally link to a scenario
+
+## Stack Examples
+
+### Claude Haiku Speed Stack
+
+Optimized for high-volume, low-latency applications:
+
+```yaml
+name: Claude Haiku Speed Stack
+description: Fastest option for high-volume chat
+
+model:
+  provider: anthropic
+  model_id: claude-3-5-haiku-20241022
+  temperature: 0.3
+  max_tokens: 1024
+
+framework:
+  orchestration: custom
+  observability: langsmith
+  logging: structured
+  tracing: enabled
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1
+  instance_family: compute
+  auto_scaling: true
+```
+
+**Use case:** Customer support chatbots, real-time assistants
+
+### Claude Sonnet Quality Stack
+
+Balanced quality and performance:
+
+```yaml
+name: Claude Sonnet Quality Stack
+description: Best quality for complex reasoning
+
+model:
+  provider: anthropic
+  model_id: claude-sonnet-4-20250514
+  temperature: 0.7
+  max_tokens: 4096
+
+framework:
+  orchestration: langgraph
+  observability: langsmith
+  logging: structured
+  tracing: enabled
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1
+  instance_family: general
+  auto_scaling: true
+```
+
+**Use case:** RAG applications, content generation, analysis
+
+### Multi-Provider Resilient Stack
+
+With automatic fallback:
+
+```yaml
+name: Multi-Provider Resilient Stack
+description: High availability with provider fallback
+
+model:
+  provider: anthropic
+  model_id: claude-sonnet-4-20250514
+  temperature: 0.7
+  max_tokens: 4096
+
+fallback:
+  provider: openai
+  model_id: gpt-4-turbo
+  auto_retry: true
+
+framework:
+  orchestration: langgraph
+  observability: langsmith
+  logging: structured
+  tracing: enabled
+
+hardware:
+  cloud_provider: aws
+  region: us-east-1
+  instance_family: general
+  auto_scaling: true
+```
+
+**Use case:** Mission-critical applications requiring 99.99% uptime
+
+## Comparing Stacks
+
+Ask Lattice to compare stack options:
+
+```
+Compare the Claude Haiku Speed Stack vs Claude Sonnet Quality Stack
+for my enterprise RAG scenario. Show the cost and latency tradeoffs.
+```
+
+## API Reference
+
+### List Stacks
+
+```http
+GET /api/workspaces/{workspace_id}/stacks
+```
+
+### Create Stack
+
+```http
+POST /api/workspaces/{workspace_id}/stacks
+Content-Type: application/json
+
+{
+  "name": "Claude Haiku Speed Stack",
+  "model": {
+    "provider": "anthropic",
+    "model_id": "claude-3-5-haiku-20241022",
+    "temperature": 0.3,
+    "max_tokens": 1024
+  },
+  "framework": {
+    "orchestration": "custom",
+    "observability": "langsmith"
+  },
+  "hardware": {
+    "cloud_provider": "aws",
+    "region": "us-east-1"
+  }
+}
+```
+
+### Get Stack
+
+```http
+GET /api/workspaces/{workspace_id}/stacks/{stack_id}
+```
+
+### Update Stack
+
+```http
+PATCH /api/workspaces/{workspace_id}/stacks/{stack_id}
+```
+
+### Delete Stack
+
+```http
+DELETE /api/workspaces/{workspace_id}/stacks/{stack_id}
+```

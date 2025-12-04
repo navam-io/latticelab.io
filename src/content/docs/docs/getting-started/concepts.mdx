@@ -1,0 +1,232 @@
+---
+title: Core Concepts
+description: Understand the fundamental building blocks of Lattice.
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+Lattice is built around a few core concepts that work together to help you make informed AI infrastructure decisions.
+
+## Workspaces
+
+A **Workspace** is an isolated container for a specific research initiative. Each workspace has its own:
+
+- **Sources** — Documents, URLs, and repositories
+- **Messages** — Conversation history with the AI
+- **Artifacts** — Generated tables, charts, and memos
+- **Scenarios** — Workload configurations
+- **Stacks** — Infrastructure recommendations
+
+<Aside>
+  Keep workspaces focused on a single project or evaluation. For example: "Claude vs GPT-4 for RAG" or "Q1 Infrastructure Review".
+</Aside>
+
+### Workspace Isolation
+
+Workspaces are completely isolated from each other:
+
+```
+Workspace: "Claude Sonnet Evaluation"
+├── Sources (5 documents)
+├── Messages (23 conversations)
+├── Artifacts (3 comparison tables)
+├── Scenarios (2 configurations)
+└── Stacks (1 recommendation)
+
+Workspace: "RAG Pipeline Research"
+├── Sources (12 documents)
+├── Messages (45 conversations)
+├── Artifacts (7 diagrams)
+├── Scenarios (4 configurations)
+└── Stacks (3 recommendations)
+```
+
+## Sources
+
+**Sources** are the knowledge foundation of your workspace. Lattice indexes content from:
+
+| Source Type | Description | Best For |
+|-------------|-------------|----------|
+| **URL** | Web pages, documentation, blog posts | Official docs, pricing pages, announcements |
+| **PDF** | Uploaded documents | Research papers, model cards, internal docs |
+| **GitHub** | Repository contents | Code analysis, README evaluation |
+| **YouTube** | Video transcripts | Tutorials, conference talks |
+| **Google Docs** | Drive documents | Team notes, specifications |
+
+### How Indexing Works
+
+When you add a source, Lattice:
+
+1. **Fetches** the content (web scraping, PDF parsing, etc.)
+2. **Chunks** the text into searchable segments
+3. **Embeds** each chunk using semantic vectors
+4. **Indexes** for both keyword and semantic search
+
+The result is a searchable knowledge base that powers grounded AI responses.
+
+## Lab (Chat Interface)
+
+The **Lab** is where you interact with the AI assistant. It provides:
+
+### Hybrid Search
+
+Every query searches your sources using three modes:
+
+- **Keyword** — Traditional text matching
+- **Semantic** — Vector similarity for meaning-based retrieval
+- **Hybrid** — Combined ranking using Reciprocal Rank Fusion (RRF)
+
+### Grounded Responses
+
+Responses include numbered citations linking to source passages:
+
+```
+Based on the documentation [1], Claude Sonnet offers a 200K
+context window [2], while GPT-4 Turbo supports 128K tokens [3].
+
+[1] Anthropic Documentation - Model Overview
+[2] Anthropic Documentation - Context Windows
+[3] OpenAI Documentation - GPT-4 Turbo
+```
+
+### Thinking Steps
+
+The AI exposes its reasoning process:
+
+```
+[Thinking] Analyzing the query about context windows...
+[Thinking] Found 3 relevant sources with pricing information...
+[Thinking] Comparing specifications across providers...
+```
+
+## Studio (Artifacts)
+
+The **Studio** panel captures structured outputs from conversations:
+
+<CardGrid>
+  <Card title="Tables" icon="list-format">
+    Comparison matrices, pricing breakdowns, feature lists
+  </Card>
+  <Card title="Charts" icon="bars-ascending">
+    Benchmark visualizations, cost projections, performance graphs
+  </Card>
+  <Card title="Memos" icon="document">
+    Executive summaries, decision rationales, recommendation docs
+  </Card>
+  <Card title="Diagrams" icon="puzzle">
+    Architecture diagrams, flow charts, system designs
+  </Card>
+</CardGrid>
+
+Artifacts are automatically detected and extracted from AI responses, or you can manually save content to Studio.
+
+## Scenarios
+
+A **Scenario** defines the requirements for a specific workload:
+
+```typescript
+interface Scenario {
+  // What type of AI workload
+  workload_type: 'chat' | 'rag' | 'agentic' | 'code' | 'embedding' | 'fine-tuning';
+
+  // Traffic patterns
+  traffic_profile: 'low_volume' | 'medium_volume' | 'high_volume' | 'burst';
+
+  // Performance requirements
+  slo_requirements: {
+    p50_latency_ms: number;
+    p95_latency_ms: number;
+    p99_latency_ms: number;
+    throughput_rps: number;
+    availability: number;  // e.g., 99.9
+  };
+
+  // Cost constraints
+  budget: {
+    monthly_limit_usd: number;
+    cost_per_1k_requests_usd: number;
+  };
+
+  // Compliance needs
+  compliance: {
+    regions: string[];
+    certifications: string[];
+    vendor_lock_in_tolerance: 'none' | 'low' | 'medium' | 'high';
+  };
+}
+```
+
+Scenarios enable "what-if" analysis: *"What's the best stack for a high-volume chat application with strict latency requirements?"*
+
+## Stacks
+
+A **Stack** is a complete infrastructure configuration recommended for a scenario:
+
+```typescript
+interface Stack {
+  // Model configuration
+  model: {
+    provider: 'anthropic' | 'openai' | 'google' | 'ollama';
+    model_id: string;
+    temperature: number;
+    max_tokens: number;
+  };
+
+  // Framework configuration
+  framework: {
+    orchestration: 'langgraph' | 'langchain' | 'custom';
+    observability: string;
+    logging: string;
+  };
+
+  // Hardware configuration
+  hardware: {
+    cloud_provider: 'aws' | 'gcp' | 'azure';
+    region: string;
+    gpu_type?: string;
+    instance_family: string;
+  };
+}
+```
+
+Stacks answer the question: *"Given my requirements, what should I actually deploy?"*
+
+## Blueprints
+
+**Blueprints** are pre-curated knowledge bundles that give you a head start:
+
+- **Vendor Blueprints** — Official documentation from Anthropic, OpenAI, AWS, NVIDIA, etc.
+- **Use Case Blueprints** — Curated sources for specific tasks like RAG, fine-tuning, or cost optimization
+
+When you apply a blueprint, Lattice imports:
+
+1. All curated sources (automatically indexed)
+2. Pre-configured scenarios
+3. Recommended stack configurations
+4. Suggested prompts for common questions
+
+## How It All Fits Together
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                       WORKSPACE                             │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   SOURCES ─────────> LAB ─────────> STUDIO                 │
+│   (Knowledge)       (Chat)         (Artifacts)             │
+│        │               │                │                   │
+│        └───────────────┴────────────────┘                   │
+│                        │                                    │
+│              ┌─────────┴─────────┐                          │
+│              ▼                   ▼                          │
+│         SCENARIOS            STACKS                         │
+│        (Requirements)    (Recommendations)                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+1. **Add Sources** to build your knowledge base
+2. **Chat in Lab** to get grounded insights
+3. **Save to Studio** for structured outputs
+4. **Define Scenarios** for your workload requirements
+5. **Generate Stacks** for deployment-ready configurations

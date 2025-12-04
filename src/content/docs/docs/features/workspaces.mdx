@@ -1,0 +1,115 @@
+---
+title: Workspaces
+description: Create isolated research environments for your AI infrastructure projects.
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Workspaces are the organizational foundation of Lattice. Each workspace provides an isolated environment for a specific research initiative, keeping your sources, conversations, and artifacts separate.
+
+## Creating a Workspace
+
+<Steps>
+
+1. Click the **workspace selector** at the top of the Sources panel
+2. Select **+ New Workspace** from the dropdown
+3. Enter a descriptive name (e.g., "Claude Sonnet Evaluation")
+4. Press **Enter** to create and switch to the new workspace
+
+</Steps>
+
+<Aside type="tip">
+  Use naming conventions that help you quickly identify workspaces: include the model family, use case, or date as needed.
+</Aside>
+
+## Workspace Contents
+
+Each workspace maintains its own isolated set of:
+
+| Component | Description |
+|-----------|-------------|
+| **Sources** | Documents, URLs, and repositories indexed for search |
+| **Messages** | Complete conversation history with the AI |
+| **Artifacts** | Generated tables, charts, memos, and diagrams |
+| **Scenarios** | Workload configurations with SLOs and constraints |
+| **Stacks** | Infrastructure recommendations |
+
+## Switching Workspaces
+
+Click the workspace selector to see all your workspaces. Each entry shows:
+
+- **Workspace name**
+- **Source count** — how many documents are indexed
+- **Message count** — your conversation history
+
+A checkmark indicates the currently active workspace.
+
+## Workspace Best Practices
+
+### Keep Workspaces Focused
+
+Create separate workspaces for distinct projects:
+
+```
+✓ "Claude vs GPT-4 for RAG" — focused comparison
+✓ "Q1 Infrastructure Review" — time-bounded evaluation
+✓ "Fine-tuning Cost Analysis" — specific use case
+
+✗ "AI Research" — too broad, will become cluttered
+```
+
+### Archive Old Workspaces
+
+When a project concludes, you can archive workspaces to keep your workspace list clean while preserving the data for future reference.
+
+### Export Before Deleting
+
+Before deleting a workspace, export important artifacts. Deletion is permanent and removes all associated data.
+
+## API Reference
+
+### List Workspaces
+
+```http
+GET /api/workspaces
+```
+
+Returns all workspaces for the current user.
+
+### Create Workspace
+
+```http
+POST /api/workspaces
+Content-Type: application/json
+
+{
+  "name": "Claude Sonnet Evaluation"
+}
+```
+
+### Get Workspace
+
+```http
+GET /api/workspaces/{workspace_id}
+```
+
+### Update Workspace
+
+```http
+PATCH /api/workspaces/{workspace_id}
+Content-Type: application/json
+
+{
+  "name": "Updated Workspace Name"
+}
+```
+
+### Delete Workspace
+
+```http
+DELETE /api/workspaces/{workspace_id}
+```
+
+<Aside type="caution">
+  Deleting a workspace removes all associated sources, messages, artifacts, scenarios, and stacks. This action cannot be undone.
+</Aside>

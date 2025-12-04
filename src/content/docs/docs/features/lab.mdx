@@ -1,0 +1,185 @@
+---
+title: Lab (Chat)
+description: AI-powered chat with grounded responses and transparent reasoning.
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+The Lab is Lattice's AI-powered chat interface where you interact with an intelligent assistant that grounds every response in your curated sources.
+
+## How It Works
+
+When you send a message, Lattice:
+
+1. **Searches** your sources using hybrid retrieval
+2. **Analyzes** the query to identify relevant context
+3. **Reasons** through the information with transparent thinking steps
+4. **Responds** with cited, verifiable claims
+
+## Grounded Responses
+
+Every response from Lattice includes numbered citations:
+
+```
+Based on the documentation [1], Claude Sonnet offers a 200K
+context window [2], while GPT-4 Turbo supports 128K tokens [3].
+For high-volume applications, the pricing differs significantly [4].
+
+[1] Anthropic Documentation - Model Overview
+[2] Anthropic Documentation - Context Windows
+[3] OpenAI Documentation - GPT-4 Turbo
+[4] Anthropic Pricing - API Rates
+```
+
+Click any citation to see the original source passage.
+
+## Thinking Steps
+
+Lattice exposes its reasoning process through thinking steps:
+
+```
+[Thinking] Analyzing the query about context windows...
+[Thinking] Found 3 relevant sources with specifications...
+[Thinking] Comparing Claude and GPT-4 context limits...
+[Thinking] Checking pricing implications for large contexts...
+```
+
+<Aside type="tip">
+  Thinking steps help you verify the AI's reasoning and catch any gaps in logic or source coverage.
+</Aside>
+
+## Suggested Prompts
+
+The Lab provides context-aware suggested prompts based on:
+
+- Your current workspace sources
+- Recent conversation topics
+- Common research patterns
+
+Click any suggestion to use it as your next query.
+
+## Chat Modes
+
+### Research Agent (Default)
+
+The full-featured mode with:
+
+- Transparent thinking steps
+- Multi-source synthesis
+- Citation tracking
+- Artifact detection
+
+### Direct LLM
+
+Bypass the research agent for simple queries:
+
+- Faster responses
+- No source grounding
+- Useful for general questions
+
+## Using Context Effectively
+
+### @Mentions for Source Boosting
+
+Reference specific sources to prioritize them:
+
+```
+@anthropic-docs What are the rate limits for Claude?
+```
+
+### Scenario Context
+
+Set an active scenario to inform responses:
+
+```
+Given my high-volume chat scenario, which model
+offers the best latency/cost tradeoff?
+```
+
+### Stack Context
+
+Reference stack configurations for targeted advice:
+
+```
+Using my Claude Haiku Speed Stack, how should I
+configure the temperature for consistency?
+```
+
+## Conversation History
+
+The Lab maintains full conversation history within each workspace. You can:
+
+- **Scroll back** to review previous exchanges
+- **Search** history for specific topics
+- **Delete** individual messages
+- **Export** conversations for documentation
+
+<Aside>
+  Conversation history is used to maintain context across messages. Configure the history limit in Settings to control how much context is included.
+</Aside>
+
+## Streaming Responses
+
+Responses stream in real-time via Server-Sent Events (SSE):
+
+```
+event: step
+data: {"type": "thinking", "content": "Analyzing query..."}
+
+event: content
+data: {"type": "text", "content": "Based on the documentation"}
+
+event: content
+data: {"type": "text", "content": " [1], Claude Sonnet..."}
+
+event: done
+data: {"type": "complete", "usage": {"input_tokens": 1234, "output_tokens": 567}}
+```
+
+## API Reference
+
+### Send Message
+
+<Tabs>
+  <TabItem label="Streaming">
+    ```http
+    POST /api/workspaces/{workspace_id}/chat
+    Content-Type: application/json
+
+    {
+      "message": "Compare Claude and GPT-4 for RAG applications",
+      "stream": true,
+      "include_history": true,
+      "scenario_id": "optional-scenario-uuid",
+      "stack_id": "optional-stack-uuid"
+    }
+    ```
+
+    Returns: Server-Sent Events stream
+  </TabItem>
+  <TabItem label="Non-Streaming">
+    ```http
+    POST /api/workspaces/{workspace_id}/chat
+    Content-Type: application/json
+
+    {
+      "message": "Compare Claude and GPT-4 for RAG applications",
+      "stream": false
+    }
+    ```
+
+    Returns: JSON response with complete message
+  </TabItem>
+</Tabs>
+
+### List Messages
+
+```http
+GET /api/workspaces/{workspace_id}/messages
+```
+
+### Delete Message
+
+```http
+DELETE /api/workspaces/{workspace_id}/messages/{message_id}
+```

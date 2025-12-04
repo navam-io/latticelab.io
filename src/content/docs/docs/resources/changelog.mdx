@@ -1,0 +1,120 @@
+---
+title: Changelog
+description: Track recent releases and changes to Lattice.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+This changelog highlights significant releases. For complete release notes, see the [GitHub releases page](https://github.com/navam-io/lattice/releases).
+
+## v0.6.20 (Latest)
+
+**Current Production Version**
+
+- Stability improvements
+- Bug fixes for scenario configuration
+- Performance optimizations for large workspaces
+
+## v0.6.x Series
+
+### v0.6.8
+
+**Stack Integration & StackPanel Deprecation**
+
+- Consolidated stack management into main interface
+- Deprecated separate StackPanel component
+- Improved stack configuration flow
+
+### v0.6.7
+
+**Studio - Scenario Integration**
+
+- Scenarios now visible in Studio panel
+- Link artifacts to scenarios for context
+- Enhanced scenario-driven analysis
+
+### v0.6.6
+
+**Studio Foundation - Collapsible Sections**
+
+- Collapsible sections for better artifact organization
+- Improved navigation for large workspaces
+- Foundation for upcoming Studio enhancements
+
+## v0.5.x Series
+
+### v0.5.x Highlights
+
+- **Scenario System** — Initial implementation of workload configuration
+- **Stack Recommendations** — AI-powered infrastructure suggestions
+- **Blueprint Gallery** — Pre-curated knowledge bundles
+
+## v0.4.x Series
+
+### v0.4.x Highlights
+
+- **Hybrid Search** — Combined keyword and semantic search with RRF
+- **Citation Tracking** — Numbered references in AI responses
+- **Artifact Detection** — Automatic extraction of tables and structured data
+
+## v0.3.x Series
+
+### v0.3.x Highlights
+
+- **Multi-Provider LLM** — Support for Anthropic, OpenAI, Google, Ollama
+- **Source Classification** — Automatic categorization of documents
+- **Workspace Isolation** — Separate contexts for different projects
+
+## v0.2.x Series
+
+### v0.2.x Highlights
+
+- **LangGraph Integration** — Stateful agent orchestration
+- **Thinking Steps** — Transparent AI reasoning
+- **PDF Support** — Document upload and parsing
+
+## v0.1.x Series
+
+### v0.1.x Highlights
+
+- **Initial Release** — Core workspace and chat functionality
+- **URL Indexing** — Web page ingestion and search
+- **Basic UI** — Three-panel layout foundation
+
+---
+
+## Versioning Scheme
+
+Lattice follows semantic versioning:
+
+```
+MAJOR.MINOR.PATCH
+```
+
+- **MAJOR** — Breaking changes (rare, with migration guides)
+- **MINOR** — New features, backward compatible
+- **PATCH** — Bug fixes and minor improvements
+
+## Upgrade Notes
+
+<Aside type="caution">
+  Always backup your data before upgrading. While we strive for seamless upgrades, reviewing release notes for breaking changes is recommended.
+</Aside>
+
+### Database Migrations
+
+New versions may include database migrations. These run automatically on startup but can be run manually:
+
+```bash
+alembic upgrade head
+```
+
+### API Compatibility
+
+API changes are documented in release notes. Breaking changes are introduced in new API versions with a deprecation period for the old version.
+
+## Stay Updated
+
+- **Watch Releases** — Star the repository and enable release notifications
+- **GitHub Discussions** — Join conversations about new features
+- **Roadmap** — See what's coming in [future releases](/docs/resources/roadmap)

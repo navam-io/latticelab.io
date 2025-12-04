@@ -1,0 +1,663 @@
+---
+title: API Overview
+description: Complete guide to the Lattice REST API for programmatic access to AI infrastructure decisions.
+---
+
+import { Aside, Card, CardGrid, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
+
+The Lattice API provides programmatic access to all platform features. Build integrations, automate workflows, and extend Lattice capabilities for your AI infrastructure needs.
+
+## Base URL
+
+**Cloud (Coming Soon)**
+```
+https://api.latticelab.io/api
+```
+
+**Self-Hosted**
+```
+http://localhost:8000/api
+```
+
+<Aside>
+  All API endpoints are prefixed with `/api`. The self-hosted version runs on port 8000 by default, configurable via environment variables.
+</Aside>
+
+## Authentication
+
+### LLM Provider API Keys
+
+Lattice requires API keys for the LLM providers you want to use. Configure these in **Settings > API Keys** or via the API:
+
+```http
+POST /api/api-keys
+Content-Type: application/json
+
+{
+  "provider": "anthropic",
+  "api_key": "sk-ant-api03-..."
+}
+```
+
+**Supported Providers:**
+
+| Provider | Models | Required For |
+|----------|--------|--------------|
+| `anthropic` | Claude 3.5 Sonnet, Claude 3 Opus/Haiku | Primary chat, analysis |
+| `openai` | GPT-4o, GPT-4 Turbo, text-embedding-3-small | Chat, embeddings |
+| `google` | Gemini 1.5 Pro/Flash | Alternative chat |
+| `voyage` | voyage-3, voyage-code-3 | Advanced embeddings |
+| `ollama` | Llama 3.2, Mistral, etc. | Local/private inference |
+
+<Aside type="caution">
+  API keys are encrypted at rest. The API only returns masked key hints (e.g., `sk-ant-...abc123`) for security.
+</Aside>
+
+### Validate Provider Keys
+
+Check if a provider key is valid:
+
+```http
+POST /api/api-keys/anthropic/validate
+```
+
+Response:
+```json
+{
+  "provider": "anthropic",
+  "is_valid": true,
+  "validated_at": "2024-12-03T10:30:00Z"
+}
+```
+
+## Response Format
+
+All responses use JSON with consistent structure.
+
+### Success Response
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "AI Infrastructure Research",
+  "created_at": "2024-12-03T10:30:00Z",
+  "updated_at": "2024-12-03T10:30:00Z"
+}
+```
+
+### List Response (Paginated)
+
+```json
+{
+  "items": [...],
+  "total": 45,
+  "page": 1,
+  "page_size": 20,
+  "has_next": true
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "VALIDATION_ERROR",
+  "message": "Invalid workspace_id format",
+  "detail": "workspace_id must be a valid UUID"
+}
+```
+
+## API Resources
+
+<CardGrid>
+  <Card title="Workspaces" icon="folder">
+    Isolated research environments containing sources, messages, and artifacts.
+
+    `GET/POST/PATCH/DELETE /workspaces`
+  </Card>
+  <Card title="Sources" icon="document">
+    Knowledge sources: PDFs, URLs, GitHub repos, YouTube videos, Google Docs.
+
+    `GET/POST/DELETE /workspaces/{id}/sources`
+  </Card>
+  <Card title="Chat" icon="comment">
+    AI-powered conversations with RAG over your sources.
+
+    `POST /workspaces/{id}/chat`
+  </Card>
+  <Card title="Search" icon="magnifier">
+    Hybrid search combining keyword and semantic similarity.
+
+    `GET/POST /workspaces/{id}/search`
+  </Card>
+  <Card title="Artifacts" icon="puzzle">
+    Save and manage AI-generated content: code, configs, analyses.
+
+    `GET/POST/PATCH/DELETE /workspaces/{id}/artifacts`
+  </Card>
+  <Card title="Scenarios" icon="setting">
+    Define AI workload requirements: SLOs, budgets, compliance.
+
+    `GET/POST/PATCH/DELETE /workspaces/{id}/scenarios`
+  </Card>
+  <Card title="Stacks" icon="rocket">
+    Infrastructure configurations: models, frameworks, hardware.
+
+    `GET/POST/PATCH/DELETE /workspaces/{id}/stacks`
+  </Card>
+  <Card title="Blueprints" icon="list-format">
+    Pre-built templates for common AI infrastructure patterns.
+
+    `GET/POST /blueprints`
+  </Card>
+</CardGrid>
+
+## Key Endpoints
+
+### Workspaces
+
+Create isolated research environments:
+
+```http
+POST /api/workspaces
+Content-Type: application/json
+
+{
+  "name": "Claude vs GPT-4 Evaluation",
+  "description": "Compare models for production RAG system"
+}
+```
+
+Response includes computed counts:
+```json
+{
+  "id": "ws_abc123",
+  "name": "Claude vs GPT-4 Evaluation",
+  "description": "Compare models for production RAG system",
+  "source_count": 0,
+  "message_count": 0,
+  "created_at": "2024-12-03T10:30:00Z"
+}
+```
+
+### Sources
+
+Add knowledge sources with automatic processing:
+
+<Tabs>
+  <TabItem label="URL">
+```http
+POST /api/workspaces/{workspace_id}/sources
+Content-Type: application/json
+
+{
+  "type": "url",
+  "title": "Anthropic Claude Documentation",
+  "url": "https://docs.anthropic.com"
+}
+```
+  </TabItem>
+  <TabItem label="PDF">
+```http
+POST /api/workspaces/{workspace_id}/sources
+Content-Type: application/json
+
+{
+  "type": "pdf",
+  "title": "System Requirements Document",
+  "file_data": "base64-encoded-pdf-content"
+}
+```
+  </TabItem>
+  <TabItem label="GitHub">
+```http
+POST /api/workspaces/{workspace_id}/sources
+Content-Type: application/json
+
+{
+  "type": "github",
+  "title": "vLLM Repository",
+  "url": "https://github.com/vllm-project/vllm"
+}
+```
+  </TabItem>
+</Tabs>
+
+**Source Types:** `pdf`, `url`, `github`, `youtube`, `google_docs`, `markdown`, `text`, `artifact`
+
+**Auto-Classification:** Sources are automatically categorized:
+- `requirements` - SLAs, PRDs, RFPs
+- `research` - Papers, blogs, transcripts
+- `vendor` - Pricing, model cards, API docs
+- `architecture` - Design docs, diagrams
+- `benchmarks` - Leaderboards, evaluations
+- `tutorial` - Learning content, guides
+
+### Search
+
+Three search modes for finding relevant content:
+
+```http
+GET /api/workspaces/{workspace_id}/search?q=latency+requirements&mode=hybrid&limit=10
+```
+
+| Mode | Description | Requirements |
+|------|-------------|--------------|
+| `keyword` | BM25 full-text search | None |
+| `semantic` | Vector similarity search | OpenAI API key |
+| `hybrid` | Combined with RRF ranking | OpenAI API key |
+
+Response includes relevance scores and highlights:
+```json
+{
+  "results": [
+    {
+      "id": "chunk_123",
+      "source_id": "src_456",
+      "title": "SLA Requirements",
+      "content": "P95 latency must be under 500ms...",
+      "relevance_score": 0.92,
+      "highlight": "P95 <mark>latency</mark> must be under 500ms"
+    }
+  ],
+  "total": 15,
+  "mode": "hybrid"
+}
+```
+
+### Chat
+
+Send messages with automatic RAG over your sources:
+
+```http
+POST /api/workspaces/{workspace_id}/chat
+Content-Type: application/json
+
+{
+  "message": "Compare Claude Sonnet vs GPT-4o for our latency requirements",
+  "use_sources": true,
+  "scenario_id": "scn_789",
+  "stack_id": "stk_012"
+}
+```
+
+**Streaming Support:** Use `/chat/stream` for Server-Sent Events:
+
+```http
+POST /api/workspaces/{workspace_id}/chat/stream
+```
+
+Events:
+```
+event: content
+data: {"type": "text", "content": "Based on your requirements..."}
+
+event: source
+data: {"type": "citation", "source_id": "src_123", "chunk": "..."}
+
+event: done
+data: {"type": "complete", "usage": {"input_tokens": 1234}}
+```
+
+### Scenarios
+
+Define your AI workload requirements:
+
+```http
+POST /api/workspaces/{workspace_id}/scenarios
+Content-Type: application/json
+
+{
+  "name": "Production RAG System",
+  "workload": {
+    "category": "inference",
+    "primary_type": "llm_inference",
+    "traffic_profile": "bursty",
+    "request_size_tokens": 2048,
+    "response_size_tokens": 1024
+  },
+  "slos": {
+    "latency_p50_ms": 100,
+    "latency_p95_ms": 500,
+    "latency_p99_ms": 1000,
+    "throughput_rps": 100,
+    "availability_percent": 99.9
+  },
+  "budget": {
+    "monthly_limit_usd": 10000,
+    "cost_per_1k_requests_usd": 5.0
+  },
+  "compliance": {
+    "regions": ["us-east-1", "eu-west-1"],
+    "certifications": ["SOC2", "HIPAA"]
+  },
+  "risk_profile": "moderate"
+}
+```
+
+**Workload Categories:**
+- `inference` - LLM inference, embeddings, vision
+- `training` - Fine-tuning, pre-training, RLHF
+- `comparison` - Benchmarking, cost analysis
+
+**Extract from Documents:** Automatically extract requirements:
+
+```http
+POST /api/workspaces/{workspace_id}/scenarios/extract
+Content-Type: application/json
+
+{
+  "document_content": "base64-encoded-pdf-or-text",
+  "document_type": "pdf",
+  "extraction_mode": "full"
+}
+```
+
+### Stacks
+
+Configure your AI infrastructure:
+
+```http
+POST /api/workspaces/{workspace_id}/stacks
+Content-Type: application/json
+
+{
+  "name": "Production Stack - Claude",
+  "model": {
+    "provider": "anthropic",
+    "model_id": "claude-3-5-sonnet-20241022",
+    "temperature": 0.7,
+    "max_tokens": 4096
+  },
+  "framework": {
+    "orchestration": "kubernetes",
+    "observability": "datadog",
+    "enable_tracing": true
+  },
+  "hardware": {
+    "cloud_provider": "aws",
+    "instance_family": "g4dn",
+    "gpu_type": "a10g"
+  },
+  "inference": {
+    "model_serving": "vllm",
+    "auto_scaling": true,
+    "quantization": "none"
+  }
+}
+```
+
+### Blueprints
+
+Apply pre-built infrastructure patterns:
+
+```http
+POST /api/blueprints/{blueprint_id}/apply
+Content-Type: application/json
+
+{
+  "workspace_id": "ws_abc123",
+  "overrides": {
+    "model.provider": "openai",
+    "budget.monthly_limit_usd": 5000
+  }
+}
+```
+
+**Discover from URL:**
+
+```http
+POST /api/blueprints/discover
+Content-Type: application/json
+
+{
+  "url": "https://docs.anthropic.com/en/docs/build-with-claude"
+}
+```
+
+### Artifacts
+
+Save AI-generated content for later use:
+
+```http
+POST /api/workspaces/{workspace_id}/artifacts
+Content-Type: application/json
+
+{
+  "type": "comparison",
+  "title": "Claude vs GPT-4 Analysis",
+  "content": "## Model Comparison\n\n| Feature | Claude | GPT-4 |..."
+}
+```
+
+**Artifact Types:** `code`, `document`, `configuration`, `prompt`, `analysis`, `comparison`
+
+**Promote to Source:** Convert artifacts into searchable sources:
+
+```http
+POST /api/workspaces/{workspace_id}/artifacts/{artifact_id}/promote
+```
+
+### Smart Prompts
+
+Get AI-generated contextual prompts:
+
+```http
+GET /api/workspaces/{workspace_id}/smart-prompts?scenario_id=scn_123&limit=4
+```
+
+Response:
+```json
+{
+  "prompts": [
+    {
+      "id": "sp_1",
+      "text": "Compare latency characteristics of Claude vs GPT-4 for our 500ms P95 requirement",
+      "category": "analysis",
+      "confidence": 0.95
+    }
+  ]
+}
+```
+
+### Settings
+
+Multi-level configuration with inheritance:
+
+```http
+# Get resolved settings (defaults → global → workspace)
+GET /api/workspaces/{workspace_id}/settings/resolved
+
+# Update workspace settings
+PATCH /api/workspaces/{workspace_id}/settings
+Content-Type: application/json
+
+{
+  "model_defaults": {
+    "provider": "anthropic",
+    "model": "claude-3-5-sonnet-20241022"
+  },
+  "rag": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200
+  }
+}
+```
+
+### Health Check
+
+```http
+GET /api/health
+```
+
+Response:
+```json
+{
+  "status": "healthy",
+  "version": "0.6.3",
+  "environment": "production",
+  "timestamp": "2024-12-03T10:30:00Z"
+}
+```
+
+**Status Values:** `healthy`, `degraded`, `unhealthy`
+
+## Pagination
+
+All list endpoints support pagination:
+
+```http
+GET /api/workspaces?page=1&page_size=20
+```
+
+| Parameter | Default | Max | Description |
+|-----------|---------|-----|-------------|
+| `page` | 1 | - | Page number (1-indexed) |
+| `page_size` | 20 | 100 | Items per page |
+
+## Filtering & Sorting
+
+Filter and sort list results:
+
+```http
+# Filter sources by type and category
+GET /api/workspaces/{id}/sources?type=pdf&category=research
+
+# Sort by creation date (descending)
+GET /api/workspaces/{id}/artifacts?sort_by=created_at&sort_order=desc
+```
+
+## Error Codes
+
+| Code | Description |
+|------|-------------|
+| `400` | Bad Request - Invalid parameters |
+| `404` | Not Found - Resource doesn't exist |
+| `422` | Validation Error - Schema validation failed |
+| `500` | Internal Server Error |
+| `503` | Service Unavailable - External service down |
+
+## SDK Examples
+
+### Python
+
+```python
+import httpx
+
+client = httpx.Client(base_url="http://localhost:8000/api")
+
+# Create workspace
+workspace = client.post("/workspaces", json={
+    "name": "My Research",
+    "description": "Evaluating LLM providers"
+}).json()
+
+# Add a source
+source = client.post(
+    f"/workspaces/{workspace['id']}/sources",
+    json={
+        "type": "url",
+        "title": "Claude Docs",
+        "url": "https://docs.anthropic.com"
+    }
+).json()
+
+# Chat with RAG
+response = client.post(
+    f"/workspaces/{workspace['id']}/chat",
+    json={
+        "message": "What are Claude's context window limits?",
+        "use_sources": True
+    }
+).json()
+
+print(response["content"])
+```
+
+### TypeScript
+
+```typescript
+const API_BASE = "http://localhost:8000/api";
+
+// Create workspace
+const workspace = await fetch(`${API_BASE}/workspaces`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name: "My Research",
+    description: "Evaluating LLM providers"
+  })
+}).then(r => r.json());
+
+// Stream chat response
+const response = await fetch(
+  `${API_BASE}/workspaces/${workspace.id}/chat/stream`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: "Compare Claude and GPT-4 pricing",
+      use_sources: true
+    })
+  }
+);
+
+const reader = response.body.getReader();
+const decoder = new TextDecoder();
+
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) break;
+  console.log(decoder.decode(value));
+}
+```
+
+### cURL
+
+```bash
+# Create workspace
+curl -X POST http://localhost:8000/api/workspaces \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Research"}'
+
+# Search sources
+curl "http://localhost:8000/api/workspaces/{id}/search?q=latency&mode=hybrid"
+
+# Chat
+curl -X POST http://localhost:8000/api/workspaces/{id}/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Summarize the key requirements"}'
+```
+
+## OpenAPI Specification
+
+Interactive API documentation is available when running Lattice:
+
+- **Swagger UI:** `http://localhost:8000/docs`
+- **ReDoc:** `http://localhost:8000/redoc`
+- **OpenAPI JSON:** `http://localhost:8000/openapi.json`
+
+<Aside>
+  The API reference pages in this documentation are auto-generated from the OpenAPI specification and stay synchronized with the latest API version.
+</Aside>
+
+## Environment Variables
+
+Key configuration options for self-hosted deployments:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `DATABASE_URL` | PostgreSQL async URL | Database connection string |
+| `ANTHROPIC_API_KEY` | - | Anthropic API key |
+| `OPENAI_API_KEY` | - | OpenAI API key |
+| `GOOGLE_API_KEY` | - | Google AI API key |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama server URL |
+| `EMBEDDING_MODEL` | `text-embedding-3-small` | OpenAI embedding model |
+| `ENABLE_EMBEDDINGS` | `true` | Enable semantic search |
+| `CORS_ORIGINS` | `http://localhost:3000` | Allowed CORS origins |
+
+## Need Help?
+
+- **[GitHub Repository](https://github.com/navam-io/lattice)** - Source code and issues
+- **[Roadmap](/docs/resources/roadmap)** - Upcoming features
+- **[Changelog](/docs/resources/changelog)** - Version history

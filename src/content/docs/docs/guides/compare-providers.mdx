@@ -1,0 +1,229 @@
+---
+title: Compare Providers
+description: Evaluate and compare AI providers for your infrastructure needs.
+---
+
+import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+This guide helps you compare AI providers across dimensions that matter for production deployments.
+
+## Provider Landscape
+
+<CardGrid>
+  <Card title="Anthropic" icon="rocket">
+    Claude models with industry-leading safety and long context
+  </Card>
+  <Card title="OpenAI" icon="star">
+    GPT-4 family with strong function calling and ecosystem
+  </Card>
+  <Card title="Google" icon="cloud">
+    Gemini models with multimodal capabilities and GCP integration
+  </Card>
+  <Card title="AWS Bedrock" icon="puzzle">
+    Multi-model access with enterprise security
+  </Card>
+</CardGrid>
+
+## Comparison Framework
+
+Evaluate providers across five key dimensions:
+
+### 1. Model Capabilities
+
+```
+Compare model capabilities across Anthropic, OpenAI, and Google:
+- Context window sizes
+- Multimodal support (vision, audio)
+- Function/tool calling
+- Structured output support
+- Fine-tuning availability
+```
+
+### 2. Pricing Structure
+
+```
+Create a pricing comparison for Anthropic Claude, OpenAI GPT-4,
+and Google Gemini. Include:
+- Input token pricing
+- Output token pricing
+- Batch processing discounts
+- Prompt caching options
+- Volume discounts
+```
+
+### 3. Performance Benchmarks
+
+```
+What are the latest benchmark results for Claude Sonnet,
+GPT-4 Turbo, and Gemini Pro on:
+- MMLU (general knowledge)
+- HumanEval (coding)
+- GSM8K (math reasoning)
+- Latency measurements
+Cite specific benchmark sources.
+```
+
+### 4. Enterprise Features
+
+| Feature | Anthropic | OpenAI | Google | AWS Bedrock |
+|---------|-----------|--------|--------|-------------|
+| SOC 2 | Yes | Yes | Yes | Yes |
+| HIPAA | Yes | Yes | Yes | Yes |
+| Data Residency | Limited | Limited | Yes | Yes |
+| Private Deployment | No | No | Yes | Yes |
+| SLA | 99.9% | 99.9% | 99.9% | 99.99% |
+
+### 5. Developer Experience
+
+Consider the practical aspects:
+
+```
+Compare developer experience across providers:
+- SDK quality and documentation
+- Error handling and debugging
+- Rate limit management
+- Streaming support
+- Observability integrations
+```
+
+## Step-by-Step Comparison
+
+<Steps>
+
+1. **Apply Provider Blueprints**
+
+   Start by applying blueprints for each provider you're evaluating:
+   - Anthropic Claude Blueprint
+   - OpenAI GPT-4 Blueprint
+   - Google Vertex AI Blueprint
+
+2. **Define Your Evaluation Criteria**
+
+   Create a scenario with your specific requirements:
+
+   ```yaml
+   name: Provider Evaluation
+   workload_type: chat
+   slo_requirements:
+     p95_latency_ms: 500
+     availability: 99.9
+   compliance:
+     certifications: [SOC2, HIPAA]
+     regions: [us-east-1, eu-west-1]
+   ```
+
+3. **Generate Comparison Artifacts**
+
+   Ask Lattice to create structured comparisons:
+
+   ```
+   Generate a comprehensive provider comparison matrix for my
+   scenario. Include pricing, performance, compliance, and
+   developer experience. Save as a table artifact.
+   ```
+
+4. **Calculate Total Cost of Ownership**
+
+   Get cost projections for your expected usage:
+
+   ```
+   Calculate monthly costs for each provider assuming:
+   - 50M input tokens
+   - 10M output tokens
+   - 99.9% uptime requirement
+   Include infrastructure costs, not just API pricing.
+   ```
+
+5. **Assess Risk Factors**
+
+   Understand the risks of each choice:
+
+   ```
+   What are the key risks of choosing each provider?
+   Consider: vendor lock-in, pricing changes, rate limits,
+   geographic availability, and support quality.
+   ```
+
+</Steps>
+
+## Provider-Specific Considerations
+
+### Anthropic
+
+<Aside type="tip">
+  **Strengths:** Safety, long context (200K), prompt caching, Claude's reasoning
+
+  **Consider:** Regional availability, enterprise deployment options
+</Aside>
+
+### OpenAI
+
+<Aside type="tip">
+  **Strengths:** Ecosystem maturity, function calling, fine-tuning, GPT Store
+
+  **Consider:** Higher pricing, rate limit management at scale
+</Aside>
+
+### Google (Vertex AI)
+
+<Aside type="tip">
+  **Strengths:** Multimodal, GCP integration, data residency, grounding
+
+  **Consider:** Model performance vs competitors, API complexity
+</Aside>
+
+### AWS Bedrock
+
+<Aside type="tip">
+  **Strengths:** Multi-model access, AWS integration, enterprise security
+
+  **Consider:** Additional latency overhead, pricing complexity
+</Aside>
+
+## Multi-Provider Strategy
+
+Consider a multi-provider approach for:
+
+- **Resilience:** Failover when one provider has issues
+- **Cost optimization:** Use different models for different tasks
+- **Capability coverage:** Leverage unique strengths of each
+
+```yaml
+# Example multi-provider stack
+primary:
+  provider: anthropic
+  model: claude-sonnet-4-20250514
+  use_cases: [complex_reasoning, long_context]
+
+secondary:
+  provider: openai
+  model: gpt-4-turbo
+  use_cases: [function_calling, structured_output]
+
+fallback:
+  provider: google
+  model: gemini-pro
+  use_cases: [cost_sensitive, high_volume]
+```
+
+## Decision Framework
+
+Score each provider on your priority criteria:
+
+| Criterion | Weight | Anthropic | OpenAI | Google |
+|-----------|--------|-----------|--------|--------|
+| Cost | 30% | 9 | 6 | 8 |
+| Performance | 25% | 9 | 8 | 7 |
+| Compliance | 20% | 8 | 8 | 9 |
+| Developer UX | 15% | 8 | 9 | 7 |
+| Ecosystem | 10% | 7 | 9 | 8 |
+| **Weighted** | 100% | **8.5** | **7.5** | **7.8** |
+
+<Aside>
+  This is an example scoring. Your weights and scores will vary based on your specific requirements.
+</Aside>
+
+## Next Steps
+
+- **[Configure Scenarios](/docs/guides/configure-scenarios)** — Define workload-specific requirements
+- **[Build Stacks](/docs/guides/build-stacks)** — Create deployment configurations

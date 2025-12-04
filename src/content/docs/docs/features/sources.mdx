@@ -1,0 +1,174 @@
+---
+title: Sources
+description: Build your knowledge base with PDFs, URLs, GitHub repos, and more.
+---
+
+import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
+
+Sources are the knowledge foundation of your Lattice workspace. By importing documents, URLs, and repositories, you build a curated knowledge base that grounds all AI responses in verifiable information.
+
+## Source Types
+
+<CardGrid>
+  <Card title="URL" icon="external">
+    Import web pages, documentation sites, and blog posts. Lattice extracts the main content and handles JavaScript-rendered pages.
+  </Card>
+  <Card title="PDF" icon="document">
+    Upload research papers, model cards, internal documentation, and reports. Text is extracted and chunked for search.
+  </Card>
+  <Card title="GitHub" icon="github">
+    Connect repositories to analyze code, README files, and documentation. Great for evaluating open-source tools.
+  </Card>
+  <Card title="YouTube" icon="youtube">
+    Index video transcripts from tutorials, conference talks, and product demos.
+  </Card>
+</CardGrid>
+
+## Adding Sources
+
+<Steps>
+
+1. Click the **+** button in the Sources panel header
+2. Select the source type from the dropdown
+3. Enter the URL, upload the file, or provide repository details
+4. Click **Add Source** to begin indexing
+
+</Steps>
+
+## Indexing Process
+
+When you add a source, Lattice processes it through several stages:
+
+```
+Fetch → Extract → Chunk → Embed → Index
+```
+
+1. **Fetch** — Retrieve content from the URL or parse the uploaded file
+2. **Extract** — Pull main text content, removing navigation and boilerplate
+3. **Chunk** — Split into searchable segments (default: ~500 tokens each)
+4. **Embed** — Generate semantic vectors using OpenAI text-embedding-3-small
+5. **Index** — Store in PostgreSQL with pgvector for hybrid search
+
+<Aside>
+  Indexing time varies by source size. Most URLs complete in seconds; large PDFs may take 30-60 seconds.
+</Aside>
+
+## Source Classification
+
+Lattice automatically classifies sources into categories:
+
+| Category | Examples |
+|----------|----------|
+| `documentation` | API docs, user guides, reference material |
+| `benchmark` | Performance comparisons, evaluation results |
+| `pricing` | Cost calculators, pricing pages, rate cards |
+| `model_card` | Model specifications, capabilities, limitations |
+| `blog` | Announcements, tutorials, thought leadership |
+| `research` | Academic papers, technical reports |
+
+Classification helps the AI understand context and prioritize relevant sources.
+
+## Search Modes
+
+Sources are searchable using three modes:
+
+### Keyword Search
+
+Traditional text matching for exact terms:
+
+```
+"context window" AND "128K tokens"
+```
+
+### Semantic Search
+
+Vector similarity for meaning-based retrieval:
+
+```
+"How much does it cost to run a large language model?"
+→ Finds pricing pages even if they don't use those exact words
+```
+
+### Hybrid Search (Default)
+
+Combines keyword and semantic results using Reciprocal Rank Fusion (RRF):
+
+```
+final_score = 1/(k + keyword_rank) + 1/(k + semantic_rank)
+```
+
+This balances precision (keyword) with recall (semantic).
+
+## @Mentions
+
+Boost specific sources in your queries using @mentions:
+
+```
+@anthropic-pricing Compare Claude pricing to GPT-4
+```
+
+The mentioned source receives higher weight in search results.
+
+## Managing Sources
+
+### View Source Details
+
+Click any source in the panel to see:
+
+- **Chunk count** — How many segments were indexed
+- **Source type** — URL, PDF, GitHub, etc.
+- **Classification** — Auto-detected category
+- **Added date** — When the source was indexed
+
+### Refresh Sources
+
+For URL sources, click **Refresh** to re-fetch and re-index content. Useful when documentation is updated.
+
+### Delete Sources
+
+Remove sources you no longer need. Deletion removes all indexed chunks from the search index.
+
+## API Reference
+
+### List Sources
+
+```http
+GET /api/workspaces/{workspace_id}/sources
+```
+
+### Add Source
+
+```http
+POST /api/workspaces/{workspace_id}/sources
+Content-Type: application/json
+
+{
+  "type": "url",
+  "url": "https://docs.anthropic.com/claude/docs/models-overview"
+}
+```
+
+### Get Source
+
+```http
+GET /api/workspaces/{workspace_id}/sources/{source_id}
+```
+
+### Delete Source
+
+```http
+DELETE /api/workspaces/{workspace_id}/sources/{source_id}
+```
+
+### Search Sources
+
+```http
+POST /api/workspaces/{workspace_id}/search
+Content-Type: application/json
+
+{
+  "query": "context window limits",
+  "mode": "hybrid",
+  "limit": 10
+}
+```

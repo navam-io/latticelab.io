@@ -1,0 +1,158 @@
+---
+title: Studio (Artifacts)
+description: Save and manage generated tables, charts, memos, and diagrams.
+---
+
+import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
+
+The Studio panel captures and organizes structured outputs from your Lab conversations. When the AI generates useful artifacts like comparison tables or architecture diagrams, you can save them for reference and export.
+
+## Artifact Types
+
+<CardGrid>
+  <Card title="Tables" icon="list-format">
+    Comparison matrices, pricing breakdowns, feature lists, and specification tables.
+  </Card>
+  <Card title="Charts" icon="bars-ascending">
+    Benchmark visualizations, cost projections, performance graphs, and trend analysis.
+  </Card>
+  <Card title="Memos" icon="document">
+    Executive summaries, decision rationales, recommendation documents, and research notes.
+  </Card>
+  <Card title="Diagrams" icon="puzzle">
+    Architecture diagrams, flow charts, system designs, and integration maps.
+  </Card>
+</CardGrid>
+
+## Automatic Detection
+
+Lattice automatically detects artifacts in AI responses:
+
+```markdown
+| Model | Context Window | Price per 1M tokens |
+|-------|----------------|---------------------|
+| Claude Sonnet | 200K | $3.00 input / $15.00 output |
+| GPT-4 Turbo | 128K | $10.00 input / $30.00 output |
+| Gemini Pro | 32K | $0.50 input / $1.50 output |
+```
+
+When a structured element is detected, a **Save to Studio** button appears.
+
+## Manual Saving
+
+You can also manually select any portion of a response and save it:
+
+1. Highlight the content you want to save
+2. Click **Save to Studio** in the context menu
+3. Choose the artifact type and add a title
+4. The artifact appears in your Studio panel
+
+## Viewing Artifacts
+
+Click any artifact in the Studio panel to:
+
+- **View full content** — See the complete artifact
+- **Copy to clipboard** — Quick export for documents
+- **Edit title** — Rename for better organization
+- **Delete** — Remove artifacts you no longer need
+
+## Artifact Properties
+
+Each artifact stores:
+
+| Property | Description |
+|----------|-------------|
+| `title` | User-defined name for the artifact |
+| `type` | table, chart, memo, or diagram |
+| `content` | The artifact data (markdown, JSON, or SVG) |
+| `source_message_id` | Link to originating conversation |
+| `created_at` | Timestamp of creation |
+
+## Use Cases
+
+### Comparison Tables
+
+Generate side-by-side comparisons for decision-making:
+
+```
+"Create a comparison table of Claude, GPT-4, and Gemini
+for production RAG applications. Include context window,
+pricing, latency, and key limitations."
+```
+
+### Executive Memos
+
+Generate board-ready documentation:
+
+```
+"Write an executive memo recommending our AI model choice
+for the Q1 chatbot launch. Include cost projections and
+risk assessment."
+```
+
+### Architecture Diagrams
+
+Visualize system designs:
+
+```
+"Create an architecture diagram showing how our RAG pipeline
+should integrate with Claude API, including caching and
+fallback providers."
+```
+
+### Benchmark Charts
+
+Visualize performance data:
+
+```
+"Create a chart comparing latency benchmarks for Claude Haiku,
+GPT-4 Mini, and Gemini Flash at different request volumes."
+```
+
+## API Reference
+
+### List Artifacts
+
+```http
+GET /api/workspaces/{workspace_id}/artifacts
+```
+
+### Create Artifact
+
+```http
+POST /api/workspaces/{workspace_id}/artifacts
+Content-Type: application/json
+
+{
+  "title": "Model Comparison Q1 2024",
+  "type": "table",
+  "content": "| Model | Context | Price |..."
+}
+```
+
+### Get Artifact
+
+```http
+GET /api/workspaces/{workspace_id}/artifacts/{artifact_id}
+```
+
+### Update Artifact
+
+```http
+PATCH /api/workspaces/{workspace_id}/artifacts/{artifact_id}
+Content-Type: application/json
+
+{
+  "title": "Updated Title"
+}
+```
+
+### Delete Artifact
+
+```http
+DELETE /api/workspaces/{workspace_id}/artifacts/{artifact_id}
+```
+
+<Aside type="tip">
+  Link artifacts to scenarios and stacks to maintain context. When presenting recommendations, having the supporting artifacts connected makes your analysis more credible.
+</Aside>

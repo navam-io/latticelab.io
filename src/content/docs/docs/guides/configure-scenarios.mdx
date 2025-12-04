@@ -1,0 +1,291 @@
+---
+title: Configure Scenarios
+description: Define workload requirements to get targeted infrastructure recommendations.
+---
+
+import { Steps, Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Scenarios transform vague requirements into specific, measurable constraints that drive Lattice's recommendations.
+
+## Why Scenarios Matter
+
+Without a scenario, Lattice gives generic advice. With a scenario, it gives **targeted recommendations** based on your actual constraints.
+
+```
+Generic: "Claude Sonnet is a good choice for chat applications."
+
+With Scenario: "For your high-volume chat scenario requiring P95 < 500ms
+and $3K/month budget, Claude Haiku is recommended. It meets your latency
+SLO at 65% lower cost than Sonnet, while still achieving 95%+ quality
+on standard chat benchmarks."
+```
+
+## Scenario Components
+
+### Workload Type
+
+Choose the type that best matches your use case:
+
+| Type | Description | Key Considerations |
+|------|-------------|-------------------|
+| `chat` | Interactive conversations | Latency, context management |
+| `rag` | Retrieval-augmented generation | Chunk size, retrieval quality |
+| `agentic` | Multi-step autonomous tasks | Tool calling, state management |
+| `code` | Code generation/analysis | Accuracy, language support |
+| `embedding` | Vector generation | Throughput, dimension size |
+| `fine-tuning` | Model customization | Dataset size, training time |
+
+### Traffic Profile
+
+Estimate your request volume:
+
+<Tabs>
+  <TabItem label="Low Volume">
+    ```yaml
+    traffic_profile: low_volume
+    # < 10 requests/second
+    # Internal tools, prototypes, MVPs
+    ```
+  </TabItem>
+  <TabItem label="Medium Volume">
+    ```yaml
+    traffic_profile: medium_volume
+    # 10-100 requests/second
+    # Production SaaS, growing applications
+    ```
+  </TabItem>
+  <TabItem label="High Volume">
+    ```yaml
+    traffic_profile: high_volume
+    # 100-1000 requests/second
+    # Scale platforms, high-traffic products
+    ```
+  </TabItem>
+  <TabItem label="Burst">
+    ```yaml
+    traffic_profile: burst
+    # Variable with 10x+ spikes
+    # Marketing campaigns, viral potential
+    ```
+  </TabItem>
+</Tabs>
+
+### SLO Requirements
+
+Define your Service Level Objectives:
+
+```yaml
+slo_requirements:
+  # Latency percentiles (milliseconds)
+  p50_latency_ms: 200    # Median user experience
+  p95_latency_ms: 500    # Most users' experience
+  p99_latency_ms: 1000   # Tail latency (worst case)
+
+  # Throughput
+  throughput_rps: 100    # Requests per second capacity
+
+  # Availability
+  availability: 99.9     # Uptime percentage (three nines)
+```
+
+<Aside type="tip">
+  **Latency guidance:**
+  - Interactive chat: P95 < 500ms feels responsive
+  - Background processing: P95 < 5000ms is acceptable
+  - Real-time features: P95 < 200ms required
+</Aside>
+
+### Budget Constraints
+
+Set financial guardrails:
+
+```yaml
+budget:
+  # Hard monthly cap
+  monthly_limit_usd: 5000
+
+  # Target cost per request
+  cost_per_1k_requests_usd: 0.10
+```
+
+Calculate your target cost per request:
+
+```
+cost_per_1k = monthly_budget / (requests_per_day × 30 / 1000)
+
+Example:
+$5000 / (100,000 × 30 / 1000) = $1.67 per 1K requests
+```
+
+### Compliance Requirements
+
+Specify regulatory and security needs:
+
+```yaml
+compliance:
+  # Allowed deployment regions
+  regions:
+    - us-east-1
+    - us-west-2
+    - eu-west-1
+
+  # Required certifications
+  certifications:
+    - SOC2
+    - HIPAA
+    - GDPR
+    - ISO27001
+
+  # Vendor dependency tolerance
+  vendor_lock_in_tolerance: low  # none | low | medium | high
+```
+
+## Creating Scenarios
+
+<Steps>
+
+1. **Start with Your Use Case**
+
+   What problem are you solving? Be specific:
+   - "Customer support chatbot handling 50K conversations/month"
+   - "RAG system for internal knowledge search"
+   - "Code review assistant for 20 developers"
+
+2. **Estimate Your Traffic**
+
+   Calculate expected volume:
+   ```
+   Daily users × interactions per user × peak multiplier
+   = Estimated requests per second
+   ```
+
+3. **Define Latency Tolerance**
+
+   Ask: "How long can users wait?"
+   - Sub-second for chat
+   - 2-3 seconds for complex analysis
+   - Minutes for batch processing
+
+4. **Set Your Budget**
+
+   Consider:
+   - Current API spend (if any)
+   - Revenue per user
+   - Competitive pricing pressure
+
+5. **Identify Compliance Needs**
+
+   Check with your security/legal teams:
+   - Data residency requirements
+   - Industry certifications
+   - Audit requirements
+
+</Steps>
+
+## Example Scenarios
+
+### Customer Support Chatbot
+
+```yaml
+name: Customer Support Chatbot
+workload_type: chat
+traffic_profile: medium_volume
+
+slo_requirements:
+  p50_latency_ms: 300
+  p95_latency_ms: 800
+  p99_latency_ms: 2000
+  throughput_rps: 50
+  availability: 99.9
+
+budget:
+  monthly_limit_usd: 3000
+  cost_per_1k_requests_usd: 0.20
+
+compliance:
+  regions: [us-east-1, us-west-2]
+  certifications: [SOC2]
+  vendor_lock_in_tolerance: medium
+```
+
+### Enterprise Knowledge Base
+
+```yaml
+name: Enterprise Knowledge Base
+workload_type: rag
+traffic_profile: low_volume
+
+slo_requirements:
+  p50_latency_ms: 1000
+  p95_latency_ms: 3000
+  p99_latency_ms: 5000
+  throughput_rps: 10
+  availability: 99.95
+
+budget:
+  monthly_limit_usd: 10000
+  cost_per_1k_requests_usd: 1.00
+
+compliance:
+  regions: [us-east-1, eu-west-1]
+  certifications: [SOC2, HIPAA, GDPR]
+  vendor_lock_in_tolerance: low
+```
+
+### Coding Assistant
+
+```yaml
+name: Developer Coding Assistant
+workload_type: code
+traffic_profile: burst
+
+slo_requirements:
+  p50_latency_ms: 500
+  p95_latency_ms: 2000
+  p99_latency_ms: 5000
+  throughput_rps: 20
+  availability: 99.5
+
+budget:
+  monthly_limit_usd: 2000
+  cost_per_1k_requests_usd: 0.50
+
+compliance:
+  regions: [us-east-1]
+  certifications: [SOC2]
+  vendor_lock_in_tolerance: high
+```
+
+## Using Scenarios Effectively
+
+### Activate Before Chatting
+
+Set your scenario as active before asking questions:
+
+```
+[Scenario: Customer Support Chatbot active]
+
+What model should I use for the best latency/cost balance?
+```
+
+### Run What-If Analysis
+
+Compare scenario variations:
+
+```
+If I relaxed my P95 latency from 800ms to 2000ms,
+how much could I reduce costs?
+```
+
+### Link to Stacks
+
+Generate stacks from scenarios:
+
+```
+Generate an optimized stack configuration for my
+Customer Support Chatbot scenario.
+```
+
+## Next Steps
+
+- **[Build Stacks](/docs/guides/build-stacks)** — Generate deployment configurations from your scenarios
