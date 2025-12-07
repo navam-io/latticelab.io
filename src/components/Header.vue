@@ -10,8 +10,6 @@
           </div>
         </a>
         <nav class="flex items-center space-x-6 text-sm font-medium sm:ml-auto" aria-label="Main navigation">
-          <a href="/" class="transition-colors hover:text-foreground/80 text-foreground">Home</a>
-
           <!-- Features Dropdown -->
           <div
             class="relative"
@@ -45,7 +43,6 @@
           <a href="/blog" class="transition-colors hover:text-foreground/80 text-foreground/60">Blog</a>
           <a href="/docs/getting-started/introduction" class="transition-colors hover:text-foreground/80 text-foreground/60">Docs</a>
           <a href="/#pricing" class="transition-colors hover:text-foreground/80 text-foreground/60">Pricing</a>
-          <a href="/about" class="transition-colors hover:text-foreground/80 text-foreground/60">About</a>
           <a href="/contact" class="transition-colors hover:text-foreground/80 text-foreground/60">Contact</a>
         </nav>
       </div>
