@@ -136,10 +136,11 @@ The `quickstart.mdx` file must include comprehensive installation instructions f
    - Step 8: Start frontend (dev vs production tabs)
 3. **Using the App** - Basic workflow (create workspace, add sources, chat, save artifacts)
 4. **API Access** - For developers:
-   - API endpoints table (localhost:8000, api.latticelab.io)
+   - Note: Local deployment requires no authentication
+   - API endpoint table (localhost:8000)
    - Interactive docs (Swagger UI at /docs)
-   - Authentication (Bearer token)
-   - Core API examples (Create Workspace, Add Source, Chat Query)
+   - LLM Provider Keys section (Settings panel or /api/api-keys endpoint)
+   - Core API examples (List Workspaces, Create Workspace, Add Source, Chat Query)
    - Health check endpoints
 5. **Troubleshooting** - Common issues:
    - Database connection problems

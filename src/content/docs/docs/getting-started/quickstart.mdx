@@ -255,14 +255,13 @@ Don't want to curate sources manually? Use a **Blueprint** to get started instan
 
 ## API Access
 
-For developers who want to integrate Lattice capabilities into custom workflows, the API provides full programmatic access.
+Lattice API is designed for local self-hosted deployment and does not require authentication. All endpoints are accessible without credentials.
 
-### API Endpoints
+### API Endpoint
 
 | Endpoint | Description |
 |----------|-------------|
 | `http://localhost:8000` | Local development |
-| `https://api.latticelab.io` | Production (cloud-hosted) |
 
 ### Interactive Documentation
 
@@ -271,21 +270,28 @@ Once the backend is running, access interactive API documentation at:
 - **Swagger UI**: `http://localhost:8000/docs`
 - **OpenAPI Spec**: `http://localhost:8000/openapi.json`
 
-### Authentication
+### LLM Provider Keys
 
-All API requests require a Bearer token:
+Lattice requires API keys for AI providers (Anthropic, OpenAI, etc.) which are configured via:
 
-```bash
-curl -X GET "http://localhost:8000/api/workspaces" \
-  -H "Authorization: Bearer YOUR_API_KEY"
-```
+- **Settings Panel** — Configure keys through the app UI
+- **API Endpoint** — Programmatically manage keys via `/api/api-keys`
+
+<Aside type="note">
+  LLM provider keys are stored encrypted in the database and are separate from API authentication.
+</Aside>
 
 ### Core API Examples
 
 <Tabs>
+  <TabItem label="List Workspaces">
+    ```bash
+    curl http://localhost:8000/api/workspaces
+    ```
+  </TabItem>
   <TabItem label="Create Workspace">
     ```bash
-    curl -X POST "http://localhost:8000/api/workspaces" \
+    curl -X POST http://localhost:8000/api/workspaces \
       -H "Content-Type: application/json" \
       -d '{
         "name": "My Research Project",
@@ -295,7 +301,7 @@ curl -X GET "http://localhost:8000/api/workspaces" \
   </TabItem>
   <TabItem label="Add Source">
     ```bash
-    curl -X POST "http://localhost:8000/api/sources" \
+    curl -X POST http://localhost:8000/api/sources \
       -H "Content-Type: application/json" \
       -d '{
         "workspace_id": "ws_123",
@@ -306,7 +312,7 @@ curl -X GET "http://localhost:8000/api/workspaces" \
   </TabItem>
   <TabItem label="Chat Query">
     ```bash
-    curl -X POST "http://localhost:8000/api/messages" \
+    curl -X POST http://localhost:8000/api/messages \
       -H "Content-Type: application/json" \
       -d '{
         "workspace_id": "ws_123",
