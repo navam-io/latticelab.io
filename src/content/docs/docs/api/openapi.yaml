@@ -4,7 +4,7 @@ info:
   description: |
     The Lattice API provides programmatic access to the Agentic AI Lab Assistant.
     Build integrations, automate workflows, and extend Lattice for your specific needs.
-  version: 0.6.20
+  version: 0.7.20
   contact:
     name: Lattice Support
     url: https://github.com/navam-io/lattice/issues
@@ -394,6 +394,56 @@ tags:
       }
       ```
 
+  - name: Evaluations
+    description: |
+      Evaluations provide a comprehensive framework for testing and comparing LLM models, stacks, and scenarios.
+
+      ## Evaluation Types
+
+      | Type | Description |
+      |------|-------------|
+      | `benchmark` | Standard benchmarks (MMLU, HumanEval, etc.) |
+      | `task_specific` | Custom task-specific evaluations |
+      | `operational` | Latency, throughput, cost metrics |
+      | `safety` | Safety and alignment evaluations |
+      | `comparison` | A/B comparison between models/configs |
+
+      ## Evaluation Targets
+
+      Evaluations can target:
+      - **Model**: Direct model evaluation with provider and model ID
+      - **Stack**: Full stack configuration evaluation
+      - **Scenario**: Scenario with associated stack
+      - **Comparison**: Compare multiple targets head-to-head
+
+      ## LLM-as-Judge
+
+      Task-specific evaluations use LLM judges for automated assessment:
+
+      ```json
+      {
+        "custom_eval": {
+          "prompt_template": "Evaluate this response for accuracy...",
+          "criteria": [
+            {"name": "accuracy", "weight": 0.4},
+            {"name": "completeness", "weight": 0.3},
+            {"name": "clarity", "weight": 0.3}
+          ],
+          "judge_config": {
+            "provider": "anthropic",
+            "model": "claude-3-5-sonnet-20241022"
+          }
+        }
+      }
+      ```
+
+      ## Workflow
+
+      1. **Create**: Define evaluation with targets and methodology
+      2. **Configure**: Add test inputs and scoring criteria
+      3. **Run**: Execute evaluation against targets
+      4. **Compare**: View results with delta visualization
+
   - name: Health
     description: |
       Health endpoints provide service status information for monitoring and operational purposes.
@@ -419,9 +469,9 @@ tags:
       ```json
       {
         "status": "healthy",
-        "version": "0.6.3",
+        "version": "0.7.20",
         "environment": "production",
-        "timestamp": "2024-12-03T10:30:00Z"
+        "timestamp": "2024-12-07T10:30:00Z"
       }
       ```
 
@@ -722,7 +772,7 @@ paths:
           in: query
           schema:
             type: string
-            enum: [table, chart, memo, diagram]
+            enum: [table, chart, memo, diagram, memory_calculator, parallelism_advisor]
       responses:
         '200':
           description: List of artifacts
@@ -990,6 +1040,145 @@ paths:
         '204':
           description: Stack deleted
 
+  /workspaces/{workspace_id}/evaluations:
+    get:
+      tags: [Evaluations]
+      summary: List evaluations
+      description: List all evaluations in a workspace
+      operationId: listEvaluations
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, running, completed, failed, cancelled]
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [benchmark, task_specific, operational, safety, comparison]
+      responses:
+        '200':
+          description: List of evaluations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EvaluationSummary'
+    post:
+      tags: [Evaluations]
+      summary: Create evaluation
+      description: Create a new evaluation
+      operationId: createEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluationCreate'
+      responses:
+        '201':
+          description: Evaluation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+
+  /workspaces/{workspace_id}/evaluations/{evaluation_id}:
+    get:
+      tags: [Evaluations]
+      summary: Get evaluation
+      description: Get evaluation details including results
+      operationId: getEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/evaluationId'
+      responses:
+        '200':
+          description: Evaluation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+    patch:
+      tags: [Evaluations]
+      summary: Update evaluation
+      description: Update evaluation metadata (name, description)
+      operationId: updateEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/evaluationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Evaluation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+    delete:
+      tags: [Evaluations]
+      summary: Delete evaluation
+      description: Delete an evaluation
+      operationId: deleteEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/evaluationId'
+      responses:
+        '204':
+          description: Evaluation deleted
+
+  /workspaces/{workspace_id}/evaluations/{evaluation_id}/run:
+    post:
+      tags: [Evaluations]
+      summary: Run evaluation
+      description: Start running an evaluation
+      operationId: runEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/evaluationId'
+      responses:
+        '200':
+          description: Evaluation started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+
+  /workspaces/{workspace_id}/evaluations/{evaluation_id}/cancel:
+    post:
+      tags: [Evaluations]
+      summary: Cancel evaluation
+      description: Cancel a running evaluation
+      operationId: cancelEvaluation
+      parameters:
+        - $ref: '#/components/parameters/workspaceId'
+        - $ref: '#/components/parameters/evaluationId'
+      responses:
+        '200':
+          description: Evaluation cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+
   /blueprints:
     get:
       tags: [Blueprints]
@@ -1170,6 +1359,14 @@ components:
         type: string
         format: uuid
       description: Stack ID
+    evaluationId:
+      name: evaluation_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Evaluation ID
     limit:
       name: limit
       in: query
@@ -1368,7 +1565,7 @@ components:
           type: string
         type:
           type: string
-          enum: [table, chart, memo, diagram]
+          enum: [table, chart, memo, diagram, memory_calculator, parallelism_advisor]
         content:
           type: string
         source_message_id:
@@ -1386,7 +1583,7 @@ components:
           type: string
         type:
           type: string
-          enum: [table, chart, memo, diagram]
+          enum: [table, chart, memo, diagram, memory_calculator, parallelism_advisor]
         content:
           type: string
 
@@ -1619,6 +1816,220 @@ components:
           type: integer
         has_more:
           type: boolean
+
+    EvaluationTarget:
+      type: object
+      properties:
+        target_type:
+          type: string
+          enum: [model, stack, scenario, comparison]
+        target_id:
+          type: string
+          format: uuid
+          description: ID of stack or scenario (if applicable)
+        model_provider:
+          type: string
+          description: Model provider for direct model evaluation
+        model_id:
+          type: string
+          description: Model ID for direct model evaluation
+        label:
+          type: string
+          description: Display label for this target
+
+    BenchmarkConfig:
+      type: object
+      properties:
+        benchmark_type:
+          type: string
+          enum: [mmlu, human_eval, gsm8k, truthful_qa, hellaswag, winogrande, arc, custom]
+        subset:
+          type: string
+          description: Specific benchmark subset
+        num_samples:
+          type: integer
+          description: Number of samples to evaluate
+
+    CustomEvalConfig:
+      type: object
+      properties:
+        prompt_template:
+          type: string
+          description: Prompt template for evaluation
+        criteria:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              weight:
+                type: number
+              description:
+                type: string
+        judge_config:
+          type: object
+          properties:
+            provider:
+              type: string
+            model:
+              type: string
+
+    EvaluationMethodology:
+      type: object
+      properties:
+        sample_size:
+          type: integer
+          default: 100
+        confidence_level:
+          type: number
+          default: 0.95
+        random_seed:
+          type: integer
+
+    EvaluationCreate:
+      type: object
+      required: [name, evaluation_type, targets]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        evaluation_type:
+          type: string
+          enum: [benchmark, task_specific, operational, safety, comparison]
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvaluationTarget'
+          minItems: 1
+          maxItems: 10
+        benchmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenchmarkConfig'
+        custom_eval:
+          $ref: '#/components/schemas/CustomEvalConfig'
+        methodology:
+          $ref: '#/components/schemas/EvaluationMethodology'
+
+    Evaluation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        workspace_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        evaluation_type:
+          type: string
+          enum: [benchmark, task_specific, operational, safety, comparison]
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvaluationTarget'
+        benchmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenchmarkConfig'
+        custom_eval:
+          $ref: '#/components/schemas/CustomEvalConfig'
+        methodology:
+          $ref: '#/components/schemas/EvaluationMethodology'
+        status:
+          type: string
+          enum: [pending, running, completed, failed, cancelled]
+        progress_percent:
+          type: number
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        error_message:
+          type: string
+        results:
+          $ref: '#/components/schemas/EvaluationResults'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    EvaluationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        workspace_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        evaluation_type:
+          type: string
+          enum: [benchmark, task_specific, operational, safety, comparison]
+        status:
+          type: string
+          enum: [pending, running, completed, failed, cancelled]
+        target_count:
+          type: integer
+        benchmark_count:
+          type: integer
+        progress_percent:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+
+    EvaluationResults:
+      type: object
+      properties:
+        target_results:
+          type: array
+          items:
+            type: object
+            properties:
+              target_label:
+                type: string
+              metrics:
+                type: object
+                additionalProperties:
+                  type: number
+              benchmark_scores:
+                type: object
+                additionalProperties:
+                  type: number
+        comparisons:
+          type: array
+          items:
+            type: object
+            properties:
+              target_a:
+                type: string
+              target_b:
+                type: string
+              metric:
+                type: string
+              delta:
+                type: number
+              winner:
+                type: string
+        overall_summary:
+          type: string
 
   responses:
     NotFound:

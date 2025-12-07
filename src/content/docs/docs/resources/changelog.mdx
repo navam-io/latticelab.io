@@ -7,15 +7,198 @@ import { Aside } from '@astrojs/starlight/components';
 
 This changelog highlights significant releases. For complete release notes, see the [GitHub releases page](https://github.com/navam-io/lattice/releases).
 
-## v0.6.20 (Latest)
+## v0.7.20 (Latest)
 
-**Current Production Version**
+**Release Date: December 7, 2024**
 
-- Stability improvements
-- Bug fixes for scenario configuration
-- Performance optimizations for large workspaces
+### Features
+- **Evaluation Framework** — Complete model evaluation system with benchmark, task-specific, operational, safety, and comparison evaluation types
+- **LLM-as-Judge** — Automated evaluation using LLM judges for pairwise model comparison
+- **Evaluation UI** — Multi-step wizard for creating evaluations with inputs management and run controls
+
+### Improvements
+- Full UI wiring to backend evaluation APIs
+- Test inputs persistence across evaluation runs
+
+## v0.7.x Series
+
+### v0.7.18
+
+**Evaluation Inputs & Run UI**
+
+- Add test input management for evaluations
+- Run controls for starting and monitoring evaluation progress
+
+### v0.7.17
+
+**LLM-as-Judge Configuration**
+
+- Task-specific evaluation configuration UI
+- Custom judge prompts and criteria definition
+
+### v0.7.16
+
+**Create Evaluation Modal**
+
+- Multi-step wizard for evaluation creation
+- Target selection (model, stack, scenario)
+- Benchmark configuration
+
+### v0.7.15
+
+**Evaluation Management UI**
+
+- Evaluation list view in Studio panel
+- Status indicators and progress tracking
+
+### v0.7.10
+
+**Evaluation Comparison Visualization**
+
+- Visual comparison of evaluation results across targets
+- Delta highlighting for performance differences
+
+### v0.7.9
+
+**LLM-as-Judge Service**
+
+- Backend service for automated model evaluation
+- Pairwise comparison algorithm implementation
+
+### v0.7.8
+
+**Evaluation Framework Foundation**
+
+- Database schema for evaluations with migrations
+- Complete API endpoints for CRUD operations
+- Pydantic models for evaluation types, targets, and results
+
+### v0.7.7
+
+**Theme Transitions & Accessibility**
+
+- Theme transition animations
+- Accessibility improvements for theme switching
+- ThemeToggle component
+
+### v0.7.6
+
+**Semantic Design Tokens**
+
+- Component migration to semantic design tokens
+- Consistent theming across UI components
+
+### v0.7.5
+
+**Design System Tokens**
+
+- Design token infrastructure for semantic theming
+- Color, spacing, and typography tokens
+
+### v0.7.4
+
+**Theme Infrastructure**
+
+- ThemeProvider context for app-wide theme state
+- useTheme hook for component-level theme access
+
+### v0.7.3
+
+**Extended Training Workflows**
+
+- Additional training workflow templates
+- Support for more training scenarios (RLHF, DPO, GRPO, SFT)
+
+### v0.7.2
+
+**UI Polish**
+
+- Tool modal improvements
+- ToolsSection refinements
+- Bug fixes for UI consistency
+
+### v0.7.1
+
+**Parallelism Strategy Advisor**
+
+- New tool for parallelism configuration recommendations
+- UI integration with Tools panel
+- Artifact type: `parallelism_advisor`
+
+### v0.7.0
+
+**Training Memory Calculator**
+
+- Memory estimation for training workloads
+- Tools panel integration
+- Artifact type: `memory_calculator`
 
 ## v0.6.x Series
+
+### v0.6.23
+
+**Model Capabilities Registry**
+
+- Unified provider configuration registry
+- Centralized model capability definitions
+
+### v0.6.22
+
+**Reasoning Mode Configuration**
+
+- Settings UI for reasoning mode selection
+- Extended thinking support configuration
+
+### v0.6.21
+
+**Provider Health Monitoring**
+
+- Health check endpoints for all LLM providers
+- Automatic fallback on provider failures
+- API key validation from database
+
+### v0.6.20
+
+**Ollama Local Models**
+
+- Ollama provider integration for local LLM deployment
+- Stability improvements
+- Bug fixes for scenario configuration
+
+### v0.6.19
+
+**Google Gemini Provider**
+
+- Google Gemini API integration
+- Multi-model support for Gemini family
+
+### v0.6.17
+
+**Lab Panel Model Indicator**
+
+- Visual indicator for active model selection
+- OpenAI provider fixes
+
+### v0.6.11
+
+**Studio Accessibility & GitHub Sync**
+
+- Studio panel accessibility improvements
+- GitHub reverse sync for issue tracking
+
+### v0.6.10
+
+**Single Default Stack Enforcement**
+
+- Enforce single default stack when applying blueprints
+- Prevent stack configuration conflicts
+
+### v0.6.9
+
+**Studio Stack Integration**
+
+- Stack cards in Studio panel
+- Stack detail modal for configuration review
 
 ### v0.6.8
 
