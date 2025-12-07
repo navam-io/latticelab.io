@@ -2,6 +2,19 @@
 
 Update the Lattice documentation site by studying the app codebase and syncing docs to match current implementation.
 
+## Pricing & Deployment
+
+**Lattice API Access**: $90 one-time fee
+
+Includes:
+- Full access to Lattice app and API
+- Run locally on customer laptop
+- Host on customer's private cloud
+- No recurring subscription fees
+- All future updates included
+
+**Get Access**: Visit https://www.latticelab.io to purchase and get access to the private GitHub repository.
+
 ## Source of Truth
 
 **Lattice App Location:** `/Users/manavsehgal/Developer/lattice/`
@@ -104,6 +117,82 @@ src/content/docs/docs/
 - `src/content/config.ts` - Content collection schemas
 - `src/styles/starlight-custom.css` - Custom styling
 
+## Quickstart Installation Instructions
+
+The `quickstart.mdx` file must include comprehensive installation instructions for both **App Users** and **API Developers**. When updating, ensure these sections are maintained:
+
+### Required Sections in quickstart.mdx
+
+1. **Get Access** - Pricing ($90 one-time) and GitHub repo access link
+2. **Installation** - Full setup guide:
+   - Prerequisites (Git, Docker, Python 3.11+, Node.js 18+)
+   - Step 1: `git clone https://github.com/navam-io/lattice.git`
+   - Step 2: `docker compose up -d` (PostgreSQL with pgvector)
+   - Step 3: Backend setup with pip or uv options
+   - Step 4: Environment variables (.env configuration)
+   - Step 5: Database migrations (`alembic upgrade head`)
+   - Step 6: Start backend (`uvicorn main:app --reload --port 8000`)
+   - Step 7: Frontend setup (`npm install`)
+   - Step 8: Start frontend (dev vs production tabs)
+3. **Using the App** - Basic workflow (create workspace, add sources, chat, save artifacts)
+4. **API Access** - For developers:
+   - API endpoints table (localhost:8000, api.latticelab.io)
+   - Interactive docs (Swagger UI at /docs)
+   - Authentication (Bearer token)
+   - Core API examples (Create Workspace, Add Source, Chat Query)
+   - Health check endpoints
+5. **Troubleshooting** - Common issues:
+   - Database connection problems
+   - Port conflicts
+   - Missing dependencies
+
+### Installation Commands Reference
+
+**Docker (Database):**
+```bash
+docker compose up -d
+docker compose ps
+docker compose logs postgres
+```
+
+**Backend (Python):**
+```bash
+cd backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+# OR with uv:
+uv sync
+alembic upgrade head
+uvicorn main:app --reload --port 8000
+```
+
+**Frontend (Node.js):**
+```bash
+cd frontend
+npm install
+npm run dev          # Development
+npm run build        # Production build
+npm start            # Production server
+```
+
+**Environment Variables (backend/.env):**
+```bash
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=AIza...
+DATABASE_URL=postgresql+asyncpg://lattice:lattice_dev@localhost:5432/lattice
+ENVIRONMENT=development
+DEBUG=true
+```
+
+### Verify Installation Instructions
+
+When updating quickstart.mdx:
+1. Check `docker-compose.yml` for current database configuration
+2. Check `backend/pyproject.toml` for Python version requirements
+3. Check `frontend/package.json` for Node.js requirements
+4. Verify API endpoints match current `backend/main.py` routes
+
 ## Tasks
 
 ### 1. Compare Versions
@@ -155,6 +244,7 @@ Steps:
 - **Feature docs**: Update if app behavior changed
 - **API docs**: Sync `openapi.yaml` with actual endpoints
 - **Guides**: Update if workflows changed
+- **Quickstart**: Verify installation instructions match current app setup (see "Quickstart Installation Instructions" section above)
 
 ### 5. Verify Build
 - Run `npm run build` in docs directory
@@ -244,6 +334,8 @@ Update `info.version` to match backend version when API changes.
 - [ ] Changelog updated with new version entries
 - [ ] All API endpoints documented in openapi.yaml
 - [ ] Feature docs reflect current UI/behavior
+- [ ] Quickstart has complete installation instructions (git clone, docker, backend, frontend)
+- [ ] Quickstart has API access section for developers
 - [ ] No broken internal links
 - [ ] Build succeeds without errors
 

@@ -3,51 +3,209 @@ title: Quick Start
 description: Get up and running with Lattice in minutes.
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside, Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-This guide will help you get started with Lattice and complete your first AI infrastructure research task.
+This guide will help you get started with Lattice—whether you're an end user looking to run the app or a developer integrating with the API.
 
-## Prerequisites
+<CardGrid>
+  <LinkCard
+    title="App User"
+    description="Install and run Lattice locally or on your private cloud"
+    href="#installation"
+  />
+  <LinkCard
+    title="API Developer"
+    description="Integrate with the Lattice API for custom workflows"
+    href="#api-access"
+  />
+</CardGrid>
 
-Before you begin, you'll need:
+## Get Access
 
-- A Lattice account (sign up at [latticelab.io](https://www.latticelab.io))
+**Lattice API Access**: $90 one-time fee
+
+Includes:
+- Full access to Lattice app and API
+- Run locally on your laptop
+- Host on your private cloud
+- No recurring subscription fees
+- All future updates included
+
+Visit [latticelab.io](https://www.latticelab.io) to purchase and receive access to the private GitHub repository.
+
+---
+
+## Installation
+
+### Prerequisites
+
+Before you begin, ensure you have:
+
+- **Git** — For cloning the repository
+- **Docker & Docker Compose** — For PostgreSQL database
+- **Python 3.11+** — For the backend server
+- **Node.js 18+** — For the frontend application
 - An API key from at least one AI provider (Anthropic, OpenAI, Google, or Ollama)
 
-## Getting Started
+### Step 1: Clone the Repository
+
+After purchasing, you'll receive access to the private GitHub repository.
+
+```bash
+git clone https://github.com/navam-io/lattice.git
+cd lattice
+```
+
+### Step 2: Start the Database
+
+Lattice uses PostgreSQL with pgvector for vector embeddings. Start the database using Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+This starts a PostgreSQL 16 container with:
+- **Container name**: lattice-postgres
+- **Database**: lattice
+- **User/Password**: lattice / lattice_dev
+- **Port**: 5432
+
+Verify the container is running:
+
+```bash
+docker compose ps
+```
+
+### Step 3: Set Up the Backend
+
+<Tabs>
+  <TabItem label="Using pip">
+    ```bash
+    cd backend
+
+    # Create virtual environment
+    python3 -m venv .venv
+    source .venv/bin/activate
+
+    # Install dependencies
+    pip install -e ".[dev]"
+    ```
+  </TabItem>
+  <TabItem label="Using uv (faster)">
+    ```bash
+    cd backend
+
+    # Install uv if not already installed
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Sync dependencies
+    uv sync
+    ```
+  </TabItem>
+</Tabs>
+
+### Step 4: Configure Environment Variables
+
+Create a `.env` file in the backend directory:
+
+```bash
+cd backend
+touch .env
+```
+
+Add your configuration:
+
+```bash
+# Required
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Optional providers
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=AIza...
+
+# Database (default Docker Compose settings)
+DATABASE_URL=postgresql+asyncpg://lattice:lattice_dev@localhost:5432/lattice
+
+# Application
+ENVIRONMENT=development
+DEBUG=true
+```
+
+<Aside type="tip">
+  At minimum, you need one AI provider API key. Anthropic is recommended for the best experience with Lattice's reasoning capabilities.
+</Aside>
+
+### Step 5: Run Database Migrations
+
+Apply the database schema:
+
+```bash
+cd backend
+alembic upgrade head
+```
+
+### Step 6: Start the Backend Server
+
+```bash
+cd backend
+uvicorn main:app --reload --port 8000
+```
+
+The API is now available at `http://localhost:8000`.
+
+Verify it's running:
+
+```bash
+curl http://localhost:8000/api/health
+```
+
+### Step 7: Set Up the Frontend
+
+In a new terminal:
+
+```bash
+cd frontend
+npm install
+```
+
+### Step 8: Start the Frontend
+
+<Tabs>
+  <TabItem label="Development">
+    ```bash
+    npm run dev
+    ```
+    Access the app at `http://localhost:3000` with hot reload enabled.
+  </TabItem>
+  <TabItem label="Production">
+    ```bash
+    # Build for production
+    npm run build
+
+    # Start production server
+    npm start
+    ```
+    Optimized build for production deployment.
+  </TabItem>
+</Tabs>
+
+<Aside type="note">
+  For production deployments, ensure you set `ENVIRONMENT=production` and configure proper security settings.
+</Aside>
+
+---
+
+## Using the App
+
+Once installation is complete, navigate to `http://localhost:3000` in your browser.
 
 <Steps>
 
-1. **Configure Your API Keys**
-
-   Navigate to **Settings** and add your API keys for the providers you want to use.
-
-   <Tabs>
-     <TabItem label="Anthropic">
-       ```
-       ANTHROPIC_API_KEY=sk-ant-...
-       ```
-       Get your key from [console.anthropic.com](https://console.anthropic.com)
-     </TabItem>
-     <TabItem label="OpenAI">
-       ```
-       OPENAI_API_KEY=sk-...
-       ```
-       Get your key from [platform.openai.com](https://platform.openai.com)
-     </TabItem>
-     <TabItem label="Google">
-       ```
-       GOOGLE_API_KEY=AIza...
-       ```
-       Get your key from [makersuite.google.com](https://makersuite.google.com)
-     </TabItem>
-   </Tabs>
-
-2. **Create a Workspace**
+1. **Create a Workspace**
 
    Click the workspace selector and choose **+ New Workspace**. Give it a descriptive name that reflects your research focus, like "Claude Sonnet Evaluation" or "RAG Pipeline Comparison".
 
-3. **Add Your First Sources**
+2. **Add Your First Sources**
 
    Click the **+** button in the Sources panel to add knowledge sources:
 
@@ -59,7 +217,7 @@ Before you begin, you'll need:
      Start with 3-5 key sources. You can always add more as your research deepens.
    </Aside>
 
-4. **Start Chatting in the Lab**
+3. **Start Chatting in the Lab**
 
    Once your sources are indexed, ask questions in the Lab panel:
 
@@ -70,13 +228,13 @@ Before you begin, you'll need:
 
    Lattice will search your sources and provide grounded responses with citations.
 
-5. **Save Artifacts to Studio**
+4. **Save Artifacts to Studio**
 
    When the AI generates useful tables, comparisons, or analyses, click **Save to Studio** to preserve them for later reference.
 
 </Steps>
 
-## Using Blueprints for Quick Setup
+### Using Blueprints for Quick Setup
 
 Don't want to curate sources manually? Use a **Blueprint** to get started instantly:
 
@@ -93,31 +251,123 @@ Don't want to curate sources manually? Use a **Blueprint** to get started instan
   Blueprints include official documentation from vendors like Anthropic, OpenAI, AWS, and NVIDIA—automatically kept up to date.
 </Aside>
 
-## Configuring Your First Scenario
+---
 
-Scenarios let you define specific workload requirements:
+## API Access
 
-```yaml
-# Example: High-Volume Chat Application
-workload_type: chat
-traffic_profile: high_volume
+For developers who want to integrate Lattice capabilities into custom workflows, the API provides full programmatic access.
 
-slo_requirements:
-  p50_latency_ms: 200
-  p95_latency_ms: 500
-  throughput_rps: 1000
-  availability: 99.9
+### API Endpoints
 
-budget:
-  monthly_limit_usd: 5000
-  cost_per_1k_requests_usd: 0.10
+| Endpoint | Description |
+|----------|-------------|
+| `http://localhost:8000` | Local development |
+| `https://api.latticelab.io` | Production (cloud-hosted) |
 
-compliance:
-  regions: [us-east-1, us-west-2]
-  certifications: [SOC2, HIPAA]
+### Interactive Documentation
+
+Once the backend is running, access interactive API documentation at:
+
+- **Swagger UI**: `http://localhost:8000/docs`
+- **OpenAPI Spec**: `http://localhost:8000/openapi.json`
+
+### Authentication
+
+All API requests require a Bearer token:
+
+```bash
+curl -X GET "http://localhost:8000/api/workspaces" \
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-Once defined, Lattice can recommend optimal model and infrastructure configurations based on your scenario constraints.
+### Core API Examples
+
+<Tabs>
+  <TabItem label="Create Workspace">
+    ```bash
+    curl -X POST "http://localhost:8000/api/workspaces" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "My Research Project",
+        "description": "Evaluating LLMs for production"
+      }'
+    ```
+  </TabItem>
+  <TabItem label="Add Source">
+    ```bash
+    curl -X POST "http://localhost:8000/api/sources" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "workspace_id": "ws_123",
+        "type": "url",
+        "url": "https://docs.anthropic.com/en/docs"
+      }'
+    ```
+  </TabItem>
+  <TabItem label="Chat Query">
+    ```bash
+    curl -X POST "http://localhost:8000/api/messages" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "workspace_id": "ws_123",
+        "content": "Compare Claude 3.5 Sonnet and GPT-4 for RAG"
+      }'
+    ```
+  </TabItem>
+</Tabs>
+
+### Health Check
+
+Verify the API is running:
+
+```bash
+# Basic health check
+curl http://localhost:8000/api/health
+
+# Readiness probe (includes database check)
+curl http://localhost:8000/api/health/ready
+```
+
+<Aside type="tip">
+  See the full [API Reference](/docs/api/overview) for complete endpoint documentation.
+</Aside>
+
+---
+
+## Troubleshooting
+
+### Database Connection Issues
+
+```bash
+# Check if PostgreSQL container is running
+docker compose ps
+
+# View container logs
+docker compose logs postgres
+
+# Restart the database
+docker compose restart postgres
+```
+
+### Port Already in Use
+
+```bash
+# Kill processes on specific ports
+lsof -ti:3000 | xargs kill -9  # Frontend
+lsof -ti:8000 | xargs kill -9  # Backend
+```
+
+### Missing Dependencies
+
+```bash
+# Backend - reinstall dependencies
+cd backend && pip install -e ".[dev]" --force-reinstall
+
+# Frontend - clean install
+cd frontend && rm -rf node_modules package-lock.json && npm install
+```
+
+---
 
 ## Next Steps
 
@@ -126,3 +376,4 @@ Now that you're set up:
 - **[Core Concepts](/docs/getting-started/concepts)** — Understand workspaces, sources, scenarios, and stacks
 - **[Features Overview](/docs/features/workspaces)** — Explore all Lattice capabilities
 - **[Evaluate AI Models](/docs/guides/evaluate-models)** — Complete your first model evaluation
+- **[API Reference](/docs/api/overview)** — Full API documentation for developers
