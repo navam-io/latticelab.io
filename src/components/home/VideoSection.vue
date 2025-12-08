@@ -15,7 +15,7 @@
         <!-- Video Embed -->
         <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-black aspect-video">
           <iframe
-            src="https://www.youtube.com/embed/mFYqiYhlqec"
+            src="https://www.youtube.com/embed/JbcILcTw9fc"
             title="Lattice Walkthrough"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

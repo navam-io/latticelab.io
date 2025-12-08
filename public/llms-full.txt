@@ -119,7 +119,7 @@ Includes:
 - Blog: https://www.latticelab.io/blog
 - About: https://www.latticelab.io/about
 - Contact: https://www.latticelab.io/contact
-- YouTube Walkthrough: https://www.youtube.com/watch?v=mFYqiYhlqec
+- YouTube Walkthrough: https://www.youtube.com/watch?v=JbcILcTw9fc
 
 ## Sample Queries Lattice Can Answer
 
