@@ -1,0 +1,153 @@
+---
+title: "GPU Memory Planning Walkthrough"
+description: "A step-by-step guide to using the Memory Calculator to right-size your training infrastructure and avoid OOM errors."
+pubDate: 2025-12-09
+author: "Lattice Lab"
+tags: ["stacks", "infrastructure", "hardware", "intermediate"]
+featuredImage: "/images/journeys/use-memory-calculator/use-memory-calculator-01.png"
+journey: "use-memory-calculator"
+readingTime: "7 min read"
+---
+
+**When I** plan a training run, **I want to** model GPU memory requirements before launching, **so I can** avoid OOM crashes and optimize batch size for maximum throughput.
+
+## The Challenge
+
+Your training job crashes at step 1,247 with a CUDA out-of-memory error. You're running Llama 3.1 8B on a single A100 40GB - a configuration that should work according to the blog post you read last week. But that post didn't account for your 8K sequence length, your batch size of 4, or the fact that AdamW optimizer states alone consume 2x your model parameters in FP32.
+
+This scenario plays out constantly across AI teams. A research engineer spends hours configuring a training run, submits it to the cluster, waits for resources, and watches it fail within minutes. The Memory Calculator eliminates this guesswork by modeling memory requirements upfront.
+
+## The Starting Point: A Training Scenario
+
+Let's work through a realistic example. You're a research engineer tasked with fine-tuning Llama 3.1 8B on your company's internal documentation.
+
+**Your constraints:**
+- **Model**: Llama 3.1 8B (8.3 billion parameters)
+- **Hardware**: 4x A100 40GB GPUs (single node with NVLink)
+- **Data**: Long documents requiring 8K context
+- **Goal**: Maximize throughput while fitting in memory
+
+## Step 1: Establish the Baseline
+
+![Memory Calculator showing 32.5 GB peak memory with ZeRO Stage 2 and Full activation checkpointing enabled](/images/journeys/use-memory-calculator/use-memory-calculator-01.png)
+
+Open the Memory Calculator from the Tools section in the Studio panel. Start with the default configuration to understand your baseline memory requirements.
+
+**Select the model preset:**
+1. Click the model dropdown and select `llama-3-8b`
+2. The calculator auto-populates the architecture parameters
+
+**Configure basic training parameters:**
+1. Set **Batch Size** to 1 (we'll optimize this later)
+2. Set **Sequence Length** to 8192 (your 8K context requirement)
+3. Keep **Precision** at BF16 (standard for modern training)
+
+**Review the baseline results:**
+
+The calculator shows your baseline memory breakdown:
+- **Parameters**: Model weights + FP32 master weights for mixed precision
+- **Gradients**: Same size as parameters in BF16
+- **Optimizer States**: AdamW stores 2 FP32 states per parameter
+- **Activations**: Attention scores and intermediate values
+
+## Step 2: Apply Parallelism
+
+With 4 GPUs available, parallelism can distribute the memory load. Open the Advanced Settings panel.
+
+**Configure tensor parallelism:**
+1. Set **Tensor Parallelism (TP)** to 4
+2. Leave Pipeline Parallelism at 1 (not needed for this model size)
+3. Leave Data Parallelism at 1 (we'll use TP instead)
+
+**Review the impact:**
+
+The calculator immediately recalculates, dividing memory across GPUs:
+- Parameters, gradients, optimizer states, and activations all reduce by 4x
+- Peak memory drops to a manageable level per GPU
+
+## Step 3: Optimize Batch Size
+
+With memory headroom, you can increase batch size to improve training throughput.
+
+**Increase batch size incrementally:**
+1. Change **Batch Size** from 1 to 2, then 4
+2. Watch peak memory increase (activations scale linearly with batch)
+3. Stop when you reach 85% memory utilization
+
+At batch size 4, you achieve 84% memory utilization - optimal for leaving headroom for activation spikes and CUDA workspace.
+
+## Step 4: Explore Alternatives with ZeRO
+
+What if you wanted to use Data Parallelism instead of Tensor Parallelism? ZeRO can shard optimizer states across GPUs.
+
+**Switch to ZeRO-based configuration:**
+1. Set **Tensor Parallelism** back to 1
+2. Set **Data Parallelism** to 4
+3. Set **ZeRO Stage** to 2 (shards optimizer states and gradients)
+
+**Enable activation checkpointing:**
+If memory still exceeds limits, enable checkpointing:
+1. Set **Activation Checkpointing** to `selective` or `full`
+2. Activations drop by 70-90%
+3. Trade-off: adds ~20-33% compute overhead from recomputation
+
+## Step 5: Make the Decision
+
+Compare your viable configurations:
+
+| Configuration | Peak Memory | Batch Size | Compute Overhead |
+|--------------|-------------|------------|------------------|
+| TP=4 | 33.4 GB | 4 | 0% |
+| ZeRO-2 + DP=4 + Checkpointing | 39.9 GB | 1 | ~20% |
+
+**The TP=4 configuration wins** for this scenario because:
+1. Higher effective batch size (4 vs 1)
+2. No recomputation overhead
+3. Lower memory utilization (more headroom)
+4. NVLink handles TP communication efficiently within a node
+
+## Real-World Patterns
+
+### Pattern: Debugging OOM Errors
+
+When a training run fails with OOM:
+1. Input your exact configuration into the Memory Calculator
+2. Check the memory utilization percentage - anything above 90% risks OOM
+3. The recommendations panel suggests optimizations ranked by impact
+
+### Pattern: Scaling to Larger Models
+
+Moving from 8B to 70B requires different parallelism:
+1. Select the larger model preset
+2. With TP=4, you may still exceed GPU memory
+3. Add PP=2 (pipeline parallelism) to distribute layers
+4. Or use H100 80GB with TP=8 for simpler single-node training
+
+### Pattern: Maximizing GPU Utilization
+
+If you're paying for GPU time, maximize utilization:
+1. Start with target GPU (e.g., A100 80GB)
+2. Increase batch size until utilization reaches 85-90%
+3. The remaining 10-15% headroom prevents OOM from variable-length sequences
+
+## What You've Accomplished
+
+You now have a systematic approach to GPU memory planning:
+
+- Model memory requirements before committing GPU hours
+- Compare parallelism strategies (TP vs ZeRO) with concrete numbers
+- Optimize batch size for your specific hardware constraints
+- Avoid trial-and-error OOM debugging
+
+## What's Next
+
+The Memory Calculator integrates with other Lattice tools:
+
+- **Parallelism Advisor**: Get automated TP/PP/DP recommendations
+- **TCO Calculator**: Factor memory-driven GPU choices into total cost analysis
+- **Framework Configs**: Export DeepSpeed or FSDP configurations matching your settings
+- **Training Scenarios**: Save your configuration as a scenario for future reference
+
+---
+
+*The Memory Calculator is available in Lattice. Plan your GPU memory before your next training run.*
