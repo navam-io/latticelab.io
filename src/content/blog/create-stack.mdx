@@ -1,56 +1,117 @@
 ---
-title: "Creating a Stack Configuration"
-description: "Configure model, framework, and hardware options for your AI infrastructure stack."
+title: "Creating a Stack"
+description: "Define your AI infrastructure configuration with model, framework, and hardware settings that match your scenario requirements."
 pubDate: 2025-11-28
+updatedDate: 2025-12-09
 author: "Lattice Lab"
-tags: ["stacks", "configuration", "infrastructure"]
+tags: ["stacks", "configuration", "infrastructure", "getting-started"]
 featuredImage: "/images/journeys/create-stack/create-stack-01.png"
 journey: "create-stack"
+readingTime: "6 min read"
 ---
 
-**When I** need to define my infrastructure, **I want to** create a stack, **so I can** specify model, framework, and hardware options.
+**When I** have defined my scenario requirements, **I want to** configure a complete infrastructure stack, **so I can** get accurate cost estimates and ensure my setup meets my performance needs.
+
+## The Challenge
+
+You've defined a scenario with a 500ms P95 latency requirement and $5,000/month budget. Now you need to assemble a stack to meet those constraints. But which model hits that latency target? Which serving framework handles your throughput needs? Should you use H100s or is A100 sufficient?
+
+For platform leads and research engineers, stack configuration is where abstract requirements meet concrete infrastructure. The problem isn't lack of options—it's too many options. Every choice (model, provider, framework, hardware) interacts with every other choice. Without a structured way to capture these decisions, configuration sprawl takes over.
+
+## How Lattice Helps
+
+Stacks are Lattice's answer to configuration sprawl. A stack captures your complete infrastructure configuration: which model you're using, how it's configured, what framework runs it, and what hardware powers it. Once defined, your stack becomes context for everything else—cost calculations, performance estimates, and agent recommendations all reference your stack configuration.
+
+## Step 1: Open the Stack Configuration Form
+
+![New Stack modal showing Stack Name, Description, and Model configuration with provider selection](/images/journeys/create-stack/create-stack-01.png)
+
+In the Studio panel (right side), find the **Stacks** section. Click the **+** button in the section header to create a new stack. The New Stack modal opens with a completeness indicator showing your progress.
+
+The form is organized into collapsible sections:
+
+- **Stack Identity**: Name and description
+- **Model**: Provider, model selection, temperature, max tokens
+- **Hardware**: Cloud provider, instance family, GPU type, region
+
+Start by giving your stack a descriptive name like "My Production Stack" and optionally set it as your default stack for new conversations.
+
+## Step 2: Configure Model Settings
+
+Select your model provider from the available options:
+
+| Provider | Use Case |
+|----------|----------|
+| Anthropic | Claude models for reasoning and analysis |
+| OpenAI | GPT models for general tasks |
+| Google AI | Gemini models with large context |
+| AWS Bedrock | Enterprise managed access |
+| Azure OpenAI | Enterprise Azure integration |
+| Mistral | Open-weight models |
+| Cohere | Enterprise embeddings and RAG |
+| Meta | Llama models self-hosted |
+
+After selecting a provider (e.g., Anthropic), choose your model from the dropdown. The example shows Claude Haiku 4.5 selected.
+
+Configure generation parameters:
+- **Temperature**: 0.7 is a good default for balanced creativity
+- **Max Tokens**: 4096 for typical responses, higher for long-form content
+
+## Step 3: Configure Framework and Hardware
+
+![Stack configuration showing Observability, Logging, and Hardware settings with cloud provider and region](/images/journeys/create-stack/create-stack-02.png)
+
+Scroll down to configure your observability and infrastructure settings.
+
+**Observability Stack:**
+
+| Option | Features |
+|--------|----------|
+| LangSmith | LangChain-native tracing, debugging |
+| Helicone | Logging, caching, rate limiting |
+| Weights & Biases | Experiment tracking, model monitoring |
+| Console | Basic console logging |
+
+Enable **Tracing** and **Metrics** toggles based on your monitoring needs.
+
+**Hardware Configuration:**
+
+For self-hosted or cloud deployments, specify:
+
+- **Cloud Provider**: AWS, GCP, Azure, Lambda Labs, RunPod, or On-Premise
+- **Instance Family**: CPU General Purpose, GPU Optimized, etc.
+- **GPU Type**: Select from H100, A100, L40S, RTX 4090, or No Accelerator
+- **Region**: Deployment region (e.g., us-east-1) affects latency and compliance
+- **Use Spot Instances**: Enable for 60-70% cost savings with interruption risk
+
+## Step 4: Save and Apply
+
+Click **Create Stack** to save your configuration. The stack immediately appears in the Studio panel's Stacks section and becomes available in the Context Bar dropdown for quick selection during chat.
+
+**Managing Stacks:**
+
+From the Studio panel, you can:
+- **Click a stack card** to view full configuration details
+- **Set as default**: The default stack is automatically selected for new conversations
+- **Edit, Rename, or Delete**: Hover over stack cards to reveal action buttons
+
+## What You've Accomplished
+
+You now have a complete infrastructure stack that:
+
+- Captures your model, framework, and hardware choices in one place
+- Provides context for accurate cost calculations
+- Links to scenarios for compatibility checking
+- Serves as the foundation for all Research Agent recommendations
+
+## What's Next
+
+With your stack configured, explore these related capabilities:
+
+- **Link to Scenario**: Connect your stack to a scenario for compatibility validation
+- **Cost Estimation**: Get accurate TCO projections based on your stack
+- **Stack Comparison**: Create multiple stacks to compare configurations side-by-side
 
 ---
 
-## Introduction
-
-A stack defines your complete AI infrastructure configuration. From the model provider to the cloud region, stacks capture the technical decisions that power your application.
-
-## Stack Components
-
-### Model Configuration
-
-- **Provider** — Anthropic, OpenAI, Google, NVIDIA, etc.
-- **Model ID** — Specific model version
-- **Temperature** — Response variability
-- **Max Tokens** — Output length limit
-- **Context Length** — Input window size
-
-### Framework Selection
-
-- **Orchestration** — LangGraph, LangChain, custom
-- **Observability** — Logging and monitoring
-- **Caching** — Response caching strategy
-
-### Hardware Options
-
-- **Cloud Provider** — AWS, GCP, Azure
-- **Region** — Deployment location
-- **Instance Type** — CPU/GPU configuration
-- **Scaling** — Auto-scaling settings
-
-## Using Templates
-
-Start from pre-built templates:
-- **Speed Stack** — Optimized for low latency
-- **Cost Stack** — Optimized for budget
-- **Quality Stack** — Maximum capability
-
-## Linking to Scenarios
-
-Stacks can be linked to scenarios to enable:
-- Automatic validation against requirements
-- Cost projections based on workload
-- Compatibility checking
-
-**Next steps:** Link your stack to a scenario for validation.
+*Stack Configuration is available in Lattice. Define your infrastructure configuration once and reference it everywhere.*

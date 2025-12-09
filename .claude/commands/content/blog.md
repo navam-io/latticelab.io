@@ -128,14 +128,27 @@ After successfully processing each journey, update its manifest entry:
 }
 ```
 
-## Step 5: Save Updated Manifest
+## Step 5: Ensure Only Latest Post is Featured
+
+After processing all journeys, ensure only ONE blog post has `featured: true` - the post with the most recent `pubDate`.
+
+1. **Scan all blog posts** in `src/content/blog/*.mdx`
+2. **Find the latest pubDate** across all posts
+3. **Update frontmatter**:
+   - Add `featured: true` to the post with the latest pubDate (if not already set)
+   - Remove `featured: true` from ALL other posts that have it
+4. **Report changes** in the summary
+
+This ensures the blog homepage always highlights the newest content.
+
+## Step 6: Save Updated Manifest
 
 Write the updated manifest to `src/content/blog/.journey-manifest.json` with:
 - Updated `lastRun` timestamp
 - All processed entries (including unchanged ones)
 - New entries for newly processed journeys
 
-## Step 6: Report Actions
+## Step 7: Report Actions
 
 Provide a summary distinguishing between processed and skipped:
 
@@ -157,6 +170,10 @@ Provide a summary distinguishing between processed and skipped:
 ### Images Processed
 - Copied {N} images for {M} journeys
 - Featured images: {list}
+
+### Featured Post Updated
+- Featured: "{post-title}" (pubDate: {date})
+- Removed featured from: {list of posts or "none"}
 
 ### Manifest Updated
 - Total journeys tracked: {N}
