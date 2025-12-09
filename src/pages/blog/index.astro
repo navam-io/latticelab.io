@@ -3,7 +3,6 @@ import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
 import BlogHome from '@components/blog/BlogHome.vue';
-import NewsletterSection from '@components/NewsletterSection.vue';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -47,7 +46,6 @@ const serializedPosts = sortedPosts.map(post => ({
       posts={serializedPosts}
       allTags={allTags}
     />
-    <NewsletterSection client:load />
   </main>
 
   <Footer client:load />

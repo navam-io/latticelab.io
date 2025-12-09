@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 
 interface BlogPost {
   slug: string;
@@ -25,19 +25,17 @@ const props = defineProps<{
 // Search and filter state
 const searchQuery = ref('');
 const selectedCategory = ref<string | null>(null);
-const selectedTags = ref<string[]>([]);
-const showAllTags = ref(false);
 
 // Smart category groupings based on tag patterns
 const categories = [
-  { id: 'getting-started', label: 'Getting Started', tags: ['getting-started', 'workspaces', 'organization'] },
-  { id: 'blueprints', label: 'Blueprints', tags: ['blueprints', 'vendors', 'discovery', 'filtering'] },
-  { id: 'sources', label: 'Sources', tags: ['sources', 'knowledge-management', 'reading'] },
-  { id: 'stacks', label: 'Stacks', tags: ['stacks', 'infrastructure', 'hardware', 'framework'] },
-  { id: 'scenarios', label: 'Scenarios', tags: ['scenarios', 'comparison', 'requirements', 'workflow'] },
-  { id: 'studio', label: 'Studio', tags: ['studio', 'artifacts', 'export'] },
-  { id: 'settings', label: 'Settings', tags: ['settings', 'configuration', 'api-keys', 'customization'] },
-  { id: 'lab', label: 'Lab', tags: ['lab', 'chat', 'research', 'citations', 'ai-assistant'] },
+  { id: 'getting-started', label: 'Getting Started', icon: 'lightning', tags: ['getting-started', 'workspaces', 'organization'] },
+  { id: 'blueprints', label: 'Blueprints', icon: 'clipboard', tags: ['blueprints', 'vendors', 'discovery', 'filtering'] },
+  { id: 'sources', label: 'Sources', icon: 'archive', tags: ['sources', 'knowledge-management', 'reading'] },
+  { id: 'scenarios', label: 'Scenarios', icon: 'chart', tags: ['scenarios', 'comparison', 'requirements', 'workflow'] },
+  { id: 'stacks', label: 'Stacks', icon: 'server', tags: ['stacks', 'infrastructure', 'hardware', 'framework'] },
+  { id: 'settings', label: 'Settings', icon: 'cog', tags: ['settings', 'configuration', 'api-keys', 'customization'] },
+  { id: 'lab', label: 'Lab', icon: 'beaker', tags: ['lab', 'chat', 'research', 'citations', 'ai-assistant', 'ai-research'] },
+  { id: 'studio', label: 'Studio', icon: 'document', tags: ['studio', 'artifacts', 'export'] },
 ];
 
 // Compute filtered posts
@@ -65,13 +63,6 @@ const filteredPosts = computed(() => {
     }
   }
 
-  // Tag filter
-  if (selectedTags.value.length > 0) {
-    result = result.filter(post =>
-      selectedTags.value.every(tag => (post.data.tags || []).includes(tag))
-    );
-  }
-
   // Sort: featured first, then by date
   result.sort((a, b) => {
     if (a.data.featured && !b.data.featured) return -1;
@@ -84,46 +75,10 @@ const filteredPosts = computed(() => {
   return result;
 });
 
-// Get featured posts for hero section
-const featuredPosts = computed(() =>
-  filteredPosts.value.filter(p => p.data.featured).slice(0, 5)
-);
-
-// Get remaining posts for grid
-const regularPosts = computed(() => {
-  const featuredSlugs = new Set(featuredPosts.value.map(p => p.slug));
-  return filteredPosts.value.filter(p => !featuredSlugs.has(p.slug));
-});
-
-// Popular tags (top 8 by frequency)
-const popularTags = computed(() => {
-  const tagCounts: Record<string, number> = {};
-  props.posts.forEach(post => {
-    (post.data.tags || []).forEach(tag => {
-      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-    });
-  });
-  return Object.entries(tagCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(([tag]) => tag);
-});
-
-// Toggle tag selection
-const toggleTag = (tag: string) => {
-  const idx = selectedTags.value.indexOf(tag);
-  if (idx >= 0) {
-    selectedTags.value.splice(idx, 1);
-  } else {
-    selectedTags.value.push(tag);
-  }
-};
-
 // Clear all filters
 const clearFilters = () => {
   searchQuery.value = '';
   selectedCategory.value = null;
-  selectedTags.value = [];
 };
 
 // Format date
@@ -138,7 +93,7 @@ const formatDate = (date: Date | undefined) => {
 
 // Check if any filters are active
 const hasActiveFilters = computed(() =>
-  searchQuery.value.trim() || selectedCategory.value || selectedTags.value.length > 0
+  searchQuery.value.trim() || selectedCategory.value
 );
 
 // Results count text
@@ -152,19 +107,20 @@ const resultsText = computed(() => {
 
 <template>
   <div class="blog-home">
-    <!-- Hero Section with Search -->
-    <section class="relative py-16 md:py-20 bg-gradient-to-br from-indigo-950 via-purple-900 to-violet-900 overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-violet-50 via-white to-blue-50 overflow-hidden">
       <!-- Background pattern -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
+      <div class="absolute inset-0 opacity-[0.04]">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%236d28d9&quot; fill-opacity=&quot;0.6&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
       </div>
 
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Smart AI System Decisions
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            Smart AI System
+            <span class="bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent"> Decisions</span>
           </h1>
-          <p class="text-xl text-purple-200 mb-8 max-w-2xl mx-auto">
+          <p class="text-xl text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
             Step-by-step guides to master AI infrastructure research. From first workspace to advanced workflows.
           </p>
 
@@ -179,12 +135,12 @@ const resultsText = computed(() => {
               v-model="searchQuery"
               type="text"
               placeholder="Search guides, topics, or features..."
-              class="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent transition-all"
+              class="w-full pl-12 pr-4 py-4 rounded-xl bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all shadow-sm"
             />
             <button
               v-if="searchQuery"
               @click="searchQuery = ''"
-              class="absolute inset-y-0 right-0 pr-4 flex items-center text-purple-300 hover:text-white transition-colors"
+              class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -193,7 +149,7 @@ const resultsText = computed(() => {
           </div>
 
           <!-- Quick Stats -->
-          <div class="flex items-center justify-center gap-6 mt-6 text-purple-200 text-sm">
+          <div class="flex items-center justify-center gap-6 mt-6 text-gray-500 text-sm">
             <span class="flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -211,103 +167,112 @@ const resultsText = computed(() => {
       </div>
     </section>
 
-    <!-- Category Pills -->
-    <section class="py-6 bg-white border-b sticky top-0 z-40 shadow-sm">
+    <!-- Category Cards Section -->
+    <section class="py-16 bg-white">
       <div class="container mx-auto px-4">
-        <div class="flex flex-wrap items-center gap-2 justify-center">
-          <button
-            @click="selectedCategory = null"
-            :class="[
-              'px-4 py-2 rounded-full text-sm font-medium transition-all',
-              !selectedCategory
-                ? 'bg-violet-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            ]"
-          >
-            All Guides
-          </button>
-          <button
-            v-for="cat in categories"
-            :key="cat.id"
-            @click="selectedCategory = selectedCategory === cat.id ? null : cat.id"
-            :class="[
-              'px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1.5',
-              selectedCategory === cat.id
-                ? 'bg-violet-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            ]"
-          >
-            <!-- Getting Started -->
-            <svg v-if="cat.id === 'getting-started'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <!-- Blueprints -->
-            <svg v-else-if="cat.id === 'blueprints'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-            </svg>
-            <!-- Sources -->
-            <svg v-else-if="cat.id === 'sources'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <!-- Stacks -->
-            <svg v-else-if="cat.id === 'stacks'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <!-- Scenarios -->
-            <svg v-else-if="cat.id === 'scenarios'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-            <!-- Studio -->
-            <svg v-else-if="cat.id === 'studio'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <!-- Settings -->
-            <svg v-else-if="cat.id === 'settings'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <!-- Lab -->
-            <svg v-else-if="cat.id === 'lab'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-            </svg>
-            <span>{{ cat.label }}</span>
-          </button>
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <h2 class="text-2xl font-bold text-gray-900">Browse by Category</h2>
+            </div>
+            <button
+              v-if="selectedCategory"
+              @click="selectedCategory = null"
+              class="text-sm text-violet-600 hover:text-violet-800 font-medium flex items-center gap-1"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Clear filter
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <button
+              v-for="cat in categories"
+              :key="cat.id"
+              @click="selectedCategory = selectedCategory === cat.id ? null : cat.id"
+              :class="[
+                'group p-4 rounded-xl border-2 text-left transition-all duration-300',
+                selectedCategory === cat.id
+                  ? 'border-violet-500 bg-violet-50 shadow-md'
+                  : 'border-gray-200 bg-white hover:border-violet-300 hover:shadow-md'
+              ]"
+            >
+              <div class="flex items-center gap-3">
+                <div :class="[
+                  'w-10 h-10 rounded-lg flex items-center justify-center transition-colors',
+                  selectedCategory === cat.id ? 'bg-violet-500' : 'bg-gray-100 group-hover:bg-violet-100'
+                ]">
+                  <!-- Lightning - Getting Started -->
+                  <svg v-if="cat.icon === 'lightning'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <!-- Clipboard - Blueprints -->
+                  <svg v-else-if="cat.icon === 'clipboard'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                  <!-- Archive - Sources -->
+                  <svg v-else-if="cat.icon === 'archive'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  <!-- Chart - Scenarios -->
+                  <svg v-else-if="cat.icon === 'chart'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  <!-- Server - Stacks -->
+                  <svg v-else-if="cat.icon === 'server'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                  </svg>
+                  <!-- Cog - Settings -->
+                  <svg v-else-if="cat.icon === 'cog'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <!-- Beaker - Lab -->
+                  <svg v-else-if="cat.icon === 'beaker'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                  <!-- Document - Studio -->
+                  <svg v-else-if="cat.icon === 'document'" :class="['w-5 h-5', selectedCategory === cat.id ? 'text-white' : 'text-gray-600 group-hover:text-violet-600']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <span :class="[
+                  'font-medium transition-colors',
+                  selectedCategory === cat.id ? 'text-violet-700' : 'text-gray-700'
+                ]">{{ cat.label }}</span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Filters & Results Bar -->
-    <section class="py-4 bg-gray-50 border-b">
+    <!-- Guides Grid Section -->
+    <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <!-- Popular Tags -->
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-sm text-gray-500 mr-1">Quick filters:</span>
-            <button
-              v-for="tag in popularTags"
-              :key="tag"
-              @click="toggleTag(tag)"
-              :class="[
-                'px-3 py-1 rounded-full text-xs font-medium transition-all',
-                selectedTags.includes(tag)
-                  ? 'bg-violet-100 text-violet-700 ring-1 ring-violet-300'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-              ]"
-            >
-              {{ tag }}
-            </button>
-            <button
-              v-if="!showAllTags && allTags.length > 8"
-              @click="showAllTags = true"
-              class="text-xs text-violet-600 hover:text-violet-800 font-medium"
-            >
-              +{{ allTags.length - 8 }} more
-            </button>
-          </div>
-
-          <!-- Results & Clear -->
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-gray-500">{{ resultsText }}</span>
+        <div class="max-w-6xl mx-auto">
+          <!-- Section Header -->
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900">
+                  {{ hasActiveFilters ? 'Search Results' : 'All Guides' }}
+                </h2>
+                <p class="text-gray-500 text-sm">{{ resultsText }}</p>
+              </div>
+            </div>
             <button
               v-if="hasActiveFilters"
               @click="clearFilters"
@@ -316,149 +281,12 @@ const resultsText = computed(() => {
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              Clear filters
+              Clear all filters
             </button>
           </div>
-        </div>
-
-        <!-- Expanded Tags Panel -->
-        <div v-if="showAllTags" class="mt-4 pt-4 border-t">
-          <div class="flex flex-wrap gap-2">
-            <button
-              v-for="tag in allTags"
-              :key="tag"
-              @click="toggleTag(tag)"
-              :class="[
-                'px-3 py-1 rounded-full text-xs font-medium transition-all',
-                selectedTags.includes(tag)
-                  ? 'bg-violet-100 text-violet-700 ring-1 ring-violet-300'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-              ]"
-            >
-              {{ tag }}
-            </button>
-          </div>
-          <button
-            @click="showAllTags = false"
-            class="mt-3 text-xs text-gray-500 hover:text-gray-700"
-          >
-            Show less
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <!-- Featured Section (only show when no search/filters) -->
-        <div v-if="!hasActiveFilters && featuredPosts.length > 0" class="mb-12">
-          <h2 class="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
-            <svg class="w-5 h-5 text-violet-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            Featured Guides
-          </h2>
-
-          <!-- Magazine Layout for Featured - Compact 50% height -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-auto lg:h-80">
-            <!-- Left: Primary Featured (full height, half width) -->
-            <a
-              v-if="featuredPosts[0]"
-              :href="`/blog/${featuredPosts[0].slug}`"
-              class="group relative block rounded-xl overflow-hidden bg-gray-100 h-64 lg:h-full"
-            >
-              <img
-                v-if="featuredPosts[0].data.featuredImage"
-                :src="featuredPosts[0].data.featuredImage"
-                :alt="featuredPosts[0].data.title"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-5">
-                <span class="inline-block px-2 py-0.5 bg-white/90 text-violet-700 text-xs font-medium rounded mb-2">
-                  Featured
-                </span>
-                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-violet-200 transition-colors line-clamp-2">
-                  {{ featuredPosts[0].data.title }}
-                </h3>
-                <p class="text-gray-200 text-sm line-clamp-2">
-                  {{ featuredPosts[0].data.description || featuredPosts[0].data.excerpt }}
-                </p>
-                <div class="flex items-center gap-3 text-xs text-gray-300 mt-2">
-                  <span>{{ formatDate(featuredPosts[0].data.pubDate || featuredPosts[0].data.date) }}</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- Right Column: Top featured + bottom thumbnail list -->
-            <div class="flex flex-col gap-4 h-full">
-              <!-- Top Right: Secondary Featured (half height) -->
-              <a
-                v-if="featuredPosts[1]"
-                :href="`/blog/${featuredPosts[1].slug}`"
-                class="group relative block rounded-xl overflow-hidden bg-gray-100 h-36 lg:flex-1"
-              >
-                <img
-                  v-if="featuredPosts[1].data.featuredImage"
-                  :src="featuredPosts[1].data.featuredImage"
-                  :alt="featuredPosts[1].data.title"
-                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 class="text-base font-bold text-white mb-1 group-hover:text-violet-200 transition-colors line-clamp-1">
-                    {{ featuredPosts[1].data.title }}
-                  </h3>
-                  <div class="flex items-center gap-3 text-xs text-gray-300">
-                    <span>{{ formatDate(featuredPosts[1].data.pubDate || featuredPosts[1].data.date) }}</span>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Bottom Right: Thumbnail list items -->
-              <div class="flex flex-col gap-2 lg:flex-1">
-                <a
-                  v-for="post in featuredPosts.slice(2, 5)"
-                  :key="post.slug"
-                  :href="`/blog/${post.slug}`"
-                  class="group flex items-center gap-3 p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
-                >
-                  <!-- Thumbnail -->
-                  <div class="w-16 h-12 rounded-md overflow-hidden bg-gray-200 flex-shrink-0">
-                    <img
-                      v-if="post.data.featuredImage"
-                      :src="post.data.featuredImage"
-                      :alt="post.data.title"
-                      class="w-full h-full object-cover"
-                    />
-                  </div>
-                  <!-- Content -->
-                  <div class="flex-1 min-w-0">
-                    <h4 class="text-sm font-medium text-gray-900 group-hover:text-violet-600 transition-colors line-clamp-1">
-                      {{ post.data.title }}
-                    </h4>
-                    <p class="text-xs text-gray-500 line-clamp-1">
-                      {{ post.data.description || post.data.excerpt }}
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- All Guides Grid -->
-        <div>
-          <h2 v-if="!hasActiveFilters" class="text-lg font-semibold text-gray-900 mb-6">
-            All Guides
-          </h2>
-          <h2 v-else class="text-lg font-semibold text-gray-900 mb-6">
-            Search Results
-          </h2>
 
           <!-- Empty State -->
-          <div v-if="filteredPosts.length === 0" class="text-center py-16">
+          <div v-if="filteredPosts.length === 0" class="text-center py-16 bg-white rounded-2xl border border-gray-200">
             <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -474,13 +302,13 @@ const resultsText = computed(() => {
             </button>
           </div>
 
-          <!-- Adaptive Grid -->
-          <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Guides Grid -->
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <a
-              v-for="post in (hasActiveFilters ? filteredPosts : regularPosts)"
+              v-for="post in filteredPosts"
               :key="post.slug"
               :href="`/blog/${post.slug}`"
-              class="group block bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-violet-300 hover:shadow-lg transition-all duration-300"
+              class="group block bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-violet-300 hover:shadow-xl transition-all duration-300"
             >
               <!-- Thumbnail -->
               <div class="aspect-video bg-gray-100 overflow-hidden relative">
@@ -497,19 +325,22 @@ const resultsText = computed(() => {
                 </div>
                 <!-- Featured badge -->
                 <span
-                  v-if="post.data.featured && hasActiveFilters"
-                  class="absolute top-2 left-2 px-2 py-0.5 bg-violet-600 text-white text-xs font-medium rounded-full"
+                  v-if="post.data.featured"
+                  class="absolute top-3 left-3 px-3 py-1 bg-violet-600 text-white text-xs font-medium rounded-full flex items-center gap-1"
                 >
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
                   Featured
                 </span>
               </div>
 
               <!-- Content -->
-              <div class="p-4">
-                <h3 class="text-base font-semibold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors line-clamp-2">
+              <div class="p-5">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-violet-600 transition-colors line-clamp-2">
                   {{ post.data.title }}
                 </h3>
-                <p v-if="post.data.description || post.data.excerpt" class="text-gray-500 text-sm mb-3 line-clamp-2">
+                <p v-if="post.data.description || post.data.excerpt" class="text-gray-500 text-sm mb-4 line-clamp-2">
                   {{ post.data.description || post.data.excerpt }}
                 </p>
                 <div class="flex items-center justify-between text-xs text-gray-400">
@@ -517,19 +348,19 @@ const resultsText = computed(() => {
                   <span v-if="post.data.readingTime">{{ post.data.readingTime }}</span>
                 </div>
                 <!-- Tags -->
-                <div v-if="post.data.tags && post.data.tags.length > 0" class="flex flex-wrap gap-1.5 mt-3">
+                <div v-if="post.data.tags && post.data.tags.length > 0" class="flex flex-wrap gap-2 mt-4">
                   <span
-                    v-for="tag in post.data.tags.slice(0, 2)"
+                    v-for="tag in post.data.tags.slice(0, 3)"
                     :key="tag"
-                    class="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full"
+                    class="px-2.5 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
                   >
                     {{ tag }}
                   </span>
                   <span
-                    v-if="post.data.tags.length > 2"
-                    class="px-2 py-0.5 text-gray-400 text-xs"
+                    v-if="post.data.tags.length > 3"
+                    class="px-2.5 py-1 text-gray-400 text-xs"
                   >
-                    +{{ post.data.tags.length - 2 }}
+                    +{{ post.data.tags.length - 3 }}
                   </span>
                 </div>
               </div>
@@ -539,25 +370,18 @@ const resultsText = computed(() => {
       </div>
     </section>
 
-    <!-- Newsletter CTA -->
-    <section class="py-16 bg-gradient-to-r from-violet-600 to-indigo-600">
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-violet-600 to-blue-600">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-          Stay up to date
+          Ready for Smart AI System Decisions?
         </h2>
         <p class="text-violet-100 mb-8 max-w-xl mx-auto">
-          Get notified when we publish new guides and updates about AI infrastructure research.
+          Get lifetime access to Lattice and start making confident AI infrastructure decisions today.
         </p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-violet-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-          />
-          <button class="px-6 py-3 bg-white text-violet-600 font-semibold rounded-lg hover:bg-violet-50 transition-colors">
-            Subscribe
-          </button>
-        </div>
+        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+          Get Lattice for $99
+        </a>
       </div>
     </section>
   </div>
