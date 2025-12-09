@@ -1,12 +1,14 @@
 ---
 title: "Creating a New Workspace"
-description: "Learn how to create a dedicated workspace in Lattice to keep your AI evaluation research organized and separate from other initiatives."
+description: "Learn how to create isolated workspaces in Lattice to keep your AI evaluation research organized and separate from other initiatives."
 pubDate: 2025-11-28
+updatedDate: 2025-12-09
 author: "Lattice Lab"
 tags: ["getting-started", "workspaces", "organization"]
 featuredImage: "/images/journeys/create-workspace/create-workspace-01.png"
 featured: true
 journey: "create-workspace"
+readingTime: "4 min read"
 ---
 
 **When I** start a new AI evaluation project, **I want to** create a dedicated workspace, **so I can** keep my research organized and separate from other initiatives.
@@ -15,15 +17,15 @@ journey: "create-workspace"
 
 ## Introduction
 
-Every great AI project starts with organization. Whether you're evaluating models for a new chatbot, planning infrastructure for fine-tuning, or comparing cloud providers for your training workloads, Lattice helps you keep everything structured.
+Context pollution is a constant battle for research engineers juggling multiple infrastructure decisions. Your Claude vs GPT-4 evaluation gets mixed with your GPU pricing research. Your fine-tuning notes bleed into your RAG architecture investigation. Six months later, you're searching through a tangled mess of sources and artifacts.
 
-In this journey, you'll see how to create a dedicated workspace that becomes your central hub for research, analysis, and decision-making.
+Lattice workspaces provide complete isolation for each research context. Think of a workspace as a dedicated research environment—its own sources, its own chat history, its own artifacts. When you're deep in GPU memory calculations for Llama fine-tuning, your inference latency research stays completely separate.
 
 ## Step 1: Open the Workspace Selector
 
 ![Step 1: Lattice main interface with workspace selector](/images/journeys/create-workspace/create-workspace-01.png)
 
-The Lattice interface features a three-panel layout: Sources on the left, the Lab (chat) in the center, and Studio (artifacts) on the right. At the top of the Sources panel, you'll see the **workspace selector** showing your current workspace—in this case, "Nvidia Research."
+The Lattice interface features a three-panel layout: Sources on the left, the Lab (chat) in the center, and Studio (artifacts) on the right. At the top of the Sources panel, you'll see the **workspace selector** showing your current workspace.
 
 Click the workspace selector to manage your workspaces.
 
@@ -48,24 +50,69 @@ Click **"+ New Workspace"** and an inline input field appears. This keeps you in
 
 ![Step 4: Workspace name entered](/images/journeys/create-workspace/create-workspace-04.png)
 
-Enter a descriptive name that reflects your project's focus. In this example, we're creating **"Claude Sonnet Evaluation"**—a workspace dedicated to evaluating Anthropic's Claude Sonnet models for a production use case.
-
-Use naming conventions that help you quickly identify workspaces later: include the model family, use case, or date as needed.
+Enter a descriptive name that reflects your project's focus. Use naming conventions that help you quickly identify workspaces later:
+- "H100 Training Stack - Q4 2024"
+- "Inference Provider Comparison"
+- "RAG Architecture v2"
+- "Claude Sonnet Evaluation"
 
 ## Step 5: Your New Workspace is Ready
 
 ![Step 5: New workspace created and selected](/images/journeys/create-workspace/create-workspace-05.png)
 
-Press **Enter** (or click the checkmark) to create the workspace. Lattice immediately:
+Press **Enter** to create the workspace. Lattice immediately:
 - Creates the workspace and switches to it
-- Updates the selector to show "Claude Sonnet Evaluation" as active
+- Updates the selector to show your new workspace as active
 - Displays the empty workspace state with "No sources added yet"
 - Generates fresh **Suggested prompts** relevant to a new project
 
-Notice the workspace appears in the dropdown list alongside your other projects, showing "0 sources · 0 messages"—ready to be populated with your research materials.
+## Workspace Isolation
+
+Each workspace is a complete isolation boundary:
+
+```
+workspace_1 (H100 Training Stack)
+├── sources[]        # Training papers, GPU specs
+├── messages[]       # Conversation about training
+├── artifacts[]      # Memory calculators, cost estimates
+├── scenarios[]      # Training workload definitions
+└── stacks[]         # Hardware configurations
+
+workspace_2 (Inference Provider Comparison)
+├── sources[]        # Different docs entirely
+├── messages[]       # Separate conversation
+├── artifacts[]      # Different analyses
+├── scenarios[]      # Inference workload definitions
+└── stacks[]         # Different hardware configs
+```
+
+When you query "what GPU should I use?", the Research Agent only searches sources within the current workspace. No cross-contamination.
+
+## Switching Between Contexts
+
+When you need to context-switch—an urgent request interrupts your deep work—just click the workspace selector and choose a different workspace.
+
+The switch is instant:
+- Sources panel updates to show the other workspace's documents
+- Lab panel loads that workspace's conversation history
+- Studio panel displays its artifacts and configurations
+
+Your original workspace remains exactly as you left it.
+
+## Real-World Use Cases
+
+**Evaluating multiple model providers**: Create separate workspaces for each contender: "Anthropic Claude Evaluation", "OpenAI GPT-4 Evaluation", "Google Gemini Evaluation". Each contains only that provider's documentation.
+
+**Managing concurrent projects**: Maintain workspaces aligned with your project portfolio: "Project Alpha - Training Infra", "Project Beta - Inference Pipeline". Team members see only relevant context.
+
+**Exploring framework options**: Keep "LangGraph Deep Dive" separate from "Custom Agent Architecture". Each accumulates sources and artifacts over weeks without mixing.
 
 ## What You've Accomplished
 
 You now have a dedicated workspace for your AI infrastructure research. This workspace will contain all your sources, conversations, scenarios, and generated artifacts—keeping your analysis organized and accessible.
 
 **Next steps:** Add sources to give Lattice context for your specific use case.
+
+---
+
+*Workspace Management is available in Lattice 0.4.0. Create your first workspace and start a focused investigation today.*

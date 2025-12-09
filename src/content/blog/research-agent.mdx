@@ -1,0 +1,139 @@
+---
+title: "How the Research Agent Works"
+description: "See the reasoning behind every recommendation with Lattice's transparent AI agent that shows its work and cites your sources."
+pubDate: 2025-12-09
+author: "Lattice Lab"
+tags: ["ai-research", "chat", "getting-started"]
+featuredImage: "/images/journeys/research-agent/research-agent.png"
+featured: true
+journey: "research-agent"
+readingTime: "5 min read"
+---
+
+**When I** ask the AI for infrastructure recommendations, **I want to** see how it arrived at its answer, **so I can** verify the reasoning and trust the conclusion.
+
+---
+
+## Introduction
+
+You ask an AI assistant: "What's the best GPU for training a 70B model?" It responds with confident recommendations—but how did it arrive at that answer? Did it actually read your uploaded NVIDIA datasheet? Is it hallucinating pricing numbers? Can you trust the conclusion enough to put it in a deck for leadership?
+
+The Research Agent solves this by exposing its entire thinking process. Every response shows what sources it searched, what information it found relevant, and how it synthesized that information into a recommendation.
+
+## Transparent Reasoning
+
+![Research Agent showing thinking steps and citations](/images/journeys/research-agent/research-agent.png)
+
+Unlike black-box chat interfaces, the Research Agent provides:
+
+### Thinking Steps
+
+Every response includes expandable thinking steps showing the agent's internal reasoning:
+
+1. **Analysis**: What information does this question require?
+2. **Search**: What sources should be consulted?
+3. **Retrieval**: What relevant chunks were found?
+4. **Synthesis**: How does this information answer the question?
+
+Click the "Thinking" section to expand and see the full reasoning chain.
+
+### Interactive Citations
+
+Every claim in the response links back to source documents:
+
+- **Hover**: Preview the cited chunk with surrounding context
+- **Click**: Open the source in Reader mode, scrolled to the cited section
+
+When the agent says "H100s provide 80GB HBM3 memory," you can verify that claim traces back to the NVIDIA datasheet you uploaded—not to outdated training data.
+
+### Source Grounding
+
+The agent is explicitly instructed to ground responses in your workspace sources:
+
+- Search and retrieve relevant chunks from uploaded documents
+- Cite specific sections using numbered notation
+- Distinguish between source-backed claims and general knowledge
+- Acknowledge when sources don't cover a topic
+
+## How It Works
+
+The Research Agent uses a two-stage process:
+
+**Think Stage**:
+1. Analyzes your question
+2. Identifies what information is needed
+3. Searches workspace sources using hybrid search
+4. Retrieves relevant chunks with relevance scores
+
+**Synthesize Stage**:
+1. Processes retrieved context
+2. Generates a coherent response
+3. Adds inline citations linking to source chunks
+4. Formats output with markdown
+
+### Real-Time Streaming
+
+Agent thinking is streamed via Server-Sent Events, so you see the reasoning process as it happens:
+
+- **Thinking updates**: Watch the agent analyze your question
+- **Search activity**: See which sources are being consulted
+- **Response generation**: Watch the answer form with citations
+
+This transparency builds trust—you're not waiting for a black box to produce an answer.
+
+## Example Interaction
+
+**You**: "What's the memory requirement for training a 70B model with ZeRO Stage 3?"
+
+**Agent Thinking**:
+```
+I need to calculate GPU memory requirements for training a 70B parameter
+model using ZeRO Stage 3 optimization. Let me search for:
+1. Model memory footprint formula
+2. ZeRO Stage 3 memory partitioning
+3. Specific benchmarks for 70B models
+```
+
+**Agent Response**:
+> For training a 70B parameter model with ZeRO Stage 3, you'll need approximately **45-50GB of GPU memory per device** when using 8 GPUs [1].
+>
+> Here's the breakdown:
+> - **Base model parameters**: 70B x 4 bytes = 280GB total [1]
+> - **Per-GPU parameter shard**: 280GB / 8 = 35GB [2]
+> - **Activation memory**: 10-15GB depending on batch size [2]
+>
+> **Sources:**
+> [1] DeepSpeed ZeRO Paper, Section 4.2
+> [2] NVIDIA H100 Training Guide, Memory Planning
+
+## Why Transparency Matters
+
+For research engineers making infrastructure decisions, the black-box problem isn't just frustrating—it's professionally risky:
+
+- **Justify decisions**: Trace every recommendation back to source documentation
+- **Debug errors**: Understand where reasoning went wrong when answers are incorrect
+- **Verify claims**: Click citations to confirm data before presenting to stakeholders
+- **Identify gaps**: See what sources the agent is missing
+
+## Context Integration
+
+The Research Agent is aware of your full research context:
+
+- **Scenario**: Your workload requirements inform recommendations
+- **Stack**: Your infrastructure configuration affects suggestions
+- **Conversation history**: Follow-up questions resolve correctly
+
+Ask "would switching to H100s change this recommendation?" and the agent understands you're talking about the stack you defined.
+
+## What's Next
+
+The Research Agent foundation enables expanding capabilities:
+
+- **Citation Pills**: Enhanced hover previews with source context
+- **@ Mentions**: Reference specific sources for targeted analysis
+- **Smart Prompts**: Context-aware suggestions based on your scenario
+- **Multi-Agent Flows**: Specialized agents for benchmarks, costs, and design
+
+---
+
+*Research Agent is available in Lattice 0.3.0. Start a conversation and see the reasoning behind every recommendation.*

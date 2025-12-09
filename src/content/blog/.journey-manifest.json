@@ -1,0 +1,40 @@
+{
+  "lastRun": "2025-12-09T11:00:00Z",
+  "processed": {
+    "three-panel-layout": {
+      "sourceHash": "500:7695",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "blueprint-gallery": {
+      "sourceHash": "500:10260",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "research-agent": {
+      "sourceHash": "500:9691",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "configure-settings": {
+      "sourceHash": "500:9826",
+      "imageCount": 8,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "create-scenario": {
+      "sourceHash": "500:10162",
+      "imageCount": 6,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "create-workspace": {
+      "sourceHash": "500:8183",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    },
+    "source-upload": {
+      "sourceHash": "500:8565",
+      "imageCount": 3,
+      "lastProcessed": "2025-12-09T11:00:00Z"
+    }
+  }
+}
