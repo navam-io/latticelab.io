@@ -1,0 +1,164 @@
+---
+title: "Evaluation Comparison"
+description: "Compare evaluation results across models with confidence intervals, statistical significance, and export-ready reports."
+pubDate: 2025-12-09
+author: "Lattice Lab"
+tags: ["scenarios", "ai-research", "intermediate"]
+journey: "evaluation-comparison"
+readingTime: "9 min read"
+---
+
+**When I** have evaluation results from multiple models, **I want to** compare them with statistical rigor, **so I can** make confident decisions about which model to deploy.
+
+## The Challenge
+
+Your evaluation ran successfully. Claude 3.5 Sonnet scored 0.76 and GPT-4o scored 0.73. Is Claude actually better, or is that difference just noise? With 200 test inputs, what's the confidence interval? Could you get the opposite result with a different sample?
+
+Raw scores don't tell the full story. A 3% difference could be statistically significant with low variance, or meaningless with high variance. When you're justifying a model choice that affects thousands of production requests, "Claude seems a bit better" doesn't cut it.
+
+## How Lattice Helps
+
+Evaluation Comparison provides side-by-side analysis with the statistical rigor needed for production decisions. Instead of eyeballing score differences, you see confidence intervals, significance indicators, and winner/loser highlighting that accounts for uncertainty.
+
+The comparison framework supports multiple view modes—tables for detailed metrics, bar charts for quick visual comparison, radar charts for multi-dimensional trade-offs.
+
+## The Comparison Table
+
+The default view shows a metrics table with all targets side-by-side:
+
+| Metric | Claude 3.5 Sonnet | GPT-4o | Delta |
+|--------|-------------------|--------|-------|
+| Mean Score | 0.76 [0.73, 0.79] | 0.73 [0.70, 0.76] | +0.03 |
+| Accuracy | 0.82 [0.78, 0.86] | 0.79 [0.75, 0.83] | +0.03 |
+| Completeness | 0.71 [0.67, 0.75] | 0.74 [0.70, 0.78] | -0.03 |
+| Clarity | 0.75 [0.71, 0.79] | 0.66 [0.62, 0.70] | +0.09 |
+
+**Key elements:**
+
+- **Confidence Intervals**: The [0.73, 0.79] range shows where the true mean likely falls (95% confidence)
+- **Delta Column**: Shows the difference between targets
+- **Statistical Significance**: When intervals don't overlap, the difference is unlikely due to chance
+
+## Statistical Significance
+
+The comparison identifies significant differences automatically:
+
+```
+Statistical Comparison:
+  Mean Score: No significant difference (overlapping CIs)
+  Accuracy: No significant difference
+  Completeness: No significant difference
+  Clarity: Claude significantly better (p < 0.05)
+```
+
+**What "significant" means:**
+When confidence intervals don't overlap, the difference is unlikely to be due to sampling chance.
+
+**What "no significant difference" means:**
+The observed difference could easily result from sample variance. With more data, you might see the gap widen, narrow, or reverse.
+
+## Summary Cards
+
+Above the table, summary cards show win/loss tallies:
+
+```
+Claude 3.5 Sonnet          GPT-4o
+Wins: 1                    Wins: 0
+Ties: 3                    Ties: 3
+Losses: 0                  Losses: 1
+
+Overall: Claude leads on 1 metric with no losses
+```
+
+## Bar Chart View
+
+Toggle to **Bar** view for visual comparison:
+
+```
+Mean Score
+  Claude:  ████████████████████████████████████░░░░ 0.76
+  GPT-4o:  ██████████████████████████████████░░░░░░ 0.73
+           ├─────────────┤ CI
+
+Clarity
+  Claude:  ██████████████████████████████████░░░░░░ 0.75 Winner
+  GPT-4o:  ████████████████████████████░░░░░░░░░░░░ 0.66
+```
+
+Error bars show confidence intervals, making it easy to see where intervals overlap (no significant difference) vs. where they're separated (significant difference).
+
+## Radar Chart View
+
+Toggle to **Radar** view for multi-dimensional comparison. The radar chart normalizes all metrics to 0-1 and plots them as polygons:
+
+- Larger area = better overall performance
+- Shape reveals trade-offs between dimensions
+- Overlaid polygons show where models excel
+
+## Export Options
+
+**CSV Export:**
+```csv
+Metric,Claude 3.5 Sonnet,CI Low,CI High,GPT-4o,CI Low,CI High,Delta,Significant
+Mean Score,0.76,0.73,0.79,0.73,0.70,0.76,0.03,No
+Clarity,0.75,0.71,0.79,0.66,0.62,0.70,0.09,Yes
+```
+
+**JSON Export:**
+Full data including raw results and metadata for programmatic access.
+
+**Save as Artifact:**
+Preserves the comparison in your workspace with formatted markdown suitable for documentation.
+
+## Confidence Interval Calculation
+
+The framework uses the standard error of the mean with t-distribution for 95% confidence:
+
+```
+margin = t_value * std_error
+CI = (mean - margin, mean + margin)
+```
+
+**Why t-distribution?**
+For sample sizes under ~30, the t-distribution accounts for additional uncertainty from estimating population variance from sample data.
+
+## Significance Testing
+
+Two confidence intervals are compared for overlap:
+
+```
+is_significant = ci_a.high < ci_b.low OR ci_b.high < ci_a.low
+```
+
+Non-overlapping intervals indicate significance at roughly alpha = 0.05.
+
+## Real-World Scenarios
+
+**A product manager presenting to leadership** exports the comparison as CSV and builds a slide deck. The statistical significance indicators give confidence to say "Claude is significantly better at clarity" rather than hedging.
+
+**An ML engineer deciding between model updates** compares Claude 3.5 Sonnet against Opus. The radar chart reveals that Opus improves accuracy (+8%) but regresses on tone (-3%). For customer support, tone matters—they stick with Sonnet.
+
+**A platform team establishing model tiers** runs comparison evaluations across five models. They export JSON results to feed into their model selection service.
+
+**A research scientist writing a paper** saves the comparison as an artifact, then exports CSV for latex tables. The confidence intervals and p-values meet publication standards.
+
+## What You've Accomplished
+
+You now have statistical comparison capabilities:
+
+- Confidence intervals for all metrics
+- Automatic significance detection
+- Multiple visualization modes
+- Export-ready formats for stakeholders
+
+## What's Next
+
+Evaluation Comparison integrates with the broader workflow:
+
+- **Evaluation Runs**: Get comparison-ready results from execution
+- **Metric Visualization**: Additional chart types and customization
+- **Artifact System**: Save comparisons for documentation and sharing
+
+---
+
+*Evaluation Comparison is available in Lattice. Make model decisions backed by statistical confidence.*

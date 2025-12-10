@@ -1,0 +1,192 @@
+---
+title: "Evaluation Framework"
+description: "Create structured evaluations with benchmarks, custom test sets, and LLM-as-Judge scoring to measure model quality systematically."
+pubDate: 2025-12-09
+author: "Lattice Lab"
+tags: ["scenarios", "ai-research", "intermediate"]
+featuredImage: "/images/journeys/evaluation-creation/evaluation-creation-01.png"
+journey: "evaluation-creation"
+readingTime: "9 min read"
+---
+
+**When I** need to compare models or measure pipeline quality, **I want to** create structured evaluations with clear targets and scoring, **so I can** make data-driven decisions instead of relying on intuition.
+
+## The Challenge
+
+Your team needs to decide between Claude 3.5 Sonnet and GPT-4o for a production deployment. Someone ran a few prompts through both and declared GPT-4o "faster" and Claude "better at reasoning." But when leadership asks for data to justify the API spend, you realize those impressions can't support a $50K/month decision.
+
+Proper evaluation requires defining test cases, running them systematically against both models, measuring latency and cost alongside quality, and computing statistical significance. Without this infrastructure, teams either skip evaluation entirely (ship and hope) or spend weeks building one-off evaluation harnesses that don't generalize.
+
+## How Lattice Helps
+
+![Evaluation Framework showing configuration options for model comparison](/images/journeys/evaluation-creation/evaluation-creation-01.png)
+
+The Evaluation Framework provides a unified system for defining, running, and analyzing model evaluations. Instead of building custom evaluation code, you configure evaluations through a structured interface that supports standard benchmarks, custom test sets, and LLM-as-judge scoring.
+
+The framework stores evaluation configurations and results persistently, enabling you to track performance over time, re-run evaluations when models update, and compare results across configurations.
+
+## Configuring Basic Information
+
+**Step 1: Name and Description**
+
+```
+Name: Claude vs GPT-4o RAG Comparison
+Description: Compare model quality and latency for
+  document Q&A use case on internal knowledge base
+```
+
+**Step 2: Select Evaluation Type**
+
+| Type | Description | Use Case |
+|------|-------------|----------|
+| **Benchmark** | Standard academic benchmarks | General capability assessment |
+| **Task-Specific** | Custom test set with LLM-as-judge | Your specific use case |
+| **Comparison** | Head-to-head model comparison | A/B testing decisions |
+| **Operational** | Latency, throughput, cost metrics | Performance profiling |
+| **Safety** | Toxicity, bias, jailbreak resistance | Safety evaluation |
+
+## Selecting Evaluation Targets
+
+**Choose Models/Stacks/Scenarios to Evaluate:**
+
+**Target 1:**
+```
+Type: Model
+Provider: Anthropic
+Model ID: claude-3-5-sonnet-20241022
+Display: Claude 3.5 Sonnet
+```
+
+**Target 2:**
+```
+Type: Model
+Provider: OpenAI
+Model ID: gpt-4o
+Display: GPT-4o
+```
+
+For comparison evaluations, select 2-4 targets. The framework runs identical inputs against each target and computes comparative metrics.
+
+## Configuring Standard Benchmarks
+
+| Benchmark | Category | Description |
+|-----------|----------|-------------|
+| MMLU | Knowledge | Multi-task language understanding |
+| HumanEval | Coding | Python function completion |
+| GSM8K | Math | Grade school math reasoning |
+| TruthfulQA | Factuality | Truthful response generation |
+| BBH | Reasoning | Big Bench Hard tasks |
+
+**Benchmark Configuration:**
+```
+Benchmark: MMLU
+Subset: stem (science, technology, engineering, math)
+Sample Count: 100 (random sample from full benchmark)
+```
+
+## Custom Test Set Configuration
+
+**Input Format:**
+```json
+[
+  {
+    "input": "What is our refund policy for enterprise customers?",
+    "reference": "Enterprise customers receive full refunds within 90 days...",
+    "category": "policy"
+  },
+  {
+    "input": "How do I configure SSO with Okta?",
+    "reference": "Navigate to Settings > Security > SSO...",
+    "category": "technical"
+  }
+]
+```
+
+**Scoring Methods:**
+
+| Method | Description |
+|--------|-------------|
+| Exact Match | Binary correct/incorrect |
+| Fuzzy Match | Levenshtein distance threshold |
+| Semantic Similarity | Embedding cosine similarity |
+| **LLM-as-Judge** | LLM evaluates response quality |
+| Code Execution | Run code and check output |
+| Regex | Pattern matching |
+
+## LLM-as-Judge Configuration
+
+**Scoring Prompt:**
+```
+You are evaluating an AI assistant's response quality.
+
+Input: {{input}}
+Response: {{output}}
+Reference Answer: {{reference}}
+
+Rate the response on a scale of 1-5:
+1 = Completely wrong or irrelevant
+2 = Partially correct but missing key information
+3 = Mostly correct with minor issues
+4 = Correct and comprehensive
+5 = Excellent, better than reference
+
+Provide your rating as a single number followed by a brief explanation.
+```
+
+**Rubric (Optional):**
+
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Accuracy | 40% | Factual correctness |
+| Completeness | 30% | Covers all relevant points |
+| Clarity | 20% | Well-structured response |
+| Conciseness | 10% | No unnecessary content |
+
+## Methodology Settings
+
+| Setting | Value | Description |
+|---------|-------|-------------|
+| Sample Size | 100 | Number of test inputs |
+| Confidence Level | 95% | Statistical confidence |
+| Concurrency | 10 | Parallel requests |
+| Timeout | 60s | Per-request timeout |
+| Random Seed | 42 | For reproducibility |
+
+**Reporting Options:**
+- Include confidence intervals
+- Include raw scores (per-input results)
+- Include latency statistics
+- Include cost metrics
+
+## Real-World Scenarios
+
+**A research engineer comparing reasoning models** creates a comparison evaluation with GPT-4o, Claude 3.5 Sonnet, and o1-mini as targets. They select GSM8K (math) and BBH (reasoning) benchmarks with 200 samples each.
+
+**A product team evaluating RAG quality** creates a task-specific evaluation with 50 real customer questions and reference answers. They configure LLM-as-judge with a custom rubric prioritizing accuracy and completeness.
+
+**A platform team profiling inference stacks** creates an operational evaluation targeting their vLLM stack vs Anthropic API. They measure latency (P50, P95, P99), throughput (requests/second), and cost per request.
+
+**A compliance team assessing safety** creates a safety evaluation with toxicity and bias test cases. They run it against their fine-tuned model before deployment.
+
+## What You've Accomplished
+
+You now have a structured evaluation ready to run:
+
+- Named and described for future reference
+- Targets selected for comparison
+- Benchmarks or custom test set configured
+- Scoring method defined with rubric
+- Methodology set for statistical rigor
+
+## What's Next
+
+The Evaluation Framework integrates with Lattice's model and stack management:
+
+- **Run Evaluation**: Execute evaluations and track progress
+- **LLM-as-Judge**: Configure custom scoring prompts and rubrics
+- **Evaluation Comparison**: Visualize results with charts and tables
+- **Model Registry**: Pull model metadata for target selection
+
+---
+
+*Evaluation Framework is available in Lattice. Make model decisions with data, not vibes.*

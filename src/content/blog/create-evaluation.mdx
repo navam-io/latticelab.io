@@ -1,0 +1,205 @@
+---
+title: "Creating Your First Model Evaluation"
+description: "A step-by-step guide to setting up rigorous evaluations with LLM-as-Judge scoring for your specific use case."
+pubDate: 2025-12-09
+author: "Lattice Lab"
+tags: ["scenarios", "ai-research", "getting-started"]
+journey: "create-evaluation"
+readingTime: "10 min read"
+---
+
+**When I** ship an AI pipeline, **I want to** measure quality systematically, **so I can** catch regressions and justify improvements with data.
+
+## The Challenge
+
+Your team shipped a RAG pipeline last month. Users report that some answers are "wrong" or "incomplete," but without a systematic way to measure quality, you can't tell if the problem is the retrieval, the model, or the prompt template. When someone suggests trying GPT-4o instead of Claude, you have no baseline to compare against.
+
+This is the evaluation gap that plagues ML teams. You have intuitions about model quality—"Claude seems better at reasoning"—but no data to back them up. Running a few test prompts by hand doesn't scale, and building custom evaluation harnesses takes weeks of engineering time.
+
+## How Lattice Helps
+
+The Evaluation Framework lets you define evaluations once and run them repeatedly as models, prompts, and pipelines evolve. Instead of ad-hoc testing, you configure structured evaluations with clear targets, scoring methods, and success criteria.
+
+This journey walks through creating your first evaluation, from opening the creation modal to configuring LLM-as-Judge scoring for a custom test set.
+
+## Step 1: Navigate to Evaluations
+
+Open the **Studio** panel on the right side of the interface. Scroll to the **Evaluations** section—it shows any existing evaluations in your workspace.
+
+Click the **+ Create Evaluation** button to open the creation modal.
+
+## Step 2: Configure Basic Information
+
+**Name your evaluation:**
+```
+RAG Pipeline Quality Assessment
+```
+
+**Add a description:**
+```
+Evaluate answer quality, factual accuracy, and
+completeness for our internal documentation Q&A system
+```
+
+Clear naming matters when you accumulate dozens of evaluations.
+
+## Step 3: Select Evaluation Type
+
+| Type | When to Use |
+|------|-------------|
+| **Benchmark** | Measure general model capabilities |
+| **Task-Specific** | Evaluate your specific use case |
+| **Comparison** | Head-to-head model comparison |
+| **Operational** | Profile latency, throughput, cost |
+| **Safety** | Test for toxicity, bias, jailbreaks |
+
+For evaluating your RAG pipeline's answer quality, select **Task-Specific**.
+
+## Step 4: Select Evaluation Targets
+
+Choose what you're evaluating:
+
+- **Models**: Individual LLM providers
+- **Stacks**: Complete infrastructure configurations
+- **Scenarios**: Workload definitions with SLOs
+
+**For a single-system evaluation:**
+Click your current RAG stack to add it as the target.
+
+**For a comparison evaluation:**
+Select multiple targets (2-4) to compare side-by-side.
+
+## Step 5: Define Test Inputs
+
+**Manual Entry:**
+```json
+[
+  {
+    "input": "What is our refund policy for enterprise customers?",
+    "reference": "Enterprise customers receive full refunds within 90 days of purchase."
+  },
+  {
+    "input": "How do I enable SSO with Okta?",
+    "reference": "Navigate to Settings > Security > SSO. Click 'Add Provider' and select Okta."
+  },
+  {
+    "input": "What are the rate limits for the API?",
+    "reference": "Free tier: 100 requests/day. Pro tier: 10,000 requests/day."
+  }
+]
+```
+
+**Bulk Import:**
+Click **Import** to upload a JSON or CSV file with your test set.
+
+## Step 6: Configure Scoring Method
+
+| Method | Description |
+|--------|-------------|
+| Exact Match | Binary correct/incorrect |
+| Fuzzy Match | Levenshtein distance threshold |
+| Semantic Similarity | Embedding cosine similarity |
+| **LLM-as-Judge** | LLM evaluates response quality |
+
+For evaluating natural language quality, select **LLM-as-Judge**.
+
+## Step 7: Configure LLM-as-Judge
+
+**Scale Type:**
+```
+Likert 5-point (1-5 rating scale)
+```
+
+**Comparison Mode:**
+```
+Reference (compare against reference answer)
+```
+
+**Scoring Prompt:**
+```
+You are evaluating an AI assistant's response quality.
+
+Question: {{input}}
+Response: {{output}}
+Reference Answer: {{reference}}
+
+Evaluate the response on these criteria:
+1. Factual accuracy compared to reference
+2. Completeness of information
+3. Clarity and organization
+
+Rate the response from 1-5.
+
+Provide your rating as JSON: {"score": N, "reasoning": "..."}
+```
+
+**Rubric (Optional):**
+
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Accuracy | 50% | Factual correctness vs reference |
+| Completeness | 30% | Covers all relevant points |
+| Clarity | 20% | Well-organized, easy to understand |
+
+**Judge Model:**
+```
+claude-3-5-haiku-20241022 (Anthropic)
+```
+
+Haiku is recommended for judging—it's cost-effective while maintaining evaluation quality.
+
+## Step 8: Configure Methodology
+
+| Setting | Recommended | Description |
+|---------|-------------|-------------|
+| Sample Size | 50-100 | Number of inputs to evaluate |
+| Confidence Level | 95% | For confidence interval calculation |
+| Concurrency | 10 | Parallel requests to LLM |
+| Timeout | 60s | Per-request timeout |
+| Random Seed | 42 | For reproducibility |
+
+## Step 9: Review and Create
+
+The final step shows a summary:
+
+```
+Evaluation: RAG Pipeline Quality Assessment
+Type: Task-Specific
+Targets: 1 (Production RAG Stack)
+Test Inputs: 50
+Scoring: LLM-as-Judge (Likert-5, Reference mode)
+Judge: claude-3-5-haiku-20241022
+```
+
+Click **Create Evaluation** to save.
+
+The evaluation is created in **Pending** status, ready to run when you are.
+
+## Real-World Scenarios
+
+**A product team validating prompt changes** creates a task-specific evaluation with 100 production questions. Before deploying a new system prompt, they run the evaluation against both prompts and compare scores.
+
+**An ML engineer comparing embedding models** creates a comparison evaluation targeting their RAG stack with two different embedding configurations. The evaluation runs identical questions against both.
+
+**A research scientist evaluating reasoning** creates a benchmark evaluation with GSM8K (math) subset. They target three models and compare accuracy.
+
+## What You've Accomplished
+
+Your pending evaluation is ready to run with:
+
+- Clear targets and test inputs defined
+- LLM-as-Judge scoring configured
+- Statistical methodology set
+- Reproducibility ensured via random seed
+
+## What's Next
+
+The evaluation workflow continues with:
+
+- **Run Evaluation**: Execute and monitor progress
+- **View Results**: See scores, statistics, and breakdowns
+- **Compare Results**: Side-by-side visualization with statistical significance
+
+---
+
+*Evaluation Framework is available in Lattice. Build confidence in your AI systems with systematic measurement.*
