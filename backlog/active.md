@@ -30,31 +30,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 4.1: FooterColumn Component** - See [release-0.17.0.md](../releases/release-0.17.0.md)
 - **Feature 4.2: Footer Redesign** - See [release-0.18.0.md](../releases/release-0.18.0.md)
 - **Feature 5.1: StickyNav Component** - See [release-0.19.0.md](../releases/release-0.19.0.md)
+- **Feature 5.2: FeatureHero Component** - See [release-0.20.0.md](../releases/release-0.20.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.2: FeatureHero Component
-**Spec Reference:** Part 4, Section 4.2 (Section 1: Hero)
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build gradient headline hero component for feature pages.
-
-**Files:**
-- [ ] `src/components/features/FeatureHero.vue` - Gradient headline hero
-
-**Dependencies:** Feature 1.3 (GradientText), Feature 1.4 (DualCTA)
-
-**Acceptance Criteria:**
-- [ ] Large gradient headline
-- [ ] "Personal. Private. Powerful." style tagline format
-- [ ] Feature description paragraph
-- [ ] Product screenshot placeholder
-
----
 
 ### Feature 5.3: CapabilitySection Component
 **Spec Reference:** Part 4, Section 4.2 (Section 2: Capability Showcase)
@@ -506,8 +486,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 1 | 12 |
+| Phase 5: Feature Pages | 13 | 2 | 11 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **19** | **22** |
+| **Total** | **41** | **20** | **21** |

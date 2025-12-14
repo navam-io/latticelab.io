@@ -1,0 +1,103 @@
+---
+/**
+ * FeatureHero test page
+ * Tests the gradient headline hero component for feature pages
+ */
+import Layout from '../../layouts/Layout.astro';
+import FeatureHero from '../../components/features/FeatureHero.vue';
+---
+
+<Layout title="FeatureHero Test - Lattice">
+  <main>
+    <!-- Default FeatureHero with all props -->
+    <FeatureHero
+      client:load
+      headline="Your Knowledge. Unified."
+      tagline="Personal Private Powerful"
+      description="Build a curated knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts, and Google Docs. Every AI recommendation links back to specific source chunks you can verify."
+      productImage="/images/journeys/view-source/view-source-03.png"
+      productImageAlt="Lattice Sources panel"
+      browserUrl="lattice.app/sources"
+      primaryCTA="Get Lattice"
+      primaryHref="/#pricing"
+      secondaryCTA="View docs"
+      secondaryHref="#overview"
+      testId="feature-hero-default"
+    />
+
+    <!-- Spacer -->
+    <div class="h-20 bg-white"></div>
+
+    <!-- FeatureHero with pre-formatted tagline -->
+    <FeatureHero
+      client:load
+      headline="Research Agent. Grounded."
+      tagline="Intelligent. Transparent. Traceable."
+      description="LangGraph-powered analysis with natural language queries and transparent reasoning traces."
+      colorScheme="blue"
+      headlineSize="display-lg"
+      testId="feature-hero-blue"
+    />
+
+    <!-- Spacer -->
+    <div class="h-20 bg-white"></div>
+
+    <!-- FeatureHero with placeholder image -->
+    <FeatureHero
+      client:load
+      headline="Decisions. Documented."
+      tagline="Save Export Share"
+      description="Export your AI-assisted decisions to any format with full audit trails."
+      showImagePlaceholder={true}
+      colorScheme="teal"
+      testId="feature-hero-placeholder"
+    />
+
+    <!-- Spacer -->
+    <div class="h-20 bg-white"></div>
+
+    <!-- FeatureHero without CTAs -->
+    <FeatureHero
+      client:load
+      headline="36 Blueprints"
+      tagline="Curated Tested Ready"
+      description="Pre-built knowledge bundles from leading AI vendors."
+      showCTAs={false}
+      colorScheme="amber"
+      fadeToBackground="gray"
+      testId="feature-hero-no-ctas"
+    />
+
+    <!-- Spacer -->
+    <div class="h-20 bg-gray-50"></div>
+
+    <!-- FeatureHero minimal (no tagline or description) -->
+    <FeatureHero
+      client:load
+      headline="Configure Infrastructure"
+      colorScheme="rose"
+      showCTAs={false}
+      showImagePlaceholder={false}
+      testId="feature-hero-minimal"
+    />
+
+    <!-- Spacer -->
+    <div class="h-20 bg-white"></div>
+
+    <!-- FeatureHero with custom gradient variant -->
+    <FeatureHero
+      client:load
+      headline="Your Control Center"
+      tagline="API Keys. Model Defaults. Privacy."
+      description="Manage your API keys, set model defaults, and control your privacy settings."
+      gradientVariant="light"
+      headlineSize="display-xl"
+      productImage="/images/journeys/configure-settings/configure-settings-01.png"
+      productImageAlt="Settings panel screenshot"
+      testId="feature-hero-light"
+    />
+
+    <!-- Extra spacing at bottom -->
+    <div class="h-40 bg-white"></div>
+  </main>
+</Layout>
