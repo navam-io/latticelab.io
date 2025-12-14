@@ -26,33 +26,7 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.4: ToolsCarousel Section** - See [release-0.13.0.md](../releases/release-0.13.0.md)
 - **Feature 3.5: PricingCard Redesign** - See [release-0.14.0.md](../releases/release-0.14.0.md)
 - **Feature 3.6: CTABanner Section** - See [release-0.15.0.md](../releases/release-0.15.0.md)
-
----
-
-## Phase 3: Homepage
-
-### Feature 3.7: Homepage Assembly
-**Spec Reference:** Part 2, Section 2.2
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Compose all new homepage sections into index.astro.
-
-**Files:**
-- [ ] `src/pages/index.astro` - Compose new homepage
-
-**Dependencies:** Features 3.1-3.6
-
-**Acceptance Criteria:**
-- [ ] Hero section
-- [ ] Feature card grid
-- [ ] Tools carousel
-- [ ] Social proof (existing ticker)
-- [ ] Use cases section (existing, refined)
-- [ ] Pricing card
-- [ ] CTA banner
-- [ ] Proper section spacing and visual flow
+- **Feature 3.7: Homepage Assembly** - See [release-0.16.0.md](../releases/release-0.16.0.md)
 
 ---
 
@@ -594,10 +568,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 6 | 1 |
+| Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **15** | **26** |
+| **Total** | **41** | **16** | **25** |

@@ -4,9 +4,11 @@ import Header from '@components/Header.vue';
 import HeroSection from '@components/home/HeroSection.vue';
 import VendorTicker from '@components/home/VendorTicker.vue';
 import VideoSection from '@components/home/VideoSection.vue';
-import FeaturesGrid from '@components/home/FeaturesGrid.vue';
+import FeatureGrid from '@components/home/FeatureGrid.vue';
+import ToolsCarousel from '@components/home/ToolsCarousel.vue';
 import UseCases from '@components/home/UseCases.vue';
-import Pricing from '@components/home/Pricing.vue';
+import PricingCard from '@components/home/PricingCard.vue';
+import CTABanner from '@components/home/CTABanner.vue';
 import FAQ from '@components/home/FAQ.vue';
 import NewsletterSection from '@components/NewsletterSection.vue';
 import Footer from '@components/Footer.vue';
@@ -61,16 +63,68 @@ import Footer from '@components/Footer.vue';
 
   <Header client:load />
   <main>
-    <HeroSection client:load />
+    <!-- Hero Section - Large gradient headline with product screenshot -->
+    <HeroSection client:load testId="homepage-hero" />
+
+    <!-- Social Proof - Vendor ticker -->
     <VendorTicker client:load />
+
+    <!-- Product Walkthrough Video -->
     <div id="walkthrough">
       <VideoSection client:load />
     </div>
-    <FeaturesGrid client:load />
+
+    <!-- Core Features - 2x2 grid of feature cards -->
+    <div id="features">
+      <FeatureGrid
+        client:load
+        sectionTitle="Core Features"
+        sectionDescription="Four powerful panels designed to help you make confident AI infrastructure decisions."
+        background="gray"
+        testId="homepage-features"
+      />
+    </div>
+
+    <!-- Tools Section - Horizontal scrolling carousel -->
+    <ToolsCarousel
+      client:load
+      sectionTitle="Powerful Tools"
+      sectionDescription="Seven specialized tools to help you make informed AI infrastructure decisions."
+      background="white"
+      testId="homepage-tools"
+    />
+
+    <!-- Use Cases - Target personas -->
     <UseCases client:load />
-    <Pricing client:load />
+
+    <!-- Pricing Section - Centered card with $99 headline -->
+    <div id="pricing">
+      <PricingCard
+        client:load
+        sectionTitle="Simple, One-Time Pricing"
+        sectionDescription="Get lifetime access to Lattice with a single purchase. No subscriptions, no recurring fees."
+        background="gray"
+        testId="homepage-pricing"
+      />
+    </div>
+
+    <!-- FAQ Section -->
     <FAQ client:load />
+
+    <!-- Newsletter Section -->
     <NewsletterSection client:load />
+
+    <!-- CTA Banner - Full-width gradient call to action -->
+    <CTABanner
+      client:load
+      headline="Start Making Confident Decisions"
+      subheadline="Join engineers who trust Lattice for AI infrastructure planning."
+      primaryCTA="Get Started"
+      primaryHref="/#pricing"
+      secondaryCTA="View Documentation"
+      secondaryHref="/docs"
+      testId="homepage-cta"
+    />
   </main>
   <Footer client:load />
 </Layout>
