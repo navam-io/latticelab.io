@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PricingCard from '../../components/home/PricingCard.vue'
+---
+
+<Layout title="PricingCard Component Test">
+  <main class="py-8">
+    <div class="container mx-auto px-4 mb-16">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">PricingCard Component Test</h1>
+      <p class="text-gray-600">Testing all PricingCard configurations and variants.</p>
+    </div>
+
+    <!-- Test 1: Default Configuration -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">1. Default Configuration</h2>
+        <p class="text-sm text-gray-500">Shows header, $99 price, features, Stripe button</p>
+      </div>
+      <PricingCard
+        client:load
+        testId="default-pricing"
+      />
+    </section>
+
+    <!-- Test 2: Without Header -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">2. Without Header</h2>
+        <p class="text-sm text-gray-500">Card only, no section header</p>
+      </div>
+      <PricingCard
+        client:load
+        showHeader={false}
+        testId="no-header-pricing"
+      />
+    </section>
+
+    <!-- Test 3: Custom Price -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">3. Custom Price and Tagline</h2>
+        <p class="text-sm text-gray-500">Different price amount and tagline</p>
+      </div>
+      <PricingCard
+        client:load
+        price="$149"
+        tagline="Early bird pricing. Limited time."
+        testId="custom-price-pricing"
+      />
+    </section>
+
+    <!-- Test 4: Custom Title -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">4. Custom Title and Description</h2>
+        <p class="text-sm text-gray-500">Custom section header text</p>
+      </div>
+      <PricingCard
+        client:load
+        sectionTitle="Invest in Your AI Future"
+        sectionDescription="A small price for confident infrastructure decisions."
+        testId="custom-header-pricing"
+      />
+    </section>
+
+    <!-- Test 5: White Background -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">5. White Background</h2>
+        <p class="text-sm text-gray-500">Background variant: white</p>
+      </div>
+      <PricingCard
+        client:load
+        background="white"
+        testId="white-bg-pricing"
+      />
+    </section>
+
+    <!-- Test 6: Gradient Background -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">6. Gradient Background</h2>
+        <p class="text-sm text-gray-500">Background variant: gradient</p>
+      </div>
+      <PricingCard
+        client:load
+        background="gradient"
+        testId="gradient-bg-pricing"
+      />
+    </section>
+
+    <!-- Test 7: With CTA Button (No Stripe) -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">7. With CTA Button (No Stripe)</h2>
+        <p class="text-sm text-gray-500">Alternative button instead of Stripe</p>
+      </div>
+      <PricingCard
+        client:load
+        showStripeButton={false}
+        ctaHref="/checkout"
+        ctaLabel="Purchase Now"
+        testId="cta-button-pricing"
+      />
+    </section>
+
+    <!-- Test 8: Custom Features -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">8. Custom Features List</h2>
+        <p class="text-sm text-gray-500">Different feature list</p>
+      </div>
+      <PricingCard
+        client:load
+        features={[
+          'Feature one',
+          'Feature two',
+          'Feature three'
+        ]}
+        testId="custom-features-pricing"
+      />
+    </section>
+
+    <!-- Test 9: No Trust Text -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">9. No Trust Text</h2>
+        <p class="text-sm text-gray-500">Without the trust indicator below CTA</p>
+      </div>
+      <PricingCard
+        client:load
+        trustText=""
+        testId="no-trust-pricing"
+      />
+    </section>
+
+  </main>
+</Layout>

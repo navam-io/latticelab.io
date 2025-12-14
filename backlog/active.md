@@ -24,31 +24,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.2: FeatureCard Component** - See [release-0.11.0.md](../releases/release-0.11.0.md)
 - **Feature 3.3: FeatureGrid Section** - See [release-0.12.0.md](../releases/release-0.12.0.md)
 - **Feature 3.4: ToolsCarousel Section** - See [release-0.13.0.md](../releases/release-0.13.0.md)
+- **Feature 3.5: PricingCard Redesign** - See [release-0.14.0.md](../releases/release-0.14.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.5: PricingCard Redesign
-**Spec Reference:** Part 2, Section 2.1 (Section 6: Pricing)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Redesign pricing section as centered single card with large typography.
-
-**Files:**
-- [ ] `src/components/home/PricingCard.vue` - Centered pricing design
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] "$99" large typography
-- [ ] "One-time payment. Lifetime access." tagline
-- [ ] Feature checklist
-- [ ] Stripe buy button integration ready
-
----
 
 ### Feature 3.6: CTABanner Section
 **Spec Reference:** Part 2, Section 2.1 (Section 7: CTA Banner)
@@ -633,10 +613,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 4 | 3 |
+| Phase 3: Homepage | 7 | 5 | 2 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **13** | **28** |
+| **Total** | **41** | **14** | **27** |
