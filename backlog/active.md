@@ -21,31 +21,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 2.3: MobileNav Component** - See [release-0.8.0.md](../releases/release-0.8.0.md)
 - **Feature 2.4: Header Integration** - See [release-0.9.0.md](../releases/release-0.9.0.md)
 - **Feature 3.1: Hero Section Redesign** - See [release-0.10.0.md](../releases/release-0.10.0.md)
+- **Feature 3.2: FeatureCard Component** - See [release-0.11.0.md](../releases/release-0.11.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.2: FeatureCard Component
-**Spec Reference:** Part 2, Section 2.1 (Section 2: Feature Cards)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build Apple-style feature card component for product showcase grid.
-
-**Files:**
-- [ ] `src/components/home/FeatureCard.vue` - Apple-style card component
-- [ ] `src/styles/cards.css` - Card component styles
-
-**Dependencies:** Feature 1.4 (DualCTA)
-
-**Acceptance Criteria:**
-- [ ] Card with product name, tagline, CTAs, and screenshot placeholder
-- [ ] Hover effects with subtle shadow/scale
-- [ ] Responsive sizing
-
----
 
 ### Feature 3.3: FeatureGrid Section
 **Spec Reference:** Part 2, Section 2.1 (Section 2: Feature Cards)
@@ -694,10 +674,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 1 | 6 |
+| Phase 3: Homepage | 7 | 2 | 5 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **10** | **31** |
+| **Total** | **41** | **11** | **30** |
