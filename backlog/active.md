@@ -22,32 +22,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 2.4: Header Integration** - See [release-0.9.0.md](../releases/release-0.9.0.md)
 - **Feature 3.1: Hero Section Redesign** - See [release-0.10.0.md](../releases/release-0.10.0.md)
 - **Feature 3.2: FeatureCard Component** - See [release-0.11.0.md](../releases/release-0.11.0.md)
+- **Feature 3.3: FeatureGrid Section** - See [release-0.12.0.md](../releases/release-0.12.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.3: FeatureGrid Section
-**Spec Reference:** Part 2, Section 2.1 (Section 2: Feature Cards)
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build 2x2 feature card grid showcasing Sources, Lab, Studio, and Blueprints.
-
-**Files:**
-- [ ] `src/components/home/FeatureGrid.vue` - 2x2 card grid
-
-**Dependencies:** Feature 3.2 (FeatureCard)
-
-**Acceptance Criteria:**
-- [ ] Sources card: "Your Knowledge, Indexed"
-- [ ] Lab card: "Research Agent"
-- [ ] Studio card: "Artifacts That Matter"
-- [ ] Blueprints card: "36 Vendor Blueprints"
-- [ ] Responsive: 2x2 on desktop, stacked on mobile
-
----
 
 ### Feature 3.4: ToolsCarousel Section
 **Spec Reference:** Part 2, Section 2.1 (Section 3: Tools Showcase)
@@ -674,10 +653,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 2 | 5 |
+| Phase 3: Homepage | 7 | 3 | 4 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **11** | **30** |
+| **Total** | **41** | **12** | **29** |
