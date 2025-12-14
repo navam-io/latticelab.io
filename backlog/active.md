@@ -33,30 +33,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.2: FeatureHero Component** - See [release-0.20.0.md](../releases/release-0.20.0.md)
 - **Feature 5.3: CapabilitySection Component** - See [release-0.21.0.md](../releases/release-0.21.0.md)
 - **Feature 5.4: TechSpecs Component** - See [release-0.22.0.md](../releases/release-0.22.0.md)
+- **Feature 5.5: RelatedContent Component** - See [release-0.23.0.md](../releases/release-0.23.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.5: RelatedContent Component
-**Spec Reference:** Part 4, Section 4.2 (Section 5: Related Content)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build component for displaying related journey guides and blog posts.
-
-**Files:**
-- [ ] `src/components/features/RelatedContent.vue` - Journey/blog links
-
-**Dependencies:** Feature 1.5 (DocsLink)
-
-**Acceptance Criteria:**
-- [ ] Journey guides list for feature
-- [ ] Related blog posts
-- [ ] Documentation links
-
----
 
 ### Feature 5.6: Feature Pages Update (Sources)
 **Spec Reference:** Part 4, Section 4.3, 4.4
@@ -447,8 +428,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 4 | 9 |
+| Phase 5: Feature Pages | 13 | 5 | 8 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **22** | **19** |
+| **Total** | **41** | **23** | **18** |
