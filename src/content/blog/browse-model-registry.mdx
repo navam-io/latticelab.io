@@ -1,0 +1,84 @@
+---
+title: "Comparing Claude, GPT-4, and Gemini: A Guide to Model Selection"
+description: "Use the Model Registry to compare capabilities, pricing, and features across AI providers in one unified interface."
+pubDate: 2025-12-14
+author: "Lattice Lab"
+tags: ["getting-started", "sources", "configuration", "ai-research"]
+featured: false
+journey: "browse-model-registry"
+readingTime: "10 min read"
+---
+
+**When I** need to select a model for a new production workload, **I want to** compare capabilities and pricing across providers in one place, **so I can** make informed decisions without cross-referencing multiple pricing pages.
+
+## Introduction
+
+Your team needs to select a model for a new production workload. Someone opens the Anthropic pricing page, another tab for OpenAI, and a third for Google. Now cross-reference: which models support tool use? What's the context window for each? How much does Claude Opus cost compared to GPT-4o for batch processing?
+
+The mental spreadsheet gets complicated fast. Pricing structures differ by provider: Anthropic charges separately for input, output, and cached tokens; OpenAI has different rates for batch vs real-time; Google's pricing varies by context length.
+
+## How Lattice Helps
+
+The Model Registry consolidates model metadata from all major providers into a single browsable interface. Instead of switching between pricing pages, you filter by provider, sort by cost, and compare capabilities side-by-side.
+
+The registry shows not just pricing but capability flags—vision support, tool use, streaming, reasoning modes—that determine whether a model fits your use case.
+
+## Browse Model Registry in Action
+
+### Step 1: Open the Registry
+
+Click the **Registries** icon in the Sources panel. The Registry Viewer modal opens with two tabs: Models and Accelerators.
+
+### Step 2: Browse All Models
+
+The model table shows all providers with columns for Provider, Model, Context Window, Input/Output Pricing, and Features.
+
+### Step 3: Filter by Provider
+
+Use the provider dropdown to focus on one provider when you've committed to a vendor and need to choose between tiers.
+
+### Step 4: Search for Specific Models
+
+Type in the search box to filter by model name. Search matches against model names and aliases.
+
+### Step 5: Sort by Price or Capability
+
+Click column headers to sort by input price (ascending to find cheapest) or context window (descending to find largest context).
+
+### Step 6: View Model Details
+
+Click any row to open the detail panel showing:
+- **Capabilities**: Vision, tool use, streaming, extended thinking
+- **Pricing**: Complete breakdown including batch and cached rates
+- **Extended Thinking**: Thinking budget and pricing for reasoning models
+- **Metadata**: Release status and data freshness
+
+### Step 7: Compare Models Side-by-Side
+
+Select multiple models to see them in a comparison view highlighting differences.
+
+### Step 8: Check Data Freshness
+
+The registry shows when data was last updated with freshness indicators (green for 24h, yellow for 7d, red for older).
+
+## Real-World Scenarios
+
+**A product team selecting models for different tiers** browses the registry to define their model strategy—Haiku for chat, Sonnet for quality, Opus for complex reasoning.
+
+**An ML engineer evaluating reasoning models** filters for extended thinking capability and compares o1, o1-mini, and Claude Sonnet 4.5.
+
+**A platform architect checking context limits** sorts by context window to find models for long-document processing.
+
+**A finance team auditing API costs** exports the registry data to verify invoices against published pricing.
+
+## What You've Accomplished
+
+By using the Model Registry, you can now:
+- Compare model capabilities across all major providers
+- Sort and filter models by price, context window, or features
+- View detailed pricing including batch and cached rates
+- Check data freshness to ensure current information
+
+---
+
+*Model Registry is available in Lattice 0.7.26+.*

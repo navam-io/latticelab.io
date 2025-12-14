@@ -1,5 +1,5 @@
 {
-  "lastRun": "2025-12-09T22:00:00Z",
+  "lastRun": "2025-12-14T10:00:00Z",
   "processed": {
     "three-panel-layout": {
       "sourceHash": "500:7695",
@@ -130,6 +130,46 @@
       "sourceHash": "500:12953",
       "imageCount": 1,
       "lastProcessed": "2025-12-09T22:00:00Z"
+    },
+    "browse-model-registry": {
+      "sourceHash": "500:15641",
+      "imageCount": 0,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "compare-scenarios": {
+      "sourceHash": "500:12616",
+      "imageCount": 0,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "context-summary-bar": {
+      "sourceHash": "500:11614",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "explore-what-if": {
+      "sourceHash": "500:11384",
+      "imageCount": 2,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "export-blueprint": {
+      "sourceHash": "500:12632",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "live-data-feeds": {
+      "sourceHash": "500:12204",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "scenario-comparison": {
+      "sourceHash": "500:10591",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-14T10:00:00Z"
+    },
+    "workflow-templates": {
+      "sourceHash": "500:12636",
+      "imageCount": 1,
+      "lastProcessed": "2025-12-14T10:00:00Z"
     }
   }
 }

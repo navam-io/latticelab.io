@@ -1,0 +1,86 @@
+---
+title: "The Compare-Scenarios Journey: From Alternatives to Decision Artifacts"
+description: "Systematically evaluate infrastructure options and produce stakeholder-ready comparison data with export capabilities."
+pubDate: 2025-12-14
+author: "Lattice Lab"
+tags: ["intermediate", "scenarios", "configuration", "ai-research"]
+featured: false
+journey: "compare-scenarios"
+readingTime: "9 min read"
+---
+
+**When I** have multiple well-defined scenarios and need to present their differences clearly, **I want to** compare them systematically with automatic delta calculation, **so I can** produce artifacts that survive the decision meeting.
+
+## Introduction
+
+Decision meetings rarely fail because the right option wasn't considered—they fail because the right option couldn't be clearly communicated. You've spent two weeks modeling alternatives: a conservative budget scenario, a production-ready balanced option, and an enterprise tier with aggressive SLOs. Each configuration is sound. But when the VP of Engineering asks "show me why we shouldn't just go with the cheapest option," your preparation evaporates into tab-switching and mental arithmetic.
+
+The compare-scenarios journey addresses a specific workflow breakdown that infrastructure leads face constantly: you have multiple well-defined scenarios, you need to present their differences clearly, and you need to produce artifacts that survive the meeting.
+
+## How Lattice Helps
+
+The compare-scenarios journey provides a structured path from scenario selection to exportable decision artifact. Rather than switching between scenario details and manually tracking differences, you select your scenarios, view them side-by-side with automatic delta calculation, and export in formats ready for stakeholder consumption.
+
+The journey is deliberately constrained: 2-4 scenarios maximum, structured comparison table with category groupings, and direct export to CSV or JSON.
+
+## The Compare-Scenarios Journey in Action
+
+### Step 1: Prepare Your Scenarios
+
+Before comparison, ensure your scenarios are well-defined:
+- Clear naming: "Production - Conservative", "Production - Balanced", "Production - Enterprise"
+- Complete configuration: Workload type, traffic profile, risk tolerance
+- Defined SLOs: P95 latency targets, throughput requirements, availability targets
+- Budget constraints and compliance requirements
+
+### Step 2: Select Scenarios for Comparison
+
+In the StudioPanel header:
+1. Click the checkbox next to the first scenario
+2. Continue selecting additional scenarios
+3. The Compare button updates: "Compare (2)", "Compare (3)", etc.
+4. Maximum enforcement: Once you've selected 4, additional checkboxes are disabled
+
+### Step 3: Read the Comparison Table
+
+**Column Headers:** Scenario name, baseline badge, requirement status, budget status
+
+**Category Groupings:**
+- Configuration (workload type, traffic profile, model selection)
+- SLOs (P95 latency, throughput, availability)
+- Budget (monthly limit, estimated cost)
+- Compliance (data residency, certifications)
+
+### Step 4: Interpret Delta Indicators
+
+- **Green down arrow**: Lower than baseline (usually good for cost/latency)
+- **Red up arrow**: Higher than baseline (usually caution)
+- **Green check**: Meets stated requirements
+- **Red X**: Exceeds constraints
+
+### Step 5: Export the Comparison
+
+**JSON Export:** Full structured data for archival and automation
+**CSV Export:** Spreadsheet-ready format for stakeholder presentations
+
+## Real-World Scenarios
+
+### Quarterly Capacity Planning
+
+A platform team runs quarterly capacity reviews with three scenarios: maintaining current capacity, 50% scale-up, and 100% scale-up. The comparison table becomes the capacity planning document.
+
+### Vendor Evaluation
+
+An AI lead evaluating API providers creates scenarios with vendor-specific configurations, compares them with current provider as baseline, and exports JSON for the procurement team's analysis tool.
+
+## What You've Accomplished
+
+By completing the compare-scenarios journey, you can now:
+- Compare 2-4 scenarios systematically with automatic delta calculation
+- Produce stakeholder-ready comparison artifacts
+- Export comparisons in CSV and JSON formats
+- Document decisions with full audit trails
+
+---
+
+*The compare-scenarios journey is available in Lattice v0.8.11+.*
