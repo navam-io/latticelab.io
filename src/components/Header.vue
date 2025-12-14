@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60"
+    :class="headerClasses"
     :data-testid="testId"
   >
     <div class="container mx-auto px-4">
@@ -260,7 +260,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import MegaMenu from '@components/navigation/MegaMenu.vue'
 import MobileNav from '@components/navigation/MobileNav.vue'
 
@@ -274,6 +274,23 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Header height for MegaMenu offset
 const headerHeight = ref(65)
+
+// Scroll tracking for hide/show behavior
+const isHidden = ref(false)
+const lastScrollY = ref(0)
+const scrollThreshold = 100 // Start hiding after scrolling this far
+const scrollDelta = 10 // Minimum scroll distance to trigger hide/show
+
+// Computed header classes with hide animation
+const headerClasses = computed(() => {
+  const base = 'sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 transition-transform duration-300'
+
+  if (isHidden.value) {
+    return `${base} -translate-y-full`
+  }
+
+  return `${base} translate-y-0`
+})
 
 // Mobile navigation sections
 const mobileNavSections = [
@@ -314,13 +331,57 @@ const updateHeaderHeight = () => {
   }
 }
 
+// Handle scroll to hide/show header (Apple-style behavior)
+let ticking = false
+const handleScroll = () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const currentScrollY = window.scrollY
+
+      // Always show header at the very top
+      if (currentScrollY < scrollThreshold) {
+        isHidden.value = false
+        lastScrollY.value = currentScrollY
+        ticking = false
+        return
+      }
+
+      // Calculate scroll direction and distance
+      const scrollDistance = currentScrollY - lastScrollY.value
+
+      // Hide on scroll down (positive distance), show on scroll up (negative distance)
+      if (Math.abs(scrollDistance) > scrollDelta) {
+        if (scrollDistance > 0) {
+          // Scrolling down - hide header
+          isHidden.value = true
+          // Dispatch custom event for StickyNav to listen to
+          window.dispatchEvent(new CustomEvent('header-visibility', { detail: { hidden: true } }))
+        } else {
+          // Scrolling up - show header
+          isHidden.value = false
+          // Dispatch custom event for StickyNav to listen to
+          window.dispatchEvent(new CustomEvent('header-visibility', { detail: { hidden: false } }))
+        }
+        lastScrollY.value = currentScrollY
+      }
+
+      ticking = false
+    })
+    ticking = true
+  }
+}
+
 onMounted(() => {
   updateHeaderHeight()
   window.addEventListener('resize', updateHeaderHeight)
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  // Initialize scroll position
+  lastScrollY.value = window.scrollY
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateHeaderHeight)
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
