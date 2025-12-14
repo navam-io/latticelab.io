@@ -1,0 +1,231 @@
+---
+/**
+ * ToolCard component test page
+ * Tests the tool showcase card component
+ */
+import Layout from '../../layouts/Layout.astro';
+import ToolCard from '../../components/tools/ToolCard.vue';
+
+// Sample icons (SVG paths)
+const icons = {
+  cpu: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+  calculator: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+  dollar: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  lightning: 'M13 10V3L4 14h7v7l9-11h-7z',
+  clipboard: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
+};
+
+// Sample features
+const sampleFeatures = [
+  'Multi-cloud comparison',
+  'Real-time pricing',
+  'Performance metrics',
+  'Filter by memory',
+  'Export data',
+  'API access'
+];
+---
+
+<Layout title="ToolCard Test - Lattice">
+  <main class="container mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8" data-testid="page-title">ToolCard Component Test</h1>
+
+    <!-- Default Card -->
+    <section class="mb-12" data-testid="section-default">
+      <h2 class="text-xl font-bold mb-4">Default Card</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="Accelerator Registry"
+          description="Compare GPUs across AWS, GCP, and Azure with interactive filtering and performance metrics."
+          icon={icons.cpu}
+          exploreHref="/tools/accelerator-registry"
+          testId="tool-card-default"
+        />
+      </div>
+    </section>
+
+    <!-- Card with Features -->
+    <section class="mb-12" data-testid="section-with-features">
+      <h2 class="text-xl font-bold mb-4">Card with Features</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="Memory Calculator"
+          description="Estimate model memory requirements and get batch size recommendations for your hardware."
+          icon={icons.calculator}
+          iconBg="bg-blue-100"
+          iconColor="text-blue-600"
+          features={sampleFeatures}
+          showFeatures={true}
+          maxFeatures={3}
+          exploreHref="/tools/memory-calculator"
+          testId="tool-card-features"
+        />
+      </div>
+    </section>
+
+    <!-- Card with Category -->
+    <section class="mb-12" data-testid="section-with-category">
+      <h2 class="text-xl font-bold mb-4">Card with Category</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="TCO Calculator"
+          description="Calculate total cost of ownership with detailed breakdowns and multi-provider comparison."
+          icon={icons.dollar}
+          iconBg="bg-emerald-100"
+          iconColor="text-emerald-600"
+          category="calculator"
+          showCategory={true}
+          exploreHref="/tools/tco-calculator"
+          testId="tool-card-category"
+        />
+      </div>
+    </section>
+
+    <!-- Card with Demo Button -->
+    <section class="mb-12" data-testid="section-with-demo">
+      <h2 class="text-xl font-bold mb-4">Card with Demo Button</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="Spot Instance Advisor"
+          description="Check spot availability by region, interruption frequency, and calculate cost savings."
+          icon={icons.lightning}
+          iconBg="bg-rose-100"
+          iconColor="text-rose-600"
+          exploreHref="/tools/spot-advisor"
+          showDemoBtn={true}
+          demoHref="/tools/spot-advisor/demo"
+          testId="tool-card-demo"
+        />
+      </div>
+    </section>
+
+    <!-- Small Size Card -->
+    <section class="mb-12" data-testid="section-size-sm">
+      <h2 class="text-xl font-bold mb-4">Small Size Card</h2>
+      <div class="max-w-xs">
+        <ToolCard
+          client:load
+          name="Quick Tool"
+          description="A compact tool card for smaller displays."
+          icon={icons.clipboard}
+          iconBg="bg-amber-100"
+          iconColor="text-amber-600"
+          size="sm"
+          showFeatures={false}
+          exploreHref="/tools/quick"
+          testId="tool-card-sm"
+        />
+      </div>
+    </section>
+
+    <!-- Large Size Card -->
+    <section class="mb-12" data-testid="section-size-lg">
+      <h2 class="text-xl font-bold mb-4">Large Size Card</h2>
+      <div class="max-w-md">
+        <ToolCard
+          client:load
+          name="Evaluation Framework"
+          description="Create custom evaluations with LLM-as-judge support for comprehensive model quality assessment."
+          icon={icons.clipboard}
+          iconBg="bg-teal-100"
+          iconColor="text-teal-600"
+          features={sampleFeatures.slice(0, 4)}
+          size="lg"
+          exploreHref="/tools/evaluation"
+          testId="tool-card-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Custom Text Card -->
+    <section class="mb-12" data-testid="section-custom-text">
+      <h2 class="text-xl font-bold mb-4">Custom CTA Text</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="Parallelism Advisor"
+          description="Get recommendations for tensor, pipeline, and data parallelism configurations."
+          icon={icons.cpu}
+          iconBg="bg-purple-100"
+          iconColor="text-purple-600"
+          exploreText="Learn More"
+          showDemoBtn={true}
+          demoHref="/tools/parallelism/demo"
+          demoText="Interactive Demo"
+          exploreHref="/tools/parallelism"
+          testId="tool-card-custom-text"
+        />
+      </div>
+    </section>
+
+    <!-- Grid of Cards -->
+    <section class="mb-12" data-testid="section-grid">
+      <h2 class="text-xl font-bold mb-4">Card Grid</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ToolCard
+          client:load
+          name="Accelerator Registry"
+          description="Compare GPUs across cloud providers."
+          icon={icons.cpu}
+          iconBg="bg-violet-100"
+          iconColor="text-violet-600"
+          category="registry"
+          showCategory={true}
+          exploreHref="/tools/accelerator-registry"
+          testId="tool-card-grid-1"
+        />
+        <ToolCard
+          client:load
+          name="Memory Calculator"
+          description="Estimate model memory requirements."
+          icon={icons.calculator}
+          iconBg="bg-blue-100"
+          iconColor="text-blue-600"
+          category="calculator"
+          showCategory={true}
+          exploreHref="/tools/memory-calculator"
+          testId="tool-card-grid-2"
+        />
+        <ToolCard
+          client:load
+          name="Spot Advisor"
+          description="Check spot instance availability."
+          icon={icons.lightning}
+          iconBg="bg-rose-100"
+          iconColor="text-rose-600"
+          category="advisor"
+          showCategory={true}
+          exploreHref="/tools/spot-advisor"
+          testId="tool-card-grid-3"
+        />
+      </div>
+    </section>
+
+    <!-- All Features Card -->
+    <section class="mb-12" data-testid="section-all-features">
+      <h2 class="text-xl font-bold mb-4">All Features Visible</h2>
+      <div class="max-w-sm">
+        <ToolCard
+          client:load
+          name="Quantization Advisor"
+          description="Explore INT8, FP16, and INT4 quantization options with quality vs speed analysis."
+          icon={icons.calculator}
+          iconBg="bg-purple-100"
+          iconColor="text-purple-600"
+          category="advisor"
+          showCategory={true}
+          features={sampleFeatures}
+          maxFeatures={6}
+          showDemoBtn={true}
+          demoHref="/tools/quantization/demo"
+          exploreHref="/tools/quantization"
+          testId="tool-card-all-features"
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
