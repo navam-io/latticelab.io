@@ -40,30 +40,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.9: Feature Pages Update (Blueprints)** - See [release-0.27.0.md](../releases/release-0.27.0.md)
 - **Feature 5.10: Feature Pages Update (Scenarios)** - See [release-0.28.0.md](../releases/release-0.28.0.md)
 - **Feature 5.11: Feature Pages Update (Stacks)** - See [release-0.29.0.md](../releases/release-0.29.0.md)
+- **Feature 5.12: Feature Pages Update (Settings)** - See [release-0.30.0.md](../releases/release-0.30.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.12: Feature Pages Update (Settings)
-**Spec Reference:** Part 4, Section 4.3, 4.4
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Update Settings feature page with new components and content.
-
-**Files:**
-- [ ] `src/pages/features/settings.astro` - Settings feature page
-
-**Dependencies:** Features 5.1-5.5
-
-**Acceptance Criteria:**
-- [ ] Hero: "Your Control Center."
-- [ ] Capabilities: API keys, Model defaults, Privacy controls
-- [ ] Related journey links: manage-api-keys
-
----
 
 ### Feature 5.13: Features Index Page Update
 **Spec Reference:** Part 4, Section 4.4
@@ -311,8 +292,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 11 | 2 |
+| Phase 5: Feature Pages | 13 | 12 | 1 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **29** | **12** |
+| **Total** | **41** | **30** | **11** |

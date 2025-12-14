@@ -2,238 +2,281 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ProductHero from '@components/ui/ProductHero.vue';
+import StickyNav from '@components/features/StickyNav.vue';
+import FeatureHero from '@components/features/FeatureHero.vue';
+import CapabilitySection from '@components/features/CapabilitySection.vue';
+import TechSpecs from '@components/features/TechSpecs.vue';
+import RelatedContent from '@components/features/RelatedContent.vue';
+
+// Icon paths (Heroicons)
+const icons = {
+  key: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
+  desktop: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  shield: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  adjustments: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
+  lightbulb: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'
+};
+
+// Navigation items
+const navItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'specs', label: 'Tech Specs' },
+  { id: 'resources', label: 'Resources' }
+];
+
+// Capability 1: API Key Management features
+const apiKeyFeatures = [
+  '<strong>Anthropic API:</strong> Claude models access',
+  '<strong>OpenAI API:</strong> GPT-4 and embedding models',
+  '<strong>Google AI:</strong> Gemini model access',
+  '<strong>Local Encryption:</strong> Keys never leave your device',
+  '<strong>Validation:</strong> Test keys before saving'
+];
+
+// Capability 2: Model Defaults features
+const modelFeatures = [
+  '<strong>Default Provider:</strong> Anthropic, OpenAI, Google, Mistral',
+  '<strong>Temperature:</strong> Control response creativity',
+  '<strong>Max Tokens:</strong> Limit response length',
+  '<strong>Presets:</strong> Fast & Cheap, Balanced, Quality First'
+];
+
+// Capability 3: Search & RAG features
+const searchFeatures = [
+  '<strong>Hybrid Search:</strong> Semantic + keyword weighting',
+  '<strong>Chunk Count:</strong> Retrieved context amount',
+  '<strong>Similarity Threshold:</strong> Relevance filtering',
+  '<strong>Reranking:</strong> Result quality optimization'
+];
+
+// Capability 4: Privacy & Data features
+const privacyFeatures = [
+  '<strong>Local-First:</strong> Data stored on your device',
+  '<strong>Export Data:</strong> Backup workspaces and settings',
+  '<strong>Clear History:</strong> Remove chat and search logs',
+  '<strong>Reset All:</strong> Factory reset option'
+];
+
+// Tech specs
+const techSpecs = [
+  {
+    category: 'API Providers',
+    icon: icons.key,
+    color: 'violet',
+    items: [
+      '<strong>Anthropic</strong> - Claude 3.5 Sonnet, Haiku, Opus',
+      '<strong>OpenAI</strong> - GPT-4o, GPT-4 Turbo, o1',
+      '<strong>Google</strong> - Gemini Pro, Flash',
+      '<strong>Mistral</strong> - Large, Medium, Small'
+    ]
+  },
+  {
+    category: 'Model Settings',
+    icon: icons.adjustments,
+    color: 'blue',
+    items: [
+      '<strong>Temperature</strong> - 0.0 to 1.0 range',
+      '<strong>Max Tokens</strong> - Up to model limit',
+      '<strong>Top P</strong> - Nucleus sampling',
+      '<strong>Fallback</strong> - Automatic model switching'
+    ]
+  },
+  {
+    category: 'Privacy Controls',
+    icon: icons.shield,
+    color: 'teal',
+    items: [
+      '<strong>Local Storage</strong> - IndexedDB encryption',
+      '<strong>No Telemetry</strong> - Usage data stays local',
+      '<strong>Export Format</strong> - JSON backup files',
+      '<strong>Secure Delete</strong> - Complete data removal'
+    ]
+  }
+];
+
+// Related content
+const journeys = [
+  {
+    title: 'Configuring Settings',
+    description: 'Set up API keys, model defaults, and preferences',
+    href: '/blog/journey-configure-settings'
+  },
+  {
+    title: 'Managing API Keys',
+    description: 'Add, validate, and rotate your provider keys',
+    href: '/blog/journey-configure-settings'
+  },
+  {
+    title: 'Privacy Controls',
+    description: 'Manage data storage and export options',
+    href: '/blog/journey-configure-settings'
+  }
+];
+
+const docs = [
+  {
+    title: 'Settings API Reference',
+    description: 'Complete API documentation for settings management',
+    href: '/docs/api/settings'
+  },
+  {
+    title: 'API Key Setup Guide',
+    description: 'How to obtain and configure provider API keys',
+    href: '/docs/features/settings'
+  }
+];
 ---
 
 <Layout
-  title="Settings - Customize Your Experience | Lattice"
-  description="Configure API keys, model defaults, search settings, and agent behavior. Personalize Lattice to match your workflow and preferences."
-  keywords="API key management, model settings, search configuration, agent behavior, customization, preferences"
+  title="Settings - Your Control Center | Lattice"
+  description="Configure API keys, model defaults, search settings, and privacy controls. Personalize Lattice to match your workflow and security requirements."
+  keywords="API key management, model settings, privacy controls, search configuration, customization, security"
 >
   <Header client:load />
 
   <main>
-    <ProductHero
+    <!-- Sticky Navigation -->
+    <StickyNav
       client:load
-      title="Settings"
-      description="Configure API keys, model defaults, search settings, and agent behavior. Personalize Lattice to match your workflow and preferences."
-      imageSrc="/images/journeys/configure-settings/configure-settings-03.png"
-      imageAlt="Lattice Settings panel showing Model Defaults configuration with provider and temperature controls"
-      gradientFrom="from-slate-900"
-      gradientVia="via-gray-900"
-      gradientTo="to-zinc-900"
-      iconPath="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+      featureName="Settings"
+      navItems={navItems}
+      buyButtonText="Get Lattice"
+      buyButtonHref="/#pricing"
+      testId="settings-nav"
     />
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- API Keys -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">API Key Management</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Securely store and manage your API keys for different LLM providers. Keys are encrypted and stored locally - never sent to our servers.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Anthropic, OpenAI, Google API keys</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Local encryption for security</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Quick validation and testing</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Hero Section -->
+    <section id="overview">
+      <FeatureHero
+        client:load
+        headline="Your Control Center."
+        tagline="Configure Secure Personalize"
+        description="Settings give you complete control over Lattice: manage API keys, set model defaults, configure search behavior, and control your privacy. Everything stays on your device."
+        productImage="/images/journeys/configure-settings/configure-settings-01.png"
+        productImageAlt="Lattice Settings panel showing API Key management with Anthropic, OpenAI, and Google providers"
+        browserUrl="lattice.app/settings"
+        colorScheme="violet"
+        primaryCTA="Get Lattice"
+        primaryHref="/#pricing"
+        secondaryCTA="View docs"
+        secondaryHref="/docs/features/settings"
+        testId="settings-hero"
+      />
+    </section>
 
-            <!-- Model Defaults -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Model Defaults</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Set your preferred default model and generation parameters. Choose between Fast & Cheap, Balanced, or Quality First presets.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Default provider and model selection</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Temperature and max tokens settings</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Fallback model configuration</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+      <!-- API Key Management -->
+      <CapabilitySection
+        client:load
+        title="API Key Management"
+        description="Securely store and manage your API keys for different LLM providers. Keys are encrypted and stored locally—never sent to our servers."
+        features={apiKeyFeatures}
+        image="/images/journeys/configure-settings/configure-settings-02.png"
+        imageAlt="API Key management showing provider list with validation status"
+        icon={icons.key}
+        iconColor="violet"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-configure-settings"
+        journeyLinkText="Configure your API keys"
+        testId="settings-apikeys"
+      />
 
-            <!-- Search & RAG -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Search & RAG Settings</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Configure how Lattice searches your sources and retrieves relevant context. Fine-tune the balance between semantic and keyword search.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Hybrid search weight adjustment</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Number of chunks to retrieve</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Similarity threshold configuration</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Model Defaults -->
+      <CapabilitySection
+        client:load
+        title="Model Defaults"
+        description="Set your preferred default model and generation parameters. Choose between Fast & Cheap, Balanced, or Quality First presets for different use cases."
+        features={modelFeatures}
+        image="/images/journeys/configure-settings/configure-settings-03.png"
+        imageAlt="Model defaults configuration with provider selection and temperature slider"
+        icon={icons.desktop}
+        iconColor="blue"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        showGlow={true}
+        journeyLink="/blog/journey-configure-settings"
+        journeyLinkText="Set model preferences"
+        testId="settings-models"
+      />
 
-            <!-- Agent Behavior -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Agent Behavior</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Customize how the AI research agent responds. Control verbosity, citation style, and reasoning transparency.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Response style preferences</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Citation density control</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Thinking trace visibility</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Search & RAG Settings -->
+      <CapabilitySection
+        client:load
+        title="Search & RAG Settings"
+        description="Configure how Lattice searches your sources and retrieves relevant context. Fine-tune the balance between semantic and keyword search."
+        features={searchFeatures}
+        image="/images/journeys/configure-settings/configure-settings-04.png"
+        imageAlt="Search settings with hybrid search weight slider and chunk count"
+        icon={icons.search}
+        iconColor="teal"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-configure-settings"
+        journeyLinkText="Optimize search settings"
+        testId="settings-search"
+      />
 
-            <!-- Appearance -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Appearance</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Customize the visual appearance of Lattice. Choose themes, font sizes, and panel layouts that work best for you.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Light and dark theme options</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Font size adjustments</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Panel layout preferences</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Privacy & Data -->
+      <CapabilitySection
+        client:load
+        title="Privacy & Data"
+        description="Control your data and privacy settings. All data is stored locally on your device. Export, backup, or clear your data at any time."
+        features={privacyFeatures}
+        image="/images/journeys/configure-settings/configure-settings-05.png"
+        imageAlt="Privacy settings with data export and clear options"
+        icon={icons.shield}
+        iconColor="amber"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-configure-settings"
+        journeyLinkText="Manage privacy settings"
+        testId="settings-privacy"
+      />
+    </section>
 
-            <!-- Data & Privacy -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Data & Privacy</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Control your data and privacy settings. Manage local storage, export data, and configure what gets stored.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Local-first data storage</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Export and backup options</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Clear data and reset options</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Tech Specs Section -->
+    <section id="specs">
+      <TechSpecs
+        client:load
+        title="Technical Specifications"
+        description="Everything you need to know about settings configuration and security in Lattice."
+        icon={icons.cog}
+        iconColor="violet"
+        specs={techSpecs}
+        columns={3}
+        background="white"
+        docsLink="/docs/features/settings"
+        docsLinkText="View full documentation"
+        testId="settings-specs"
+      />
+    </section>
+
+    <!-- Related Resources Section -->
+    <section id="resources">
+      <RelatedContent
+        client:load
+        title="Learn More About Settings"
+        description="Explore guides and documentation to customize your Lattice experience."
+        journeys={journeys}
+        docs={docs}
+        background="gray"
+        ctaLink="/docs/features/settings"
+        ctaText="View Settings documentation"
+        testId="settings-resources"
+      />
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-slate-600 to-gray-700">
+    <section class="py-16 bg-gradient-to-r from-violet-600 to-purple-600">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-white mb-4">
           Customize Your Workflow
@@ -241,7 +284,11 @@ import ProductHero from '@components/ui/ProductHero.vue';
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Configure Lattice to match your preferences and security requirements.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-slate-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="settings-cta-button"
+        >
           Get Lattice for $99
         </a>
       </div>
