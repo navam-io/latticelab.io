@@ -16,30 +16,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 1.3: GradientText Component** - See [release-0.3.0.md](../releases/release-0.3.0.md)
 - **Feature 1.4: DualCTA Component** - See [release-0.4.0.md](../releases/release-0.4.0.md)
 - **Feature 1.5: DocsLink Component** - See [release-0.5.0.md](../releases/release-0.5.0.md)
+- **Feature 2.1: NavDropdown Component** - See [release-0.6.0.md](../releases/release-0.6.0.md)
 
 ---
 
 ## Phase 2: Navigation
-
-### Feature 2.1: NavDropdown Component
-**Spec Reference:** Part 1, Section 1.3
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build individual dropdown panel component for mega menu sections.
-
-**Files:**
-- [ ] `src/components/navigation/NavDropdown.vue` - Individual dropdown panel
-
-**Dependencies:** Feature 1.2 (Animations)
-
-**Acceptance Criteria:**
-- [ ] 3-column layout support (Explore, Shop, More)
-- [ ] Smooth open/close animations
-- [ ] Supports links with optional descriptions
-
----
 
 ### Feature 2.2: MegaMenu Component
 **Spec Reference:** Part 1, Section 1.1
@@ -800,11 +781,11 @@ Final quality assurance and cross-browser testing.
 | Phase | Features | Completed | Remaining |
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
-| Phase 2: Navigation | 4 | 0 | 4 |
+| Phase 2: Navigation | 4 | 1 | 3 |
 | Phase 3: Homepage | 7 | 0 | 7 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **5** | **36** |
+| **Total** | **41** | **6** | **35** |
