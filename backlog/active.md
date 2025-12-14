@@ -28,30 +28,7 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.6: CTABanner Section** - See [release-0.15.0.md](../releases/release-0.15.0.md)
 - **Feature 3.7: Homepage Assembly** - See [release-0.16.0.md](../releases/release-0.16.0.md)
 - **Feature 4.1: FooterColumn Component** - See [release-0.17.0.md](../releases/release-0.17.0.md)
-
----
-
-## Phase 4: Footer
-
-### Feature 4.2: Footer Redesign
-**Spec Reference:** Part 3, Section 3.1
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Complete redesign of Footer.vue with 6-column layout.
-
-**Files:**
-- [ ] `src/components/Footer.vue` - Complete redesign
-
-**Dependencies:** Feature 4.1 (FooterColumn)
-
-**Acceptance Criteria:**
-- [ ] 6 columns: Features, Tools, Resources, Solutions, Company, Support
-- [ ] All links from spec section 3.1
-- [ ] Secondary footer bar with copyright and legal links
-- [ ] Responsive: columns collapse on mobile
-- [ ] Clean typography, no descriptions
+- **Feature 4.2: Footer Redesign** - See [release-0.18.0.md](../releases/release-0.18.0.md)
 
 ---
 
@@ -549,9 +526,9 @@ Final quality assurance and cross-browser testing.
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
-| Phase 4: Footer | 2 | 1 | 1 |
+| Phase 4: Footer | 2 | 2 | 0 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **17** | **24** |
+| **Total** | **41** | **18** | **23** |
