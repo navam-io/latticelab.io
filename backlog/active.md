@@ -29,32 +29,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.7: Homepage Assembly** - See [release-0.16.0.md](../releases/release-0.16.0.md)
 - **Feature 4.1: FooterColumn Component** - See [release-0.17.0.md](../releases/release-0.17.0.md)
 - **Feature 4.2: Footer Redesign** - See [release-0.18.0.md](../releases/release-0.18.0.md)
+- **Feature 5.1: StickyNav Component** - See [release-0.19.0.md](../releases/release-0.19.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.1: StickyNav Component
-**Spec Reference:** Part 4, Section 4.1
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build sticky sub-navigation for feature pages.
-
-**Files:**
-- [ ] `src/components/features/StickyNav.vue` - Sub-navigation component
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Format: "[Feature Name]  Overview | Capabilities | Use Cases | [Buy]"
-- [ ] Fixed position on scroll (appears after hero)
-- [ ] Smooth scroll to sections on click
-- [ ] Active state highlighting
-- [ ] Mobile: Horizontal scroll
-
----
 
 ### Feature 5.2: FeatureHero Component
 **Spec Reference:** Part 4, Section 4.2 (Section 1: Hero)
@@ -527,8 +506,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 0 | 13 |
+| Phase 5: Feature Pages | 13 | 1 | 12 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **18** | **23** |
+| **Total** | **41** | **19** | **22** |
