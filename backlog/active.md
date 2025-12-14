@@ -13,30 +13,11 @@ Last updated: December 14, 2025
 Features that have been completed are moved to their respective release notes:
 - **Feature 1.1: Design Tokens and Typography Scale** - See [release-0.1.0.md](../releases/release-0.1.0.md)
 - **Feature 1.2: Animation Utilities** - See [release-0.2.0.md](../releases/release-0.2.0.md)
+- **Feature 1.3: GradientText Component** - See [release-0.3.0.md](../releases/release-0.3.0.md)
 
 ---
 
 ## Phase 1: Foundation
-
-### Feature 1.3: GradientText Component
-**Spec Reference:** Part 8, Section 8.3 (Shared Components)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build reusable GradientText Vue component for Apple-style gradient headlines.
-
-**Files:**
-- [ ] `src/components/shared/GradientText.vue` - Gradient text component
-
-**Dependencies:** Feature 1.1 (Typography Scale)
-
-**Acceptance Criteria:**
-- [ ] Component accepts text content and optional gradient colors
-- [ ] Supports multiple sizes (heading, display)
-- [ ] Works with both light and dark backgrounds
-
----
 
 ### Feature 1.4: DualCTA Component
 **Spec Reference:** Part 8, Section 8.3 (Shared Components)
@@ -858,7 +839,7 @@ Final quality assurance and cross-browser testing.
 
 | Phase | Features | Completed | Remaining |
 |-------|----------|-----------|-----------|
-| Phase 1: Foundation | 5 | 2 | 3 |
+| Phase 1: Foundation | 5 | 3 | 2 |
 | Phase 2: Navigation | 4 | 0 | 4 |
 | Phase 3: Homepage | 7 | 0 | 7 |
 | Phase 4: Footer | 2 | 0 | 2 |
@@ -866,4 +847,4 @@ Final quality assurance and cross-browser testing.
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **2** | **39** |
+| **Total** | **41** | **3** | **38** |

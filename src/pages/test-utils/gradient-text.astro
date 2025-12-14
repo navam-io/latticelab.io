@@ -1,0 +1,284 @@
+---
+/**
+ * GradientText Component Test Page
+ * This page is used for testing the GradientText component in production.
+ * Route: /test-utils/gradient-text
+ */
+import Layout from '@layouts/Layout.astro';
+import GradientText from '@components/shared/GradientText.vue';
+---
+
+<Layout title="GradientText Test" description="GradientText component test page">
+  <main class="container-custom py-12">
+    <h1 class="text-3xl font-bold mb-8">GradientText Component Test</h1>
+
+    <!-- Gradient Variants -->
+    <section class="mb-12" data-testid="gradient-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Gradient Variants</h2>
+      <div class="space-y-6">
+        <div data-testid="variant-primary">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3">
+            Primary Gradient (Violet to Blue)
+          </GradientText>
+        </div>
+        <div data-testid="variant-secondary">
+          <GradientText client:load variant="secondary" size="heading-lg" as="h3">
+            Secondary Gradient (Teal to Cyan)
+          </GradientText>
+        </div>
+        <div data-testid="variant-accent">
+          <GradientText client:load variant="accent" size="heading-lg" as="h3">
+            Accent Gradient (Blue to Teal)
+          </GradientText>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg" data-testid="variant-hero-container">
+          <div data-testid="variant-hero">
+            <GradientText client:load variant="hero" size="heading-lg" as="h3">
+              Hero Gradient (Purple/Indigo - Dark BG)
+            </GradientText>
+          </div>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg" data-testid="variant-light-container">
+          <div data-testid="variant-light">
+            <GradientText client:load variant="light" size="heading-lg" as="h3">
+              Light Gradient (For Dark BG)
+            </GradientText>
+          </div>
+        </div>
+        <div data-testid="variant-animated">
+          <GradientText client:load variant="animated" size="heading-lg" as="h3">
+            Animated Gradient
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Size Variants -->
+    <section class="mb-12" data-testid="size-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Size Variants</h2>
+      <div class="space-y-6">
+        <div data-testid="size-hero">
+          <GradientText client:load variant="primary" size="hero" as="h1">
+            Hero Size
+          </GradientText>
+        </div>
+        <div data-testid="size-display-xl">
+          <GradientText client:load variant="primary" size="display-xl" as="h1">
+            Display XL
+          </GradientText>
+        </div>
+        <div data-testid="size-display-lg">
+          <GradientText client:load variant="primary" size="display-lg" as="h1">
+            Display LG
+          </GradientText>
+        </div>
+        <div data-testid="size-display-md">
+          <GradientText client:load variant="primary" size="display-md" as="h2">
+            Display MD
+          </GradientText>
+        </div>
+        <div data-testid="size-display-sm">
+          <GradientText client:load variant="primary" size="display-sm" as="h2">
+            Display SM
+          </GradientText>
+        </div>
+        <div data-testid="size-heading-xl">
+          <GradientText client:load variant="primary" size="heading-xl" as="h2">
+            Heading XL
+          </GradientText>
+        </div>
+        <div data-testid="size-heading-lg">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3">
+            Heading LG
+          </GradientText>
+        </div>
+        <div data-testid="size-heading-md">
+          <GradientText client:load variant="primary" size="heading-md" as="h3">
+            Heading MD
+          </GradientText>
+        </div>
+        <div data-testid="size-heading-sm">
+          <GradientText client:load variant="primary" size="heading-sm" as="h4">
+            Heading SM
+          </GradientText>
+        </div>
+        <div data-testid="size-heading-xs">
+          <GradientText client:load variant="primary" size="heading-xs" as="h5">
+            Heading XS
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- HTML Tags -->
+    <section class="mb-12" data-testid="html-tags">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">HTML Tags (as prop)</h2>
+      <div class="space-y-4">
+        <div data-testid="tag-h1">
+          <GradientText client:load variant="primary" size="heading-lg" as="h1">
+            H1 Tag
+          </GradientText>
+        </div>
+        <div data-testid="tag-h2">
+          <GradientText client:load variant="primary" size="heading-md" as="h2">
+            H2 Tag
+          </GradientText>
+        </div>
+        <div data-testid="tag-h3">
+          <GradientText client:load variant="primary" size="heading-sm" as="h3">
+            H3 Tag
+          </GradientText>
+        </div>
+        <div data-testid="tag-p">
+          <GradientText client:load variant="primary" size="heading-sm" as="p">
+            Paragraph Tag
+          </GradientText>
+        </div>
+        <div data-testid="tag-span">
+          <GradientText client:load variant="primary" size="heading-sm" as="span">
+            Span Tag
+          </GradientText>
+        </div>
+        <div data-testid="tag-div">
+          <GradientText client:load variant="primary" size="heading-sm" as="div">
+            Div Tag
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Gradient -->
+    <section class="mb-12" data-testid="custom-gradient">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Custom Gradient</h2>
+      <div class="space-y-4">
+        <div data-testid="custom-gradient-default">
+          <GradientText
+            client:load
+            variant="custom"
+            size="heading-lg"
+            as="h3"
+            customFrom="#FF6B6B"
+            customTo="#4ECDC4"
+          >
+            Custom: Red to Teal
+          </GradientText>
+        </div>
+        <div data-testid="custom-gradient-angle">
+          <GradientText
+            client:load
+            variant="custom"
+            size="heading-lg"
+            as="h3"
+            customFrom="#667eea"
+            customTo="#764ba2"
+            customAngle={90}
+          >
+            Custom: 90 Degree Angle
+          </GradientText>
+        </div>
+        <div data-testid="custom-gradient-vertical">
+          <GradientText
+            client:load
+            variant="custom"
+            size="heading-lg"
+            as="h3"
+            customFrom="#f093fb"
+            customTo="#f5576c"
+            customAngle={180}
+          >
+            Custom: 180 Degree (Vertical)
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text Prop vs Slot -->
+    <section class="mb-12" data-testid="text-prop-vs-slot">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Text Prop vs Slot</h2>
+      <div class="space-y-4">
+        <div data-testid="using-text-prop">
+          <GradientText
+            client:load
+            variant="primary"
+            size="heading-lg"
+            as="h3"
+            text="Using Text Prop"
+          />
+        </div>
+        <div data-testid="using-slot">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3">
+            Using Slot Content
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Centered Text -->
+    <section class="mb-12" data-testid="centered-text">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Centered Text</h2>
+      <div class="space-y-4">
+        <div data-testid="not-centered">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3">
+            Not Centered (default)
+          </GradientText>
+        </div>
+        <div data-testid="is-centered">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3" centered>
+            Centered Text
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark Background Examples -->
+    <section class="mb-12" data-testid="dark-background">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Dark Background Examples</h2>
+      <div class="bg-gradient-to-br from-gray-900 to-indigo-900 p-8 rounded-xl space-y-6">
+        <div data-testid="dark-bg-hero">
+          <GradientText client:load variant="hero" size="display-lg" as="h2">
+            Hero on Dark
+          </GradientText>
+        </div>
+        <div data-testid="dark-bg-light">
+          <GradientText client:load variant="light" size="heading-lg" as="h3">
+            Light on Dark
+          </GradientText>
+        </div>
+        <div data-testid="dark-bg-primary">
+          <GradientText client:load variant="primary" size="heading-lg" as="h3">
+            Primary on Dark
+          </GradientText>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-World Usage Examples -->
+    <section class="mb-12" data-testid="real-world-examples">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Real-World Usage Examples</h2>
+
+      <!-- Hero Section Example -->
+      <div class="bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 p-12 rounded-xl mb-6 text-center" data-testid="example-hero">
+        <GradientText client:load variant="hero" size="hero" as="h1" centered>
+          Lattice
+        </GradientText>
+        <p class="text-gray-300 mt-4 text-lg">AI Infrastructure Decisions, Grounded in Evidence</p>
+      </div>
+
+      <!-- Feature Title Example -->
+      <div class="bg-white p-8 rounded-xl shadow-lg mb-6" data-testid="example-feature">
+        <GradientText client:load variant="primary" size="heading-xl" as="h2">
+          Your Knowledge. Unified.
+        </GradientText>
+        <p class="text-gray-600 mt-2">Multi-source ingestion, hybrid search, citation tracking.</p>
+      </div>
+
+      <!-- Section Heading Example -->
+      <div class="p-8" data-testid="example-section">
+        <GradientText client:load variant="accent" size="display-sm" as="h2" centered>
+          Powerful Tools
+        </GradientText>
+        <p class="text-gray-600 mt-2 text-center">Everything you need to make informed decisions.</p>
+      </div>
+    </section>
+  </main>
+</Layout>
