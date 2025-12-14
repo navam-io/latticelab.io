@@ -1,0 +1,285 @@
+/**
+ * Typography Scale - Apple-style type system
+ *
+ * This file provides:
+ * - Scalable type system (text-xs through text-7xl and display sizes)
+ * - Gradient text utility classes
+ * - Heading styles with proper tracking and weights
+ * - Consistent line heights for readability
+ */
+
+@layer utilities {
+  /* ============================================
+   * Display Typography - Large headlines (Apple-style)
+   * ============================================ */
+
+  /* Display sizes for hero sections */
+  .text-display-sm {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .text-display-md {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  .text-display-lg {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .text-display-xl {
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+  }
+
+  /* Hero text - 120px+ as per spec */
+  .text-hero {
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+  }
+
+  /* ============================================
+   * Heading Typography
+   * ============================================ */
+
+  .heading-xl {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .heading-lg {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+  }
+
+  .heading-md {
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  .heading-sm {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    font-weight: 600;
+  }
+
+  .heading-xs {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  /* ============================================
+   * Body Typography
+   * ============================================ */
+
+  .body-lg {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .body-md {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .body-sm {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .body-xs {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ============================================
+   * Gradient Text Utilities
+   * ============================================ */
+
+  /* Base gradient text setup */
+  .gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Primary gradient - Violet to Blue */
+  .gradient-text-primary {
+    background-image: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Secondary gradient - Teal to Cyan */
+  .gradient-text-secondary {
+    background-image: linear-gradient(135deg, #14B8A6 0%, #06B6D4 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Accent gradient - Blue to Teal */
+  .gradient-text-accent {
+    background-image: linear-gradient(135deg, #3B82F6 0%, #14B8A6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Hero gradient - Purple/Indigo spectrum (for dark backgrounds) */
+  .gradient-text-hero {
+    background-image: linear-gradient(135deg, #C4B5FD 0%, #818CF8 50%, #60A5FA 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Light gradient - for dark backgrounds */
+  .gradient-text-light {
+    background-image: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Animated gradient text */
+  .gradient-text-animated {
+    background-image: linear-gradient(90deg, #8B5CF6, #3B82F6, #14B8A6, #8B5CF6);
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* ============================================
+   * Text Styles for Specific Use Cases
+   * ============================================ */
+
+  /* Tagline style - Apple "Personal. Private. Powerful." format */
+  .tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* Subtitle style */
+  .subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--color-text-secondary, #6B7280);
+  }
+
+  /* Label/caption style */
+  .label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* Price display */
+  .price-display {
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  /* Feature title */
+  .feature-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  /* ============================================
+   * Responsive Typography Helpers
+   * ============================================ */
+
+  /* Balanced text wrapping for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Pretty text wrapping for paragraphs */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Prevent orphans */
+  .no-orphans {
+    widows: 2;
+    orphans: 2;
+  }
+
+  /* Truncate with ellipsis */
+  .truncate-lines-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-lines-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

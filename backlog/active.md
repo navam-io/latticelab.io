@@ -8,29 +8,14 @@ Last updated: December 14, 2025
 - [~] In Progress
 - [x] Completed
 
+## Completed Features
+
+Features that have been completed are moved to their respective release notes:
+- **Feature 1.1: Design Tokens and Typography Scale** - See [release-0.1.0.md](../releases/release-0.1.0.md)
+
 ---
 
 ## Phase 1: Foundation
-
-### Feature 1.1: Design Tokens and Typography Scale
-**Spec Reference:** Part 8, Section 8.2
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Create the Apple-style typography scale and design tokens for consistent styling across all new components.
-
-**Files:**
-- [ ] `src/styles/typography.css` - Apple-style type scale (font sizes, weights, line heights)
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Typography CSS file created with scalable type system (text-xs through text-7xl)
-- [ ] Gradient text utility classes defined
-- [ ] Consistent with existing Tailwind configuration
-
----
 
 ### Feature 1.2: Animation Utilities
 **Spec Reference:** Part 8, Section 8.2
@@ -890,14 +875,14 @@ Final quality assurance and cross-browser testing.
 
 ## Summary
 
-| Phase | Features | Complexity |
-|-------|----------|------------|
-| Phase 1: Foundation | 5 | 4S, 1M |
-| Phase 2: Navigation | 4 | 1S, 3M |
-| Phase 3: Homepage | 7 | 3S, 4M |
-| Phase 4: Footer | 2 | 1S, 1M |
-| Phase 5: Feature Pages | 13 | 2S, 11M |
-| Phase 6: Tools Section | 6 | 2S, 4M |
-| Phase 7: Docs Integration | 1 | 1M |
-| Phase 8: Content & Polish | 3 | 1S, 2M |
-| **Total** | **41** | **14S, 27M** |
+| Phase | Features | Completed | Remaining |
+|-------|----------|-----------|-----------|
+| Phase 1: Foundation | 5 | 1 | 4 |
+| Phase 2: Navigation | 4 | 0 | 4 |
+| Phase 3: Homepage | 7 | 0 | 7 |
+| Phase 4: Footer | 2 | 0 | 2 |
+| Phase 5: Feature Pages | 13 | 0 | 13 |
+| Phase 6: Tools Section | 6 | 0 | 6 |
+| Phase 7: Docs Integration | 1 | 0 | 1 |
+| Phase 8: Content & Polish | 3 | 0 | 3 |
+| **Total** | **41** | **1** | **40** |

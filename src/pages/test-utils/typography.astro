@@ -1,0 +1,85 @@
+---
+/**
+ * Typography Test Page
+ * This page is used for testing typography utilities in production.
+ * Route: /_test/typography
+ */
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout title="Typography Test" description="Typography utilities test page">
+  <main class="container-custom py-12">
+    <h1 class="text-3xl font-bold mb-8">Typography Utilities Test</h1>
+
+    <!-- Display Typography -->
+    <section class="mb-12" data-testid="display-typography">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Display Typography</h2>
+      <div class="space-y-4">
+        <p class="text-hero" data-testid="text-hero">Hero Text</p>
+        <p class="text-display-xl" data-testid="text-display-xl">Display XL</p>
+        <p class="text-display-lg" data-testid="text-display-lg">Display LG</p>
+        <p class="text-display-md" data-testid="text-display-md">Display MD</p>
+        <p class="text-display-sm" data-testid="text-display-sm">Display SM</p>
+      </div>
+    </section>
+
+    <!-- Heading Typography -->
+    <section class="mb-12" data-testid="heading-typography">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Heading Typography</h2>
+      <div class="space-y-4">
+        <p class="heading-xl" data-testid="heading-xl">Heading XL</p>
+        <p class="heading-lg" data-testid="heading-lg">Heading LG</p>
+        <p class="heading-md" data-testid="heading-md">Heading MD</p>
+        <p class="heading-sm" data-testid="heading-sm">Heading SM</p>
+        <p class="heading-xs" data-testid="heading-xs">Heading XS</p>
+      </div>
+    </section>
+
+    <!-- Body Typography -->
+    <section class="mb-12" data-testid="body-typography">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Body Typography</h2>
+      <div class="space-y-4">
+        <p class="body-lg" data-testid="body-lg">Body Large - The quick brown fox jumps over the lazy dog.</p>
+        <p class="body-md" data-testid="body-md">Body Medium - The quick brown fox jumps over the lazy dog.</p>
+        <p class="body-sm" data-testid="body-sm">Body Small - The quick brown fox jumps over the lazy dog.</p>
+        <p class="body-xs" data-testid="body-xs">Body Extra Small - The quick brown fox jumps over the lazy dog.</p>
+      </div>
+    </section>
+
+    <!-- Gradient Text -->
+    <section class="mb-12" data-testid="gradient-text">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Gradient Text</h2>
+      <div class="space-y-4">
+        <p class="text-4xl font-bold gradient-text-primary" data-testid="gradient-text-primary">Primary Gradient</p>
+        <p class="text-4xl font-bold gradient-text-secondary" data-testid="gradient-text-secondary">Secondary Gradient</p>
+        <p class="text-4xl font-bold gradient-text-accent" data-testid="gradient-text-accent">Accent Gradient</p>
+        <div class="bg-gray-900 p-4 rounded-lg">
+          <p class="text-4xl font-bold gradient-text-hero" data-testid="gradient-text-hero">Hero Gradient (Dark BG)</p>
+        </div>
+        <p class="text-4xl font-bold gradient-text-animated" data-testid="gradient-text-animated">Animated Gradient</p>
+      </div>
+    </section>
+
+    <!-- Special Styles -->
+    <section class="mb-12" data-testid="special-styles">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Special Styles</h2>
+      <div class="space-y-4">
+        <p class="tagline" data-testid="tagline">Personal. Private. Powerful.</p>
+        <p class="subtitle" data-testid="subtitle">This is a subtitle with secondary color styling.</p>
+        <p class="label" data-testid="label">Label Text</p>
+        <p class="price-display" data-testid="price-display">$99</p>
+        <p class="feature-title" data-testid="feature-title">Feature Title</p>
+        <p class="section-heading" data-testid="section-heading">Section Heading</p>
+      </div>
+    </section>
+
+    <!-- Text Utilities -->
+    <section class="mb-12" data-testid="text-utilities">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Text Utilities</h2>
+      <div class="space-y-4 max-w-md">
+        <p class="text-balance heading-lg" data-testid="text-balance">This heading has balanced text wrapping for better readability.</p>
+        <p class="truncate-lines-2" data-testid="truncate-lines-2">This text will be truncated to two lines. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      </div>
+    </section>
+  </main>
+</Layout>
