@@ -1,0 +1,245 @@
+---
+/**
+ * MobileNav Component Test Page
+ * This page is used for testing the MobileNav component in production.
+ * Route: /test-utils/mobile-nav
+ */
+import Layout from '@layouts/Layout.astro';
+import MobileNav from '@components/navigation/MobileNav.vue';
+
+// Define navigation sections for testing
+const featuresSection = {
+  title: 'Features',
+  links: [
+    { label: 'All Features', href: '/features', description: 'Overview of all features' },
+    { label: 'Sources', href: '/features/sources', description: 'Knowledge Management' },
+    { label: 'Lab', href: '/features/lab', description: 'AI-Powered Analysis' },
+    { label: 'Studio', href: '/features/studio', description: 'Artifacts & Exports' },
+    { label: 'Blueprints', href: '/features/blueprints', description: 'Curated Bundles', badge: '36' }
+  ]
+};
+
+const configSection = {
+  title: 'Configuration',
+  links: [
+    { label: 'Scenarios', href: '/features/scenarios', description: 'Use Case Definition' },
+    { label: 'Stacks', href: '/features/stacks', description: 'Infrastructure Config' },
+    { label: 'Settings', href: '/features/settings', description: 'Customization' }
+  ]
+};
+
+const resourcesSection = {
+  title: 'Resources',
+  links: [
+    { label: 'Documentation', href: '/docs', description: 'Technical guides' },
+    { label: 'Blog', href: '/blog', description: 'Latest updates' },
+    { label: 'Support', href: '/support' },
+    { label: 'Contact', href: '/contact' }
+  ]
+};
+
+const basicSections = [featuresSection, configSection, resourcesSection];
+
+// Minimal sections for compact test
+const minimalSections = [
+  {
+    title: 'Navigation',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' }
+    ]
+  }
+];
+
+// Sections with badges
+const badgedSections = [
+  {
+    title: 'Products',
+    links: [
+      { label: 'All Products', href: '/products' },
+      { label: 'New Arrivals', href: '/products/new', badge: 'New' },
+      { label: 'Best Sellers', href: '/products/best', badge: '12' },
+      { label: 'On Sale', href: '/products/sale', badge: 'Sale' }
+    ]
+  }
+];
+---
+
+<Layout title="MobileNav Test">
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8">MobileNav Component Test</h1>
+
+      <!-- Test Instructions -->
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 class="font-semibold text-blue-900 mb-2">Testing Instructions</h2>
+        <ul class="text-sm text-blue-800 space-y-1">
+          <li>Click the hamburger icon to open the mobile navigation</li>
+          <li>Test accordion sections by clicking section headers</li>
+          <li>Verify touch targets are at least 48px</li>
+          <li>Test slide-in animation from right</li>
+          <li>Verify body scroll is locked when open</li>
+          <li>Test close via X button, backdrop click, or Escape key</li>
+        </ul>
+      </div>
+
+      <!-- Basic Usage -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Basic Usage</h2>
+        <p class="text-gray-600 mb-4">Standard mobile navigation with accordion sections.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={basicSections}
+            testId="basic-nav"
+          />
+        </div>
+      </section>
+
+      <!-- Without Arrows -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Without Arrows</h2>
+        <p class="text-gray-600 mb-4">Navigation links without arrow indicators.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={minimalSections}
+            showArrows={false}
+            testId="no-arrows-nav"
+          />
+        </div>
+      </section>
+
+      <!-- With Badges -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">With Badges</h2>
+        <p class="text-gray-600 mb-4">Navigation with badge indicators on links.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={badgedSections}
+            testId="badges-nav"
+          />
+        </div>
+      </section>
+
+      <!-- Dark Variant Header Example -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Dark Variant</h2>
+        <p class="text-gray-600 mb-4">Hamburger icon styled for dark backgrounds.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-900 rounded-lg">
+          <span class="text-sm text-gray-300">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={basicSections}
+            variant="dark"
+            testId="dark-nav"
+          />
+        </div>
+      </section>
+
+      <!-- Keep Open on Link Click -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Keep Open on Link Click</h2>
+        <p class="text-gray-600 mb-4">Menu stays open when clicking links (for SPAs).</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={minimalSections}
+            closeOnLinkClick={false}
+            testId="stay-open-nav"
+          />
+        </div>
+      </section>
+
+      <!-- Accessibility Test -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Accessibility Test</h2>
+        <p class="text-gray-600 mb-4">Test ARIA attributes and keyboard navigation.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={basicSections}
+            testId="accessible-nav"
+          />
+        </div>
+
+        <div class="mt-4 text-sm text-gray-500">
+          <p><strong>Keyboard tests:</strong></p>
+          <ul class="list-disc list-inside mt-2 space-y-1">
+            <li>Tab through all interactive elements</li>
+            <li>Press Escape to close</li>
+            <li>Focus should be trapped within panel</li>
+            <li>Focus returns to trigger on close</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Real-World Header Example -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Real-World Header Example</h2>
+        <p class="text-gray-600 mb-4">Mobile header with logo, nav trigger, and buy button.</p>
+
+        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <header class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-2">
+              <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-blue-600 rounded-lg"></div>
+              <span class="font-bold text-lg bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">
+                Lattice
+              </span>
+            </a>
+
+            <!-- Right side: Nav + Buy -->
+            <div class="flex items-center gap-3">
+              <a
+                href="#pricing"
+                class="px-3 py-1.5 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 transition-colors"
+              >
+                Buy $99
+              </a>
+              <MobileNav
+                client:load
+                sections={basicSections}
+                testId="real-header-nav"
+              />
+            </div>
+          </header>
+        </div>
+      </section>
+
+      <!-- Body Scroll Lock Test -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Body Scroll Lock Test</h2>
+        <p class="text-gray-600 mb-4">Open the menu and try scrolling - body should be locked.</p>
+
+        <div class="flex items-center gap-4 p-4 bg-gray-100 rounded-lg">
+          <span class="text-sm text-gray-600">Open Menu:</span>
+          <MobileNav
+            client:load
+            sections={basicSections}
+            testId="scroll-lock-nav"
+          />
+        </div>
+
+        <!-- Extra content to enable scrolling -->
+        <div class="mt-4 h-[500px] bg-gradient-to-b from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+          <span class="text-gray-500">Scroll test area</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</Layout>

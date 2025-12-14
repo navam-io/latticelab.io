@@ -18,32 +18,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 1.5: DocsLink Component** - See [release-0.5.0.md](../releases/release-0.5.0.md)
 - **Feature 2.1: NavDropdown Component** - See [release-0.6.0.md](../releases/release-0.6.0.md)
 - **Feature 2.2: MegaMenu Component** - See [release-0.7.0.md](../releases/release-0.7.0.md)
+- **Feature 2.3: MobileNav Component** - See [release-0.8.0.md](../releases/release-0.8.0.md)
 
 ---
 
 ## Phase 2: Navigation
-
-### Feature 2.3: MobileNav Component
-**Spec Reference:** Part 1, Section 1.2
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build full-screen mobile navigation overlay with accordion sections.
-
-**Files:**
-- [ ] `src/components/navigation/MobileNav.vue` - Full-screen mobile menu
-
-**Dependencies:** Feature 1.2 (Animations)
-
-**Acceptance Criteria:**
-- [ ] Full-screen overlay on hamburger click
-- [ ] Accordion sections for each category
-- [ ] Touch-friendly tap targets (48px minimum)
-- [ ] Smooth slide-in animation from right
-- [ ] Body scroll lock when open
-
----
 
 ### Feature 2.4: Header Integration
 **Spec Reference:** Part 1, Section 1.3, 1.4
@@ -758,11 +737,11 @@ Final quality assurance and cross-browser testing.
 | Phase | Features | Completed | Remaining |
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
-| Phase 2: Navigation | 4 | 2 | 2 |
+| Phase 2: Navigation | 4 | 3 | 1 |
 | Phase 3: Homepage | 7 | 0 | 7 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **7** | **34** |
+| **Total** | **41** | **8** | **33** |
