@@ -32,30 +32,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.1: StickyNav Component** - See [release-0.19.0.md](../releases/release-0.19.0.md)
 - **Feature 5.2: FeatureHero Component** - See [release-0.20.0.md](../releases/release-0.20.0.md)
 - **Feature 5.3: CapabilitySection Component** - See [release-0.21.0.md](../releases/release-0.21.0.md)
+- **Feature 5.4: TechSpecs Component** - See [release-0.22.0.md](../releases/release-0.22.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.4: TechSpecs Component
-**Spec Reference:** Part 4, Section 4.2 (Section 4: Technical Details)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build specifications table component for technical details.
-
-**Files:**
-- [ ] `src/components/features/TechSpecs.vue` - Specifications table
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Clean table layout
-- [ ] Supported formats/vendors list
-- [ ] Configuration options display
-
----
 
 ### Feature 5.5: RelatedContent Component
 **Spec Reference:** Part 4, Section 4.2 (Section 5: Related Content)
@@ -466,8 +447,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 3 | 10 |
+| Phase 5: Feature Pages | 13 | 4 | 9 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **21** | **20** |
+| **Total** | **41** | **22** | **19** |

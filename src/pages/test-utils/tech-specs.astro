@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TechSpecs from '../../components/features/TechSpecs.vue';
+
+// Sample icon paths (Heroicons)
+const icons = {
+  document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  server: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  cloud: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z',
+  database: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+  chip: 'M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m14 0h2M3 15h2m14 0h2M7 9h10a2 2 0 012 2v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4a2 2 0 012-2z'
+};
+
+// Sample specs for Sources feature
+const sourcesSpecs = [
+  {
+    category: 'Supported Formats',
+    icon: icons.document,
+    color: 'violet',
+    items: [
+      '<strong>PDF</strong> - Technical papers, whitepapers',
+      '<strong>DOCX</strong> - Word documents',
+      '<strong>TXT/MD</strong> - Plain text, Markdown',
+      '<strong>HTML</strong> - Web pages (via URL)',
+      '<strong>JSON</strong> - Structured data'
+    ]
+  },
+  {
+    category: 'Cloud Integrations',
+    icon: icons.cloud,
+    color: 'blue',
+    items: [
+      '<strong>Google Docs</strong> - Drive integration',
+      '<strong>GitHub</strong> - Repos and READMEs',
+      '<strong>YouTube</strong> - Video transcripts',
+      '<strong>Notion</strong> - Coming soon',
+      '<strong>Confluence</strong> - Coming soon'
+    ]
+  },
+  {
+    category: 'Processing',
+    icon: icons.chip,
+    color: 'teal',
+    items: [
+      'Automatic <strong>chunking</strong>',
+      'Vector <strong>embeddings</strong>',
+      '<strong>Hybrid search</strong> indexing',
+      'Real-time <strong>progress</strong> tracking',
+      '<strong>Citation</strong> extraction'
+    ]
+  }
+];
+
+// Sample specs for Lab feature (4 columns)
+const labSpecs = [
+  {
+    category: 'LLM Providers',
+    icon: icons.server,
+    color: 'blue',
+    items: [
+      '<strong>OpenAI</strong> - GPT-4, GPT-3.5',
+      '<strong>Anthropic</strong> - Claude 3',
+      '<strong>Google</strong> - Gemini Pro',
+      '<strong>Mistral</strong> - Large, Medium'
+    ]
+  },
+  {
+    category: 'Reasoning',
+    icon: icons.cog,
+    color: 'violet',
+    items: [
+      '<strong>LangGraph</strong> agents',
+      'Multi-step <strong>workflows</strong>',
+      '<strong>Trace</strong> visualization',
+      '<strong>Tool</strong> calling'
+    ]
+  },
+  {
+    category: 'Search',
+    icon: icons.database,
+    color: 'teal',
+    items: [
+      '<strong>Vector</strong> similarity',
+      '<strong>Keyword</strong> matching',
+      '<strong>Hybrid</strong> ranking',
+      '<strong>Re-ranking</strong> support'
+    ]
+  },
+  {
+    category: 'Output',
+    icon: icons.document,
+    color: 'amber',
+    items: [
+      '<strong>Streaming</strong> responses',
+      '<strong>Citations</strong> inline',
+      '<strong>Markdown</strong> formatting',
+      '<strong>Code</strong> highlighting'
+    ]
+  }
+];
+
+// Table data for vendor comparison
+const vendorHeaders = ['Vendor', 'GPUs Available', 'Spot Instances', 'Blueprints'];
+const vendorData = [
+  ['AWS', '12 GPU types', true, '14'],
+  ['Google Cloud', '8 GPU types', true, '10'],
+  ['Azure', '6 GPU types', true, '8'],
+  ['Lambda Labs', '4 GPU types', false, '4'],
+  ['CoreWeave', '6 GPU types', true, '6'],
+  ['RunPod', '10 GPU types', true, '8']
+];
+
+// Simple specs without icons (2 columns)
+const configSpecs = [
+  {
+    category: 'API Configuration',
+    items: [
+      'Custom <strong>API keys</strong> per provider',
+      'Default <strong>model</strong> selection',
+      '<strong>Temperature</strong> presets',
+      '<strong>Token limits</strong> configuration'
+    ]
+  },
+  {
+    category: 'Privacy Settings',
+    items: [
+      '<strong>Local-only</strong> processing option',
+      '<strong>Data retention</strong> controls',
+      '<strong>Usage analytics</strong> opt-out',
+      '<strong>Export</strong> your data'
+    ]
+  }
+];
+---
+
+<Layout title="TechSpecs Component Test">
+  <main class="min-h-screen">
+    <div class="py-12 bg-gray-900 text-center">
+      <h1 class="text-3xl font-bold text-white mb-2">TechSpecs Component Tests</h1>
+      <p class="text-gray-300">Various configurations of the TechSpecs component</p>
+    </div>
+
+    <!-- Test 1: Default configuration with specs grid (3 columns) -->
+    <TechSpecs
+      client:load
+      title="Technical Specifications"
+      description="Everything you need to know about the Sources panel capabilities and supported formats."
+      icon={icons.document}
+      iconColor="violet"
+      specs={sourcesSpecs}
+      background="white"
+      columns={3}
+      docsLink="/docs/features/sources"
+      docsLinkText="View Sources documentation"
+      testId="tech-specs-default"
+    />
+
+    <!-- Test 2: 4-column grid with blue theme -->
+    <TechSpecs
+      client:load
+      title="Lab Capabilities"
+      description="Powerful AI research tools with LangGraph-powered reasoning."
+      icon={icons.server}
+      iconColor="blue"
+      specs={labSpecs}
+      background="gray"
+      columns={4}
+      docsLink="/docs/features/lab"
+      testId="tech-specs-four-col"
+    />
+
+    <!-- Test 3: Table view for vendor comparison -->
+    <TechSpecs
+      client:load
+      title="Vendor Support Matrix"
+      description="Lattice supports 10+ cloud vendors with pre-built blueprints."
+      icon={icons.cloud}
+      iconColor="teal"
+      tableHeaders={vendorHeaders}
+      tableData={vendorData}
+      background="white"
+      docsLink="/docs/blueprints"
+      docsLinkText="Browse all blueprints"
+      testId="tech-specs-table"
+    />
+
+    <!-- Test 4: 2-column grid, no header icon -->
+    <TechSpecs
+      client:load
+      title="Configuration Options"
+      description="Customize Lattice to fit your workflow."
+      specs={configSpecs}
+      background="gray"
+      columns={2}
+      testId="tech-specs-two-col"
+    />
+
+    <!-- Test 5: Minimal - specs only, no header -->
+    <TechSpecs
+      client:load
+      specs={sourcesSpecs}
+      background="white"
+      columns={3}
+      testId="tech-specs-minimal"
+    />
+
+    <!-- Test 6: Table only, minimal header -->
+    <TechSpecs
+      client:load
+      title="Quick Reference"
+      tableHeaders={vendorHeaders}
+      tableData={vendorData}
+      background="gray"
+      testId="tech-specs-table-minimal"
+    />
+
+    <!-- Test 7: With different icon colors -->
+    <TechSpecs
+      client:load
+      title="Color Variants"
+      icon={icons.chip}
+      iconColor="amber"
+      specs={[
+        {
+          category: 'Amber Card',
+          icon: icons.chip,
+          color: 'amber',
+          items: ['Item one', 'Item two']
+        },
+        {
+          category: 'Rose Card',
+          icon: icons.chip,
+          color: 'rose',
+          items: ['Item one', 'Item two']
+        },
+        {
+          category: 'Green Card',
+          icon: icons.chip,
+          color: 'green',
+          items: ['Item one', 'Item two']
+        }
+      ]}
+      background="white"
+      columns={3}
+      testId="tech-specs-colors"
+    />
+  </main>
+</Layout>
