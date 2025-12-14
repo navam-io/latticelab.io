@@ -44,50 +44,12 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.13: Features Index Page Update** - See [release-0.31.0.md](../releases/release-0.31.0.md)
 - **Feature 6.1: Tools Content Collection** - See [release-0.32.0.md](../releases/release-0.32.0.md)
 - **Feature 6.2: ToolCard Component** - See [release-0.33.0.md](../releases/release-0.33.0.md)
+- **Feature 6.3: ToolDemo Component** - See [release-0.34.0.md](../releases/release-0.34.0.md)
+- **Feature 6.4: Tools Hub Page** - See [release-0.35.0.md](../releases/release-0.35.0.md)
 
 ---
 
 ## Phase 6: Tools Section
-
-### Feature 6.3: ToolDemo Component
-**Spec Reference:** Part 5, Section 5.2
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build interactive demo wrapper component for tool pages.
-
-**Files:**
-- [ ] `src/components/tools/ToolDemo.vue` - Interactive demo wrapper
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Placeholder for tool-specific demos
-- [ ] Loading state handling
-- [ ] Responsive container
-
----
-
-### Feature 6.4: Tools Hub Page
-**Spec Reference:** Part 5, Section 5.1
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Create tools hub page listing all 7 tools.
-
-**Files:**
-- [ ] `src/pages/tools/index.astro` - Tools hub page
-
-**Dependencies:** Feature 6.2 (ToolCard)
-
-**Acceptance Criteria:**
-- [ ] All 7 tools displayed with cards
-- [ ] Clear categorization and navigation
-- [ ] Hero section explaining tools
-
----
 
 ### Feature 6.5: Tool Content Files
 **Spec Reference:** Part 5, Section 5.1
@@ -235,7 +197,7 @@ Final quality assurance and cross-browser testing.
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
 | Phase 5: Feature Pages | 13 | 13 | 0 |
-| Phase 6: Tools Section | 6 | 2 | 4 |
+| Phase 6: Tools Section | 6 | 4 | 2 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **33** | **8** |
+| **Total** | **41** | **35** | **6** |

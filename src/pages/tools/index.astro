@@ -1,0 +1,219 @@
+---
+/**
+ * Tools Hub Page
+ * Lists all 7 tools with categorization and navigation
+ */
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+import ToolCard from '@components/tools/ToolCard.vue';
+import { getCollection } from 'astro:content';
+
+// Get all tools sorted by order
+const tools = (await getCollection('tools')).sort((a, b) => a.data.order - b.data.order);
+
+// Group tools by category
+const calculators = tools.filter(t => t.data.category === 'calculator');
+const advisors = tools.filter(t => t.data.category === 'advisor');
+const registries = tools.filter(t => t.data.category === 'registry');
+const frameworks = tools.filter(t => t.data.category === 'framework');
+---
+
+<Layout
+  title="Tools - Lattice"
+  description="Interactive tools for AI infrastructure planning: memory calculators, GPU comparison, TCO analysis, and optimization advisors."
+  keywords="AI tools, GPU memory calculator, TCO calculator, accelerator registry, parallelism advisor, spot instance advisor"
+>
+  <Header client:load />
+
+  <main data-testid="tools-hub">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-violet-900" data-testid="tools-hero">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/80 text-sm mb-6" data-testid="tools-hero-badge">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            <span>7 Interactive Tools</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-testid="tools-hero-title">
+            AI Infrastructure Tools
+          </h1>
+          <p class="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto" data-testid="tools-hero-description">
+            Plan your AI infrastructure with confidence. Calculate memory requirements, compare cloud GPUs, optimize costs, and get expert recommendations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section class="py-16 bg-white" data-testid="tools-calculators-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-calculators-title">Calculators</h2>
+              <p class="text-gray-600" data-testid="tools-calculators-description">Estimate costs and resource requirements</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-testid="tools-calculators-grid">
+            {calculators.map((tool, index) => (
+              <ToolCard
+                client:load
+                name={tool.data.name}
+                description={tool.data.shortDescription || tool.data.description}
+                icon={tool.data.icon}
+                iconBg={tool.data.iconBg}
+                iconColor={tool.data.iconColor}
+                category={tool.data.category}
+                showCategory={true}
+                features={tool.data.features.slice(0, 3)}
+                exploreHref={`/tools/${tool.slug}`}
+                testId={`tool-card-${tool.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advisors Section -->
+    <section class="py-16 bg-gray-50" data-testid="tools-advisors-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-advisors-title">Advisors</h2>
+              <p class="text-gray-600" data-testid="tools-advisors-description">Get expert optimization recommendations</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-testid="tools-advisors-grid">
+            {advisors.map((tool, index) => (
+              <ToolCard
+                client:load
+                name={tool.data.name}
+                description={tool.data.shortDescription || tool.data.description}
+                icon={tool.data.icon}
+                iconBg={tool.data.iconBg}
+                iconColor={tool.data.iconColor}
+                category={tool.data.category}
+                showCategory={true}
+                features={tool.data.features.slice(0, 3)}
+                exploreHref={`/tools/${tool.slug}`}
+                testId={`tool-card-${tool.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registry Section -->
+    <section class="py-16 bg-white" data-testid="tools-registry-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-registry-title">Registry</h2>
+              <p class="text-gray-600" data-testid="tools-registry-description">Comprehensive hardware and provider database</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-6" data-testid="tools-registry-grid">
+            {registries.map((tool, index) => (
+              <ToolCard
+                client:load
+                name={tool.data.name}
+                description={tool.data.shortDescription || tool.data.description}
+                icon={tool.data.icon}
+                iconBg={tool.data.iconBg}
+                iconColor={tool.data.iconColor}
+                category={tool.data.category}
+                showCategory={true}
+                features={tool.data.features.slice(0, 4)}
+                maxFeatures={4}
+                exploreHref={`/tools/${tool.slug}`}
+                size="lg"
+                testId={`tool-card-${tool.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section class="py-16 bg-gray-50" data-testid="tools-framework-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-framework-title">Framework</h2>
+              <p class="text-gray-600" data-testid="tools-framework-description">Structured approaches for AI decisions</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-6" data-testid="tools-framework-grid">
+            {frameworks.map((tool, index) => (
+              <ToolCard
+                client:load
+                name={tool.data.name}
+                description={tool.data.shortDescription || tool.data.description}
+                icon={tool.data.icon}
+                iconBg={tool.data.iconBg}
+                iconColor={tool.data.iconColor}
+                category={tool.data.category}
+                showCategory={true}
+                features={tool.data.features.slice(0, 4)}
+                maxFeatures={4}
+                exploreHref={`/tools/${tool.slug}`}
+                size="lg"
+                testId={`tool-card-${tool.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-violet-600" data-testid="tools-cta-section">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4" data-testid="tools-cta-title">
+          Make Smarter Infrastructure Decisions
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto" data-testid="tools-cta-description">
+          Get lifetime access to all tools plus Sources, Lab, Studio, and more.
+        </p>
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="tools-cta-button"
+        >
+          Get Lattice for $99
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Layout>
