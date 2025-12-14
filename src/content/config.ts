@@ -1,6 +1,36 @@
 import { defineCollection, z } from 'astro:content';
 import { docsSchema } from '@astrojs/starlight/schema';
 
+const tools = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // Basic info
+    name: z.string(),
+    description: z.string(),
+    shortDescription: z.string().optional(), // One-liner for cards
+
+    // Visual
+    icon: z.string(), // SVG path or icon identifier
+    iconBg: z.string().default('bg-violet-100'), // Tailwind bg class
+    iconColor: z.string().default('text-violet-600'), // Tailwind text class
+
+    // Features and capabilities
+    features: z.array(z.string()).default([]),
+
+    // Links
+    journeyLink: z.string().optional(), // Link to related journey/blog post
+    docsLink: z.string().optional(), // Link to documentation
+
+    // Meta
+    order: z.number().default(0), // Sort order for display
+    category: z.enum(['calculator', 'advisor', 'registry', 'framework']).optional(),
+
+    // SEO
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+  }),
+});
+
 const blog = defineCollection({
   type: 'content',
   schema: z.object({
@@ -31,4 +61,5 @@ const docs = defineCollection({
 export const collections = {
   blog,
   docs,
+  tools,
 };
