@@ -2,168 +2,276 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ProductHero from '@components/ui/ProductHero.vue';
+import StickyNav from '@components/features/StickyNav.vue';
+import FeatureHero from '@components/features/FeatureHero.vue';
+import CapabilitySection from '@components/features/CapabilitySection.vue';
+import TechSpecs from '@components/features/TechSpecs.vue';
+import RelatedContent from '@components/features/RelatedContent.vue';
+
+// Icon paths (Heroicons)
+const icons = {
+  server: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
+  chip: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+  template: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
+  lightning: 'M13 10V3L4 14h7v7l9-11h-7z',
+  cube: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  desktop: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  adjustments: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
+};
+
+// Navigation items
+const navItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'specs', label: 'Tech Specs' },
+  { id: 'resources', label: 'Resources' }
+];
+
+// Capability 1: Model Selection features
+const modelFeatures = [
+  '<strong>Anthropic Claude:</strong> Haiku, Sonnet, Opus variants',
+  '<strong>OpenAI:</strong> GPT-4, GPT-4o, o1 reasoning models',
+  '<strong>Google Gemini:</strong> Pro, Flash, Ultra options',
+  '<strong>Meta Llama:</strong> 3.3 70B, 3.1 405B for self-hosting',
+  '<strong>Mistral AI:</strong> Large, 7B edge deployments',
+  '<strong>Embedding Models:</strong> text-embedding-3, voyage-3'
+];
+
+// Capability 2: Hardware Configuration features
+const hardwareFeatures = [
+  '<strong>NVIDIA GPUs:</strong> A100, H100, L40S options',
+  '<strong>Memory Calculator:</strong> VRAM requirements per model',
+  '<strong>Multi-GPU:</strong> Tensor parallelism configurations',
+  '<strong>Cloud Providers:</strong> AWS, GCP, Azure instances'
+];
+
+// Capability 3: Framework Selection features
+const frameworkFeatures = [
+  '<strong>vLLM:</strong> High-throughput serving with PagedAttention',
+  '<strong>TensorRT-LLM:</strong> NVIDIA-optimized inference',
+  '<strong>Triton Server:</strong> Multi-model serving platform',
+  '<strong>SGLang:</strong> Structured generation optimization'
+];
+
+// Capability 4: AI Suggestions features
+const suggestionsFeatures = [
+  '<strong>Scenario-Optimized:</strong> Match SLO requirements',
+  '<strong>Cost Analysis:</strong> Price vs performance tradeoffs',
+  '<strong>Benchmark Citations:</strong> Vendor performance data',
+  '<strong>Comparison View:</strong> Side-by-side stack options'
+];
+
+// Tech specs
+const techSpecs = [
+  {
+    category: 'Model Providers',
+    icon: icons.desktop,
+    color: 'green',
+    items: [
+      '<strong>API Providers</strong> - Anthropic, OpenAI, Google, Mistral',
+      '<strong>Self-Hosted</strong> - Meta Llama, NVIDIA NIM',
+      '<strong>Embeddings</strong> - OpenAI, Voyage, Cohere'
+    ]
+  },
+  {
+    category: 'Hardware Options',
+    icon: icons.chip,
+    color: 'blue',
+    items: [
+      '<strong>GPUs</strong> - A100, H100, L40S, RTX 4090',
+      '<strong>Memory</strong> - 40GB, 80GB, multi-GPU configs',
+      '<strong>Platforms</strong> - AWS, GCP, Azure, Lambda Labs'
+    ]
+  },
+  {
+    category: 'Frameworks',
+    icon: icons.template,
+    color: 'teal',
+    items: [
+      '<strong>Serving</strong> - vLLM, TensorRT-LLM, Triton',
+      '<strong>Training</strong> - DeepSpeed, FSDP, Megatron',
+      '<strong>Optimization</strong> - FlashAttention, GPTQ, AWQ'
+    ]
+  }
+];
+
+// Related content
+const journeys = [
+  {
+    title: 'Creating Stacks',
+    description: 'Configure model, hardware, and framework for your use case',
+    href: '/blog/journey-create-stack'
+  },
+  {
+    title: 'Configure Hardware',
+    description: 'Select GPU type, count, and memory for your workload',
+    href: '/blog/journey-configure-stack-hardware'
+  },
+  {
+    title: 'Configure Framework',
+    description: 'Choose inference framework and optimization settings',
+    href: '/blog/journey-configure-stack-framework'
+  }
+];
+
+const docs = [
+  {
+    title: 'Stacks API Reference',
+    description: 'Complete API documentation for stack management',
+    href: '/docs/api/stacks'
+  },
+  {
+    title: 'Hardware Selection Guide',
+    description: 'Best practices for choosing GPU configurations',
+    href: '/docs/features/stacks'
+  }
+];
 ---
 
 <Layout
   title="Stacks - AI Infrastructure Configuration | Lattice"
-  description="Configure your AI infrastructure stack with model selection, hardware preferences, and framework choices. Get AI-suggested stacks based on your scenario."
-  keywords="AI stack configuration, model selection, infrastructure setup, GPU hardware, AI frameworks, stack recommendations"
+  description="Configure your AI infrastructure with model selection, hardware preferences, and framework choices. Get AI-suggested stacks optimized for your scenario."
+  keywords="AI stack configuration, model selection, GPU hardware, vLLM, TensorRT-LLM, infrastructure setup, stack recommendations"
 >
   <Header client:load />
 
   <main>
-    <ProductHero
+    <!-- Sticky Navigation -->
+    <StickyNav
       client:load
-      title="Stacks"
-      description="Configure your AI infrastructure with model selection, hardware preferences, and framework choices. Get AI-suggested stacks optimized for your scenario."
-      imageSrc="/images/journeys/create-stack/create-stack-03.png"
-      imageAlt="Lattice Stack editor showing model provider selection, temperature, and framework configuration"
-      gradientFrom="from-emerald-900"
-      gradientVia="via-green-900"
-      gradientTo="to-teal-900"
-      iconPath="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+      featureName="Stacks"
+      navItems={navItems}
+      buyButtonText="Get Lattice"
+      buyButtonHref="/#pricing"
+      testId="stacks-nav"
     />
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Model Selection -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Model Selection</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Choose from supported LLM providers and models. Compare capabilities, pricing, and performance characteristics to find the right fit for your use case.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Anthropic Claude (Haiku, Sonnet, Opus)</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">OpenAI GPT-4, GPT-4o, o1</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Google Gemini, Meta Llama, Mistral</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Hero Section -->
+    <section id="overview">
+      <FeatureHero
+        client:load
+        headline="Configure Infrastructure."
+        tagline="Model Hardware Framework"
+        description="Stacks define your AI infrastructure: which model to use, what hardware to run it on, and which framework to serve it with. Get AI-suggested configurations optimized for your scenario."
+        productImage="/images/journeys/create-stack/create-stack-01.png"
+        productImageAlt="Lattice Stack configuration showing model provider selection, hardware options, and framework choices"
+        browserUrl="lattice.app/stacks"
+        colorScheme="teal"
+        primaryCTA="Get Lattice"
+        primaryHref="/#pricing"
+        secondaryCTA="View docs"
+        secondaryHref="/docs/features/stacks"
+        testId="stacks-hero"
+      />
+    </section>
 
-            <!-- Hardware Configuration -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Hardware Preferences</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Specify GPU requirements for self-hosted deployments. Lattice helps you understand hardware needs for different models and throughput targets.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">NVIDIA GPU options (A100, H100, L40S)</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Memory requirements per model</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cloud vs. on-premises deployment</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+      <!-- Model Selection -->
+      <CapabilitySection
+        client:load
+        title="Model Selection"
+        description="Choose from supported LLM providers and models. Compare capabilities, pricing, and performance characteristics to find the right fit for your use case."
+        features={modelFeatures}
+        image="/images/journeys/create-stack/create-stack-02.png"
+        imageAlt="Stack configuration showing model provider and variant selection"
+        icon={icons.desktop}
+        iconColor="green"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-create-stack"
+        journeyLinkText="Create your first stack"
+        testId="stacks-models"
+      />
 
-            <!-- Framework Selection -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Framework Configuration</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Select inference frameworks and serving solutions. From vLLM to TensorRT-LLM, choose the right tools for your deployment requirements.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">vLLM for high-throughput serving</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">TensorRT-LLM for optimized inference</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Triton Inference Server integration</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Hardware Configuration -->
+      <CapabilitySection
+        client:load
+        title="Hardware Configuration"
+        description="Specify GPU requirements for self-hosted deployments. Lattice helps you understand hardware needs for different models and throughput targets."
+        features={hardwareFeatures}
+        image="/images/journeys/configure-stack-hardware/configure-stack-hardware-02.png"
+        imageAlt="Hardware configuration showing GPU type and memory options"
+        icon={icons.chip}
+        iconColor="blue"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        showGlow={true}
+        journeyLink="/blog/journey-configure-stack-hardware"
+        journeyLinkText="Configure hardware options"
+        testId="stacks-hardware"
+      />
 
-            <!-- AI Suggestions -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">AI-Suggested Stacks</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Let Lattice recommend optimal stack configurations based on your scenario. Get suggestions grounded in vendor documentation and real-world benchmarks.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Scenario-optimized recommendations</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cost-performance tradeoff analysis</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Citations to vendor benchmarks</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Framework Selection -->
+      <CapabilitySection
+        client:load
+        title="Framework Selection"
+        description="Select inference frameworks and serving solutions. From vLLM to TensorRT-LLM, choose the right tools for your deployment requirements."
+        features={frameworkFeatures}
+        image="/images/journeys/configure-stack-framework/configure-stack-framework-02.png"
+        imageAlt="Framework configuration showing inference engine options"
+        icon={icons.template}
+        iconColor="teal"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-configure-stack-framework"
+        journeyLinkText="Select inference framework"
+        testId="stacks-frameworks"
+      />
+
+      <!-- AI Suggestions -->
+      <CapabilitySection
+        client:load
+        title="AI-Suggested Stacks"
+        description="Let Lattice recommend optimal stack configurations based on your scenario. Get suggestions grounded in vendor documentation and real-world benchmarks."
+        features={suggestionsFeatures}
+        image="/images/journeys/get-stack-suggestion/get-stack-suggestion-01.png"
+        imageAlt="AI-suggested stack recommendations with cost and performance analysis"
+        icon={icons.lightning}
+        iconColor="violet"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-get-stack-suggestion"
+        journeyLinkText="Get AI recommendations"
+        testId="stacks-suggestions"
+      />
+    </section>
+
+    <!-- Tech Specs Section -->
+    <section id="specs">
+      <TechSpecs
+        client:load
+        title="Technical Specifications"
+        description="Everything you need to know about stack configuration options and supported infrastructure in Lattice."
+        icon={icons.cog}
+        iconColor="green"
+        specs={techSpecs}
+        columns={3}
+        background="white"
+        docsLink="/docs/features/stacks"
+        docsLinkText="View full documentation"
+        testId="stacks-specs"
+      />
+    </section>
+
+    <!-- Related Resources Section -->
+    <section id="resources">
+      <RelatedContent
+        client:load
+        title="Learn More About Stacks"
+        description="Explore guides and documentation to configure optimal AI infrastructure."
+        journeys={journeys}
+        docs={docs}
+        background="gray"
+        ctaLink="/docs/features/stacks"
+        ctaText="View Stacks documentation"
+        testId="stacks-resources"
+      />
     </section>
 
     <!-- CTA Section -->
@@ -175,7 +283,11 @@ import ProductHero from '@components/ui/ProductHero.vue';
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Get AI-powered stack recommendations optimized for your specific requirements.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-emerald-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-emerald-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="stacks-cta-button"
+        >
           Get Lattice for $99
         </a>
       </div>
