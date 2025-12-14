@@ -2,7 +2,133 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ProductHero from '@components/ui/ProductHero.vue';
+import StickyNav from '@components/features/StickyNav.vue';
+import FeatureHero from '@components/features/FeatureHero.vue';
+import CapabilitySection from '@components/features/CapabilitySection.vue';
+import TechSpecs from '@components/features/TechSpecs.vue';
+import RelatedContent from '@components/features/RelatedContent.vue';
+
+// Icon paths (Heroicons)
+const icons = {
+  upload: 'M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  link: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1',
+  lightning: 'M13 10V3L4 14h7v7l9-11h-7z',
+  document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  cloud: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z',
+  database: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4'
+};
+
+// Navigation items
+const navItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'specs', label: 'Tech Specs' },
+  { id: 'resources', label: 'Resources' }
+];
+
+// Capability 1: Multi-Source Ingestion features
+const ingestionFeatures = [
+  '<strong>PDF Documents:</strong> Upload technical papers, whitepapers, and documentation',
+  '<strong>Web URLs:</strong> Import pricing pages, model cards, and vendor docs',
+  '<strong>GitHub Repos:</strong> Connect to README files and documentation',
+  '<strong>YouTube:</strong> Index video transcripts for technical talks',
+  '<strong>Google Docs:</strong> Import directly from your Drive (v0.6.2+)'
+];
+
+// Capability 2: Hybrid Search features
+const searchFeatures = [
+  'Vector <strong>embeddings</strong> for semantic understanding',
+  'Keyword matching for exact terms and <strong>model names</strong>',
+  'Cross-source discovery of <strong>related content</strong>',
+  'Configurable <strong>relevance scoring</strong>'
+];
+
+// Capability 3: Citation Tracking features
+const citationFeatures = [
+  'Numbered <strong>inline citations</strong> in AI responses',
+  'Click to expand and see <strong>source context</strong>',
+  'Track decision provenance back to <strong>authoritative docs</strong>',
+  '<strong>Verify claims</strong> with one click'
+];
+
+// Capability 4: Real-time Indexing features
+const indexingFeatures = [
+  'Live <strong>indexing progress</strong> indicators',
+  'Chunk count displayed <strong>per source</strong>',
+  'Automatic <strong>embedding generation</strong>',
+  '<strong>Re-index</strong> on content updates'
+];
+
+// Tech specs
+const techSpecs = [
+  {
+    category: 'Supported Formats',
+    icon: icons.document,
+    color: 'violet',
+    items: [
+      '<strong>PDF</strong> - Technical papers, whitepapers',
+      '<strong>DOCX/DOC</strong> - Word documents',
+      '<strong>TXT/MD</strong> - Plain text, Markdown',
+      '<strong>HTML</strong> - Web pages via URL',
+      '<strong>JSON</strong> - Structured data files'
+    ]
+  },
+  {
+    category: 'Cloud Integrations',
+    icon: icons.cloud,
+    color: 'blue',
+    items: [
+      '<strong>Google Docs</strong> - Drive integration',
+      '<strong>GitHub</strong> - Repos and READMEs',
+      '<strong>YouTube</strong> - Video transcripts',
+      '<strong>Web URLs</strong> - Any public page'
+    ]
+  },
+  {
+    category: 'Processing',
+    icon: icons.database,
+    color: 'teal',
+    items: [
+      'Automatic <strong>chunking</strong> with overlap',
+      'Vector <strong>embeddings</strong> via OpenAI/local',
+      '<strong>Hybrid search</strong> indexing',
+      'Real-time <strong>progress</strong> tracking'
+    ]
+  }
+];
+
+// Related content
+const journeys = [
+  {
+    title: 'Adding Sources to Your Workspace',
+    description: 'Learn how to import PDFs, URLs, GitHub repos, and more',
+    href: '/blog/journey-add-sources'
+  },
+  {
+    title: 'Browsing Your Knowledge Base',
+    description: 'Navigate and search your indexed sources',
+    href: '/blog/journey-browse-sources'
+  },
+  {
+    title: 'Viewing Source Details',
+    description: 'Inspect chunks, metadata, and citations',
+    href: '/blog/journey-view-source'
+  }
+];
+
+const docs = [
+  {
+    title: 'Sources API Reference',
+    description: 'Complete API documentation for source management',
+    href: '/docs/api/sources'
+  },
+  {
+    title: 'Supported Formats Guide',
+    description: 'All file types and integrations supported',
+    href: '/docs/features/sources'
+  }
+];
 ---
 
 <Layout
@@ -13,169 +139,137 @@ import ProductHero from '@components/ui/ProductHero.vue';
   <Header client:load />
 
   <main>
-    <ProductHero
+    <!-- Sticky Navigation -->
+    <StickyNav
       client:load
-      title="Sources Panel"
-      description="Build a curated knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts, and Google Docs. Every AI recommendation links back to specific source chunks you can verify."
-      imageSrc="/images/journeys/view-source/view-source-03.png"
-      imageAlt="Lattice Sources panel showing document reader with code examples and metadata"
-      gradientFrom="from-violet-900"
-      gradientVia="via-purple-900"
-      gradientTo="to-indigo-900"
-      iconPath="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+      featureName="Sources"
+      navItems={navItems}
+      buyButtonText="Get Lattice"
+      buyButtonHref="/#pricing"
+      testId="sources-nav"
     />
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Multi-Source Ingestion -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Multi-Source Ingestion</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Add knowledge from multiple source types. Lattice handles the chunking, embedding, and indexing automatically.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>PDF Documents:</strong> Upload technical papers, whitepapers, and documentation</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>Web URLs:</strong> Import pricing pages, model cards, and vendor docs</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>GitHub Repos:</strong> Connect to README files and documentation</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>YouTube:</strong> Index video transcripts for technical talks</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>Google Docs:</strong> Import from your Drive</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Hero Section -->
+    <section id="overview">
+      <FeatureHero
+        client:load
+        headline="Your Knowledge. Unified."
+        tagline="Personal Private Powerful"
+        description="Build a curated knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts, and Google Docs. Every AI recommendation links back to specific source chunks you can verify."
+        productImage="/images/journeys/view-source/view-source-03.png"
+        productImageAlt="Lattice Sources panel showing document reader with code examples and metadata"
+        browserUrl="lattice.app/sources"
+        colorScheme="violet"
+        primaryCTA="Get Lattice"
+        primaryHref="/#pricing"
+        secondaryCTA="View docs"
+        secondaryHref="/docs/features/sources"
+        testId="sources-hero"
+      />
+    </section>
 
-            <!-- Hybrid Search -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Hybrid Semantic Search</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Find relevant content across all your sources with a combination of semantic similarity and keyword matching.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Vector embeddings for semantic understanding</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Keyword matching for exact terms and model names</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cross-source discovery of related content</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+      <!-- Multi-Source Ingestion -->
+      <CapabilitySection
+        client:load
+        title="Multi-Source Ingestion"
+        description="Add knowledge from multiple source types. Lattice handles the chunking, embedding, and indexing automatically."
+        features={ingestionFeatures}
+        image="/images/journeys/add-sources/add-sources-02.png"
+        imageAlt="Adding sources to Lattice workspace"
+        icon={icons.upload}
+        iconColor="violet"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-add-sources"
+        journeyLinkText="Learn to add sources"
+        testId="sources-ingestion"
+      />
 
-            <!-- Citation Tracking -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Citation Tracking</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Every AI recommendation includes numbered citations linking back to specific chunks in your sources. Verify claims with one click.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Numbered inline citations in AI responses</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Click to expand and see source context</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Track decision provenance back to authoritative docs</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Hybrid Search -->
+      <CapabilitySection
+        client:load
+        title="Hybrid Semantic Search"
+        description="Find relevant content across all your sources with a combination of semantic similarity and keyword matching."
+        features={searchFeatures}
+        image="/images/journeys/browse-sources/browse-sources-01.png"
+        imageAlt="Searching sources in Lattice"
+        icon={icons.search}
+        iconColor="blue"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-browse-sources"
+        journeyLinkText="Explore search features"
+        testId="sources-search"
+      />
 
-            <!-- Real-time Indexing -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Real-time Indexing</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Watch your sources get processed in real-time. See chunk counts and indexing progress as content becomes searchable.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Live indexing progress indicators</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Chunk count displayed per source</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Automatic embedding generation</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Citation Tracking -->
+      <CapabilitySection
+        client:load
+        title="Citation Tracking"
+        description="Every AI recommendation includes numbered citations linking back to specific chunks in your sources. Verify claims with one click."
+        features={citationFeatures}
+        image="/images/journeys/view-source/view-source-03.png"
+        imageAlt="Citation tracking in Lattice"
+        icon={icons.link}
+        iconColor="teal"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        showGlow={true}
+        journeyLink="/blog/journey-view-source"
+        journeyLinkText="See citation details"
+        testId="sources-citations"
+      />
+
+      <!-- Real-time Indexing -->
+      <CapabilitySection
+        client:load
+        title="Real-time Indexing"
+        description="Watch your sources get processed in real-time. See chunk counts and indexing progress as content becomes searchable."
+        features={indexingFeatures}
+        icon={icons.lightning}
+        iconColor="amber"
+        imagePosition="right"
+        background="gray"
+        showPlaceholder={true}
+        testId="sources-indexing"
+      />
+    </section>
+
+    <!-- Tech Specs Section -->
+    <section id="specs">
+      <TechSpecs
+        client:load
+        title="Technical Specifications"
+        description="Everything you need to know about Sources panel capabilities and supported formats."
+        icon={icons.document}
+        iconColor="violet"
+        specs={techSpecs}
+        columns={3}
+        background="white"
+        docsLink="/docs/features/sources"
+        docsLinkText="View full documentation"
+        testId="sources-specs"
+      />
+    </section>
+
+    <!-- Related Resources Section -->
+    <section id="resources">
+      <RelatedContent
+        client:load
+        title="Learn More About Sources"
+        description="Explore guides and documentation to get the most out of the Sources panel."
+        journeys={journeys}
+        docs={docs}
+        background="gray"
+        ctaLink="/docs/features/sources"
+        ctaText="View Sources documentation"
+        testId="sources-resources"
+      />
     </section>
 
     <!-- CTA Section -->
@@ -187,7 +281,11 @@ import ProductHero from '@components/ui/ProductHero.vue';
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Start adding sources and get grounded recommendations with full citations.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="sources-cta-button"
+        >
           Get Lattice for $99
         </a>
       </div>
