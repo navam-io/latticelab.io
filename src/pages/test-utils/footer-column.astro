@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import FooterColumn from '../../components/footer/FooterColumn.vue'
+import FooterLinks from '../../components/footer/FooterLinks.vue'
+
+// Sample link data
+const featuresLinks = [
+  { label: 'All Features', href: '/features' },
+  { label: 'Sources', href: '/features/sources' },
+  { label: 'Lab', href: '/features/lab' },
+  { label: 'Studio', href: '/features/studio' },
+  { label: 'Blueprints', href: '/features/blueprints' },
+]
+
+const toolsLinks = [
+  { label: 'Accelerator Registry', href: '/tools/accelerator-registry' },
+  { label: 'Memory Calculator', href: '/tools/memory-calculator' },
+  { label: 'TCO Calculator', href: '/tools/tco-calculator' },
+]
+
+const companyLinks = [
+  { label: 'About Lattice', href: '/about' },
+  { label: 'Navam.io', href: 'https://www.navam.io', external: true },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'GitHub', href: 'https://github.com/navam-io', external: true },
+]
+
+const supportLinks = [
+  { label: 'Help Center', href: '/help' },
+  { label: 'FAQs', href: '/#faq' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
+]
+---
+
+<Layout title="FooterColumn Component Test">
+  <main class="py-8">
+    <div class="container mx-auto px-4 mb-16">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">FooterColumn Component Test</h1>
+      <p class="text-gray-600">Testing FooterColumn and FooterLinks components.</p>
+    </div>
+
+    <!-- Test 1: FooterLinks Component -->
+    <section class="mb-16 bg-gray-50 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">1. FooterLinks Component (Standalone)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Normal Spacing (default)</p>
+            <FooterLinks
+              client:load
+              links={featuresLinks}
+              testId="links-normal"
+            />
+          </div>
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Tight Spacing</p>
+            <FooterLinks
+              client:load
+              links={featuresLinks}
+              spacing="tight"
+              testId="links-tight"
+            />
+          </div>
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Relaxed Spacing</p>
+            <FooterLinks
+              client:load
+              links={featuresLinks}
+              spacing="relaxed"
+              testId="links-relaxed"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 2: FooterLinks with External Links -->
+    <section class="mb-16 bg-white py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">2. FooterLinks with External Links</h2>
+        <div class="max-w-xs">
+          <FooterLinks
+            client:load
+            links={companyLinks}
+            testId="links-external"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 3: FooterLinks Sizes -->
+    <section class="mb-16 bg-gray-50 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">3. FooterLinks Sizes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Small (default)</p>
+            <FooterLinks
+              client:load
+              links={toolsLinks}
+              size="sm"
+              testId="links-sm"
+            />
+          </div>
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Medium</p>
+            <FooterLinks
+              client:load
+              links={toolsLinks}
+              size="md"
+              testId="links-md"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 4: FooterColumn Default -->
+    <section class="mb-16 bg-white py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">4. FooterColumn (Default)</h2>
+        <div class="max-w-xs">
+          <FooterColumn
+            client:load
+            title="Features"
+            links={featuresLinks}
+            testId="column-default"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 5: FooterColumn Title Sizes -->
+    <section class="mb-16 bg-gray-50 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">5. FooterColumn Title Sizes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Small Title (uppercase)</p>
+            <FooterColumn
+              client:load
+              title="Features"
+              links={featuresLinks}
+              titleSize="sm"
+              testId="column-title-sm"
+            />
+          </div>
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Medium Title</p>
+            <FooterColumn
+              client:load
+              title="Features"
+              links={featuresLinks}
+              titleSize="md"
+              testId="column-title-md"
+            />
+          </div>
+          <div>
+            <p class="text-sm text-gray-500 mb-4">Large Title</p>
+            <FooterColumn
+              client:load
+              title="Features"
+              links={featuresLinks}
+              titleSize="lg"
+              testId="column-title-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 6: FooterColumn with External Links -->
+    <section class="mb-16 bg-white py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">6. FooterColumn with External Links</h2>
+        <div class="max-w-xs">
+          <FooterColumn
+            client:load
+            title="Company"
+            links={companyLinks}
+            testId="column-external"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 7: Full Footer Preview (6-column) -->
+    <section class="mb-16 bg-gray-900 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-white mb-8">7. Full Footer Preview (6-Column Layout)</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <FooterColumn
+            client:load
+            title="Features"
+            links={featuresLinks}
+            testId="preview-features"
+          />
+          <FooterColumn
+            client:load
+            title="Tools"
+            links={toolsLinks}
+            testId="preview-tools"
+          />
+          <FooterColumn
+            client:load
+            title="Resources"
+            links={[
+              { label: 'Documentation', href: '/docs' },
+              { label: 'API Reference', href: '/docs/api' },
+              { label: 'Getting Started', href: '/docs/getting-started' },
+              { label: 'Blog', href: '/blog' },
+            ]}
+            testId="preview-resources"
+          />
+          <FooterColumn
+            client:load
+            title="Solutions"
+            links={[
+              { label: 'For Research Engineers', href: '/solutions/research' },
+              { label: 'For Platform Leads', href: '/solutions/platform' },
+              { label: 'For CTOs', href: '/solutions/cto' },
+            ]}
+            testId="preview-solutions"
+          />
+          <FooterColumn
+            client:load
+            title="Company"
+            links={companyLinks}
+            testId="preview-company"
+          />
+          <FooterColumn
+            client:load
+            title="Support"
+            links={supportLinks}
+            testId="preview-support"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Test 8: Link Spacing in Column -->
+    <section class="mb-16 bg-gray-50 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">8. FooterColumn Link Spacing Variants</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <FooterColumn
+            client:load
+            title="Tight"
+            links={featuresLinks}
+            linkSpacing="tight"
+            testId="column-spacing-tight"
+          />
+          <FooterColumn
+            client:load
+            title="Normal"
+            links={featuresLinks}
+            linkSpacing="normal"
+            testId="column-spacing-normal"
+          />
+          <FooterColumn
+            client:load
+            title="Relaxed"
+            links={featuresLinks}
+            linkSpacing="relaxed"
+            testId="column-spacing-relaxed"
+          />
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
