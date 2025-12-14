@@ -1,0 +1,111 @@
+---
+/**
+ * HeroSection Component Test Page
+ * This page is used for testing the HeroSection component in production.
+ * Route: /test-utils/hero-section
+ */
+import Layout from '@layouts/Layout.astro';
+import HeroSection from '@components/home/HeroSection.vue';
+---
+
+<Layout title="HeroSection Test">
+  <main class="bg-gray-100">
+    <!-- Test Instructions -->
+    <div class="bg-blue-50 border-b border-blue-200 py-4">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h1 class="text-2xl font-bold text-blue-900 mb-2">HeroSection Component Test</h1>
+        <ul class="text-sm text-blue-800 space-y-1">
+          <li>Check gradient headline text (120px+ at max size)</li>
+          <li>Verify tagline visibility and styling</li>
+          <li>Test "Learn more" and "Buy $99" CTAs (DualCTA)</li>
+          <li>Check product image placeholder/screenshot</li>
+          <li>Verify dark gradient background</li>
+          <li>Test responsive behavior at different viewport sizes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Default Usage -->
+    <section class="mb-8">
+      <div class="bg-white py-4 px-4 border-b">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-xl font-semibold text-gray-900">Default Usage</h2>
+          <p class="text-sm text-gray-600">Default props with "Lattice" headline and standard tagline.</p>
+        </div>
+      </div>
+      <HeroSection client:load testId="default-hero" />
+    </section>
+
+    <!-- Custom Headline -->
+    <section class="mb-8">
+      <div class="bg-white py-4 px-4 border-b">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-xl font-semibold text-gray-900">Custom Headline</h2>
+          <p class="text-sm text-gray-600">Custom headline and tagline text.</p>
+        </div>
+      </div>
+      <HeroSection
+        client:load
+        headline="Custom"
+        tagline="This is a custom tagline for testing purposes"
+        testId="custom-hero"
+      />
+    </section>
+
+    <!-- Without Product Image -->
+    <section class="mb-8">
+      <div class="bg-white py-4 px-4 border-b">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-xl font-semibold text-gray-900">Without Product Image (Placeholder)</h2>
+          <p class="text-sm text-gray-600">Shows placeholder when no product image is provided.</p>
+        </div>
+      </div>
+      <HeroSection
+        client:load
+        productImage=""
+        testId="placeholder-hero"
+      />
+    </section>
+
+    <!-- Custom CTAs -->
+    <section class="mb-8">
+      <div class="bg-white py-4 px-4 border-b">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-xl font-semibold text-gray-900">Custom CTAs</h2>
+          <p class="text-sm text-gray-600">Custom CTA labels and hrefs.</p>
+        </div>
+      </div>
+      <HeroSection
+        client:load
+        primaryCTA="Get Started"
+        primaryHref="/docs/getting-started/introduction"
+        secondaryCTA="Watch Demo"
+        secondaryHref="#demo"
+        testId="custom-cta-hero"
+      />
+    </section>
+
+    <!-- All Custom Props -->
+    <section class="mb-8">
+      <div class="bg-white py-4 px-4 border-b">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-xl font-semibold text-gray-900">All Custom Props</h2>
+          <p class="text-sm text-gray-600">Fully customized hero section.</p>
+        </div>
+      </div>
+      <HeroSection
+        client:load
+        headline="Studio"
+        tagline="Turn AI responses into reusable artifacts. Export to Markdown, JSON, or CSV."
+        primaryCTA="Try Studio"
+        primaryHref="/features/studio"
+        secondaryCTA="View Docs"
+        secondaryHref="/docs/features/studio"
+        productImage="/images/journeys/view-artifact/view-artifact-02.png"
+        productImageAlt="Lattice Studio - Artifact Export"
+        testId="full-custom-hero"
+      />
+    </section>
+
+  </main>
+</Layout>

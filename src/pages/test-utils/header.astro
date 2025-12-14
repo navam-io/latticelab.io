@@ -1,0 +1,122 @@
+---
+/**
+ * Header Component Test Page
+ * This page is used for testing the Header component with MegaMenu and MobileNav integration.
+ * Route: /test-utils/header
+ */
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+---
+
+<Layout title="Header Test">
+  <!-- Replace the default header with test instance -->
+  <div class="min-h-screen bg-gray-50">
+    <!-- Test Header Instance -->
+    <div class="border-b-4 border-red-500">
+      <Header client:load testId="test-header" />
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8">Header Component Test</h1>
+
+      <!-- Test Instructions -->
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 class="font-semibold text-blue-900 mb-2">Testing Instructions</h2>
+        <ul class="text-sm text-blue-800 space-y-1">
+          <li>Test the header above (with red border for visibility)</li>
+          <li>Desktop: Hover over "Features" to open MegaMenu</li>
+          <li>Mobile: Click hamburger to open mobile navigation</li>
+          <li>Test keyboard navigation (Tab, Enter, Space, Escape)</li>
+          <li>Resize browser to test responsive breakpoints</li>
+        </ul>
+      </div>
+
+      <!-- Desktop Tests -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Desktop Navigation Tests</h2>
+        <p class="text-gray-600 mb-4">Test at viewport width &gt;= 768px (md breakpoint).</p>
+
+        <div class="space-y-4 text-sm">
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">MegaMenu Hover:</strong>
+            <p class="text-gray-600 mt-1">Hover over "Features" to open the mega menu panel.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Keyboard Navigation:</strong>
+            <p class="text-gray-600 mt-1">Tab to "Features", press Space/Enter to toggle, Escape to close.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Navigation Links:</strong>
+            <p class="text-gray-600 mt-1">All desktop nav links should be visible: Features, Blog, Docs, Pricing, Contact.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Buy Button:</strong>
+            <p class="text-gray-600 mt-1">Desktop buy button should be visible on the right.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mobile Tests -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Mobile Navigation Tests</h2>
+        <p class="text-gray-600 mb-4">Test at viewport width &lt; 768px (below md breakpoint).</p>
+
+        <div class="space-y-4 text-sm">
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Hamburger Menu:</strong>
+            <p class="text-gray-600 mt-1">Hamburger icon should be visible. Click to open mobile nav.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Mobile Buy Button:</strong>
+            <p class="text-gray-600 mt-1">Buy button should be visible next to hamburger.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Accordion Sections:</strong>
+            <p class="text-gray-600 mt-1">Mobile nav should have Features, Configuration, Resources sections.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Body Scroll Lock:</strong>
+            <p class="text-gray-600 mt-1">When mobile nav is open, body should not scroll.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Accessibility Tests -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Accessibility Tests</h2>
+
+        <div class="space-y-4 text-sm">
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">ARIA Attributes:</strong>
+            <p class="text-gray-600 mt-1">Check aria-expanded, aria-haspopup on trigger buttons.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Focus Management:</strong>
+            <p class="text-gray-600 mt-1">Focus should be trapped in mobile nav when open.</p>
+          </div>
+          <div class="p-3 bg-gray-50 rounded-lg">
+            <strong class="text-gray-900">Screen Reader:</strong>
+            <p class="text-gray-600 mt-1">Test with VoiceOver/NVDA for proper announcements.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Extra content for scroll testing -->
+      <section class="mb-12 bg-white rounded-xl shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Scroll Test Area</h2>
+        <p class="text-gray-600 mb-4">Scroll down to test sticky header behavior.</p>
+        <div class="h-[800px] bg-gradient-to-b from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+          <span class="text-gray-500">Scroll test content</span>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  /* Hide the original header from layout if needed */
+  :global(header:not([data-testid="test-header"])) {
+    /* The layout header will still show, which is fine for this test */
+  }
+</style>

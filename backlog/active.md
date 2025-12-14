@@ -19,56 +19,12 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 2.1: NavDropdown Component** - See [release-0.6.0.md](../releases/release-0.6.0.md)
 - **Feature 2.2: MegaMenu Component** - See [release-0.7.0.md](../releases/release-0.7.0.md)
 - **Feature 2.3: MobileNav Component** - See [release-0.8.0.md](../releases/release-0.8.0.md)
-
----
-
-## Phase 2: Navigation
-
-### Feature 2.4: Header Integration
-**Spec Reference:** Part 1, Section 1.3, 1.4
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Update Header.vue to integrate MegaMenu and MobileNav components with full accessibility.
-
-**Files:**
-- [ ] `src/components/Header.vue` - Update to use new navigation
-
-**Dependencies:** Feature 2.2 (MegaMenu), Feature 2.3 (MobileNav)
-
-**Acceptance Criteria:**
-- [ ] Desktop: Logo + nav items + search + buy button layout
-- [ ] Mobile: Sticky header with logo + hamburger + buy button
-- [ ] Keyboard accessible (arrow key navigation)
-- [ ] Focus trapping within open menu
-- [ ] Screen reader friendly
+- **Feature 2.4: Header Integration** - See [release-0.9.0.md](../releases/release-0.9.0.md)
+- **Feature 3.1: Hero Section Redesign** - See [release-0.10.0.md](../releases/release-0.10.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.1: Hero Section Redesign
-**Spec Reference:** Part 2, Section 2.1 (Section 1: Hero)
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Redesign hero section with large gradient headline, tagline, and dual CTAs.
-
-**Files:**
-- [ ] `src/components/home/HeroSection.vue` - Redesigned hero
-
-**Dependencies:** Feature 1.3 (GradientText), Feature 1.4 (DualCTA)
-
-**Acceptance Criteria:**
-- [ ] Full-width dark gradient background
-- [ ] Large "Lattice" gradient text headline (120px+)
-- [ ] Tagline: "AI Infrastructure Decisions, Grounded in Evidence"
-- [ ] Hero product image placeholder
-- [ ] "Learn more" + "Buy $99" CTAs
-
----
 
 ### Feature 3.2: FeatureCard Component
 **Spec Reference:** Part 2, Section 2.1 (Section 2: Feature Cards)
@@ -737,11 +693,11 @@ Final quality assurance and cross-browser testing.
 | Phase | Features | Completed | Remaining |
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
-| Phase 2: Navigation | 4 | 3 | 1 |
-| Phase 3: Homepage | 7 | 0 | 7 |
+| Phase 2: Navigation | 4 | 4 | 0 |
+| Phase 3: Homepage | 7 | 1 | 6 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **8** | **33** |
+| **Total** | **41** | **10** | **31** |
