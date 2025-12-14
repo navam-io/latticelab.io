@@ -38,30 +38,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.7: Feature Pages Update (Lab)** - See [release-0.25.0.md](../releases/release-0.25.0.md)
 - **Feature 5.8: Feature Pages Update (Studio)** - See [release-0.26.0.md](../releases/release-0.26.0.md)
 - **Feature 5.9: Feature Pages Update (Blueprints)** - See [release-0.27.0.md](../releases/release-0.27.0.md)
+- **Feature 5.10: Feature Pages Update (Scenarios)** - See [release-0.28.0.md](../releases/release-0.28.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.10: Feature Pages Update (Scenarios)
-**Spec Reference:** Part 4, Section 4.3, 4.4
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Update Scenarios feature page with new components and content.
-
-**Files:**
-- [ ] `src/pages/features/scenarios.astro` - Scenarios feature page
-
-**Dependencies:** Features 5.1-5.5
-
-**Acceptance Criteria:**
-- [ ] Hero: "Define Your Workload."
-- [ ] Capabilities: Workload types, SLO config, Compliance
-- [ ] Related journey links: create-scenario, edit-scenario
-
----
 
 ### Feature 5.11: Feature Pages Update (Stacks)
 **Spec Reference:** Part 4, Section 4.3, 4.4
@@ -349,8 +330,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 9 | 4 |
+| Phase 5: Feature Pages | 13 | 10 | 3 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **27** | **14** |
+| **Total** | **41** | **28** | **13** |

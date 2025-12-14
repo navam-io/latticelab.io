@@ -2,168 +2,277 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ProductHero from '@components/ui/ProductHero.vue';
+import StickyNav from '@components/features/StickyNav.vue';
+import FeatureHero from '@components/features/FeatureHero.vue';
+import CapabilitySection from '@components/features/CapabilitySection.vue';
+import TechSpecs from '@components/features/TechSpecs.vue';
+import RelatedContent from '@components/features/RelatedContent.vue';
+
+// Icon paths (Heroicons)
+const icons = {
+  chartBar: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+  clock: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+  currency: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  template: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  collection: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+  adjustments: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
+};
+
+// Navigation items
+const navItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'specs', label: 'Tech Specs' },
+  { id: 'resources', label: 'Resources' }
+];
+
+// Capability 1: Workload Types features
+const workloadFeatures = [
+  '<strong>High-Volume Chat:</strong> Real-time conversational AI with strict latency',
+  '<strong>RAG Applications:</strong> Knowledge base retrieval with accuracy SLOs',
+  '<strong>Code Generation:</strong> IDE integration with low-latency completion',
+  '<strong>Agentic Workflows:</strong> Multi-step reasoning with tool use',
+  '<strong>Batch Processing:</strong> Async workloads with throughput focus',
+  '<strong>Training Jobs:</strong> Fine-tuning, RLHF, DPO configurations'
+];
+
+// Capability 2: SLO Configuration features
+const sloFeatures = [
+  '<strong>P95 Latency:</strong> Target response times (e.g., 1000ms)',
+  '<strong>Throughput:</strong> Requests per minute requirements',
+  '<strong>Availability:</strong> Uptime and reliability targets',
+  '<strong>Token Limits:</strong> Input/output token constraints'
+];
+
+// Capability 3: Budget & Cost features
+const budgetFeatures = [
+  '<strong>Monthly Spend:</strong> Budget caps and alerts',
+  '<strong>Cost-per-Request:</strong> Per-1K-request targets',
+  '<strong>Cost vs Quality:</strong> Tradeoff preferences',
+  '<strong>Reserved vs Spot:</strong> Instance pricing options'
+];
+
+// Capability 4: Compliance & Privacy features
+const complianceFeatures = [
+  '<strong>HIPAA/SOC2:</strong> Healthcare and enterprise compliance',
+  '<strong>Data Residency:</strong> Geographic constraints for data',
+  '<strong>Audit Requirements:</strong> Logging and provenance tracking',
+  '<strong>Privacy Controls:</strong> PII handling and anonymization'
+];
+
+// Tech specs
+const techSpecs = [
+  {
+    category: 'Workload Categories',
+    icon: icons.collection,
+    color: 'amber',
+    items: [
+      '<strong>Inference</strong> - Chat, RAG, Code, Embedding',
+      '<strong>Training</strong> - SFT, LoRA, RLHF, DPO',
+      '<strong>Comparison</strong> - A/B testing scenarios'
+    ]
+  },
+  {
+    category: 'SLO Parameters',
+    icon: icons.clock,
+    color: 'blue',
+    items: [
+      '<strong>Latency</strong> - P50, P95, P99 targets',
+      '<strong>Throughput</strong> - Requests/min, tokens/sec',
+      '<strong>Availability</strong> - Uptime percentages',
+      '<strong>Budget</strong> - Monthly and per-request limits'
+    ]
+  },
+  {
+    category: 'Profile Options',
+    icon: icons.adjustments,
+    color: 'teal',
+    items: [
+      '<strong>Traffic</strong> - Low, Medium, High, Burst',
+      '<strong>Risk</strong> - Conservative, Balanced, Aggressive',
+      '<strong>Compliance</strong> - HIPAA, SOC2, GDPR'
+    ]
+  }
+];
+
+// Related content
+const journeys = [
+  {
+    title: 'Creating Scenarios',
+    description: 'Define workload requirements with templates or from scratch',
+    href: '/blog/journey-create-scenario'
+  },
+  {
+    title: 'Editing Scenarios',
+    description: 'Adjust requirements as your project needs evolve',
+    href: '/blog/journey-edit-scenario'
+  },
+  {
+    title: 'Comparing Scenarios',
+    description: 'Run side-by-side comparisons for different configurations',
+    href: '/blog/journey-compare-scenarios'
+  }
+];
+
+const docs = [
+  {
+    title: 'Scenarios API Reference',
+    description: 'Complete API documentation for scenario management',
+    href: '/docs/api/scenarios'
+  },
+  {
+    title: 'SLO Configuration Guide',
+    description: 'Best practices for setting performance targets',
+    href: '/docs/features/scenarios'
+  }
+];
 ---
 
 <Layout
-  title="Scenarios - Define Your Use Case | Lattice"
-  description="Define workload types, SLO requirements, and constraints to get targeted AI recommendations. Create scenarios from chat or configure manually."
-  keywords="AI scenarios, workload requirements, SLO targets, use case definition, AI research context, requirement extraction"
+  title="Scenarios - Define Your Workload Requirements | Lattice"
+  description="Define workload types, SLO requirements, budget constraints, and compliance needs. Get targeted AI recommendations based on your specific use case."
+  keywords="AI scenarios, workload requirements, SLO targets, latency, throughput, budget, compliance, HIPAA, SOC2"
 >
   <Header client:load />
 
   <main>
-    <ProductHero
+    <!-- Sticky Navigation -->
+    <StickyNav
       client:load
-      title="Scenarios"
-      description="Define your use case requirements to get targeted recommendations. Specify workload type, latency targets, budget constraints, and compliance needs."
-      imageSrc="/images/journeys/edit-scenario/edit-scenario-02.png"
-      imageAlt="Lattice Scenario editor showing workload type, traffic profile, and risk profile configuration"
-      gradientFrom="from-amber-900"
-      gradientVia="via-orange-900"
-      gradientTo="to-red-900"
-      iconPath="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+      featureName="Scenarios"
+      navItems={navItems}
+      buyButtonText="Get Lattice"
+      buyButtonHref="/#pricing"
+      testId="scenarios-nav"
     />
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Workload Types -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Workload Classification</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Define your workload type so Lattice can provide relevant recommendations. From high-volume chat to batch processing, each workload has different optimization priorities.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">High-Volume Chat for real-time applications</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Batch Processing for async workloads</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Code Generation for development tools</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Hero Section -->
+    <section id="overview">
+      <FeatureHero
+        client:load
+        headline="Define Your Workload."
+        tagline="Configure Target Optimize"
+        description="Scenarios capture everything about your AI workload: what kind of work it does, how it needs to perform, and what constraints apply. Your scenario becomes context for all recommendations."
+        productImage="/images/journeys/create-scenario-new/create-scenario-01.png"
+        productImageAlt="Lattice Scenario template chooser showing Inference templates with Chat, RAG, Agentic, Code, and Embedding options"
+        browserUrl="lattice.app/scenarios"
+        colorScheme="amber"
+        primaryCTA="Get Lattice"
+        primaryHref="/#pricing"
+        secondaryCTA="View docs"
+        secondaryHref="/docs/features/scenarios"
+        testId="scenarios-hero"
+      />
+    </section>
 
-            <!-- SLO Requirements -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">SLO Targets</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Set your service level objectives and Lattice will recommend models and configurations that meet your latency, throughput, and availability requirements.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">P95 latency targets (e.g., 1000ms)</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Throughput requirements (requests/sec)</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Availability and uptime targets</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+      <!-- Workload Types -->
+      <CapabilitySection
+        client:load
+        title="Workload Classification"
+        description="Define your workload type so Lattice can provide relevant recommendations. From high-volume chat to batch processing, each workload has different optimization priorities."
+        features={workloadFeatures}
+        image="/images/journeys/create-scenario-new/create-scenario-02.png"
+        imageAlt="Training templates showing Pre-train, LoRA, QLoRA, Full Fine-tuning, RLHF, DPO options"
+        icon={icons.collection}
+        iconColor="amber"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-create-scenario"
+        journeyLinkText="Create your first scenario"
+        testId="scenarios-workloads"
+      />
 
-            <!-- Budget Constraints -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Budget & Cost Constraints</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Define your monthly budget and cost-per-request targets. Lattice factors pricing into recommendations to find the best value for your requirements.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Monthly spend limits</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cost-per-1K-request targets</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cost vs. quality tradeoff preferences</span>
-                </li>
-              </ul>
-            </div>
+      <!-- SLO Configuration -->
+      <CapabilitySection
+        client:load
+        title="SLO Configuration"
+        description="Set your service level objectives and Lattice will recommend models and configurations that meet your latency, throughput, and availability requirements."
+        features={sloFeatures}
+        image="/images/journeys/edit-scenario/edit-scenario-02.png"
+        imageAlt="Scenario configuration form showing SLO settings"
+        icon={icons.clock}
+        iconColor="blue"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        showGlow={true}
+        journeyLink="/blog/journey-edit-scenario"
+        journeyLinkText="Configure SLO targets"
+        testId="scenarios-slo"
+      />
 
-            <!-- Chat Extraction -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Extract from Chat</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Describe your requirements naturally in conversation and Lattice will extract structured scenario parameters. No need to fill out forms manually.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Natural language requirement capture</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Auto-populate scenario fields</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Review and refine extracted parameters</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Budget & Cost -->
+      <CapabilitySection
+        client:load
+        title="Budget & Cost Constraints"
+        description="Define your monthly budget and cost-per-request targets. Lattice factors pricing into recommendations to find the best value for your requirements."
+        features={budgetFeatures}
+        image="/images/journeys/create-scenario-new/create-scenario-03.png"
+        imageAlt="Scenario template preview showing cost considerations"
+        icon={icons.currency}
+        iconColor="teal"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-create-scenario"
+        journeyLinkText="Set budget constraints"
+        testId="scenarios-budget"
+      />
+
+      <!-- Compliance & Privacy -->
+      <CapabilitySection
+        client:load
+        title="Compliance & Privacy"
+        description="Specify compliance requirements like HIPAA, SOC2, and data residency constraints. Lattice filters recommendations to only show compliant options."
+        features={complianceFeatures}
+        image="/images/journeys/create-scenario-new/create-scenario-04.png"
+        imageAlt="Scenario configuration with compliance and risk profile settings"
+        icon={icons.shield}
+        iconColor="violet"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-compare-scenarios"
+        journeyLinkText="Compare compliance options"
+        testId="scenarios-compliance"
+      />
+    </section>
+
+    <!-- Tech Specs Section -->
+    <section id="specs">
+      <TechSpecs
+        client:load
+        title="Technical Specifications"
+        description="Everything you need to know about scenario configuration and workload definition in Lattice."
+        icon={icons.cog}
+        iconColor="amber"
+        specs={techSpecs}
+        columns={3}
+        background="white"
+        docsLink="/docs/features/scenarios"
+        docsLinkText="View full documentation"
+        testId="scenarios-specs"
+      />
+    </section>
+
+    <!-- Related Resources Section -->
+    <section id="resources">
+      <RelatedContent
+        client:load
+        title="Learn More About Scenarios"
+        description="Explore guides and documentation to get the most out of workload configuration."
+        journeys={journeys}
+        docs={docs}
+        background="gray"
+        ctaLink="/docs/features/scenarios"
+        ctaText="View Scenarios documentation"
+        testId="scenarios-resources"
+      />
     </section>
 
     <!-- CTA Section -->
@@ -175,7 +284,11 @@ import ProductHero from '@components/ui/ProductHero.vue';
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Get targeted AI recommendations based on your specific use case and constraints.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-amber-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-amber-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="scenarios-cta-button"
+        >
           Get Lattice for $99
         </a>
       </div>
