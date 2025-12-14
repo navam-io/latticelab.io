@@ -1,0 +1,344 @@
+---
+/**
+ * DualCTA Component Test Page
+ * This page is used for testing the DualCTA component in production.
+ * Route: /test-utils/dual-cta
+ */
+import Layout from '@layouts/Layout.astro';
+import DualCTA from '@components/shared/DualCTA.vue';
+---
+
+<Layout title="DualCTA Test" description="DualCTA component test page">
+  <main class="container-custom py-12">
+    <h1 class="text-3xl font-bold mb-8">DualCTA Component Test</h1>
+
+    <!-- Default Variant -->
+    <section class="mb-12" data-testid="default-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Default Variant</h2>
+      <div class="space-y-6">
+        <div data-testid="default-basic">
+          <p class="text-sm text-gray-400 mb-2">Basic (default labels)</p>
+          <DualCTA client:load />
+        </div>
+        <div data-testid="default-custom-labels">
+          <p class="text-sm text-gray-400 mb-2">Custom labels</p>
+          <DualCTA
+            client:load
+            primaryLabel="Get Started"
+            secondaryLabel="View Demo"
+            primaryTestId="custom-primary"
+            secondaryTestId="custom-secondary"
+          />
+        </div>
+        <div data-testid="default-with-links">
+          <p class="text-sm text-gray-400 mb-2">With links</p>
+          <DualCTA
+            client:load
+            primaryLabel="Buy $99"
+            primaryHref="/pricing"
+            secondaryLabel="Learn more"
+            secondaryHref="/features"
+            primaryTestId="linked-primary"
+            secondaryTestId="linked-secondary"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Size Variants -->
+    <section class="mb-12" data-testid="size-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Size Variants</h2>
+      <div class="space-y-6">
+        <div data-testid="size-sm">
+          <p class="text-sm text-gray-400 mb-2">Small</p>
+          <DualCTA
+            client:load
+            size="sm"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="size-sm-primary"
+            secondaryTestId="size-sm-secondary"
+          />
+        </div>
+        <div data-testid="size-md">
+          <p class="text-sm text-gray-400 mb-2">Medium (default)</p>
+          <DualCTA
+            client:load
+            size="md"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="size-md-primary"
+            secondaryTestId="size-md-secondary"
+          />
+        </div>
+        <div data-testid="size-lg">
+          <p class="text-sm text-gray-400 mb-2">Large</p>
+          <DualCTA
+            client:load
+            size="lg"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="size-lg-primary"
+            secondaryTestId="size-lg-secondary"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark Variant (for dark backgrounds) -->
+    <section class="mb-12" data-testid="dark-variant">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Dark Variant (for dark backgrounds)</h2>
+      <div class="bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 p-8 rounded-xl">
+        <div data-testid="dark-basic">
+          <DualCTA
+            client:load
+            variant="dark"
+            primaryLabel="Buy $99"
+            secondaryLabel="Learn more"
+            primaryTestId="dark-primary"
+            secondaryTestId="dark-secondary"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Light Variant (for light backgrounds with dark buttons) -->
+    <section class="mb-12" data-testid="light-variant">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Light Variant</h2>
+      <div class="bg-gray-100 p-8 rounded-xl">
+        <div data-testid="light-basic">
+          <DualCTA
+            client:load
+            variant="light"
+            primaryLabel="Get Started"
+            secondaryLabel="Learn more"
+            primaryTestId="light-primary"
+            secondaryTestId="light-secondary"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Alignment Variants -->
+    <section class="mb-12" data-testid="alignment-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Alignment Variants</h2>
+      <div class="space-y-6">
+        <div class="border border-gray-200 p-4 rounded-lg" data-testid="align-left">
+          <p class="text-sm text-gray-400 mb-2">Left aligned (default)</p>
+          <DualCTA
+            client:load
+            alignment="left"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="align-left-primary"
+            secondaryTestId="align-left-secondary"
+            containerTestId="align-left-container"
+          />
+        </div>
+        <div class="border border-gray-200 p-4 rounded-lg" data-testid="align-center">
+          <p class="text-sm text-gray-400 mb-2">Center aligned</p>
+          <DualCTA
+            client:load
+            alignment="center"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="align-center-primary"
+            secondaryTestId="align-center-secondary"
+            containerTestId="align-center-container"
+          />
+        </div>
+        <div class="border border-gray-200 p-4 rounded-lg" data-testid="align-right">
+          <p class="text-sm text-gray-400 mb-2">Right aligned</p>
+          <DualCTA
+            client:load
+            alignment="right"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="align-right-primary"
+            secondaryTestId="align-right-secondary"
+            containerTestId="align-right-container"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Stacked Layout -->
+    <section class="mb-12" data-testid="stacked-layout">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Stacked Layout</h2>
+      <div class="space-y-6">
+        <div class="border border-gray-200 p-4 rounded-lg max-w-xs" data-testid="stacked-left">
+          <p class="text-sm text-gray-400 mb-2">Stacked (left aligned)</p>
+          <DualCTA
+            client:load
+            stacked
+            alignment="left"
+            primaryLabel="Buy Now"
+            secondaryLabel="Learn more"
+            primaryTestId="stacked-left-primary"
+            secondaryTestId="stacked-left-secondary"
+            containerTestId="stacked-left-container"
+          />
+        </div>
+        <div class="border border-gray-200 p-4 rounded-lg max-w-xs mx-auto" data-testid="stacked-center">
+          <p class="text-sm text-gray-400 mb-2">Stacked (center aligned)</p>
+          <DualCTA
+            client:load
+            stacked
+            alignment="center"
+            primaryLabel="Buy Now"
+            secondaryLabel="Learn more"
+            primaryTestId="stacked-center-primary"
+            secondaryTestId="stacked-center-secondary"
+            containerTestId="stacked-center-container"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- With Arrows -->
+    <section class="mb-12" data-testid="with-arrows">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">With Arrows</h2>
+      <div class="space-y-6">
+        <div data-testid="arrows-default">
+          <p class="text-sm text-gray-400 mb-2">Default variant with arrows</p>
+          <DualCTA
+            client:load
+            showArrows
+            primaryLabel="Get Started"
+            secondaryLabel="Learn more"
+            primaryTestId="arrows-primary"
+            secondaryTestId="arrows-secondary"
+          />
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg" data-testid="arrows-dark">
+          <p class="text-sm text-gray-400 mb-2">Dark variant with arrows</p>
+          <DualCTA
+            client:load
+            variant="dark"
+            showArrows
+            primaryLabel="Buy $99"
+            secondaryLabel="View Features"
+            primaryTestId="arrows-dark-primary"
+            secondaryTestId="arrows-dark-secondary"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Gap Variants -->
+    <section class="mb-12" data-testid="gap-variants">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Gap Variants</h2>
+      <div class="space-y-6">
+        <div data-testid="gap-sm">
+          <p class="text-sm text-gray-400 mb-2">Small gap</p>
+          <DualCTA
+            client:load
+            gap="sm"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="gap-sm-primary"
+            secondaryTestId="gap-sm-secondary"
+            containerTestId="gap-sm-container"
+          />
+        </div>
+        <div data-testid="gap-md">
+          <p class="text-sm text-gray-400 mb-2">Medium gap (default)</p>
+          <DualCTA
+            client:load
+            gap="md"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="gap-md-primary"
+            secondaryTestId="gap-md-secondary"
+            containerTestId="gap-md-container"
+          />
+        </div>
+        <div data-testid="gap-lg">
+          <p class="text-sm text-gray-400 mb-2">Large gap</p>
+          <DualCTA
+            client:load
+            gap="lg"
+            primaryLabel="Buy"
+            secondaryLabel="Learn more"
+            primaryTestId="gap-lg-primary"
+            secondaryTestId="gap-lg-secondary"
+            containerTestId="gap-lg-container"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-World Usage Examples -->
+    <section class="mb-12" data-testid="real-world-examples">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Real-World Usage Examples</h2>
+
+      <!-- Hero Section Example -->
+      <div class="bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 p-12 rounded-xl mb-6 text-center" data-testid="example-hero">
+        <h3 class="text-5xl font-bold text-white mb-4">Lattice</h3>
+        <p class="text-gray-300 mb-8 text-lg">AI Infrastructure Decisions, Grounded in Evidence</p>
+        <DualCTA
+          client:load
+          variant="dark"
+          alignment="center"
+          size="lg"
+          primaryLabel="Buy $99"
+          primaryHref="/pricing"
+          secondaryLabel="Learn more"
+          secondaryHref="/features"
+          primaryTestId="hero-primary"
+          secondaryTestId="hero-secondary"
+        />
+      </div>
+
+      <!-- Feature Card Example -->
+      <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-lg mb-6" data-testid="example-feature-card">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Sources</h3>
+        <p class="text-gray-600 mb-6">Your Knowledge, Indexed. Multi-source ingestion with hybrid search.</p>
+        <DualCTA
+          client:load
+          alignment="left"
+          primaryLabel="Explore"
+          primaryHref="/features/sources"
+          secondaryLabel="Learn more"
+          secondaryHref="/docs/sources"
+          showArrows
+          primaryTestId="feature-card-primary"
+          secondaryTestId="feature-card-secondary"
+        />
+      </div>
+
+      <!-- CTA Banner Example -->
+      <div class="bg-gradient-to-r from-violet-600 to-blue-600 p-8 rounded-xl text-center" data-testid="example-cta-banner">
+        <h3 class="text-2xl font-bold text-white mb-4">Start Making Confident Decisions</h3>
+        <DualCTA
+          client:load
+          variant="dark"
+          alignment="center"
+          primaryLabel="Get Started"
+          primaryHref="/pricing"
+          secondaryLabel="View Documentation"
+          secondaryHref="/docs"
+          primaryTestId="banner-primary"
+          secondaryTestId="banner-secondary"
+        />
+      </div>
+    </section>
+
+    <!-- Responsive Behavior Demo -->
+    <section class="mb-12" data-testid="responsive-demo">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Responsive Behavior</h2>
+      <p class="text-sm text-gray-400 mb-4">Resize the browser to see buttons stack on mobile and inline on desktop.</p>
+      <div class="border border-gray-200 p-4 rounded-lg" data-testid="responsive-default">
+        <DualCTA
+          client:load
+          size="lg"
+          primaryLabel="Primary Action"
+          secondaryLabel="Secondary Action"
+          primaryTestId="responsive-primary"
+          secondaryTestId="responsive-secondary"
+          containerTestId="responsive-container"
+        />
+      </div>
+    </section>
+  </main>
+</Layout>

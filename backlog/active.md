@@ -14,48 +14,8 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 1.1: Design Tokens and Typography Scale** - See [release-0.1.0.md](../releases/release-0.1.0.md)
 - **Feature 1.2: Animation Utilities** - See [release-0.2.0.md](../releases/release-0.2.0.md)
 - **Feature 1.3: GradientText Component** - See [release-0.3.0.md](../releases/release-0.3.0.md)
-
----
-
-## Phase 1: Foundation
-
-### Feature 1.4: DualCTA Component
-**Spec Reference:** Part 8, Section 8.3 (Shared Components)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build reusable DualCTA component for "Learn more" + "Buy" button pattern.
-
-**Files:**
-- [ ] `src/components/shared/DualCTA.vue` - Dual CTA button group
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Primary button (filled) and secondary button (outline) styles
-- [ ] Configurable labels and links
-- [ ] Responsive layout (stack on mobile, inline on desktop)
-
----
-
-### Feature 1.5: DocsLink Component
-**Spec Reference:** Part 6, Section 6.3
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build styled callout component for linking to documentation.
-
-**Files:**
-- [ ] `src/components/shared/DocsLink.vue` - Styled docs callout
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] Visually distinct callout box style
-- [ ] Accepts title, description, and docs URL
-- [ ] Arrow icon indicating external/internal link
+- **Feature 1.4: DualCTA Component** - See [release-0.4.0.md](../releases/release-0.4.0.md)
+- **Feature 1.5: DocsLink Component** - See [release-0.5.0.md](../releases/release-0.5.0.md)
 
 ---
 
@@ -839,7 +799,7 @@ Final quality assurance and cross-browser testing.
 
 | Phase | Features | Completed | Remaining |
 |-------|----------|-----------|-----------|
-| Phase 1: Foundation | 5 | 3 | 2 |
+| Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 0 | 4 |
 | Phase 3: Homepage | 7 | 0 | 7 |
 | Phase 4: Footer | 2 | 0 | 2 |
@@ -847,4 +807,4 @@ Final quality assurance and cross-browser testing.
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **3** | **38** |
+| **Total** | **41** | **5** | **36** |
