@@ -2,7 +2,133 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ProductHero from '@components/ui/ProductHero.vue';
+import StickyNav from '@components/features/StickyNav.vue';
+import FeatureHero from '@components/features/FeatureHero.vue';
+import CapabilitySection from '@components/features/CapabilitySection.vue';
+import TechSpecs from '@components/features/TechSpecs.vue';
+import RelatedContent from '@components/features/RelatedContent.vue';
+
+// Icon paths (Heroicons)
+const icons = {
+  save: 'M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4',
+  document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  download: 'M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  clock: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+  table: 'M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  folder: 'M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z',
+  code: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+};
+
+// Navigation items
+const navItems = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'specs', label: 'Tech Specs' },
+  { id: 'resources', label: 'Resources' }
+];
+
+// Capability 1: Save Artifacts features
+const saveFeatures = [
+  '<strong>One-click save</strong> from any chat response',
+  'Custom <strong>naming</strong> for organization',
+  'Preserved <strong>citations</strong> and formatting',
+  'Automatic <strong>metadata</strong> capture',
+  '<strong>Tag</strong> and categorize artifacts'
+];
+
+// Capability 2: Artifact Types features
+const typesFeatures = [
+  '<strong>Comparison tables</strong> with source citations',
+  '<strong>Cost analysis</strong> breakdowns',
+  'Executive <strong>decision memos</strong>',
+  '<strong>Technical summaries</strong> and recommendations'
+];
+
+// Capability 3: Export Options features
+const exportFeatures = [
+  '<strong>CSV:</strong> For spreadsheet analysis',
+  '<strong>JSON:</strong> For programmatic access',
+  '<strong>Markdown:</strong> For documentation',
+  '<strong>PDF:</strong> For executive sharing'
+];
+
+// Capability 4: Version History features
+const historyFeatures = [
+  'Complete <strong>artifact timeline</strong>',
+  '<strong>Version tracking</strong> and comparison',
+  'Decision <strong>provenance</strong> audit trail',
+  '<strong>Restore</strong> previous versions'
+];
+
+// Tech specs
+const techSpecs = [
+  {
+    category: 'Artifact Types',
+    icon: icons.document,
+    color: 'teal',
+    items: [
+      '<strong>Tables</strong> - Comparison matrices',
+      '<strong>Memos</strong> - Decision documents',
+      '<strong>Reports</strong> - Technical summaries',
+      '<strong>Lists</strong> - Ranked recommendations'
+    ]
+  },
+  {
+    category: 'Export Formats',
+    icon: icons.download,
+    color: 'blue',
+    items: [
+      '<strong>CSV</strong> - Spreadsheet compatible',
+      '<strong>JSON</strong> - Structured data',
+      '<strong>Markdown</strong> - Documentation',
+      '<strong>PDF</strong> - Print-ready'
+    ]
+  },
+  {
+    category: 'Organization',
+    icon: icons.folder,
+    color: 'violet',
+    items: [
+      '<strong>Tags</strong> - Custom categorization',
+      '<strong>Search</strong> - Full-text search',
+      '<strong>Filters</strong> - By type, date, scenario',
+      '<strong>History</strong> - Version tracking'
+    ]
+  }
+];
+
+// Related content
+const journeys = [
+  {
+    title: 'Saving Artifacts',
+    description: 'Learn how to save AI responses as reusable artifacts',
+    href: '/blog/journey-save-artifact'
+  },
+  {
+    title: 'Viewing Artifacts',
+    description: 'Browse and explore your artifact gallery',
+    href: '/blog/journey-view-artifact'
+  },
+  {
+    title: 'Exporting Artifacts',
+    description: 'Export artifacts in multiple formats for sharing',
+    href: '/blog/journey-export-artifact'
+  }
+];
+
+const docs = [
+  {
+    title: 'Studio API Reference',
+    description: 'Complete API documentation for artifact management',
+    href: '/docs/api/studio'
+  },
+  {
+    title: 'Export Formats Guide',
+    description: 'Detailed guide on all supported export formats',
+    href: '/docs/features/studio'
+  }
+];
 ---
 
 <Layout
@@ -13,157 +139,139 @@ import ProductHero from '@components/ui/ProductHero.vue';
   <Header client:load />
 
   <main>
-    <ProductHero
+    <!-- Sticky Navigation -->
+    <StickyNav
       client:load
-      title="Studio Panel"
-      description="Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and export in multiple formats."
-      imageSrc="/images/journeys/view-artifact/view-artifact-02.png"
-      imageAlt="Lattice Studio panel showing artifact viewer with structured recommendations and export options"
-      gradientFrom="from-teal-900"
-      gradientVia="via-cyan-900"
-      gradientTo="to-blue-900"
-      iconPath="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+      featureName="Studio"
+      navItems={navItems}
+      buyButtonText="Get Lattice"
+      buyButtonHref="/#pricing"
+      testId="studio-nav"
     />
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Save Artifacts -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Save Artifacts</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Save any AI response as a named artifact for future reference. Build a library of research findings, comparisons, and recommendations.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">One-click save from any chat response</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Custom naming for organization</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Preserved citations and formatting</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Hero Section -->
+    <section id="overview">
+      <FeatureHero
+        client:load
+        headline="Decisions. Documented."
+        tagline="Save Export Share"
+        description="Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and export in multiple formats for stakeholder sharing."
+        productImage="/images/journeys/view-artifact/view-artifact-02.png"
+        productImageAlt="Lattice Studio panel showing artifact viewer with structured recommendations and export options"
+        browserUrl="lattice.app/studio"
+        colorScheme="teal"
+        primaryCTA="Get Lattice"
+        primaryHref="/#pricing"
+        secondaryCTA="View docs"
+        secondaryHref="/docs/features/studio"
+        testId="studio-hero"
+      />
+    </section>
 
-            <!-- Generate Artifacts -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Generate Artifacts</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Create structured artifacts directly from your research. Generate comparison tables, cost analyses, and decision memos.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Comparison tables with source citations</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Cost analysis breakdowns</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Executive decision memos</span>
-                </li>
-              </ul>
-            </div>
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+      <!-- Save Artifacts -->
+      <CapabilitySection
+        client:load
+        title="Save Artifacts"
+        description="Save any AI response as a named artifact for future reference. Build a library of research findings, comparisons, and recommendations."
+        features={saveFeatures}
+        image="/images/journeys/save-artifact/save-artifact-02.png"
+        imageAlt="Saving an artifact in Lattice"
+        icon={icons.save}
+        iconColor="teal"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-save-artifact"
+        journeyLinkText="Learn to save artifacts"
+        testId="studio-save"
+      />
 
-            <!-- Export Options -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Export Options</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Export artifacts in multiple formats for different use cases. Share with stakeholders, import into other tools, or archive for future reference.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>CSV:</strong> For spreadsheet analysis</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>JSON:</strong> For programmatic access</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700"><strong>Markdown:</strong> For documentation</span>
-                </li>
-              </ul>
-            </div>
+      <!-- Artifact Types -->
+      <CapabilitySection
+        client:load
+        title="Artifact Types"
+        description="Create structured artifacts directly from your research. Generate comparison tables, cost analyses, and decision memos with full citations."
+        features={typesFeatures}
+        image="/images/journeys/view-artifact/view-artifact-03.png"
+        imageAlt="Different artifact types in Lattice"
+        icon={icons.table}
+        iconColor="blue"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        showGlow={true}
+        journeyLink="/blog/journey-view-artifact"
+        journeyLinkText="Explore artifact types"
+        testId="studio-types"
+      />
 
-            <!-- Artifact History -->
-            <div class="space-y-6">
-              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">Artifact History</h3>
-              <p class="text-gray-600 leading-relaxed">
-                Track your artifact history with versioning. Browse past artifacts, compare changes, and maintain a complete audit trail.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Complete artifact timeline</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Version tracking and comparison</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span class="text-gray-700">Decision provenance audit trail</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Export Options -->
+      <CapabilitySection
+        client:load
+        title="Export Options"
+        description="Export artifacts in multiple formats for different use cases. Share with stakeholders, import into other tools, or archive for future reference."
+        features={exportFeatures}
+        image="/images/journeys/save-artifact/save-artifact-04.png"
+        imageAlt="Export options in Lattice"
+        icon={icons.download}
+        iconColor="violet"
+        imagePosition="left"
+        background="white"
+        showBrowserFrame={true}
+        journeyLink="/blog/journey-export-artifact"
+        journeyLinkText="See export options"
+        testId="studio-export"
+      />
+
+      <!-- Version History -->
+      <CapabilitySection
+        client:load
+        title="Version History"
+        description="Track your artifact history with versioning. Browse past artifacts, compare changes, and maintain a complete audit trail for decisions."
+        features={historyFeatures}
+        image="/images/journeys/view-artifact/view-artifact-05.png"
+        imageAlt="Artifact version history in Lattice"
+        icon={icons.clock}
+        iconColor="amber"
+        imagePosition="right"
+        background="gray"
+        showBrowserFrame={true}
+        testId="studio-history"
+      />
+    </section>
+
+    <!-- Tech Specs Section -->
+    <section id="specs">
+      <TechSpecs
+        client:load
+        title="Technical Specifications"
+        description="Everything you need to know about the Studio panel's artifact capabilities and export formats."
+        icon={icons.cog}
+        iconColor="teal"
+        specs={techSpecs}
+        columns={3}
+        background="white"
+        docsLink="/docs/features/studio"
+        docsLinkText="View full documentation"
+        testId="studio-specs"
+      />
+    </section>
+
+    <!-- Related Resources Section -->
+    <section id="resources">
+      <RelatedContent
+        client:load
+        title="Learn More About Studio"
+        description="Explore guides and documentation to get the most out of artifact management."
+        journeys={journeys}
+        docs={docs}
+        background="gray"
+        ctaLink="/docs/features/studio"
+        ctaText="View Studio documentation"
+        testId="studio-resources"
+      />
     </section>
 
     <!-- CTA Section -->
@@ -175,7 +283,11 @@ import ProductHero from '@components/ui/ProductHero.vue';
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
           Generate executive-ready artifacts with full citations and export options.
         </p>
-        <a href="/#pricing" class="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+        <a
+          href="/#pricing"
+          class="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+          data-testid="studio-cta-button"
+        >
           Get Lattice for $99
         </a>
       </div>

@@ -36,30 +36,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 5.5: RelatedContent Component** - See [release-0.23.0.md](../releases/release-0.23.0.md)
 - **Feature 5.6: Feature Pages Update (Sources)** - See [release-0.24.0.md](../releases/release-0.24.0.md)
 - **Feature 5.7: Feature Pages Update (Lab)** - See [release-0.25.0.md](../releases/release-0.25.0.md)
+- **Feature 5.8: Feature Pages Update (Studio)** - See [release-0.26.0.md](../releases/release-0.26.0.md)
 
 ---
 
 ## Phase 5: Feature Pages
-
-### Feature 5.8: Feature Pages Update (Studio)
-**Spec Reference:** Part 4, Section 4.3, 4.4
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Update Studio feature page with new components and content.
-
-**Files:**
-- [ ] `src/pages/features/studio.astro` - Studio feature page
-
-**Dependencies:** Features 5.1-5.5
-
-**Acceptance Criteria:**
-- [ ] Hero: "Decisions. Documented."
-- [ ] Capabilities: Artifact types, Export formats, Version history
-- [ ] Related journey links: save-artifacts, artifact-gallery
-
----
 
 ### Feature 5.9: Feature Pages Update (Blueprints)
 **Spec Reference:** Part 4, Section 4.3, 4.4
@@ -387,8 +368,8 @@ Final quality assurance and cross-browser testing.
 | Phase 2: Navigation | 4 | 4 | 0 |
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
-| Phase 5: Feature Pages | 13 | 7 | 6 |
+| Phase 5: Feature Pages | 13 | 8 | 5 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **25** | **16** |
+| **Total** | **41** | **26** | **15** |
