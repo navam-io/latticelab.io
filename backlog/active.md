@@ -25,30 +25,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.3: FeatureGrid Section** - See [release-0.12.0.md](../releases/release-0.12.0.md)
 - **Feature 3.4: ToolsCarousel Section** - See [release-0.13.0.md](../releases/release-0.13.0.md)
 - **Feature 3.5: PricingCard Redesign** - See [release-0.14.0.md](../releases/release-0.14.0.md)
+- **Feature 3.6: CTABanner Section** - See [release-0.15.0.md](../releases/release-0.15.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.6: CTABanner Section
-**Spec Reference:** Part 2, Section 2.1 (Section 7: CTA Banner)
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Build full-width gradient CTA banner for page bottom.
-
-**Files:**
-- [ ] `src/components/home/CTABanner.vue` - Full-width CTA
-
-**Dependencies:** Feature 1.4 (DualCTA)
-
-**Acceptance Criteria:**
-- [ ] Full-width gradient background
-- [ ] "Start Making Confident Decisions" headline
-- [ ] [Get Started] [View Documentation] CTAs
-
----
 
 ### Feature 3.7: Homepage Assembly
 **Spec Reference:** Part 2, Section 2.2
@@ -613,10 +594,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 5 | 2 |
+| Phase 3: Homepage | 7 | 6 | 1 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **14** | **27** |
+| **Total** | **41** | **15** | **26** |

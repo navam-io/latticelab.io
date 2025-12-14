@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import CTABanner from '../../components/home/CTABanner.vue'
+---
+
+<Layout title="CTABanner Component Test">
+  <main class="py-8">
+    <div class="container mx-auto px-4 mb-16">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">CTABanner Component Test</h1>
+      <p class="text-gray-600">Testing all CTABanner configurations and variants.</p>
+    </div>
+
+    <!-- Test 1: Default Configuration -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">1. Default Configuration</h2>
+        <p class="text-sm text-gray-500">Centered content, gradient background, dual CTAs</p>
+      </div>
+      <CTABanner
+        client:load
+        testId="default-banner"
+      />
+    </section>
+
+    <!-- Test 2: Custom Headline -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">2. Custom Headline and Subheadline</h2>
+        <p class="text-sm text-gray-500">Different text content</p>
+      </div>
+      <CTABanner
+        client:load
+        headline="Ready to Transform Your AI Stack?"
+        subheadline="Get access to 36 blueprints and 7 powerful tools."
+        testId="custom-headline-banner"
+      />
+    </section>
+
+    <!-- Test 3: Custom CTAs -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">3. Custom CTAs</h2>
+        <p class="text-sm text-gray-500">Different button labels and links</p>
+      </div>
+      <CTABanner
+        client:load
+        primaryCTA="Buy Now"
+        primaryHref="/checkout"
+        secondaryCTA="Learn More"
+        secondaryHref="/features"
+        testId="custom-cta-banner"
+      />
+    </section>
+
+    <!-- Test 4: Left Aligned -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">4. Left Aligned Content</h2>
+        <p class="text-sm text-gray-500">Content aligned to the left</p>
+      </div>
+      <CTABanner
+        client:load
+        centered={false}
+        testId="left-aligned-banner"
+      />
+    </section>
+
+    <!-- Test 5: With Pattern -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">5. With Pattern Overlay</h2>
+        <p class="text-sm text-gray-500">Grid pattern overlay on gradient</p>
+      </div>
+      <CTABanner
+        client:load
+        showPattern={true}
+        testId="pattern-banner"
+      />
+    </section>
+
+    <!-- Test 6: Without Arrows -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">6. Without Arrows</h2>
+        <p class="text-sm text-gray-500">CTA buttons without arrow icons</p>
+      </div>
+      <CTABanner
+        client:load
+        showArrows={false}
+        testId="no-arrows-banner"
+      />
+    </section>
+
+    <!-- Test 7: Small CTAs -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">7. Small CTA Size</h2>
+        <p class="text-sm text-gray-500">Smaller button size</p>
+      </div>
+      <CTABanner
+        client:load
+        ctaSize="sm"
+        testId="small-cta-banner"
+      />
+    </section>
+
+    <!-- Test 8: No Subheadline -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">8. No Subheadline</h2>
+        <p class="text-sm text-gray-500">Only headline with CTAs</p>
+      </div>
+      <CTABanner
+        client:load
+        subheadline=""
+        testId="no-subheadline-banner"
+      />
+    </section>
+
+  </main>
+</Layout>
