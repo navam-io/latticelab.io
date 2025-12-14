@@ -1,0 +1,160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CapabilitySection from '../../components/features/CapabilitySection.vue';
+
+// Sample icon paths (Heroicons)
+const icons = {
+  database: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  cog: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  lightning: 'M13 10V3L4 14h7v7l9-11h-7z',
+  cube: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'
+};
+
+// Sample features
+const sourceFeatures = [
+  'Import from <strong>PDF, DOCX, TXT</strong> and more',
+  'Connect to <strong>Google Docs</strong> (v0.6.2+)',
+  'Automatic <strong>chunking</strong> and indexing',
+  'Full-text and <strong>semantic search</strong>'
+];
+
+const labFeatures = [
+  '<strong>LangGraph</strong> powered reasoning',
+  'Natural language <strong>queries</strong>',
+  'Transparent <strong>trace visualization</strong>',
+  'Grounded in <strong>your knowledge</strong>'
+];
+
+const studioFeatures = [
+  'Create <strong>decisions</strong>, <strong>comparisons</strong>, and <strong>analyses</strong>',
+  'Export to <strong>Markdown, PDF, JSON</strong>',
+  '<strong>Version history</strong> for all artifacts',
+  'Collaborative <strong>editing</strong> support'
+];
+
+const blueprintFeatures = [
+  '<strong>36 blueprints</strong> across 10+ vendors',
+  'One-click <strong>configuration</strong>',
+  'Curated <strong>best practices</strong>'
+];
+---
+
+<Layout title="CapabilitySection Component Test">
+  <main class="min-h-screen">
+    <div class="py-12 bg-gray-900 text-center">
+      <h1 class="text-3xl font-bold text-white mb-2">CapabilitySection Component Tests</h1>
+      <p class="text-gray-300">Various configurations of the CapabilitySection component</p>
+    </div>
+
+    <!-- Test 1: Default configuration (image left) -->
+    <CapabilitySection
+      client:load
+      title="Multi-Source Ingestion"
+      description="Build a comprehensive knowledge base from multiple document types. Lattice automatically processes and indexes your content for intelligent retrieval."
+      features={sourceFeatures}
+      image="/images/journeys/view-source/view-source-03.png"
+      imageAlt="Sources panel showing document list"
+      icon={icons.database}
+      iconColor="violet"
+      imagePosition="left"
+      background="white"
+      showBrowserFrame={true}
+      journeyLink="/journeys/add-sources"
+      journeyLinkText="Learn how to add sources"
+      testId="capability-default"
+    />
+
+    <!-- Test 2: Image right configuration -->
+    <CapabilitySection
+      client:load
+      title="Intelligent Research Agent"
+      description="Ask questions in natural language and get grounded answers. LangGraph powers transparent reasoning with full trace visibility."
+      features={labFeatures}
+      image="/images/journeys/view-source/view-source-03.png"
+      imageAlt="Lab panel showing chat interface"
+      icon={icons.search}
+      iconColor="blue"
+      imagePosition="right"
+      background="gray"
+      showBrowserFrame={true}
+      journeyLink="/journeys/chat-with-ai"
+      journeyLinkText="Start chatting with AI"
+      testId="capability-right"
+    />
+
+    <!-- Test 3: Teal color scheme with glow -->
+    <CapabilitySection
+      client:load
+      title="Artifact Studio"
+      description="Create structured artifacts from your research. Document decisions, compare options, and export in multiple formats."
+      features={studioFeatures}
+      image="/images/journeys/view-source/view-source-03.png"
+      imageAlt="Studio showing artifact editor"
+      icon={icons.document}
+      iconColor="teal"
+      imagePosition="left"
+      background="white"
+      showBrowserFrame={true}
+      showGlow={true}
+      journeyLink="/journeys/save-artifacts"
+      journeyLinkText="Create your first artifact"
+      testId="capability-teal"
+    />
+
+    <!-- Test 4: Amber color scheme, no browser frame -->
+    <CapabilitySection
+      client:load
+      title="Blueprint Gallery"
+      description="Get started quickly with curated blueprints. Pre-configured settings for popular ML workflows across major cloud vendors."
+      features={blueprintFeatures}
+      image="/images/journeys/view-source/view-source-03.png"
+      imageAlt="Blueprint gallery"
+      icon={icons.cube}
+      iconColor="amber"
+      imagePosition="right"
+      background="gray"
+      showBrowserFrame={false}
+      journeyLink="/journeys/browse-blueprints"
+      testId="capability-amber"
+    />
+
+    <!-- Test 5: Rose color scheme, minimal -->
+    <CapabilitySection
+      client:load
+      title="Quick Configuration"
+      icon={icons.cog}
+      iconColor="rose"
+      imagePosition="left"
+      background="white"
+      testId="capability-minimal"
+    />
+
+    <!-- Test 6: Green color scheme, no icon -->
+    <CapabilitySection
+      client:load
+      title="Performance Optimization"
+      description="Optimize your ML workloads with intelligent recommendations. Automatic tuning for maximum throughput."
+      features={['Automatic <strong>batch sizing</strong>', 'Memory <strong>optimization</strong>', 'GPU <strong>utilization</strong> monitoring']}
+      imagePosition="right"
+      background="gray"
+      showPlaceholder={true}
+      testId="capability-green"
+    />
+
+    <!-- Test 7: No journey link -->
+    <CapabilitySection
+      client:load
+      title="Data Security"
+      description="Your data stays private. Local processing with optional cloud sync for team collaboration."
+      features={['<strong>End-to-end</strong> encryption', 'Local <strong>processing</strong> first', '<strong>SOC 2</strong> compliant']}
+      icon={icons.lightning}
+      iconColor="violet"
+      imagePosition="left"
+      background="white"
+      showPlaceholder={true}
+      testId="capability-no-link"
+    />
+  </main>
+</Layout>
