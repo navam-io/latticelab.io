@@ -1,0 +1,512 @@
+---
+/**
+ * MegaMenu Component Test Page
+ * This page is used for testing the MegaMenu component in production.
+ * Route: /test-utils/mega-menu
+ */
+import Layout from '@layouts/Layout.astro';
+import MegaMenu from '@components/navigation/MegaMenu.vue';
+import NavDropdown from '@components/navigation/NavDropdown.vue';
+
+// Define link data for each mega menu
+const featuresExploreLinks = [
+  { label: 'All Features', href: '/features', description: 'Overview of all features', featured: true },
+  { label: 'Sources', href: '/features/sources', description: 'Knowledge Management' },
+  { label: 'Lab', href: '/features/lab', description: 'AI-Powered Analysis' },
+  { label: 'Studio', href: '/features/studio', description: 'Artifacts & Exports' },
+  { label: 'Blueprints', href: '/features/blueprints', description: 'Curated Bundles', badge: '36' }
+];
+
+const featuresConfigureLinks = [
+  { label: 'Scenarios', href: '/features/scenarios', description: 'Use Case Definition' },
+  { label: 'Stacks', href: '/features/stacks', description: 'Infrastructure Config' },
+  { label: 'Settings', href: '/features/settings', description: 'Customization' }
+];
+
+const featuresMoreLinks = [
+  { label: 'Getting Started', href: '/docs/getting-started' },
+  { label: 'Documentation', href: '/docs' },
+  { label: 'API Reference', href: '/docs/api' },
+  { label: 'Blog', href: '/blog' }
+];
+const featuresMoreFooter = { label: 'Compare Features', href: '/compare' };
+
+const solutionsRoleLinks = [
+  { label: 'Research Engineers', href: '/solutions/research-engineers', description: 'Build and evaluate AI systems' },
+  { label: 'Platform Leads', href: '/solutions/platform-leads', description: 'Infrastructure and operations' },
+  { label: 'CTOs & Leaders', href: '/solutions/ctos', description: 'Strategic AI decisions' }
+];
+
+const solutionsWorkloadLinks = [
+  { label: 'Chat Applications', href: '/solutions/chat', description: 'Conversational AI' },
+  { label: 'RAG Systems', href: '/solutions/rag', description: 'Retrieval augmented generation' },
+  { label: 'Agentic Workflows', href: '/solutions/agents', description: 'Autonomous AI agents' },
+  { label: 'Embedding Pipelines', href: '/solutions/embeddings', description: 'Vector processing' }
+];
+
+const solutionsIndustryLinks = [
+  { label: 'Enterprise AI', href: '/solutions/enterprise' },
+  { label: 'Healthcare', href: '/solutions/healthcare' },
+  { label: 'Finance', href: '/solutions/finance' },
+  { label: 'Government', href: '/solutions/government' }
+];
+const solutionsIndustryFooter = { label: 'View all solutions', href: '/solutions' };
+
+const resourcesLearnLinks = [
+  { label: 'Getting Started', href: '/docs/getting-started', description: 'Quick start guide' },
+  { label: 'Documentation', href: '/docs', description: 'Full documentation' },
+  { label: 'API Reference', href: '/docs/api', description: 'API docs' }
+];
+
+const resourcesToolsLinks = [
+  { label: 'Memory Calculator', href: '/tools/memory-calculator' },
+  { label: 'TCO Calculator', href: '/tools/tco-calculator' },
+  { label: 'Quantization Advisor', href: '/tools/quantization' }
+];
+
+const resourcesCommunityLinks = [
+  { label: 'Blog', href: '/blog', description: 'Latest updates' },
+  { label: 'Changelog', href: '/changelog', description: 'Release notes' },
+  { label: 'Support', href: '/support', description: 'Get help' }
+];
+const resourcesCommunityFooter = { label: 'Contact Us', href: '/contact' };
+---
+
+<Layout title="MegaMenu Test" description="MegaMenu component test page">
+  <main class="container-custom py-12">
+    <h1 class="text-3xl font-bold mb-8">MegaMenu Component Test</h1>
+
+    <!-- Basic Usage -->
+    <section class="mb-12" data-testid="basic-usage">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Basic Usage</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Features"
+            testId="basic-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <NavDropdown
+                client:load
+                title="Explore"
+                links={featuresExploreLinks}
+                testId="basic-explore"
+              />
+              <NavDropdown
+                client:load
+                title="Configure"
+                links={featuresConfigureLinks}
+                testId="basic-configure"
+              />
+              <NavDropdown
+                client:load
+                title="More"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                footerLink={featuresMoreFooter}
+                testId="basic-more"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Multiple Menus -->
+    <section class="mb-12" data-testid="multiple-menus">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Multiple Menus</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6" data-testid="multi-nav">
+          <MegaMenu
+            client:load
+            label="Features"
+            testId="multi-features"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <NavDropdown
+                client:load
+                title="Explore"
+                links={featuresExploreLinks}
+                testId="multi-features-explore"
+              />
+              <NavDropdown
+                client:load
+                title="Configure"
+                links={featuresConfigureLinks}
+                testId="multi-features-configure"
+              />
+              <NavDropdown
+                client:load
+                title="More"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                testId="multi-features-more"
+              />
+            </div>
+          </MegaMenu>
+
+          <MegaMenu
+            client:load
+            label="Solutions"
+            testId="multi-solutions"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <NavDropdown
+                client:load
+                title="By Role"
+                links={solutionsRoleLinks}
+                testId="multi-solutions-role"
+              />
+              <NavDropdown
+                client:load
+                title="By Workload"
+                links={solutionsWorkloadLinks}
+                testId="multi-solutions-workload"
+              />
+              <NavDropdown
+                client:load
+                title="By Industry"
+                links={solutionsIndustryLinks}
+                showDescriptions={false}
+                footerLink={solutionsIndustryFooter}
+                testId="multi-solutions-industry"
+              />
+            </div>
+          </MegaMenu>
+
+          <MegaMenu
+            client:load
+            label="Resources"
+            testId="multi-resources"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <NavDropdown
+                client:load
+                title="Learn"
+                links={resourcesLearnLinks}
+                testId="multi-resources-learn"
+              />
+              <NavDropdown
+                client:load
+                title="Tools"
+                links={resourcesToolsLinks}
+                showDescriptions={false}
+                testId="multi-resources-tools"
+              />
+              <NavDropdown
+                client:load
+                title="Community"
+                links={resourcesCommunityLinks}
+                footerLink={resourcesCommunityFooter}
+                testId="multi-resources-community"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Without Chevron -->
+    <section class="mb-12" data-testid="no-chevron">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Without Chevron</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Products"
+            showChevron={false}
+            testId="no-chevron-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Core"
+                links={featuresExploreLinks.slice(0, 3)}
+                testId="no-chevron-core"
+              />
+              <NavDropdown
+                client:load
+                title="Add-ons"
+                links={featuresConfigureLinks}
+                testId="no-chevron-addons"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Light Variant -->
+    <section class="mb-12" data-testid="light-variant">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Light Variant</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Navigate"
+            variant="light"
+            testId="light-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Pages"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                testId="light-pages"
+              />
+              <NavDropdown
+                client:load
+                title="Actions"
+                links={resourcesToolsLinks}
+                showDescriptions={false}
+                testId="light-actions"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Dark Variant -->
+    <section class="mb-12" data-testid="dark-variant">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Dark Variant</h2>
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Menu"
+            variant="dark"
+            testId="dark-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Quick Links"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                testId="dark-quick"
+              />
+              <NavDropdown
+                client:load
+                title="Tools"
+                links={resourcesToolsLinks}
+                showDescriptions={false}
+                testId="dark-tools"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Custom Trigger Slot -->
+    <section class="mb-12" data-testid="custom-trigger">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Custom Trigger</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            testId="custom-trigger-menu"
+          >
+            <span slot="trigger" class="flex items-center gap-2 px-4 py-2 bg-violet-100 text-violet-700 rounded-full font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              Custom Menu
+            </span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Section A"
+                links={featuresExploreLinks.slice(0, 3)}
+                testId="custom-section-a"
+              />
+              <NavDropdown
+                client:load
+                title="Section B"
+                links={featuresConfigureLinks}
+                testId="custom-section-b"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- With Custom Offset -->
+    <section class="mb-12" data-testid="custom-offset">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Custom Offset (100px)</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Offset Menu"
+            offset={100}
+            testId="offset-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Column 1"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                testId="offset-col1"
+              />
+              <NavDropdown
+                client:load
+                title="Column 2"
+                links={resourcesToolsLinks}
+                showDescriptions={false}
+                testId="offset-col2"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Real-World Header Example -->
+    <section class="mb-12" data-testid="real-world-example">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Real-World Header Example</h2>
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <header class="border-b border-gray-200 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-blue-600 rounded-lg"></div>
+              <span class="text-xl font-bold">Lattice</span>
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium" data-testid="real-nav">
+              <MegaMenu
+                client:load
+                label="Features"
+                testId="real-features"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <NavDropdown
+                    client:load
+                    title="Explore"
+                    links={featuresExploreLinks}
+                    testId="real-explore"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="Configure"
+                    links={featuresConfigureLinks}
+                    testId="real-configure"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="More"
+                    links={featuresMoreLinks}
+                    showDescriptions={false}
+                    footerLink={featuresMoreFooter}
+                    testId="real-more"
+                  />
+                </div>
+              </MegaMenu>
+
+              <MegaMenu
+                client:load
+                label="Solutions"
+                testId="real-solutions"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <NavDropdown
+                    client:load
+                    title="By Role"
+                    links={solutionsRoleLinks}
+                    testId="real-role"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="By Workload"
+                    links={solutionsWorkloadLinks}
+                    testId="real-workload"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="By Industry"
+                    links={solutionsIndustryLinks}
+                    showDescriptions={false}
+                    footerLink={solutionsIndustryFooter}
+                    testId="real-industry"
+                  />
+                </div>
+              </MegaMenu>
+
+              <MegaMenu
+                client:load
+                label="Resources"
+                testId="real-resources"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <NavDropdown
+                    client:load
+                    title="Learn"
+                    links={resourcesLearnLinks}
+                    testId="real-learn"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="Tools"
+                    links={resourcesToolsLinks}
+                    showDescriptions={false}
+                    testId="real-tools"
+                  />
+                  <NavDropdown
+                    client:load
+                    title="Community"
+                    links={resourcesCommunityLinks}
+                    footerLink={resourcesCommunityFooter}
+                    testId="real-community"
+                  />
+                </div>
+              </MegaMenu>
+
+              <a href="/blog" class="text-gray-600 hover:text-gray-900">Blog</a>
+              <a href="/docs" class="text-gray-600 hover:text-gray-900">Docs</a>
+              <a href="/pricing" class="text-gray-600 hover:text-gray-900">Pricing</a>
+            </nav>
+            <button class="px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-full hover:bg-violet-700 transition-colors">
+              Buy $99
+            </button>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <!-- Accessibility Tests -->
+    <section class="mb-12" data-testid="accessibility">
+      <h2 class="text-xl font-semibold mb-4 text-gray-500">Accessibility Features</h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-6">
+        <p class="text-sm text-gray-600 mb-4">Test keyboard navigation: Tab to trigger, Enter/Space to open, Escape to close</p>
+        <nav class="flex items-center gap-6">
+          <MegaMenu
+            client:load
+            label="Accessible Menu"
+            testId="accessible-menu"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <NavDropdown
+                client:load
+                title="Navigation"
+                links={featuresMoreLinks}
+                showDescriptions={false}
+                testId="accessible-nav"
+              />
+              <NavDropdown
+                client:load
+                title="Actions"
+                links={resourcesToolsLinks}
+                showDescriptions={false}
+                testId="accessible-actions"
+              />
+            </div>
+          </MegaMenu>
+        </nav>
+      </div>
+    </section>
+  </main>
+</Layout>
