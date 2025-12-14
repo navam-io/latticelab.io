@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import ToolsCarousel from '../../components/home/ToolsCarousel.vue'
+---
+
+<Layout title="ToolsCarousel Component Test">
+  <main class="py-8">
+    <div class="container mx-auto px-4 mb-16">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">ToolsCarousel Component Test</h1>
+      <p class="text-gray-600">Testing all ToolsCarousel configurations and variants.</p>
+    </div>
+
+    <!-- Test 1: Default Configuration -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">1. Default Configuration</h2>
+        <p class="text-sm text-gray-500">Shows header, navigation, dots, white background</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        testId="default-carousel"
+      />
+    </section>
+
+    <!-- Test 2: Without Header -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">2. Without Header</h2>
+        <p class="text-sm text-gray-500">Carousel only, no section header</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        showHeader={false}
+        testId="no-header-carousel"
+      />
+    </section>
+
+    <!-- Test 3: Custom Title -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">3. Custom Title and Description</h2>
+        <p class="text-sm text-gray-500">Custom section header text</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        sectionTitle="AI Infrastructure Tools"
+        sectionDescription="Everything you need to plan, configure, and optimize your ML workloads."
+        testId="custom-header-carousel"
+      />
+    </section>
+
+    <!-- Test 4: Gray Background -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">4. Gray Background</h2>
+        <p class="text-sm text-gray-500">Background variant: gray</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        background="gray"
+        testId="gray-bg-carousel"
+      />
+    </section>
+
+    <!-- Test 5: Gradient Background -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">5. Gradient Background</h2>
+        <p class="text-sm text-gray-500">Background variant: gradient</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        background="gradient"
+        testId="gradient-bg-carousel"
+      />
+    </section>
+
+    <!-- Test 6: Without Navigation -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">6. Without Navigation Arrows</h2>
+        <p class="text-sm text-gray-500">No left/right navigation buttons</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        showNavigation={false}
+        testId="no-nav-carousel"
+      />
+    </section>
+
+    <!-- Test 7: Without Dots -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">7. Without Scroll Dots</h2>
+        <p class="text-sm text-gray-500">No mobile scroll indicator dots</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        showDots={false}
+        testId="no-dots-carousel"
+      />
+    </section>
+
+    <!-- Test 8: Minimal Configuration -->
+    <section class="mb-16">
+      <div class="container mx-auto px-4 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">8. Minimal Configuration</h2>
+        <p class="text-sm text-gray-500">No header, no navigation, no dots</p>
+      </div>
+      <ToolsCarousel
+        client:load
+        showHeader={false}
+        showNavigation={false}
+        showDots={false}
+        testId="minimal-carousel"
+      />
+    </section>
+
+  </main>
+</Layout>

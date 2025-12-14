@@ -23,31 +23,11 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 3.1: Hero Section Redesign** - See [release-0.10.0.md](../releases/release-0.10.0.md)
 - **Feature 3.2: FeatureCard Component** - See [release-0.11.0.md](../releases/release-0.11.0.md)
 - **Feature 3.3: FeatureGrid Section** - See [release-0.12.0.md](../releases/release-0.12.0.md)
+- **Feature 3.4: ToolsCarousel Section** - See [release-0.13.0.md](../releases/release-0.13.0.md)
 
 ---
 
 ## Phase 3: Homepage
-
-### Feature 3.4: ToolsCarousel Section
-**Spec Reference:** Part 2, Section 2.1 (Section 3: Tools Showcase)
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Build horizontal scrolling tools showcase with 7 tools.
-
-**Files:**
-- [ ] `src/components/home/ToolsCarousel.vue` - Horizontal scrolling tools
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] All 7 tools displayed: Accelerator Registry, Memory Calculator, TCO Calculator, Parallelism Advisor, Quantization Advisor, Spot Instance Advisor, Evaluation Framework
-- [ ] Each tool: Icon + Name + One-liner + "Explore" link
-- [ ] Smooth horizontal scroll on mobile
-- [ ] Scroll indicators or navigation dots
-
----
 
 ### Feature 3.5: PricingCard Redesign
 **Spec Reference:** Part 2, Section 2.1 (Section 6: Pricing)
@@ -653,10 +633,10 @@ Final quality assurance and cross-browser testing.
 |-------|----------|-----------|-----------|
 | Phase 1: Foundation | 5 | 5 | 0 |
 | Phase 2: Navigation | 4 | 4 | 0 |
-| Phase 3: Homepage | 7 | 3 | 4 |
+| Phase 3: Homepage | 7 | 4 | 3 |
 | Phase 4: Footer | 2 | 0 | 2 |
 | Phase 5: Feature Pages | 13 | 0 | 13 |
 | Phase 6: Tools Section | 6 | 0 | 6 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **12** | **29** |
+| **Total** | **41** | **13** | **28** |
