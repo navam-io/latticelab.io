@@ -82,21 +82,21 @@
             data-testid="footer-legal"
           >
             <a
-              href="/privacy"
+              href="/docs/resources/privacy"
               class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               data-testid="footer-legal-privacy"
             >
               Privacy
             </a>
             <a
-              href="/terms"
+              href="/docs/resources/terms"
               class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               data-testid="footer-legal-terms"
             >
               Terms
             </a>
             <a
-              href="/sitemap.xml"
+              href="/sitemap-index.xml"
               class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               data-testid="footer-legal-sitemap"
             >

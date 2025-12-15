@@ -355,19 +355,19 @@ test.describe('Footer Component', () => {
     test('contains Privacy link', async ({ page }) => {
       const link = page.getByTestId('footer-legal-privacy')
       await expect(link).toHaveText('Privacy')
-      await expect(link).toHaveAttribute('href', '/privacy')
+      await expect(link).toHaveAttribute('href', '/docs/resources/privacy')
     })
 
     test('contains Terms link', async ({ page }) => {
       const link = page.getByTestId('footer-legal-terms')
       await expect(link).toHaveText('Terms')
-      await expect(link).toHaveAttribute('href', '/terms')
+      await expect(link).toHaveAttribute('href', '/docs/resources/terms')
     })
 
     test('contains Sitemap link', async ({ page }) => {
       const link = page.getByTestId('footer-legal-sitemap')
       await expect(link).toHaveText('Sitemap')
-      await expect(link).toHaveAttribute('href', '/sitemap.xml')
+      await expect(link).toHaveAttribute('href', '/sitemap-index.xml')
     })
 
     test('displays region indicator', async ({ page }) => {

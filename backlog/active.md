@@ -50,6 +50,7 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 6.6: Dynamic Tool Pages** - See [release-0.36.0.md](../releases/release-0.36.0.md)
 - **Feature 7.1: Cross-Linking Updates** - See [release-0.40.0.md](../releases/release-0.40.0.md)
 - **Feature 8.2: Stats Updates** - See [release-0.41.0.md](../releases/release-0.41.0.md)
+- **Feature 8.3: Final QA and Testing** - See [release-0.42.0.md](../releases/release-0.42.0.md)
 
 ---
 
@@ -78,29 +79,6 @@ Update all product screenshots with latest UI.
 
 ---
 
-### Feature 8.3: Final QA and Testing
-**Spec Reference:** Part 10
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Final quality assurance and cross-browser testing.
-
-**Files:**
-- [ ] All modified files
-
-**Dependencies:** All previous phases
-
-**Acceptance Criteria:**
-- [ ] Page load time < 2s
-- [ ] Lighthouse score > 90
-- [ ] Mobile usability score 100%
-- [ ] All links working
-- [ ] No console errors
-- [ ] Cross-browser compatibility (Chrome, Firefox, Safari, Edge)
-
----
-
 ## Summary
 
 | Phase | Features | Completed | Remaining |
@@ -112,5 +90,5 @@ Final quality assurance and cross-browser testing.
 | Phase 5: Feature Pages | 13 | 13 | 0 |
 | Phase 6: Tools Section | 6 | 6 | 0 |
 | Phase 7: Docs Integration | 1 | 1 | 0 |
-| Phase 8: Content & Polish | 3 | 1 | 2 |
-| **Total** | **41** | **39** | **2** |
+| Phase 8: Content & Polish | 3 | 2 | 1 |
+| **Total** | **41** | **40** | **1** |
