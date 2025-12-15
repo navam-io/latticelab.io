@@ -1,7 +1,7 @@
 {
   "name": "latticelab-io",
   "type": "module",
-  "version": "0.42.0",
+  "version": "0.43.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

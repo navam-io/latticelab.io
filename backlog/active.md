@@ -49,35 +49,15 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 6.5: Tool Content Files** - See [release-0.32.0.md](../releases/release-0.32.0.md) (completed with Feature 6.1)
 - **Feature 6.6: Dynamic Tool Pages** - See [release-0.36.0.md](../releases/release-0.36.0.md)
 - **Feature 7.1: Cross-Linking Updates** - See [release-0.40.0.md](../releases/release-0.40.0.md)
+- **Feature 8.1: Screenshot Updates** - See [release-0.43.0.md](../releases/release-0.43.0.md)
 - **Feature 8.2: Stats Updates** - See [release-0.41.0.md](../releases/release-0.41.0.md)
 - **Feature 8.3: Final QA and Testing** - See [release-0.42.0.md](../releases/release-0.42.0.md)
 
 ---
 
-## Phase 8: Content & Polish
+## Project Complete
 
-### Feature 8.1: Screenshot Updates
-**Spec Reference:** Part 7, Section 7.3
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Update all product screenshots with latest UI.
-
-**Files:**
-- [ ] `public/images/` - New screenshots
-- [ ] All pages using screenshots - Update references
-
-**Dependencies:** Phases 1-6 complete
-
-**Acceptance Criteria:**
-- [ ] Sources panel screenshot
-- [ ] Lab panel screenshot
-- [ ] Studio screenshot
-- [ ] Blueprint gallery image
-- [ ] All tool screenshots
-
----
+All 41 features have been implemented across 8 phases.
 
 ## Summary
 
@@ -90,5 +70,5 @@ Update all product screenshots with latest UI.
 | Phase 5: Feature Pages | 13 | 13 | 0 |
 | Phase 6: Tools Section | 6 | 6 | 0 |
 | Phase 7: Docs Integration | 1 | 1 | 0 |
-| Phase 8: Content & Polish | 3 | 2 | 1 |
-| **Total** | **41** | **40** | **1** |
+| Phase 8: Content & Polish | 3 | 3 | 0 |
+| **Total** | **41** | **41** | **0** |

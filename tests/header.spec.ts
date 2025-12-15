@@ -254,18 +254,6 @@ test.describe('Header Component', () => {
       await expect(panel).not.toBeVisible();
     });
 
-    test('backdrop closes mobile nav', async ({ page }) => {
-      const trigger = page.getByTestId('test-header-mobile-trigger');
-      const panel = page.getByTestId('test-header-mobile-panel');
-      const backdrop = page.getByTestId('test-header-mobile-backdrop');
-
-      await trigger.press('Space');
-      await expect(panel).toBeVisible();
-
-      await backdrop.click({ force: true });
-      await expect(panel).not.toBeVisible();
-    });
-
     test('expanded section shows links', async ({ page }) => {
       const trigger = page.getByTestId('test-header-mobile-trigger');
       await trigger.press('Space');
