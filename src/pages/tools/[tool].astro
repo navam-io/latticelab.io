@@ -1,0 +1,245 @@
+---
+/**
+ * Dynamic Tool Page
+ * Renders individual tool pages from content collection
+ */
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.vue';
+import Footer from '@components/Footer.vue';
+import ToolDemo from '@components/tools/ToolDemo.vue';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map((tool) => ({
+    params: { tool: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const { Content } = await tool.render();
+
+// Get related tools (same category, excluding current)
+const allTools = await getCollection('tools');
+const relatedTools = allTools
+  .filter(t => t.data.category === tool.data.category && t.slug !== tool.slug)
+  .slice(0, 2);
+
+// Color scheme mapping for categories
+const categoryColors: Record<string, { bg: string; text: string; gradient: string }> = {
+  calculator: { bg: 'bg-blue-100', text: 'text-blue-600', gradient: 'from-blue-900 via-indigo-900 to-violet-900' },
+  advisor: { bg: 'bg-emerald-100', text: 'text-emerald-600', gradient: 'from-emerald-900 via-teal-900 to-cyan-900' },
+  registry: { bg: 'bg-violet-100', text: 'text-violet-600', gradient: 'from-violet-900 via-purple-900 to-blue-900' },
+  framework: { bg: 'bg-amber-100', text: 'text-amber-600', gradient: 'from-amber-900 via-orange-900 to-red-900' }
+};
+
+const colors = categoryColors[tool.data.category || 'calculator'];
+
+// Map color scheme names
+const demoColorScheme = {
+  calculator: 'blue',
+  advisor: 'emerald',
+  registry: 'violet',
+  framework: 'amber'
+}[tool.data.category || 'calculator'] as 'violet' | 'blue' | 'emerald' | 'amber' | 'rose';
+---
+
+<Layout
+  title={tool.data.seoTitle || `${tool.data.name} - Lattice Tools`}
+  description={tool.data.seoDescription || tool.data.description}
+  keywords={`${tool.data.name}, AI tools, ${tool.data.category}, infrastructure planning`}
+>
+  <Header client:load />
+
+  <main data-testid={`tool-page-${tool.slug}`}>
+    <!-- Hero Section -->
+    <section class={`py-20 bg-gradient-to-br ${colors.gradient}`} data-testid="tool-hero">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <!-- Breadcrumb -->
+          <nav class="mb-6" data-testid="tool-breadcrumb">
+            <ol class="flex items-center gap-2 text-sm text-white/60">
+              <li><a href="/tools" class="hover:text-white transition-colors">Tools</a></li>
+              <li>/</li>
+              <li class="text-white">{tool.data.name}</li>
+            </ol>
+          </nav>
+
+          <div class="flex flex-col md:flex-row items-start gap-6">
+            <!-- Icon -->
+            <div class={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 ${tool.data.iconBg} ${tool.data.iconColor}`} data-testid="tool-icon">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={tool.data.icon} />
+              </svg>
+            </div>
+
+            <div>
+              <!-- Category Badge -->
+              {tool.data.category && (
+                <span class="inline-block px-3 py-1 text-xs font-medium bg-white/10 text-white rounded-full mb-3 capitalize" data-testid="tool-category">
+                  {tool.data.category}
+                </span>
+              )}
+
+              <!-- Title -->
+              <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-testid="tool-title">
+                {tool.data.name}
+              </h1>
+
+              <!-- Description -->
+              <p class="text-xl text-white/80 leading-relaxed mb-6" data-testid="tool-description">
+                {tool.data.description}
+              </p>
+
+              <!-- Quick Links -->
+              <div class="flex flex-wrap items-center gap-4" data-testid="tool-links">
+                {tool.data.docsLink && (
+                  <a
+                    href={tool.data.docsLink}
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-white text-gray-900 font-medium rounded-lg hover:bg-gray-100 transition-colors"
+                    data-testid="tool-docs-link"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    View Documentation
+                  </a>
+                )}
+                {tool.data.journeyLink && (
+                  <a
+                    href={tool.data.journeyLink}
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white font-medium rounded-lg hover:bg-white/20 transition-colors"
+                    data-testid="tool-journey-link"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    Read Journey
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white" data-testid="tool-features-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8" data-testid="tool-features-title">Key Features</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="tool-features-grid">
+            {tool.data.features.map((feature: string, index: number) => (
+              <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl" data-testid={`tool-feature-${index}`}>
+                <div class={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 ${tool.data.iconBg} ${tool.data.iconColor}`}>
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">{feature}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="py-16 bg-gray-50" data-testid="tool-demo-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8" data-testid="tool-demo-title">Try It Out</h2>
+          <ToolDemo
+            client:load
+            title={tool.data.name}
+            subtitle="Interactive demonstration"
+            showPlaceholder={true}
+            placeholderTitle="Demo Coming Soon"
+            placeholderDescription={`The interactive ${tool.data.name} demo is under development. Check back soon!`}
+            startBtnText="Launch Demo"
+            colorScheme={demoColorScheme}
+            height="lg"
+            showFooter={true}
+            footerText="Demo data is for illustration purposes only"
+            docsLink={tool.data.docsLink}
+            testId={`tool-demo-${tool.slug}`}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section (from MDX) -->
+    <section class="py-16 bg-white" data-testid="tool-content-section">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-strong:text-gray-900 prose-li:text-gray-600" data-testid="tool-content">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    {relatedTools.length > 0 && (
+      <section class="py-16 bg-gray-50" data-testid="tool-related-section">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8" data-testid="tool-related-title">Related Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-testid="tool-related-grid">
+              {relatedTools.map((relatedTool) => (
+                <a
+                  href={`/tools/${relatedTool.slug}`}
+                  class="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-violet-300 hover:shadow-lg transition-all"
+                  data-testid={`related-tool-${relatedTool.slug}`}
+                >
+                  <div class={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${relatedTool.data.iconBg} ${relatedTool.data.iconColor}`}>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={relatedTool.data.icon} />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 mb-1">{relatedTool.data.name}</h3>
+                    <p class="text-sm text-gray-600 line-clamp-2">{relatedTool.data.shortDescription || relatedTool.data.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-violet-600" data-testid="tool-cta-section">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4" data-testid="tool-cta-title">
+          Get Full Access to All Tools
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto" data-testid="tool-cta-description">
+          Access {tool.data.name} plus 6 other tools, Sources, Lab, Studio, and more with a one-time purchase.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/#pricing"
+            class="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+            data-testid="tool-cta-button"
+          >
+            Get Lattice for $99
+          </a>
+          <a
+            href="/tools"
+            class="inline-flex items-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors"
+            data-testid="tool-browse-button"
+          >
+            Browse All Tools
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Layout>
+

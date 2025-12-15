@@ -46,54 +46,8 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 6.2: ToolCard Component** - See [release-0.33.0.md](../releases/release-0.33.0.md)
 - **Feature 6.3: ToolDemo Component** - See [release-0.34.0.md](../releases/release-0.34.0.md)
 - **Feature 6.4: Tools Hub Page** - See [release-0.35.0.md](../releases/release-0.35.0.md)
-
----
-
-## Phase 6: Tools Section
-
-### Feature 6.5: Tool Content Files
-**Spec Reference:** Part 5, Section 5.1
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Create content files for all 7 tools.
-
-**Files:**
-- [ ] `src/content/tools/accelerator-registry.md`
-- [ ] `src/content/tools/memory-calculator.md`
-- [ ] `src/content/tools/tco-calculator.md`
-- [ ] `src/content/tools/parallelism-advisor.md`
-- [ ] `src/content/tools/quantization-advisor.md`
-- [ ] `src/content/tools/spot-advisor.md`
-- [ ] `src/content/tools/evaluation.md`
-
-**Dependencies:** Feature 6.1 (Tools Collection)
-
-**Acceptance Criteria:**
-- [ ] Each tool has complete content file
-- [ ] Descriptions match spec section 5.1
-- [ ] Proper frontmatter for schema
-
----
-
-### Feature 6.6: Dynamic Tool Pages
-**Spec Reference:** Part 5, Section 5.2
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Create dynamic tool page template.
-
-**Files:**
-- [ ] `src/pages/tools/[tool].astro` - Dynamic tool pages
-
-**Dependencies:** Features 6.2, 6.3, 6.5
-
-**Acceptance Criteria:**
-- [ ] Each tool accessible at /tools/[slug]
-- [ ] Consistent layout across all tool pages
-- [ ] Interactive demo section where applicable
+- **Feature 6.5: Tool Content Files** - See [release-0.32.0.md](../releases/release-0.32.0.md) (completed with Feature 6.1)
+- **Feature 6.6: Dynamic Tool Pages** - See [release-0.36.0.md](../releases/release-0.36.0.md)
 
 ---
 
@@ -197,7 +151,7 @@ Final quality assurance and cross-browser testing.
 | Phase 3: Homepage | 7 | 7 | 0 |
 | Phase 4: Footer | 2 | 2 | 0 |
 | Phase 5: Feature Pages | 13 | 13 | 0 |
-| Phase 6: Tools Section | 6 | 4 | 2 |
+| Phase 6: Tools Section | 6 | 6 | 0 |
 | Phase 7: Docs Integration | 1 | 0 | 1 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **35** | **6** |
+| **Total** | **41** | **37** | **4** |
