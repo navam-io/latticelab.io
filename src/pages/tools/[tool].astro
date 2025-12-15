@@ -22,7 +22,6 @@ export async function getStaticPaths() {
 }
 
 const { tool } = Astro.props;
-const { Content } = await tool.render();
 
 // Get related tools (same category, excluding current)
 const allTools = await getCollection('tools');
@@ -211,17 +210,6 @@ relatedTools.forEach(rt => {
           testId={`${tool.slug}-capabilities-2`}
         />
       )}
-    </section>
-
-    <!-- Content Section (from MDX) -->
-    <section class="py-16 bg-white" data-testid="tool-content-section">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-strong:text-gray-900 prose-li:text-gray-600" data-testid="tool-content">
-            <Content />
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Tech Specs Section -->

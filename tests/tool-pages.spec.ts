@@ -83,28 +83,6 @@ test.describe('Dynamic Tool Pages', () => {
       })
     })
 
-    test.describe('Content Section', () => {
-      test('renders content section', async ({ page }) => {
-        const section = page.getByTestId('tool-content-section')
-        await expect(section).toBeVisible()
-      })
-
-      test('has prose content', async ({ page }) => {
-        const content = page.getByTestId('tool-content')
-        await expect(content).toBeVisible()
-      })
-
-      test('content includes overview', async ({ page }) => {
-        const content = page.getByTestId('tool-content')
-        await expect(content).toContainText('Overview')
-      })
-
-      test('content includes key capabilities', async ({ page }) => {
-        const content = page.getByTestId('tool-content')
-        await expect(content).toContainText('Key Capabilities')
-      })
-    })
-
     test.describe('Tech Specs Section', () => {
       test('renders specs section', async ({ page }) => {
         const section = page.getByTestId('memory-calculator-specs')
