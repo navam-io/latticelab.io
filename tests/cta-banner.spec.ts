@@ -83,7 +83,7 @@ test.describe('CTABanner Component', () => {
 
     test('custom subheadline displays correctly', async ({ page }) => {
       const subheadline = page.getByTestId('custom-headline-banner-subheadline');
-      await expect(subheadline).toContainText('36 blueprints');
+      await expect(subheadline).toContainText('34 blueprints');
     });
 
     test('subheadline hidden when empty', async ({ page }) => {

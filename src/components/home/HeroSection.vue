@@ -71,14 +71,14 @@
                     <div class="w-3 h-3 rounded-full bg-yellow-500" />
                     <div class="w-3 h-3 rounded-full bg-green-500" />
                   </div>
-                  <div class="text-white/60 text-sm font-mono ml-4">lattice.app</div>
+                  <div class="text-white/60 text-sm font-mono ml-4">localhost/lattice</div>
                 </div>
 
                 <!-- Screenshot/Image Area -->
                 <div class="relative bg-gray-950">
                   <img
-                    v-if="productImage"
-                    :src="productImage"
+                    v-if="displayImage"
+                    :src="displayImage"
                     :alt="productImageAlt"
                     class="w-full h-auto"
                     loading="eager"
@@ -114,8 +114,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import DualCTA from '@components/shared/DualCTA.vue'
+
+// Hero images that alternate randomly on page load
+const heroImages = [
+  '/images/hero-lattice-app.png',
+  '/images/hero-lattice-app-alt.png'
+]
 
 interface Props {
   /** Main headline text (defaults to "Lattice") */
@@ -145,10 +151,19 @@ const props = withDefaults(defineProps<Props>(), {
   primaryHref: '/#pricing',
   secondaryCTA: 'Learn more',
   secondaryHref: '#features',
-  productImage: '/images/journeys/chat-with-ai/chat-with-ai-04.png',
+  productImage: '',  // Will be set randomly
   productImageAlt: 'Lattice AI Infrastructure Platform',
   testId: 'hero-section'
 })
+
+// Randomly select hero image on mount
+const selectedImage = ref(heroImages[0])
+onMounted(() => {
+  selectedImage.value = heroImages[Math.floor(Math.random() * heroImages.length)]
+})
+
+// Use prop if provided, otherwise use randomly selected image
+const displayImage = computed(() => props.productImage || selectedImage.value)
 
 const sectionClasses = computed(() => [
   'relative',

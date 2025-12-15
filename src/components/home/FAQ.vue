@@ -68,7 +68,7 @@ const faqs = [
   },
   {
     question: "What are blueprints?",
-    answer: "Blueprints are curated knowledge bundles that package vendor documentation, pre-configured scenarios, and recommended stacks. Lattice includes 36 blueprints from leading vendors like Anthropic, AWS, NVIDIA, GCP, Meta, and Mistral. Apply a blueprint to instantly populate your workspace with relevant sources and configurations."
+    answer: "Blueprints are curated knowledge bundles that package vendor documentation, pre-configured scenarios, and recommended stacks. Lattice includes 34 blueprints from leading vendors like Anthropic, AWS, Google Cloud, NVIDIA, and Azure. Apply a blueprint to instantly populate your workspace with relevant sources and configurations."
   },
   {
     question: "Do I need my own API keys?",
@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     question: "What's included in the $99 purchase?",
-    answer: "The one-time $99 purchase includes lifetime access to Lattice: all three panels (Sources, Lab, Studio), 36 curated blueprints, unlimited workspaces, scenario and stack configuration, artifact generation and export, and all future updates. No subscriptions or recurring fees."
+    answer: "The one-time $99 purchase includes lifetime access to Lattice: all three panels (Sources, Lab, Studio), 34 curated blueprints, unlimited workspaces, scenario and stack configuration, artifact generation and export, and all future updates. No subscriptions or recurring fees."
   }
 ]
 </script>

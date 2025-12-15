@@ -69,10 +69,10 @@
         <!-- Blueprints Card -->
         <FeatureCard
           title="Blueprints"
-          tagline="36 Vendor Blueprints"
-          :description="showDescriptions ? 'Pre-configured knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, Meta, and Mistral.' : undefined"
+          tagline="34 Vendor Blueprints"
+          :description="showDescriptions ? 'Pre-configured knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, and Azure.' : undefined"
           :icon="blueprintsIcon"
-          badge="36 Blueprints"
+          badge="34 Blueprints"
           :screenshot="blueprintsScreenshot"
           href="/features/blueprints"
           variant="purple"

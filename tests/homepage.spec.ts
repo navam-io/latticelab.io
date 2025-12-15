@@ -71,7 +71,7 @@ test.describe('Homepage Assembly', () => {
 
   test.describe('Vendor Ticker', () => {
     test('vendor ticker section exists', async ({ page }) => {
-      const ticker = page.locator('section').filter({ hasText: 'Curated Blueprints from Leading AI Vendors' });
+      const ticker = page.locator('section').filter({ hasText: '34 Blueprints | 29 Models | 15 Accelerators' });
       await expect(ticker).toBeAttached();
     });
   });

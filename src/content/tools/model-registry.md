@@ -1,7 +1,7 @@
 ---
 name: Model Registry
-description: Stop googling model pricing. Browse 30+ AI models from Anthropic, OpenAI, Google, and Ollama with consistent fields for context windows, pricing, and capabilities in one place.
-shortDescription: Compare 30+ AI models with capabilities, pricing, and context windows.
+description: Stop googling model pricing. Browse 29 AI models from Anthropic, OpenAI, Google, and Ollama with consistent fields for context windows, pricing, and capabilities in one place.
+shortDescription: Compare 29 AI models with capabilities, pricing, and context windows.
 icon: M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4
 iconBg: bg-indigo-100
 iconColor: text-indigo-600
@@ -9,7 +9,7 @@ productImage: /images/tools/model-registry-01.png
 productImageAlt: Model Registry showing sortable table of AI models with pricing and context windows
 secondaryImage: /images/tools/model-registry-02.png
 features:
-  - "30+ models from Anthropic, OpenAI, Google, Ollama"
+  - "29 models from Anthropic, OpenAI, Google, Ollama"
   - "Sortable by price, context window, or provider"
   - "Vision, tools, streaming, extended thinking filters"
   - "Batch API and prompt caching pricing"
@@ -19,8 +19,8 @@ journeyLink: /blog/model-registry
 docsLink: /docs/guides/compare-providers
 order: 3
 category: registry
-seoTitle: AI Model Registry - Compare 30+ LLMs Across Providers | Lattice
-seoDescription: Browse and compare 30+ AI models from Anthropic, OpenAI, Google. Filter by capabilities, pricing, and context windows to find the right model for your workload.
+seoTitle: AI Model Registry - Compare 29 LLMs Across Providers | Lattice
+seoDescription: Browse and compare 29 AI models from Anthropic, OpenAI, Google. Filter by capabilities, pricing, and context windows to find the right model for your workload.
 ---
 
 ## Overview
@@ -31,7 +31,7 @@ The Model Registry is Lattice's centralized database of model capabilities, cons
 
 ### Browsing Models by Provider
 
-The Models tab displays all 30+ registered models in a sortable table:
+The Models tab displays all 29 registered models in a sortable table:
 
 - **Provider**: Anthropic, OpenAI, Google, Ollama
 - **Model**: Display name with preview badge for new models

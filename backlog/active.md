@@ -49,6 +49,7 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 6.5: Tool Content Files** - See [release-0.32.0.md](../releases/release-0.32.0.md) (completed with Feature 6.1)
 - **Feature 6.6: Dynamic Tool Pages** - See [release-0.36.0.md](../releases/release-0.36.0.md)
 - **Feature 7.1: Cross-Linking Updates** - See [release-0.40.0.md](../releases/release-0.40.0.md)
+- **Feature 8.2: Stats Updates** - See [release-0.41.0.md](../releases/release-0.41.0.md)
 
 ---
 
@@ -74,26 +75,6 @@ Update all product screenshots with latest UI.
 - [ ] Studio screenshot
 - [ ] Blueprint gallery image
 - [ ] All tool screenshots
-
----
-
-### Feature 8.2: Stats Updates
-**Spec Reference:** Part 7, Section 7.1
-**Status:** [ ] Planned
-**Complexity:** S
-
-**Description:**
-Update stats and counts across the site.
-
-**Files:**
-- [ ] Homepage stats section
-- [ ] Feature pages with counts
-
-**Dependencies:** None
-
-**Acceptance Criteria:**
-- [ ] "36 Blueprints | 10+ Vendors | 2,134 Tests" format
-- [ ] Accurate current numbers
 
 ---
 
@@ -131,5 +112,5 @@ Final quality assurance and cross-browser testing.
 | Phase 5: Feature Pages | 13 | 13 | 0 |
 | Phase 6: Tools Section | 6 | 6 | 0 |
 | Phase 7: Docs Integration | 1 | 1 | 0 |
-| Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **38** | **3** |
+| Phase 8: Content & Polish | 3 | 1 | 2 |
+| **Total** | **41** | **39** | **2** |

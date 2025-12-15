@@ -151,15 +151,14 @@ test.describe('Header Component', () => {
       await expect(backdrop).toBeVisible();
     });
 
-    test('backdrop click closes menu', async ({ page }) => {
+    test('escape key closes menu', async ({ page }) => {
       const trigger = page.getByTestId('test-header-features-trigger');
       const panel = page.getByTestId('test-header-features-panel');
-      const backdrop = page.getByTestId('test-header-features-backdrop');
 
       await trigger.press('Space');
       await expect(panel).toBeVisible();
 
-      await backdrop.click({ force: true });
+      await trigger.press('Escape');
       await expect(panel).not.toBeVisible();
     });
   });

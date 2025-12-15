@@ -184,7 +184,7 @@ const props = withDefaults(defineProps<Props>(), {
   tagline: 'One-time payment. Lifetime access.',
   features: () => [
     'Full access to Sources, Lab, and Studio panels',
-    '36 curated vendor blueprints (Anthropic, AWS, NVIDIA, GCP, Meta, Mistral)',
+    '34 curated vendor blueprints (Anthropic, AWS, Google Cloud, NVIDIA, Azure)',
     'Unlimited workspaces and source ingestion',
     'Scenario configuration with SLOs, budget, and compliance',
     'Artifact generation and export (CSV, JSON, Markdown)',

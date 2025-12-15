@@ -123,9 +123,9 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">36 Curated Blueprints</h3>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">34 Curated Blueprints</h3>
           <p class="text-gray-600 mb-4">
-            Pre-built knowledge bundles from Anthropic, AWS, NVIDIA, GCP, Meta, and Mistral.
+            Pre-built knowledge bundles from Anthropic, AWS, Google Cloud, NVIDIA, and Azure.
             One-click workspace population.
           </p>
           <ul class="space-y-2 text-sm text-gray-500">

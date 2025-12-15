@@ -13,7 +13,7 @@ Lattice runs privately on your laptop or cloud. Your data, your control. It's a 
 - **Sources Panel**: Build a knowledge base from PDFs, URLs, GitHub repos, YouTube transcripts. Every recommendation links back to specific source chunks.
 - **Lab Panel**: Chat with an AI research agent grounded in your sources. Get recommendations with transparent reasoning and full citations.
 - **Studio Panel**: Turn AI responses into reusable artifacts. Generate comparison tables, decision memos, and export to Markdown, JSON, or CSV.
-- **36 Blueprints**: Pre-configured knowledge bundles from Anthropic, AWS, NVIDIA, Google Cloud, Meta, and Mistral.
+- **34 Blueprints**: Pre-configured knowledge bundles from Anthropic, AWS, Google Cloud, NVIDIA, and Azure.
 - **Scenarios & Stacks**: Define workload requirements (latency, budget, compliance) and configure AI infrastructure options.
 
 ## Pricing

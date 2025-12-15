@@ -42,8 +42,8 @@ Lattice is an agentic AI lab assistant designed for technical decision-makers wh
 - Artifact versioning and history
 
 ### Blueprints (Pre-built Knowledge)
-36 curated vendor blueprints organized by:
-- **Vendors**: Anthropic, AWS, Microsoft Azure, Google Cloud, Meta, NVIDIA, Mistral
+34 curated vendor blueprints organized by:
+- **Vendors**: Anthropic, AWS, Google Cloud, NVIDIA, Azure
 - **Categories**: Production, Development, Comparison, Cost Optimization, RAG, Agentic, General
 - Each blueprint includes: curated documentation sources, pre-defined scenarios, recommended stack configurations
 
@@ -74,7 +74,7 @@ Lattice is an agentic AI lab assistant designed for technical decision-makers wh
 
 Includes:
 - Full access to Sources, Lab, and Studio panels
-- All 36 curated vendor blueprints
+- All 34 curated vendor blueprints
 - Unlimited workspaces and source ingestion
 - Scenario and stack configuration
 - Artifact generation and export
@@ -95,7 +95,7 @@ Includes:
 1. **Source Grounding**: Every recommendation includes numbered citations linking back to specific chunks in user's sources
 2. **Privacy-First**: Runs locally, no data sent to Lattice servers, user controls their API keys
 3. **Purpose-Built**: Designed specifically for AI infrastructure research, not general-purpose chat
-4. **Curated Blueprints**: 36 pre-built knowledge bundles from major AI vendors
+4. **Curated Blueprints**: 34 pre-built knowledge bundles from major AI vendors
 5. **Scenario-Aware**: Recommendations consider user's specific requirements (latency, budget, compliance)
 
 ## Company Information

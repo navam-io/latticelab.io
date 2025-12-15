@@ -470,7 +470,7 @@ const mobileNavSections = [
       { label: 'Sources', href: '/features/sources', description: 'Knowledge Management' },
       { label: 'Lab', href: '/features/lab', description: 'AI-Powered Analysis' },
       { label: 'Studio', href: '/features/studio', description: 'Artifacts & Exports' },
-      { label: 'Blueprints', href: '/features/blueprints', description: 'Curated Bundles', badge: '36' },
+      { label: 'Blueprints', href: '/features/blueprints', description: 'Curated Bundles', badge: '34' },
       { label: 'All Features', href: '/features', description: 'Overview' }
     ]
   },

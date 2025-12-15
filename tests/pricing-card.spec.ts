@@ -156,7 +156,7 @@ test.describe('PricingCard Component', () => {
 
     test('second feature mentions blueprints', async ({ page }) => {
       const feature = page.getByTestId('default-pricing-feature-1');
-      await expect(feature).toContainText('36');
+      await expect(feature).toContainText('34');
       await expect(feature).toContainText('blueprints');
     });
 

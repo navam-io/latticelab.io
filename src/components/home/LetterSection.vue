@@ -175,7 +175,7 @@
               </p>
 
               <ul class="list-none space-y-3 pl-5 border-l-3 border-amber-400">
-                <li><strong>36 curated blueprints</strong> from leading AI vendors, ready with one click</li>
+                <li><strong>34 curated blueprints</strong> from leading AI vendors, ready with one click</li>
                 <li><strong>Source-grounded recommendations</strong> with citations to specific documentation</li>
                 <li><strong>Scenario-aware analysis</strong> for your latency, budget, and compliance requirements</li>
               </ul>
