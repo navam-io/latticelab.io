@@ -133,13 +133,14 @@ const featuresLinks: FooterLink[] = [
 
 // Tools column links
 const toolsLinks: FooterLink[] = [
-  { label: 'Accelerator Registry', href: '/tools/accelerator-registry' },
   { label: 'Memory Calculator', href: '/tools/memory-calculator' },
   { label: 'TCO Calculator', href: '/tools/tco-calculator' },
+  { label: 'Model Registry', href: '/tools/model-registry' },
+  { label: 'Accelerator Registry', href: '/tools/accelerator-registry' },
   { label: 'Parallelism Advisor', href: '/tools/parallelism-advisor' },
   { label: 'Quantization Advisor', href: '/tools/quantization-advisor' },
-  { label: 'Spot Instance Advisor', href: '/tools/spot-advisor' },
-  { label: 'Evaluation Framework', href: '/tools/evaluation' }
+  { label: 'Spot Advisor', href: '/tools/spot-advisor' },
+  { label: 'Live Data Feeds', href: '/tools/live-data-feeds' }
 ]
 
 // Resources column links

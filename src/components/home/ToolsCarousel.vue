@@ -25,48 +25,20 @@
         </p>
       </div>
 
-      <!-- Tools Carousel Container -->
+      <!-- Tools Grid Container (4x2) -->
       <div
-        class="relative"
+        class="max-w-6xl mx-auto"
         :data-testid="`${testId}-container`"
       >
-        <!-- Scroll Indicators (Desktop) -->
-        <button
-          v-if="showNavigation && canScrollLeft"
-          class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 items-center justify-center bg-white rounded-full shadow-lg border border-gray-200 hover:border-violet-300 hover:shadow-xl transition-all duration-200"
-          @click="scrollLeft"
-          :data-testid="`${testId}-nav-left`"
-          aria-label="Scroll left"
-        >
-          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        <button
-          v-if="showNavigation && canScrollRight"
-          class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 items-center justify-center bg-white rounded-full shadow-lg border border-gray-200 hover:border-violet-300 hover:shadow-xl transition-all duration-200"
-          @click="scrollRight"
-          :data-testid="`${testId}-nav-right`"
-          aria-label="Scroll right"
-        >
-          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        <!-- Scrollable Track -->
         <div
-          ref="trackRef"
-          class="flex gap-4 md:gap-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
-          :data-testid="`${testId}-track`"
-          @scroll="handleScroll"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          :data-testid="`${testId}-grid`"
         >
           <!-- Tool Cards -->
           <article
             v-for="tool in tools"
             :key="tool.id"
-            class="flex-shrink-0 w-[280px] md:w-[320px] p-6 bg-white rounded-2xl border border-gray-200 hover:border-violet-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 snap-start"
+            class="p-6 bg-white rounded-2xl border border-gray-200 hover:border-violet-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             :data-testid="`${testId}-tool-${tool.id}`"
           >
             <!-- Icon -->
@@ -109,32 +81,13 @@
             </a>
           </article>
         </div>
-
-        <!-- Scroll Dots (Mobile) -->
-        <div
-          v-if="showDots"
-          class="flex md:hidden justify-center gap-2 mt-4"
-          :data-testid="`${testId}-dots`"
-        >
-          <button
-            v-for="(_, index) in tools"
-            :key="index"
-            :class="[
-              'w-2 h-2 rounded-full transition-all duration-200',
-              currentIndex === index ? 'bg-violet-600 w-4' : 'bg-gray-300 hover:bg-gray-400'
-            ]"
-            @click="scrollToIndex(index)"
-            :data-testid="`${testId}-dot-${index}`"
-            :aria-label="`Go to tool ${index + 1}`"
-          />
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Tool {
   id: string
@@ -153,10 +106,6 @@ interface Props {
   sectionDescription?: string
   /** Whether to show the section header */
   showHeader?: boolean
-  /** Whether to show navigation arrows */
-  showNavigation?: boolean
-  /** Whether to show scroll dots on mobile */
-  showDots?: boolean
   /** Background variant */
   background?: 'white' | 'gray' | 'gradient'
   /** Test ID prefix */
@@ -165,10 +114,8 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   sectionTitle: 'Powerful Tools',
-  sectionDescription: 'Seven specialized tools to help you make informed AI infrastructure decisions.',
+  sectionDescription: 'Eight specialized tools to help you make informed AI infrastructure decisions.',
   showHeader: true,
-  showNavigation: true,
-  showDots: true,
   background: 'white',
   testId: 'tools-carousel'
 })
@@ -186,17 +133,9 @@ const sectionClasses = computed(() => {
   return `${base} ${backgrounds[props.background]}`
 })
 
-// Tools data
+// Tools data (8 tools in 4x2 grid)
 const tools = ref<Tool[]>([
-  {
-    id: 'accelerator-registry',
-    name: 'Accelerator Registry',
-    description: 'Compare GPUs across AWS, GCP, and Azure with interactive filtering and performance metrics.',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>',
-    iconBg: 'bg-violet-100',
-    iconColor: 'text-violet-600',
-    href: '/tools/accelerator-registry'
-  },
+  // Row 1
   {
     id: 'memory-calculator',
     name: 'Memory Calculator',
@@ -216,6 +155,25 @@ const tools = ref<Tool[]>([
     href: '/tools/tco-calculator'
   },
   {
+    id: 'model-registry',
+    name: 'Model Registry',
+    description: 'Compare 30+ AI models from Anthropic, OpenAI, Google with capabilities and pricing.',
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>',
+    iconBg: 'bg-indigo-100',
+    iconColor: 'text-indigo-600',
+    href: '/tools/model-registry'
+  },
+  {
+    id: 'accelerator-registry',
+    name: 'Accelerator Registry',
+    description: 'Compare GPUs across AWS, GCP, and Azure with interactive filtering and performance metrics.',
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>',
+    iconBg: 'bg-violet-100',
+    iconColor: 'text-violet-600',
+    href: '/tools/accelerator-registry'
+  },
+  // Row 2
+  {
     id: 'parallelism-advisor',
     name: 'Parallelism Advisor',
     description: 'Get recommendations for tensor, pipeline, and data parallelism configurations.',
@@ -229,91 +187,32 @@ const tools = ref<Tool[]>([
     name: 'Quantization Advisor',
     description: 'Explore quantization options like INT8 and FP16 with quality vs speed tradeoff analysis.',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>',
-    iconBg: 'bg-purple-100',
-    iconColor: 'text-purple-600',
+    iconBg: 'bg-rose-100',
+    iconColor: 'text-rose-600',
     href: '/tools/quantization-advisor'
   },
   {
     id: 'spot-advisor',
-    name: 'Spot Instance Advisor',
+    name: 'Spot Advisor',
     description: 'Check spot availability by region, interruption frequency, and calculate cost savings.',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
-    iconBg: 'bg-rose-100',
-    iconColor: 'text-rose-600',
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>',
+    iconBg: 'bg-cyan-100',
+    iconColor: 'text-cyan-600',
     href: '/tools/spot-advisor'
   },
   {
-    id: 'evaluation',
-    name: 'Evaluation Framework',
-    description: 'Create custom evaluations with LLM-as-judge support for model quality assessment.',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>',
+    id: 'live-data-feeds',
+    name: 'Live Data Feeds',
+    description: 'Keep pricing, benchmarks, and model capabilities current with automatic data sync.',
+    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
     iconBg: 'bg-teal-100',
     iconColor: 'text-teal-600',
-    href: '/tools/evaluation'
+    href: '/tools/live-data-feeds'
   }
 ])
-
-// Scroll state
-const trackRef = ref<HTMLElement | null>(null)
-const currentIndex = ref(0)
-const canScrollLeft = ref(false)
-const canScrollRight = ref(true)
-
-// Handle scroll events
-const handleScroll = () => {
-  if (!trackRef.value) return
-
-  const track = trackRef.value
-  const cardWidth = 320 + 24 // card width + gap
-  const scrollPosition = track.scrollLeft
-  const maxScroll = track.scrollWidth - track.clientWidth
-
-  currentIndex.value = Math.round(scrollPosition / cardWidth)
-  canScrollLeft.value = scrollPosition > 0
-  canScrollRight.value = scrollPosition < maxScroll - 10
-}
-
-// Scroll navigation
-const scrollLeft = () => {
-  if (!trackRef.value) return
-  const cardWidth = 320 + 24
-  trackRef.value.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' })
-}
-
-const scrollRight = () => {
-  if (!trackRef.value) return
-  const cardWidth = 320 + 24
-  trackRef.value.scrollBy({ left: cardWidth * 2, behavior: 'smooth' })
-}
-
-const scrollToIndex = (index: number) => {
-  if (!trackRef.value) return
-  const cardWidth = 280 + 16 // mobile card width + gap
-  trackRef.value.scrollTo({ left: index * cardWidth, behavior: 'smooth' })
-}
-
-// Initialize scroll state
-onMounted(() => {
-  handleScroll()
-  window.addEventListener('resize', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleScroll)
-})
 </script>
 
 <style scoped>
-/* Hide scrollbar but keep functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 /* Line clamp for description */
 .line-clamp-2 {
   display: -webkit-box;

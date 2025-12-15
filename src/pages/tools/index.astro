@@ -1,12 +1,12 @@
 ---
 /**
  * Tools Hub Page
- * Lists all 7 tools with categorization and navigation
+ * Lists all 8 tools matching the Features Index design pattern
  */
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.vue';
 import Footer from '@components/Footer.vue';
-import ToolCard from '@components/tools/ToolCard.vue';
+import FeatureCard from '@components/home/FeatureCard.vue';
 import { getCollection } from 'astro:content';
 
 // Get all tools sorted by order
@@ -16,7 +16,43 @@ const tools = (await getCollection('tools')).sort((a, b) => a.data.order - b.dat
 const calculators = tools.filter(t => t.data.category === 'calculator');
 const advisors = tools.filter(t => t.data.category === 'advisor');
 const registries = tools.filter(t => t.data.category === 'registry');
-const frameworks = tools.filter(t => t.data.category === 'framework');
+const dataTools = tools.filter(t => t.data.category === 'data');
+
+// Icon SVGs for each tool (matching content collection icons)
+const toolIcons: Record<string, string> = {
+  'memory-calculator': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>',
+  'tco-calculator': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
+  'model-registry': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>',
+  'accelerator-registry': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>',
+  'parallelism-advisor': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>',
+  'quantization-advisor': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>',
+  'spot-advisor': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>',
+  'live-data-feeds': '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>'
+};
+
+// Variant colors for each tool
+const toolVariants: Record<string, string> = {
+  'memory-calculator': 'blue',
+  'tco-calculator': 'emerald',
+  'model-registry': 'purple',
+  'accelerator-registry': 'violet',
+  'parallelism-advisor': 'amber',
+  'quantization-advisor': 'rose',
+  'spot-advisor': 'teal',
+  'live-data-feeds': 'teal'
+};
+
+// Taglines for each tool
+const toolTaglines: Record<string, string> = {
+  'memory-calculator': 'GPU Memory Estimation',
+  'tco-calculator': 'Cost Analysis',
+  'model-registry': 'AI Model Comparison',
+  'accelerator-registry': 'GPU Comparison',
+  'parallelism-advisor': 'Distributed Training',
+  'quantization-advisor': 'Precision Optimization',
+  'spot-advisor': 'Savings Opportunities',
+  'live-data-feeds': 'Automatic Data Sync'
+};
 ---
 
 <Layout
@@ -31,16 +67,10 @@ const frameworks = tools.filter(t => t.data.category === 'framework');
     <section class="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-violet-900" data-testid="tools-hero">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/80 text-sm mb-6" data-testid="tools-hero-badge">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
-            <span>7 Interactive Tools</span>
-          </div>
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-testid="tools-hero-title">
-            AI Infrastructure Tools
+            Eight Tools for AI Infrastructure
           </h1>
-          <p class="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto" data-testid="tools-hero-description">
+          <p class="text-xl text-white/80 leading-relaxed" data-testid="tools-hero-description">
             Plan your AI infrastructure with confidence. Calculate memory requirements, compare cloud GPUs, optimize costs, and get expert recommendations.
           </p>
         </div>
@@ -48,33 +78,25 @@ const frameworks = tools.filter(t => t.data.category === 'framework');
     </section>
 
     <!-- Calculators Section -->
-    <section class="py-16 bg-white" data-testid="tools-calculators-section">
+    <section class="py-20 bg-gray-50" data-testid="tools-calculators-section">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-calculators-title">Calculators</h2>
-              <p class="text-gray-600" data-testid="tools-calculators-description">Estimate costs and resource requirements</p>
-            </div>
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4" data-testid="tools-calculators-title">Calculators</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-testid="tools-calculators-description">
+              Estimate costs and resource requirements for your AI infrastructure.
+            </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-testid="tools-calculators-grid">
-            {calculators.map((tool, index) => (
-              <ToolCard
+            {calculators.map((tool) => (
+              <FeatureCard
                 client:load
-                name={tool.data.name}
+                title={tool.data.name}
+                tagline={toolTaglines[tool.slug]}
                 description={tool.data.shortDescription || tool.data.description}
-                icon={tool.data.icon}
-                iconBg={tool.data.iconBg}
-                iconColor={tool.data.iconColor}
-                category={tool.data.category}
-                showCategory={true}
-                features={tool.data.features.slice(0, 3)}
-                exploreHref={`/tools/${tool.slug}`}
+                icon={toolIcons[tool.slug]}
+                href={`/tools/${tool.slug}`}
+                variant={toolVariants[tool.slug] as any}
                 testId={`tool-card-${tool.slug}`}
               />
             ))}
@@ -84,33 +106,25 @@ const frameworks = tools.filter(t => t.data.category === 'framework');
     </section>
 
     <!-- Advisors Section -->
-    <section class="py-16 bg-gray-50" data-testid="tools-advisors-section">
+    <section class="py-20 bg-white" data-testid="tools-advisors-section">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-advisors-title">Advisors</h2>
-              <p class="text-gray-600" data-testid="tools-advisors-description">Get expert optimization recommendations</p>
-            </div>
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4" data-testid="tools-advisors-title">Advisors</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-testid="tools-advisors-description">
+              Get expert optimization recommendations for distributed training, quantization, and cost savings.
+            </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-testid="tools-advisors-grid">
-            {advisors.map((tool, index) => (
-              <ToolCard
+            {advisors.map((tool) => (
+              <FeatureCard
                 client:load
-                name={tool.data.name}
+                title={tool.data.name}
+                tagline={toolTaglines[tool.slug]}
                 description={tool.data.shortDescription || tool.data.description}
-                icon={tool.data.icon}
-                iconBg={tool.data.iconBg}
-                iconColor={tool.data.iconColor}
-                category={tool.data.category}
-                showCategory={true}
-                features={tool.data.features.slice(0, 3)}
-                exploreHref={`/tools/${tool.slug}`}
+                icon={toolIcons[tool.slug]}
+                href={`/tools/${tool.slug}`}
+                variant={toolVariants[tool.slug] as any}
                 testId={`tool-card-${tool.slug}`}
               />
             ))}
@@ -120,35 +134,25 @@ const frameworks = tools.filter(t => t.data.category === 'framework');
     </section>
 
     <!-- Registry Section -->
-    <section class="py-16 bg-white" data-testid="tools-registry-section">
+    <section class="py-20 bg-gray-50" data-testid="tools-registry-section">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-registry-title">Registry</h2>
-              <p class="text-gray-600" data-testid="tools-registry-description">Comprehensive hardware and provider database</p>
-            </div>
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4" data-testid="tools-registry-title">Registry</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-testid="tools-registry-description">
+              Comprehensive databases for AI models and cloud accelerators.
+            </p>
           </div>
-          <div class="grid grid-cols-1 gap-6" data-testid="tools-registry-grid">
-            {registries.map((tool, index) => (
-              <ToolCard
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-testid="tools-registry-grid">
+            {registries.map((tool) => (
+              <FeatureCard
                 client:load
-                name={tool.data.name}
+                title={tool.data.name}
+                tagline={toolTaglines[tool.slug]}
                 description={tool.data.shortDescription || tool.data.description}
-                icon={tool.data.icon}
-                iconBg={tool.data.iconBg}
-                iconColor={tool.data.iconColor}
-                category={tool.data.category}
-                showCategory={true}
-                features={tool.data.features.slice(0, 4)}
-                maxFeatures={4}
-                exploreHref={`/tools/${tool.slug}`}
-                size="lg"
+                icon={toolIcons[tool.slug]}
+                href={`/tools/${tool.slug}`}
+                variant={toolVariants[tool.slug] as any}
                 testId={`tool-card-${tool.slug}`}
               />
             ))}
@@ -157,40 +161,28 @@ const frameworks = tools.filter(t => t.data.category === 'framework');
       </div>
     </section>
 
-    <!-- Framework Section -->
-    <section class="py-16 bg-gray-50" data-testid="tools-framework-section">
+    <!-- Data Section -->
+    <section class="py-20 bg-white" data-testid="tools-data-section">
       <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900" data-testid="tools-framework-title">Framework</h2>
-              <p class="text-gray-600" data-testid="tools-framework-description">Structured approaches for AI decisions</p>
-            </div>
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4" data-testid="tools-data-title">Data</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-testid="tools-data-description">
+              Keep your infrastructure data current with automatic synchronization.
+            </p>
           </div>
-          <div class="grid grid-cols-1 gap-6" data-testid="tools-framework-grid">
-            {frameworks.map((tool, index) => (
-              <ToolCard
-                client:load
-                name={tool.data.name}
-                description={tool.data.shortDescription || tool.data.description}
-                icon={tool.data.icon}
-                iconBg={tool.data.iconBg}
-                iconColor={tool.data.iconColor}
-                category={tool.data.category}
-                showCategory={true}
-                features={tool.data.features.slice(0, 4)}
-                maxFeatures={4}
-                exploreHref={`/tools/${tool.slug}`}
-                size="lg"
-                testId={`tool-card-${tool.slug}`}
-              />
-            ))}
-          </div>
+          {dataTools.map((tool) => (
+            <FeatureCard
+              client:load
+              title={tool.data.name}
+              tagline={toolTaglines[tool.slug]}
+              description={tool.data.shortDescription || tool.data.description}
+              icon={toolIcons[tool.slug]}
+              href={`/tools/${tool.slug}`}
+              variant={toolVariants[tool.slug] as any}
+              testId={`tool-card-${tool.slug}`}
+            />
+          ))}
         </div>
       </div>
     </section>

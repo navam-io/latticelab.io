@@ -182,6 +182,176 @@
                   </a>
                 </div>
               </div>
+
+              <!-- Tools Row -->
+              <div class="mt-6">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">Tools</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-4">
+                  <!-- Row 1 -->
+                  <!-- Memory Calculator -->
+                  <a
+                    href="/tools/memory-calculator"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-xl hover:shadow-blue-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-memory-calculator`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-blue-700 transition-colors">Memory Calculator</div>
+                        <div class="text-xs text-gray-500">GPU Memory Estimation</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- TCO Calculator -->
+                  <a
+                    href="/tools/tco-calculator"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-emerald-300 hover:shadow-xl hover:shadow-emerald-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-tco-calculator`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-emerald-700 transition-colors">TCO Calculator</div>
+                        <div class="text-xs text-gray-500">Cost Analysis</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Model Registry -->
+                  <a
+                    href="/tools/model-registry"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-model-registry`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors">Model Registry</div>
+                        <div class="text-xs text-gray-500">AI Model Comparison</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Accelerator Registry -->
+                  <a
+                    href="/tools/accelerator-registry"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-violet-300 hover:shadow-xl hover:shadow-violet-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-accelerator-registry`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-violet-700 transition-colors">Accelerator Registry</div>
+                        <div class="text-xs text-gray-500">GPU Comparison</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-4 mt-4">
+                  <!-- Parallelism Advisor -->
+                  <a
+                    href="/tools/parallelism-advisor"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-amber-300 hover:shadow-xl hover:shadow-amber-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-parallelism-advisor`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-amber-700 transition-colors">Parallelism Advisor</div>
+                        <div class="text-xs text-gray-500">Distributed Training</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Quantization Advisor -->
+                  <a
+                    href="/tools/quantization-advisor"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-rose-300 hover:shadow-xl hover:shadow-rose-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-quantization-advisor`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-rose-700 transition-colors">Quantization Advisor</div>
+                        <div class="text-xs text-gray-500">Precision Optimization</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Spot Advisor -->
+                  <a
+                    href="/tools/spot-advisor"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-spot-advisor`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-sky-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-cyan-700 transition-colors">Spot Advisor</div>
+                        <div class="text-xs text-gray-500">Savings Opportunities</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Live Data Feeds -->
+                  <a
+                    href="/tools/live-data-feeds"
+                    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-100/50 active:scale-[0.98] transition-all duration-300 touch-manipulation"
+                    @click="close"
+                    :data-testid="`${testId}-link-live-data-feeds`"
+                  >
+                    <div class="flex items-start gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-bold text-sm text-gray-900 group-hover:text-cyan-700 transition-colors">Live Data Feeds</div>
+                        <div class="text-xs text-gray-500">Automatic Data Sync</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
             </template>
           </MegaMenu>
 
@@ -310,6 +480,19 @@ const mobileNavSections = [
       { label: 'Scenarios', href: '/features/scenarios', description: 'Use Case Definition' },
       { label: 'Stacks', href: '/features/stacks', description: 'Infrastructure Config' },
       { label: 'Settings', href: '/features/settings', description: 'Customization' }
+    ]
+  },
+  {
+    title: 'Tools',
+    links: [
+      { label: 'Memory Calculator', href: '/tools/memory-calculator', description: 'GPU Memory Estimation' },
+      { label: 'TCO Calculator', href: '/tools/tco-calculator', description: 'Cost Analysis' },
+      { label: 'Model Registry', href: '/tools/model-registry', description: 'AI Model Comparison' },
+      { label: 'Accelerator Registry', href: '/tools/accelerator-registry', description: 'GPU Comparison' },
+      { label: 'Parallelism Advisor', href: '/tools/parallelism-advisor', description: 'Distributed Training' },
+      { label: 'Quantization Advisor', href: '/tools/quantization-advisor', description: 'Precision Optimization' },
+      { label: 'Spot Advisor', href: '/tools/spot-advisor', description: 'Savings Opportunities' },
+      { label: 'Live Data Feeds', href: '/tools/live-data-feeds', description: 'Automatic Data Sync' }
     ]
   },
   {

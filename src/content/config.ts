@@ -23,7 +23,7 @@ const tools = defineCollection({
 
     // Meta
     order: z.number().default(0), // Sort order for display
-    category: z.enum(['calculator', 'advisor', 'registry', 'framework']).optional(),
+    category: z.enum(['calculator', 'advisor', 'registry', 'data']).optional(),
 
     // SEO
     seoTitle: z.string().optional(),

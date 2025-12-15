@@ -1,18 +1,19 @@
 import { test, expect } from '@playwright/test'
 
-// Test all 7 tool pages
+// Test all 8 tool pages
 const tools = [
   { slug: 'memory-calculator', name: 'Memory Calculator', category: 'calculator' },
   { slug: 'tco-calculator', name: 'TCO Calculator', category: 'calculator' },
+  { slug: 'model-registry', name: 'Model Registry', category: 'registry' },
   { slug: 'accelerator-registry', name: 'Accelerator Registry', category: 'registry' },
   { slug: 'parallelism-advisor', name: 'Parallelism Advisor', category: 'advisor' },
   { slug: 'quantization-advisor', name: 'Quantization Advisor', category: 'advisor' },
   { slug: 'spot-advisor', name: 'Spot Advisor', category: 'advisor' },
-  { slug: 'evaluation', name: 'Evaluation Framework', category: 'framework' }
+  { slug: 'live-data-feeds', name: 'Live Data Feeds', category: 'data' }
 ]
 
 test.describe('Dynamic Tool Pages', () => {
-  // Test Memory Calculator as representative page
+  // Test Memory Calculator as representative page (matching feature page design)
   test.describe('Memory Calculator Page', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('/tools/memory-calculator')
@@ -23,100 +24,62 @@ test.describe('Dynamic Tool Pages', () => {
       await expect(container).toBeVisible()
     })
 
+    test.describe('Sticky Navigation', () => {
+      test('renders sticky nav', async ({ page }) => {
+        const nav = page.getByTestId('memory-calculator-nav')
+        await expect(nav).toBeVisible()
+      })
+
+      test('has feature name in nav', async ({ page }) => {
+        const nav = page.getByTestId('memory-calculator-nav')
+        await expect(nav).toContainText('Memory Calculator')
+      })
+    })
+
     test.describe('Hero Section', () => {
       test('renders hero section', async ({ page }) => {
-        const hero = page.getByTestId('tool-hero')
+        const hero = page.getByTestId('memory-calculator-hero')
         await expect(hero).toBeVisible()
       })
 
-      test('has breadcrumb navigation', async ({ page }) => {
-        const breadcrumb = page.getByTestId('tool-breadcrumb')
-        await expect(breadcrumb).toBeVisible()
-        await expect(breadcrumb).toContainText('Tools')
-        await expect(breadcrumb).toContainText('Memory Calculator')
+      test('has tool headline', async ({ page }) => {
+        const headline = page.getByTestId('memory-calculator-hero-headline')
+        await expect(headline).toBeVisible()
+        await expect(headline).toContainText('Memory Calculator')
       })
 
-      test('has tool icon', async ({ page }) => {
-        const icon = page.getByTestId('tool-icon')
-        await expect(icon).toBeVisible()
+      test('has tagline', async ({ page }) => {
+        const tagline = page.getByTestId('memory-calculator-hero-tagline')
+        await expect(tagline).toBeVisible()
       })
 
-      test('has category badge', async ({ page }) => {
-        const category = page.getByTestId('tool-category')
-        await expect(category).toBeVisible()
-        await expect(category).toHaveText('calculator')
-      })
-
-      test('has tool title', async ({ page }) => {
-        const title = page.getByTestId('tool-title')
-        await expect(title).toBeVisible()
-        await expect(title).toHaveText('Memory Calculator')
-      })
-
-      test('has tool description', async ({ page }) => {
-        const description = page.getByTestId('tool-description')
+      test('has description', async ({ page }) => {
+        const description = page.getByTestId('memory-calculator-hero-description')
         await expect(description).toBeVisible()
-        await expect(description).toContainText('memory requirements')
       })
 
-      test('has links container', async ({ page }) => {
-        const links = page.getByTestId('tool-links')
-        await expect(links).toBeVisible()
-      })
-
-      test('has docs link', async ({ page }) => {
-        const docsLink = page.getByTestId('tool-docs-link')
-        await expect(docsLink).toBeVisible()
-        await expect(docsLink).toContainText('View Documentation')
+      test('has primary CTA button', async ({ page }) => {
+        const cta = page.getByTestId('memory-calculator-hero-buy-button')
+        await expect(cta).toBeVisible()
+        await expect(cta).toContainText('Get Lattice')
       })
     })
 
-    test.describe('Features Section', () => {
-      test('renders features section', async ({ page }) => {
-        const section = page.getByTestId('tool-features-section')
+    test.describe('Capabilities Section', () => {
+      test('renders first capabilities section', async ({ page }) => {
+        const section = page.getByTestId('memory-calculator-capabilities-1')
         await expect(section).toBeVisible()
       })
 
-      test('has section title', async ({ page }) => {
-        const title = page.getByTestId('tool-features-title')
+      test('first section has title', async ({ page }) => {
+        const title = page.getByTestId('memory-calculator-capabilities-1-title')
         await expect(title).toBeVisible()
-        await expect(title).toHaveText('Key Features')
+        await expect(title).toContainText('Key Capabilities')
       })
 
-      test('has features grid', async ({ page }) => {
-        const grid = page.getByTestId('tool-features-grid')
-        await expect(grid).toBeVisible()
-      })
-
-      test('displays multiple features', async ({ page }) => {
-        const feature0 = page.getByTestId('tool-feature-0')
-        const feature1 = page.getByTestId('tool-feature-1')
-        await expect(feature0).toBeVisible()
-        await expect(feature1).toBeVisible()
-      })
-    })
-
-    test.describe('Demo Section', () => {
-      test('renders demo section', async ({ page }) => {
-        const section = page.getByTestId('tool-demo-section')
-        await expect(section).toBeVisible()
-      })
-
-      test('has section title', async ({ page }) => {
-        const title = page.getByTestId('tool-demo-title')
-        await expect(title).toBeVisible()
-        await expect(title).toHaveText('Try It Out')
-      })
-
-      test('has ToolDemo component', async ({ page }) => {
-        const demo = page.getByTestId('tool-demo-memory-calculator')
-        await expect(demo).toBeVisible()
-      })
-
-      test('demo shows placeholder state', async ({ page }) => {
-        const placeholder = page.getByTestId('tool-demo-memory-calculator-placeholder')
-        await expect(placeholder).toBeVisible()
-        await expect(placeholder).toContainText('Demo Coming Soon')
+      test('displays capability features', async ({ page }) => {
+        const features = page.getByTestId('memory-calculator-capabilities-1-features')
+        await expect(features).toBeVisible()
       })
     })
 
@@ -142,26 +105,34 @@ test.describe('Dynamic Tool Pages', () => {
       })
     })
 
-    test.describe('Related Tools Section', () => {
-      test('renders related tools section', async ({ page }) => {
-        const section = page.getByTestId('tool-related-section')
+    test.describe('Tech Specs Section', () => {
+      test('renders specs section', async ({ page }) => {
+        const section = page.getByTestId('memory-calculator-specs')
         await expect(section).toBeVisible()
       })
 
-      test('has section title', async ({ page }) => {
-        const title = page.getByTestId('tool-related-title')
+      test('has specs title', async ({ page }) => {
+        const title = page.getByTestId('memory-calculator-specs-title')
         await expect(title).toBeVisible()
-        await expect(title).toHaveText('Related Tools')
+        await expect(title).toContainText('Technical Details')
+      })
+    })
+
+    test.describe('Resources Section', () => {
+      test('renders resources section', async ({ page }) => {
+        const section = page.getByTestId('memory-calculator-resources')
+        await expect(section).toBeVisible()
       })
 
-      test('has related tools grid', async ({ page }) => {
-        const grid = page.getByTestId('tool-related-grid')
-        await expect(grid).toBeVisible()
+      test('has resources title', async ({ page }) => {
+        const title = page.getByTestId('memory-calculator-resources-title')
+        await expect(title).toBeVisible()
       })
 
-      test('shows TCO calculator as related', async ({ page }) => {
-        const relatedTool = page.getByTestId('related-tool-tco-calculator')
-        await expect(relatedTool).toBeVisible()
+      test('has browse tools CTA', async ({ page }) => {
+        const cta = page.getByTestId('memory-calculator-resources-cta')
+        await expect(cta).toBeVisible()
+        await expect(cta).toContainText('Browse all tools')
       })
     })
 
@@ -209,21 +180,17 @@ test.describe('Dynamic Tool Pages', () => {
         const container = page.getByTestId(`tool-page-${tool.slug}`)
         await expect(container).toBeVisible()
 
-        // Verify title
-        const title = page.getByTestId('tool-title')
-        await expect(title).toContainText(tool.name.split(' ')[0]) // First word of name
+        // Verify hero section
+        const hero = page.getByTestId(`${tool.slug}-hero`)
+        await expect(hero).toBeVisible()
 
-        // Verify category
-        const category = page.getByTestId('tool-category')
-        await expect(category).toHaveText(tool.category)
+        // Verify sticky nav
+        const nav = page.getByTestId(`${tool.slug}-nav`)
+        await expect(nav).toBeVisible()
 
-        // Verify features section
-        const featuresSection = page.getByTestId('tool-features-section')
-        await expect(featuresSection).toBeVisible()
-
-        // Verify demo section
-        const demoSection = page.getByTestId('tool-demo-section')
-        await expect(demoSection).toBeVisible()
+        // Verify specs section
+        const specs = page.getByTestId(`${tool.slug}-specs`)
+        await expect(specs).toBeVisible()
 
         // Verify CTA section
         const ctaSection = page.getByTestId('tool-cta-section')
@@ -232,52 +199,19 @@ test.describe('Dynamic Tool Pages', () => {
     }
   })
 
-  // Test category color schemes
-  test.describe('Category Color Schemes', () => {
-    test('calculator pages have blue color scheme', async ({ page }) => {
-      await page.goto('/tools/memory-calculator')
-      const demo = page.getByTestId('tool-demo-memory-calculator-icon')
-      await expect(demo).toHaveClass(/bg-blue-100/)
-    })
-
-    test('advisor pages have emerald color scheme', async ({ page }) => {
-      await page.goto('/tools/parallelism-advisor')
-      const demo = page.getByTestId('tool-demo-parallelism-advisor-icon')
-      await expect(demo).toHaveClass(/bg-emerald-100/)
-    })
-
-    test('registry pages have violet color scheme', async ({ page }) => {
-      await page.goto('/tools/accelerator-registry')
-      const demo = page.getByTestId('tool-demo-accelerator-registry-icon')
-      await expect(demo).toHaveClass(/bg-violet-100/)
-    })
-
-    test('framework pages have amber color scheme', async ({ page }) => {
-      await page.goto('/tools/evaluation')
-      const demo = page.getByTestId('tool-demo-evaluation-icon')
-      await expect(demo).toHaveClass(/bg-amber-100/)
-    })
-  })
-
   // Test navigation between tools
   test.describe('Navigation', () => {
-    test('breadcrumb links to tools hub', async ({ page }) => {
-      await page.goto('/tools/memory-calculator')
-      const breadcrumbLink = page.getByTestId('tool-breadcrumb').locator('a')
-      await expect(breadcrumbLink).toHaveAttribute('href', '/tools')
-    })
-
-    test('related tool links work', async ({ page }) => {
-      await page.goto('/tools/memory-calculator')
-      const relatedLink = page.getByTestId('related-tool-tco-calculator')
-      await expect(relatedLink).toHaveAttribute('href', '/tools/tco-calculator')
-    })
-
     test('browse all tools button navigates to hub', async ({ page }) => {
       await page.goto('/tools/memory-calculator')
       const browseButton = page.getByTestId('tool-browse-button')
       await browseButton.click()
       await expect(page).toHaveURL('/tools')
+    })
+
+    test('resources CTA links to tools hub', async ({ page }) => {
+      await page.goto('/tools/memory-calculator')
+      const ctaLink = page.getByTestId('memory-calculator-resources-cta')
+      await expect(ctaLink).toHaveAttribute('href', '/tools')
     })
   })
 })
