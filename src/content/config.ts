@@ -14,6 +14,11 @@ const tools = defineCollection({
     iconBg: z.string().default('bg-violet-100'), // Tailwind bg class
     iconColor: z.string().default('text-violet-600'), // Tailwind text class
 
+    // Product imagery
+    productImage: z.string().optional(), // Hero product screenshot
+    productImageAlt: z.string().optional(), // Alt text for product image
+    secondaryImage: z.string().optional(), // Secondary capability image
+
     // Features and capabilities
     features: z.array(z.string()).default([]),
 

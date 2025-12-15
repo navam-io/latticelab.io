@@ -164,6 +164,8 @@ relatedTools.forEach(rt => {
         headline={tool.data.name}
         tagline={toolTaglines[tool.slug] || 'Smart AI Infrastructure'}
         description={tool.data.description}
+        productImage={tool.data.productImage}
+        productImageAlt={tool.data.productImageAlt || `${tool.data.name} screenshot`}
         browserUrl={`lattice.app/tools/${tool.slug}`}
         colorScheme={colorScheme}
         primaryCTA="Get Lattice"
@@ -182,11 +184,13 @@ relatedTools.forEach(rt => {
           title="Key Capabilities"
           description={`What ${tool.data.name} helps you accomplish.`}
           features={capabilityGroups[0].map(formatFeature)}
+          image={tool.data.productImage}
+          imageAlt={tool.data.productImageAlt || `${tool.data.name} interface`}
           icon={categoryIcon}
           iconColor={colorScheme}
           imagePosition="left"
           background="white"
-          showPlaceholder={true}
+          showBrowserFrame={true}
           testId={`${tool.slug}-capabilities-1`}
         />
       )}
@@ -197,11 +201,13 @@ relatedTools.forEach(rt => {
           title="Advanced Features"
           description="Go deeper with advanced capabilities."
           features={capabilityGroups[1].map(formatFeature)}
+          image={tool.data.secondaryImage || tool.data.productImage}
+          imageAlt={`${tool.data.name} advanced features`}
           icon={icons.advisor}
           iconColor="blue"
           imagePosition="right"
           background="gray"
-          showPlaceholder={true}
+          showBrowserFrame={true}
           testId={`${tool.slug}-capabilities-2`}
         />
       )}
@@ -257,7 +263,7 @@ relatedTools.forEach(rt => {
           Get Full Access to All Tools
         </h2>
         <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto" data-testid="tool-cta-description">
-          Access {tool.data.name} plus 6 other tools, Sources, Lab, Studio, and more with a one-time purchase.
+          Access {tool.data.name} plus 7 other tools, Sources, Lab, Studio, and more with a one-time purchase.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a

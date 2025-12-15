@@ -1,20 +1,22 @@
 ---
 name: Parallelism Advisor
-description: Get recommendations for tensor, pipeline, and data parallelism configurations. Optimize your distributed training setup for maximum efficiency.
+description: Configure optimal TP, PP, and DP settings for your model and hardware. Get hardware-aware recommendations for DeepSpeed ZeRO, FSDP, and gradient checkpointing.
 shortDescription: Get recommendations for tensor, pipeline, and data parallelism configurations.
 icon: M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z
 iconBg: bg-amber-100
 iconColor: text-amber-600
+productImage: /images/tools/parallelism-advisor-01.png
+productImageAlt: Parallelism Advisor showing TP, PP, DP configuration recommendations
 features:
-  - Data parallelism configuration
-  - Tensor parallelism recommendations
-  - Pipeline parallelism stages
-  - ZeRO optimization levels
-  - Communication efficiency analysis
-  - Gradient checkpointing guidance
+  - "Tensor Parallelism degree recommendations (TP=2,4,8)"
+  - "Pipeline Parallelism stage optimization"
+  - "Data Parallelism with gradient sync tuning"
+  - "ZeRO Stage 1/2/3 selection guidance"
+  - "NVLink and InfiniBand topology awareness"
+  - "Memory vs throughput tradeoff analysis"
 journeyLink: /blog/parallelism-advisor
 docsLink: /docs/guides/build-stacks
-order: 4
+order: 5
 category: advisor
 seoTitle: Distributed Training Parallelism Advisor | Lattice
 seoDescription: Get optimal parallelism configurations for distributed AI training. Recommendations for tensor, pipeline, and data parallelism with efficiency analysis.

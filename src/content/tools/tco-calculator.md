@@ -1,20 +1,23 @@
 ---
 name: TCO Calculator
-description: Calculate total cost of ownership for AI infrastructure with detailed breakdowns. Compare cloud providers, analyze cost drivers, and optimize your spending.
+description: Compare AI infrastructure costs across AWS, GCP, and Azure with detailed breakdowns. Factor in compute, storage, network, and commitment discounts for accurate budget planning.
 shortDescription: Calculate total cost of ownership with detailed breakdowns and multi-provider comparison.
 icon: M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z
 iconBg: bg-emerald-100
 iconColor: text-emerald-600
+productImage: /images/tools/tco-calculator-01.png
+productImageAlt: TCO Calculator showing cost comparison across cloud providers
+secondaryImage: /images/tools/tco-calculator-02.png
 features:
-  - Multi-provider cost comparison
-  - Training vs inference cost modeling
-  - Reserved vs on-demand analysis
-  - Spot instance savings calculation
-  - Data transfer cost estimation
-  - Monthly/yearly projections
+  - "AWS, GCP, and Azure GPU pricing comparison"
+  - "On-demand, reserved, and spot instance analysis"
+  - "Training and inference cost modeling"
+  - "Storage and data transfer cost inclusion"
+  - "Monthly and yearly cost projections"
+  - "Cost optimization recommendations"
 journeyLink: /blog/tco-calculator
 docsLink: /docs/guides/compare-providers
-order: 3
+order: 2
 category: calculator
 seoTitle: AI Infrastructure TCO Calculator - Cloud Cost Analysis | Lattice
 seoDescription: Calculate total cost of ownership for AI infrastructure. Compare AWS, GCP, Azure pricing with detailed breakdowns and optimization recommendations.

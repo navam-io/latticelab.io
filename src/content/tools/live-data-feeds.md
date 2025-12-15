@@ -1,17 +1,19 @@
 ---
 name: Live Data Feeds
-description: Keep pricing, benchmarks, and model capabilities current with automatic data synchronization. Configure feeds from AI providers to ensure your cost estimates and recommendations stay accurate.
+description: When stale data costs you money. Automatic sync of pricing, benchmarks, and capabilities from Anthropic, OpenAI, Google, and AWS keeps your estimates accurate.
 shortDescription: Automatic data sync for pricing, benchmarks, and model capabilities.
 icon: M13 10V3L4 14h7v7l9-11h-7z
 iconBg: bg-cyan-100
 iconColor: text-cyan-600
+productImage: /images/tools/live-data-feeds-01.png
+productImageAlt: Live Data Feeds showing sync status and provider feeds
 features:
-  - Pricing feeds from major AI providers
-  - Model card and capability updates
-  - Benchmark feeds (LMArena, MLPerf)
-  - Configurable sync frequency
-  - Feed status monitoring
-  - Stale data alerts
+  - "Pricing feeds from Anthropic, OpenAI, Google, AWS, Azure"
+  - "Model capability updates (vision, tools, thinking)"
+  - "LMArena and MLPerf benchmark sync"
+  - "Hourly, daily, or weekly sync frequency"
+  - "Feed status monitoring with stale alerts"
+  - "Powers TCO Calculator and Model Registry"
 journeyLink: /blog/live-data-feeds
 docsLink: /docs/guides/configure-feeds
 order: 8

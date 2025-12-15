@@ -132,8 +132,9 @@
       </div>
     </div>
 
-    <!-- Bottom gradient fade -->
+    <!-- Bottom gradient fade (optional, disabled by default for clean section separation) -->
     <div
+      v-if="showBottomFade"
       :class="bottomFadeClasses"
       :data-testid="`${testId}-fade`"
     />
@@ -176,7 +177,9 @@ interface Props {
   headlineSize?: 'hero' | 'display-xl' | 'display-lg'
   /** Gradient variant for headline */
   gradientVariant?: 'hero' | 'primary' | 'secondary' | 'accent' | 'light'
-  /** Background to fade to */
+  /** Whether to show bottom fade gradient (default: false for clean section separation) */
+  showBottomFade?: boolean
+  /** Background to fade to (only used if showBottomFade is true) */
   fadeToBackground?: 'white' | 'gray' | 'transparent'
   /** Test ID prefix */
   testId?: string
@@ -197,6 +200,7 @@ const props = withDefaults(defineProps<Props>(), {
   colorScheme: 'violet',
   headlineSize: 'display-xl',
   gradientVariant: 'hero',
+  showBottomFade: false,
   fadeToBackground: 'white',
   testId: 'feature-hero'
 })
