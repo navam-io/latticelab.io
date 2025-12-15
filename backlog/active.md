@@ -48,29 +48,7 @@ Features that have been completed are moved to their respective release notes:
 - **Feature 6.4: Tools Hub Page** - See [release-0.35.0.md](../releases/release-0.35.0.md)
 - **Feature 6.5: Tool Content Files** - See [release-0.32.0.md](../releases/release-0.32.0.md) (completed with Feature 6.1)
 - **Feature 6.6: Dynamic Tool Pages** - See [release-0.36.0.md](../releases/release-0.36.0.md)
-
----
-
-## Phase 7: Docs Integration
-
-### Feature 7.1: Cross-Linking Updates
-**Spec Reference:** Part 6, Section 6.1, 6.2
-**Status:** [ ] Planned
-**Complexity:** M
-
-**Description:**
-Add cross-links between marketing pages and documentation.
-
-**Files:**
-- [ ] All feature pages - Add DocsLink callouts
-- [ ] Homepage - Add "Get Started" link to quickstart
-
-**Dependencies:** Feature 1.5 (DocsLink)
-
-**Acceptance Criteria:**
-- [ ] Feature pages link to corresponding docs
-- [ ] Tools pages link to guide docs
-- [ ] Journey posts link to getting-started docs
+- **Feature 7.1: Cross-Linking Updates** - See [release-0.40.0.md](../releases/release-0.40.0.md)
 
 ---
 
@@ -152,6 +130,6 @@ Final quality assurance and cross-browser testing.
 | Phase 4: Footer | 2 | 2 | 0 |
 | Phase 5: Feature Pages | 13 | 13 | 0 |
 | Phase 6: Tools Section | 6 | 6 | 0 |
-| Phase 7: Docs Integration | 1 | 0 | 1 |
+| Phase 7: Docs Integration | 1 | 1 | 0 |
 | Phase 8: Content & Polish | 3 | 0 | 3 |
-| **Total** | **41** | **37** | **4** |
+| **Total** | **41** | **38** | **3** |

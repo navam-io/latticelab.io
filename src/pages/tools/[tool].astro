@@ -11,6 +11,7 @@ import FeatureHero from '@components/features/FeatureHero.vue';
 import CapabilitySection from '@components/features/CapabilitySection.vue';
 import TechSpecs from '@components/features/TechSpecs.vue';
 import RelatedContent from '@components/features/RelatedContent.vue';
+import DocsLink from '@components/shared/DocsLink.vue';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -243,6 +244,26 @@ relatedTools.forEach(rt => {
         testId={`${tool.slug}-resources`}
       />
     </section>
+
+    <!-- Documentation Callout Section -->
+    {tool.data.docsLink && (
+      <section class="py-12 bg-white" data-testid={`${tool.slug}-docs-callout`}>
+        <div class="container mx-auto px-4">
+          <div class="max-w-2xl mx-auto">
+            <DocsLink
+              client:load
+              title={`${tool.data.name} Guide`}
+              description={`Complete documentation for using ${tool.data.name} effectively.`}
+              href={tool.data.docsLink}
+              icon="guide"
+              variant="bordered"
+              size="lg"
+              testId={`${tool.slug}-docs-link`}
+            />
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-violet-600 to-blue-600" data-testid="tool-cta-section">

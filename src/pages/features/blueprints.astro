@@ -7,6 +7,7 @@ import FeatureHero from '@components/features/FeatureHero.vue';
 import CapabilitySection from '@components/features/CapabilitySection.vue';
 import TechSpecs from '@components/features/TechSpecs.vue';
 import RelatedContent from '@components/features/RelatedContent.vue';
+import DocsLink from '@components/shared/DocsLink.vue';
 
 // Icon paths (Heroicons)
 const icons = {
@@ -276,6 +277,24 @@ const docs = [
         ctaText="View Blueprints documentation"
         testId="blueprints-resources"
       />
+    </section>
+
+    <!-- Documentation Callout Section -->
+    <section class="py-12 bg-white" data-testid="blueprints-docs-callout">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto">
+          <DocsLink
+            client:load
+            title="Blueprints Documentation"
+            description="Browse available blueprints and learn how to apply them to your workspace."
+            href="/docs/features/blueprints"
+            icon="book"
+            variant="bordered"
+            size="lg"
+            testId="blueprints-docs-link"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->

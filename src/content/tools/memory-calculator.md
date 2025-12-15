@@ -16,6 +16,7 @@ features:
   - "FP32, BF16, FP16, and FP8 precision support"
   - "GPU fit status with specific recommendations"
 journeyLink: /blog/memory-calculator
+docsLink: /docs/guides/build-stacks
 order: 1
 category: calculator
 seoTitle: AI Model Memory Calculator - GPU Memory Estimation | Lattice

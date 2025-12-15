@@ -7,6 +7,7 @@ import FeatureHero from '@components/features/FeatureHero.vue';
 import CapabilitySection from '@components/features/CapabilitySection.vue';
 import TechSpecs from '@components/features/TechSpecs.vue';
 import RelatedContent from '@components/features/RelatedContent.vue';
+import DocsLink from '@components/shared/DocsLink.vue';
 
 // Icon paths (Heroicons)
 const icons = {
@@ -273,6 +274,24 @@ const docs = [
         ctaText="View Scenarios documentation"
         testId="scenarios-resources"
       />
+    </section>
+
+    <!-- Documentation Callout Section -->
+    <section class="py-12 bg-white" data-testid="scenarios-docs-callout">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto">
+          <DocsLink
+            client:load
+            title="Scenarios Documentation"
+            description="Learn how to define workload requirements and configure SLO targets."
+            href="/docs/features/scenarios"
+            icon="book"
+            variant="bordered"
+            size="lg"
+            testId="scenarios-docs-link"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->

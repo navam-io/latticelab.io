@@ -64,7 +64,12 @@ import Footer from '@components/Footer.vue';
   <Header client:load />
   <main>
     <!-- Hero Section - Large gradient headline with product screenshot -->
-    <HeroSection client:load testId="homepage-hero" />
+    <HeroSection
+      client:load
+      testId="homepage-hero"
+      secondaryCTA="Get Started"
+      secondaryHref="/docs/getting-started"
+    />
 
     <!-- Social Proof - Vendor ticker -->
     <VendorTicker client:load />
