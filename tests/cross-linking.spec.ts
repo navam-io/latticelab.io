@@ -16,7 +16,7 @@ test.describe('Cross-Linking Feature', () => {
     test('Get Started button links to docs quickstart', async ({ page }) => {
       const learnMore = page.getByTestId('homepage-hero-learn-more')
       const href = await learnMore.getAttribute('href')
-      expect(href).toBe('/docs/getting-started')
+      expect(href).toBe('/docs/getting-started/quickstart')
     })
   })
 
