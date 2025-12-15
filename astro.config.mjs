@@ -119,6 +119,27 @@ export default defineConfig({
             type: 'image/x-icon',
           },
         },
+        {
+          tag: 'meta',
+          attrs: {
+            property: 'og:image',
+            content: 'https://www.latticelab.io/images/og-image.png',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'twitter:image',
+            content: 'https://www.latticelab.io/images/og-image.png',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'twitter:card',
+            content: 'summary_large_image',
+          },
+        },
       ],
       components: {
         SiteTitle: './src/components/docs/SiteTitle.astro',
