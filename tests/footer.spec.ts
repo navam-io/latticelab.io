@@ -95,46 +95,52 @@ test.describe('Footer Component', () => {
       await expect(title).toHaveText('Tools')
     })
 
-    test('contains Accelerator Registry link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-0')
-      await expect(link).toHaveText('Accelerator Registry')
-      await expect(link).toHaveAttribute('href', '/tools/accelerator-registry')
-    })
-
     test('contains Memory Calculator link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-1')
+      const link = page.getByTestId('footer-tools-links-link-0')
       await expect(link).toHaveText('Memory Calculator')
       await expect(link).toHaveAttribute('href', '/tools/memory-calculator')
     })
 
     test('contains TCO Calculator link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-2')
+      const link = page.getByTestId('footer-tools-links-link-1')
       await expect(link).toHaveText('TCO Calculator')
       await expect(link).toHaveAttribute('href', '/tools/tco-calculator')
     })
 
-    test('contains Parallelism Advisor link', async ({ page }) => {
+    test('contains Model Registry link', async ({ page }) => {
+      const link = page.getByTestId('footer-tools-links-link-2')
+      await expect(link).toHaveText('Model Registry')
+      await expect(link).toHaveAttribute('href', '/tools/model-registry')
+    })
+
+    test('contains Accelerator Registry link', async ({ page }) => {
       const link = page.getByTestId('footer-tools-links-link-3')
+      await expect(link).toHaveText('Accelerator Registry')
+      await expect(link).toHaveAttribute('href', '/tools/accelerator-registry')
+    })
+
+    test('contains Parallelism Advisor link', async ({ page }) => {
+      const link = page.getByTestId('footer-tools-links-link-4')
       await expect(link).toHaveText('Parallelism Advisor')
       await expect(link).toHaveAttribute('href', '/tools/parallelism-advisor')
     })
 
     test('contains Quantization Advisor link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-4')
+      const link = page.getByTestId('footer-tools-links-link-5')
       await expect(link).toHaveText('Quantization Advisor')
       await expect(link).toHaveAttribute('href', '/tools/quantization-advisor')
     })
 
-    test('contains Spot Instance Advisor link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-5')
-      await expect(link).toHaveText('Spot Instance Advisor')
+    test('contains Spot Advisor link', async ({ page }) => {
+      const link = page.getByTestId('footer-tools-links-link-6')
+      await expect(link).toHaveText('Spot Advisor')
       await expect(link).toHaveAttribute('href', '/tools/spot-advisor')
     })
 
-    test('contains Evaluation Framework link', async ({ page }) => {
-      const link = page.getByTestId('footer-tools-links-link-6')
-      await expect(link).toHaveText('Evaluation Framework')
-      await expect(link).toHaveAttribute('href', '/tools/evaluation')
+    test('contains Live Data Feeds link', async ({ page }) => {
+      const link = page.getByTestId('footer-tools-links-link-7')
+      await expect(link).toHaveText('Live Data Feeds')
+      await expect(link).toHaveAttribute('href', '/tools/live-data-feeds')
     })
   })
 
@@ -417,9 +423,9 @@ test.describe('Footer Component', () => {
       await expect(links).toHaveCount(8)
     })
 
-    test('Tools column has 7 links', async ({ page }) => {
+    test('Tools column has 8 links', async ({ page }) => {
       const links = page.getByTestId('footer-tools-links').locator('a')
-      await expect(links).toHaveCount(7)
+      await expect(links).toHaveCount(8)
     })
 
     test('Resources column has 7 links', async ({ page }) => {

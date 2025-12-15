@@ -135,9 +135,9 @@ test.describe('Homepage Assembly', () => {
       await expect(title).toContainText('Powerful Tools');
     });
 
-    test('tools carousel track exists', async ({ page }) => {
-      const track = page.getByTestId('homepage-tools-track');
-      await expect(track).toBeAttached();
+    test('tools grid exists', async ({ page }) => {
+      const grid = page.getByTestId('homepage-tools-grid');
+      await expect(grid).toBeAttached();
     });
 
     test('accelerator registry tool card is visible', async ({ page }) => {

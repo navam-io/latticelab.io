@@ -16,7 +16,6 @@ features:
   - "NVIDIA Tensor Core compatibility checks"
   - "Model-specific recommendations (LLaMA, ViT)"
 journeyLink: /blog/quantization-advisor
-docsLink: /docs/guides/evaluate-models
 order: 6
 category: advisor
 seoTitle: AI Model Quantization Advisor - INT8, FP16, INT4 Guide | Lattice

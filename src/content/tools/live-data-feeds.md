@@ -15,7 +15,6 @@ features:
   - "Feed status monitoring with stale alerts"
   - "Powers TCO Calculator and Model Registry"
 journeyLink: /blog/live-data-feeds
-docsLink: /docs/guides/configure-feeds
 order: 8
 category: data
 seoTitle: Live Data Feeds - Automatic AI Data Sync | Lattice

@@ -16,7 +16,6 @@ features:
   - "Real-time sync with provider pricing pages"
   - "Integrated with TCO Calculator and Stack Config"
 journeyLink: /blog/model-registry
-docsLink: /docs/guides/compare-models
 order: 3
 category: registry
 seoTitle: AI Model Registry - Compare 30+ LLMs Across Providers | Lattice

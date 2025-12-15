@@ -118,14 +118,9 @@ const journeys = [
 
 const docs = [
   {
-    title: 'Settings API Reference',
-    description: 'Complete API documentation for settings management',
-    href: '/docs/api/settings'
-  },
-  {
-    title: 'API Key Setup Guide',
-    description: 'How to obtain and configure provider API keys',
-    href: '/docs/features/settings'
+    title: 'API Reference',
+    description: 'Complete API documentation for Lattice',
+    href: '/docs/api/overview'
   }
 ];
 ---
@@ -161,8 +156,6 @@ const docs = [
         colorScheme="violet"
         primaryCTA="Get Lattice"
         primaryHref="/#pricing"
-        secondaryCTA="View docs"
-        secondaryHref="/docs/features/settings"
         testId="settings-hero"
       />
     </section>
@@ -254,8 +247,6 @@ const docs = [
         specs={techSpecs}
         columns={3}
         background="white"
-        docsLink="/docs/features/settings"
-        docsLinkText="View full documentation"
         testId="settings-specs"
       />
     </section>
@@ -269,8 +260,8 @@ const docs = [
         journeys={journeys}
         docs={docs}
         background="gray"
-        ctaLink="/docs/features/settings"
-        ctaText="View Settings documentation"
+        ctaLink="/docs/api/overview"
+        ctaText="View API documentation"
         testId="settings-resources"
       />
     </section>
