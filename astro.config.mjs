@@ -20,6 +20,16 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br'
+      }
+    },
+    preview: {
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br'
+      }
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
